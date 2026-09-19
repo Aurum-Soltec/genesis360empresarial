@@ -1,0 +1,61 @@
+{
+  "work_package": {
+    "status": "PASS",
+    "output": "PASS - Genesis 360 Empresarial Work package structure is complete."
+  },
+  "openapi": {
+    "status": "PASS",
+    "output": "PASS - OpenAPI covers 19 API route file(s)."
+  },
+  "migrations_static": {
+    "status": "PASS",
+    "output": "Validated 12 migration(s): 0001_core.sql, 0002_v1_tenancy_and_consent.sql, 0003_v1_business_passport.sql, 0004_v1_diagnostic_engine.sql, 0005_v1_pain_cause_gds.sql, 0006_v1_missions_qualification_foundation.sql, 0007_v1_security_evidence_outbox.sql, 0008_v1_tenant_reference_integrity.sql, 0009_v1_end_to_end_core.sql, 0010_v1_outbox_transition_event_identity.sql, 0011_v1_least_privilege_rbac.sql, 0012_v1_diagnostic_intelligence_data_governance.sql"
+  },
+  "security_contracts": {
+    "status": "PASS",
+    "output": "PASS - Wave 6 security/end-to-end contracts and database test harness are present."
+  },
+  "trust_boundaries": {
+    "status": "PASS",
+    "output": "PASS - trusted server and agent data boundaries are statically enforced."
+  },
+  "design": {
+    "status": "PASS",
+    "output": "PASS - Genesis Precision Light design contracts, navigation, canonical screens and contrast checks."
+  },
+  "wave8_backend_integrity": {
+    "status": "PASS",
+    "output": "PASS - Wave 7 backend baseline preserved across 53 file(s)."
+  },
+  "json_parse": {
+    "status": "PASS",
+    "errors": []
+  },
+  "openapi_yaml": {
+    "status": "PASS"
+  },
+  "secret_like_scan": {
+    "status": "PASS",
+    "hits": []
+  },
+  "source_foundation_preserved": {
+    "status": "PASS",
+    "missing": []
+  },
+  "dependency_graph_unchanged": {
+    "status": "PASS"
+  },
+  "runtime_quality": {
+    "status": "NOT_RUN",
+    "required": [
+      "pnpm install --frozen-lockfile",
+      "pnpm lint",
+      "pnpm typecheck",
+      "pnpm test",
+      "pnpm build",
+      "supabase test db",
+      "browser E2E",
+      "restore drill"
+    ]
+  }
+}

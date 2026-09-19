@@ -1,0 +1,37 @@
+[
+  {
+    "path": "docs/sources/GENESIS_360_HANDOFF_TECNICO_COMPLETO_ATUALIZACAO_DOSSIE.md",
+    "sha256": "30613fd0bba3e6cad2eb40bc84f83077a9eef9424ce7385f04641608eab127b1",
+    "reason": "restricted_source_retained_in_original_zip"
+  },
+  {
+    "path": "docs/sources/GENESIS_360_DOSSIE_EXECUTIVO_COMPLETO_ATUALIZADO_QUADRO_DIRETIVO.pdf",
+    "sha256": "1bb56d820794baaf00c09e6ef7fb451c0f46633eed7a6378843279fadf135e8b",
+    "reason": "restricted_source_retained_in_original_zip"
+  },
+  {
+    "path": "intelligence/genesis_intelligence/__pycache__/gds_agent.cpython-313.pyc",
+    "sha256": "288c9f7943e08985f79b1650a02cbc096d7bbe4d8025f77f004c493581e6e697",
+    "reason": "generated_cache_not_source"
+  },
+  {
+    "path": "intelligence/genesis_intelligence/__pycache__/contracts.cpython-313.pyc",
+    "sha256": "051123049d7f21fc18bf3097ee2e97c0114310f5f2a81315bfecd744c55d2d60",
+    "reason": "generated_cache_not_source"
+  },
+  {
+    "path": "intelligence/genesis_intelligence/__pycache__/__init__.cpython-313.pyc",
+    "sha256": "cdf6f3c6a8e4cc2e6130c960b0dd19b64aca9d55f94a89386349fe3351ce442a",
+    "reason": "generated_cache_not_source"
+  },
+  {
+    "path": "intelligence/tests/__pycache__/test_no_database_credentials.cpython-313.pyc",
+    "sha256": "c8c1bee4f21259edbf52558d7bc1d43e0e537913759b7715a805f1e8fbe58b2e",
+    "reason": "generated_cache_not_source"
+  },
+  {
+    "path": "tsconfig.tsbuildinfo",
+    "sha256": "5e3b707b09205d3f2e550a63891afc3363d0984835bce7a41cebdfcbb6bb8976",
+    "reason": "generated_cache_not_source"
+  }
+]

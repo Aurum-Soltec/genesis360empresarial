@@ -1,0 +1,48 @@
+{
+  "version": "2.0.0",
+  "name": "Genesis Precision Light",
+  "theme": "light",
+  "colors": {
+    "canvas": "#F7F8F6",
+    "surface": "#FFFFFF",
+    "surfaceSoft": "#F2F4F1",
+    "surfaceStrong": "#E9EEE9",
+    "ink": "#111814",
+    "muted": "#58635C",
+    "subtle": "#69736C",
+    "faint": "#89928C",
+    "line": "#DDE3DE",
+    "lineStrong": "#C8D1CA",
+    "genesisGreen": "#1F5A34",
+    "genesisLime": "#A8FF3E",
+    "greenSoft": "#EDF6EE",
+    "info": "#1D5D74",
+    "warning": "#9A6700",
+    "danger": "#B42318",
+    "focus": "#1F6A3C"
+  },
+  "radius": {
+    "badge": 6,
+    "control": 10,
+    "panel": 12,
+    "card": 16,
+    "overlay": 20
+  },
+  "navigation": {
+    "topbarHeight": 68,
+    "sidebarWidth": 232,
+    "mobileBreakpoint": 900
+  },
+  "motion": {
+    "fast": 120,
+    "base": 180,
+    "slow": 260
+  },
+  "rules": {
+    "globalDarkBackground": false,
+    "largeLimeSurfaces": false,
+    "oneDominantPrimaryAction": true,
+    "minimumInteractiveTarget": 44,
+    "wcagBaseline": "2.2 AA"
+  }
+}

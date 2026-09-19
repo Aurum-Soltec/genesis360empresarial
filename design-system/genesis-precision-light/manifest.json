@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "od-design-system-project/v1",
+  "id": "genesis-precision-light",
+  "name": "Genesis Precision Light",
+  "category": "Premium B2B Business Intelligence SaaS",
+  "description": "Light, restrained and high-contrast product system for Genesis 360 Empresarial.",
+  "source": {
+    "type": "project",
+    "origin": "Genesis 360 Empresarial Wave 8",
+    "references": [
+      "https://github.com/leonxlnx/taste-skill",
+      "https://github.com/shadcn-ui/ui",
+      "https://github.com/nexu-io/open-design"
+    ]
+  },
+  "files": {
+    "design": "DESIGN.md",
+    "tokens": "tokens.css"
+  },
+  "version": "2.0.0",
+  "theme": "light-only"
+}

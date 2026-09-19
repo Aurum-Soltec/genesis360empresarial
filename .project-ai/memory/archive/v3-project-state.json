@@ -1,0 +1,58 @@
+{
+  "project": "Genesis 360",
+  "version": "3.0",
+  "phase": "M0-execution",
+  "repositoryExists": true,
+  "milestones": {
+    "M0": {
+      "days": 5,
+      "status": "in-progress"
+    },
+    "M1": {
+      "days": 30,
+      "status": "planned"
+    },
+    "Starter": {
+      "days": 45,
+      "status": "planned"
+    }
+  },
+  "decisions": [
+    "M0 is controlled demo",
+    "Unique sponsor disclosure required",
+    "Tax module rules-first",
+    "RLS mandatory",
+    "No BEE4 in Starter",
+    "No autonomous tax action",
+    "ST-001/ST-002 approved with audit corrections on evidence language",
+    "Preview build is proven; external preview deploy remains unproven until URL/provider evidence exists",
+    "Real cross-tenant RLS isolation remains pending for ST-016",
+    "Migration append-only protection must be enforced by process/CI",
+    "ESLint and jsdom pins are compatibility decisions to revisit after M0",
+    "Next.js upgraded to 16.2.6 after pnpm audit found high vulnerabilities in 16.2.0",
+    "pnpm overrides added for postcss 8.5.10 and @eslint/plugin-kit 0.3.4 after audit findings",
+    "GitHub Actions CI minimum added without secrets and without deploy",
+    "ST-003 not started in Prompt 002A",
+    "UI-001 not started in Prompt 002A"
+  ],
+  "publication": {
+    "prompt": "002A",
+    "status": "local-ci-ready",
+    "remote": "https://github.com/hudsonlcustodio/genesis360v3.git",
+    "deploy": "not-started",
+    "ui001": "not-started",
+    "st003": "not-started"
+  },
+  "auditGate": {
+    "story": "ST-001/ST-002",
+    "date": "2026-06-26",
+    "status": "approved-with-corrections",
+    "nextStory": "ST-003",
+    "pendingEvidence": [
+      "external preview deploy URL/status/screenshot/log",
+      "cross-tenant RLS tests in ST-016",
+      "CI/process guard for append-only migrations"
+    ]
+  },
+  "nextStory": "ST-003"
+}

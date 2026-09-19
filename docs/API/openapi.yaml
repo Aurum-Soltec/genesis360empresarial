@@ -1,0 +1,897 @@
+openapi: 3.1.0
+info:
+  title: Genesis 360 Empresarial API
+  version: 1.2.1-rc.1
+  description: "Contratos HTTP da baseline V1. Autorização de tenant é validada no servidor; IDs enviados pelo cliente\
+    \ nunca substituem o tenant ativo autenticado.\n V1.2.1: mutações por cookie exigem Origin igual ao host servido;\
+    \ papéis autorizados por operação; corpo JSON limitado a 64 KiB. Material sensível é somente declarado pela\
+    \ entrada pública."
+servers:
+- url: /api
+tags:
+- name: Tenant
+- name: Consent
+- name: Passport
+- name: Evidence
+- name: Diagnostic
+- name: Decision
+- name: Mission
+- name: Solutions
+paths:
+  /auth/signout:
+    post:
+      tags: [Tenant]
+      operationId: signOut
+      summary: Encerra a sessão e remove o tenant ativo
+      responses:
+        '200': { description: Sessão encerrada }
+        '403': { description: Origem não autorizada }
+  /tenant/active:
+    post:
+      tags:
+      - Tenant
+      operationId: setActiveTenant
+      summary: Seleciona tenant ativo entre memberships autorizadas
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - tenantId
+              properties:
+                tenantId:
+                  type: string
+                  format: uuid
+      responses:
+        '200':
+          description: Tenant ativo selecionado
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - tenantId
+                properties:
+                  tenantId:
+                    type: string
+                    format: uuid
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          description: Origem, tenant ou papel não autorizados; nunca expõe detalhes internos.
+        '409':
+          description: Conflito de estado/revisão; reler antes de tentar gravação.
+        '413':
+          description: Corpo acima de 64 KiB.
+        '500':
+          description: Falha interna sem vazamento de mensagens do provedor.
+  /tenant/members:
+    get:
+      tags: [Tenant]
+      operationId: listTenantMembers
+      summary: Lista membros para owner/admin do tenant ativo
+      responses:
+        '200': { description: Membros do tenant }
+        '403': { description: Acesso negado }
+    post:
+      tags: [Tenant]
+      operationId: inviteTenantMember
+      summary: Convida membro com papel controlado
+      responses:
+        '201': { description: Convite criado }
+        '403': { description: Acesso negado }
+        '409': { description: Conflito de ciclo de vida }
+    patch:
+      tags: [Tenant]
+      operationId: updateTenantMemberRole
+      summary: Altera papel preservando ao menos um owner
+      responses:
+        '200': { description: Papel alterado }
+        '403': { description: Acesso negado }
+        '409': { description: Último owner protegido }
+    delete:
+      tags: [Tenant]
+      operationId: removeTenantMember
+      summary: Revoga membership do tenant ativo
+      responses:
+        '200': { description: Acesso revogado }
+        '403': { description: Acesso negado }
+        '409': { description: Último owner protegido }
+  /consents:
+    post:
+      tags:
+      - Consent
+      operationId: recordConsentDecision
+      summary: Registra decisão append-only por finalidade e versão
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConsentDecisionInput'
+      responses:
+        '200':
+          description: Decisão registrada
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          description: Origem, tenant ou papel não autorizados; nunca expõe detalhes internos.
+        '409':
+          description: Conflito de estado/revisão; reler antes de tentar gravação.
+        '413':
+          description: Corpo acima de 64 KiB.
+        '500':
+          description: Falha interna sem vazamento de mensagens do provedor.
+  /passport/facts:
+    get:
+      tags:
+      - Passport
+      operationId: listBusinessFacts
+      summary: Lista fatos atuais do Business Passport
+      parameters:
+      - name: companyId
+        in: query
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Fatos atuais
+    post:
+      tags:
+      - Passport
+      operationId: recordBusinessFact
+      summary: Versiona um Business Fact por trusted server RPC
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BusinessFactInput'
+      responses:
+        '201':
+          description: Nova versão criada
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          description: Origem, tenant ou papel não autorizados; nunca expõe detalhes internos.
+        '409':
+          description: Conflito de estado/revisão; reler antes de tentar gravação.
+        '413':
+          description: Corpo acima de 64 KiB.
+        '500':
+          description: Falha interna sem vazamento de mensagens do provedor.
+  /passport/timeline:
+    get:
+      tags:
+      - Passport
+      operationId: listBusinessTimeline
+      summary: Retorna eventos temporais da empresa
+      parameters:
+      - name: companyId
+        in: query
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Timeline
+  /evidence:
+    get:
+      tags:
+      - Evidence
+      operationId: listEvidence
+      parameters:
+      - name: companyId
+        in: query
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Evidências autorizadas
+    post:
+      tags:
+      - Evidence
+      operationId: recordEvidence
+      summary: Registra evidência não verificada e vínculo opcional
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EvidenceInput'
+      responses:
+        '201':
+          description: Evidência registrada
+        '403':
+          description: Origem, tenant ou papel não autorizados; nunca expõe detalhes internos.
+        '409':
+          description: Conflito de estado/revisão; reler antes de tentar gravação.
+        '413':
+          description: Corpo acima de 64 KiB.
+        '500':
+          description: Falha interna sem vazamento de mensagens do provedor.
+  /diagnostics:
+    post:
+      tags:
+      - Diagnostic
+      operationId: startDiagnostic
+      summary: Inicia diagnóstico usando versão canônica publicada
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - companyId
+              properties:
+                companyId:
+                  type: string
+                  format: uuid
+                profile:
+                  type: string
+                  enum:
+                  - ESSENTIAL
+                  - FULL
+                  default: ESSENTIAL
+      responses:
+        '201':
+          description: Diagnóstico iniciado
+        '403':
+          description: Origem, tenant ou papel não autorizados; nunca expõe detalhes internos.
+        '409':
+          description: Conflito de estado/revisão; reler antes de tentar gravação.
+        '413':
+          description: Corpo acima de 64 KiB.
+        '500':
+          description: Falha interna sem vazamento de mensagens do provedor.
+  /diagnostics/{id}/answers:
+    put:
+      tags:
+      - Diagnostic
+      operationId: autosaveDiagnosticAnswer
+      summary: Autosave idempotente de resposta
+      parameters:
+      - $ref: '#/components/parameters/ResourceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DiagnosticAnswerInput'
+      responses:
+        '200':
+          description: Resposta salva
+        '409':
+          description: Conflito de estado/revisão; reler antes de tentar gravação.
+        '403':
+          description: Origem, tenant ou papel não autorizados; nunca expõe detalhes internos.
+        '413':
+          description: Corpo acima de 64 KiB.
+        '500':
+          description: Falha interna sem vazamento de mensagens do provedor.
+  /diagnostics/{id}/submit:
+    post:
+      tags:
+      - Diagnostic
+      operationId: submitDiagnostic
+      summary: Calcula e persiste score determinístico e pain findings
+      parameters:
+      - $ref: '#/components/parameters/ResourceId'
+      responses:
+        '200':
+          description: Resultado determinístico
+        '422':
+          description: Cobertura insuficiente
+        '403':
+          description: Origem, tenant ou papel não autorizados; nunca expõe detalhes internos.
+        '409':
+          description: Conflito de estado/revisão; reler antes de tentar gravação.
+        '413':
+          description: Corpo acima de 64 KiB.
+        '500':
+          description: Falha interna sem vazamento de mensagens do provedor.
+  /pains/{id}/gds:
+    post:
+      tags:
+      - Decision
+      operationId: createDecisionRecord
+      summary: Cria GDS determinístico a partir do pain finding
+      parameters:
+      - $ref: '#/components/parameters/ResourceId'
+      responses:
+        '201':
+          description: Decision Record criado
+        '403':
+          description: Origem, tenant ou papel não autorizados; nunca expõe detalhes internos.
+        '409':
+          description: Conflito de estado/revisão; reler antes de tentar gravação.
+        '413':
+          description: Corpo acima de 64 KiB.
+        '500':
+          description: Falha interna sem vazamento de mensagens do provedor.
+  /decisions/{id}/missions:
+    post:
+      tags:
+      - Mission
+      operationId: createMissionFromDecision
+      summary: Cria uma missão versionada a partir do GDS
+      parameters:
+      - $ref: '#/components/parameters/ResourceId'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                dueAt:
+                  anyOf:
+                  - type: string
+                    format: date-time
+                  - type: 'null'
+      responses:
+        '201':
+          description: Missão criada
+        '409':
+          description: Conflito de estado/revisão; reler antes de tentar gravação.
+        '403':
+          description: Origem, tenant ou papel não autorizados; nunca expõe detalhes internos.
+        '413':
+          description: Corpo acima de 64 KiB.
+        '500':
+          description: Falha interna sem vazamento de mensagens do provedor.
+  /missions/{id}/transition:
+    post:
+      tags:
+      - Mission
+      operationId: transitionMission
+      summary: Executa transição válida da state machine
+      parameters:
+      - $ref: '#/components/parameters/ResourceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - to
+              properties:
+                to:
+                  $ref: '#/components/schemas/MissionState'
+      responses:
+        '200':
+          description: Estado alterado
+        '409':
+          description: Conflito de estado/revisão; reler antes de tentar gravação.
+        '403':
+          description: Origem, tenant ou papel não autorizados; nunca expõe detalhes internos.
+        '413':
+          description: Corpo acima de 64 KiB.
+        '500':
+          description: Falha interna sem vazamento de mensagens do provedor.
+  /missions/{id}/evidence:
+    post:
+      tags:
+      - Mission
+      operationId: recordMissionEvidence
+      summary: Registra evidência da missão e alimenta Evidence Ledger
+      parameters:
+      - $ref: '#/components/parameters/ResourceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MissionEvidenceInput'
+      responses:
+        '201':
+          description: Evidência registrada
+        '409':
+          description: Conflito de estado/revisão; reler antes de tentar gravação.
+        '403':
+          description: Origem, tenant ou papel não autorizados; nunca expõe detalhes internos.
+        '413':
+          description: Corpo acima de 64 KiB.
+        '500':
+          description: Falha interna sem vazamento de mensagens do provedor.
+  /missions/{id}/outcome:
+    post:
+      tags:
+      - Mission
+      operationId: recordMissionOutcome
+      summary: Registra outcome e fecha Mission → Timeline
+      parameters:
+      - $ref: '#/components/parameters/ResourceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MissionOutcomeInput'
+      responses:
+        '201':
+          description: Outcome registrado
+        '409':
+          description: Conflito de estado/revisão; reler antes de tentar gravação.
+        '403':
+          description: Origem, tenant ou papel não autorizados; nunca expõe detalhes internos.
+        '413':
+          description: Corpo acima de 64 KiB.
+        '500':
+          description: Falha interna sem vazamento de mensagens do provedor.
+  /solutions:
+    get:
+      tags:
+      - Solutions
+      operationId: listQualifiedSolutions
+      summary: 'Calcula providers elegíveis por trusted server cross-tenant service. Sem policy/threshold/mapping
+        publicado, retorna estado fail-closed.
+
+        '
+      parameters:
+      - name: painId
+        in: query
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Estado do matching e soluções sanitizadas
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QualifiedSolutionSearch'
+        '404':
+          description: Feature flag desativada ou pain inexistente
+  /solutions/contact:
+    post:
+      tags:
+      - Solutions
+      operationId: requestQualifiedSolutionContact
+      summary: 'Revalida provider e exige consentimento QUALIFIED_MATCHING efetivo antes de criar oportunidade de
+        contato.
+
+        '
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - painId
+              - providerCapabilityId
+              properties:
+                painId:
+                  type: string
+                  format: uuid
+                providerCapabilityId:
+                  type: string
+                  format: uuid
+      responses:
+        '201':
+          description: Solicitação registrada
+        '403':
+          description: Origem, tenant ou papel não autorizados; nunca expõe detalhes internos.
+        '409':
+          description: Conflito de estado/revisão; reler antes de tentar gravação.
+        '404':
+          description: Feature flag desativada
+        '413':
+          description: Corpo acima de 64 KiB.
+        '500':
+          description: Falha interna sem vazamento de mensagens do provedor.
+  /diagnostics/{id}/state:
+    get:
+      tags:
+      - Diagnostic
+      operationId: getDiagnosticState
+      summary: Retorna fila adaptativa, progresso e confiança atuais
+      parameters:
+      - $ref: '#/components/parameters/ResourceId'
+      responses:
+        '200':
+          description: Estado do diagnóstico
+  /attestations/current:
+    get:
+      tags:
+      - Consent
+      operationId: getCurrentDataSubmissionAttestation
+      summary: Retorna a versão ativa da declaração de envio
+      responses:
+        '200':
+          description: Versão ativa
+        '404':
+          description: Nenhuma versão ativa
+  /attestations:
+    post:
+      tags:
+      - Consent
+      operationId: acceptDataSubmissionAttestation
+      summary: Registra confirmação auditável da versão ativa
+      responses:
+        '201':
+          description: Declaração registrada
+        '409':
+          description: Conflito de estado/revisão; reler antes de tentar gravação.
+        '403':
+          description: Origem, tenant ou papel não autorizados; nunca expõe detalhes internos.
+        '413':
+          description: Corpo acima de 64 KiB.
+        '500':
+          description: Falha interna sem vazamento de mensagens do provedor.
+  /upload-sessions:
+    post:
+      tags:
+      - Evidence
+      operationId: createGovernedUploadSession
+      summary: Cria sessão de upload somente após attestation válida
+      responses:
+        '201':
+          description: Sessão criada
+        '404':
+          description: Feature desativada
+        '409':
+          description: Conflito de estado/revisão; reler antes de tentar gravação.
+        '403':
+          description: Origem, tenant ou papel não autorizados; nunca expõe detalhes internos.
+        '413':
+          description: Corpo acima de 64 KiB.
+        '500':
+          description: Falha interna sem vazamento de mensagens do provedor.
+  /upload-sessions/{id}/target:
+    post:
+      tags: [Evidence]
+      operationId: createDocumentUploadTarget
+      summary: Cria alvo privado assinado após validação de tipo, tamanho, hash e quota
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: string, format: uuid }
+      responses:
+        '201': { description: Alvo assinado criado; scanning permanece pendente }
+        '404': { description: Feature de upload desabilitada }
+        '409': { description: Sessão inválida ou expirada }
+        '422': { description: Arquivo rejeitado pela política }
+        '429': { description: Quota excedida }
+components:
+  parameters:
+    ResourceId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  responses:
+    BadRequest:
+      description: Entrada inválida
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Sessão inválida
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: Tenant ou recurso não autorizado
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    ErrorResponse:
+      type: object
+      required:
+      - error
+      properties:
+        error:
+          type: string
+    ConsentDecisionInput:
+      type: object
+      required:
+      - purposeCode
+      - granted
+      - consentVersionId
+      properties:
+        purposeCode:
+          type: string
+          enum:
+          - CORE_OPERATION
+          - AI_PROCESSING
+          - QUALIFIED_MATCHING
+          - ECOSYSTEM_ANALYTICS
+          - BENCHMARK_ANALYTICS
+        granted:
+          type: boolean
+        consentVersionId:
+          type: string
+          format: uuid
+        companyId:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+    BusinessFactInput:
+      type: object
+      required:
+      - companyId
+      - factKey
+      - value
+      properties:
+        companyId:
+          type: string
+          format: uuid
+        factKey:
+          type: string
+          pattern: ^[a-z0-9_.-]+$
+        value: {}
+        source:
+          type: string
+          enum:
+          - declared
+          default: declared
+        sourceRef:
+          type: string
+        confidence:
+          type: 'null'
+          description: Confiança não pode ser autodeclarada.
+        sensitivity:
+          type: string
+          enum:
+          - public
+          - internal
+          - personal
+          - financial
+          - restricted
+        purposeCodes:
+          type: array
+          items:
+            type: string
+          minItems: 1
+      additionalProperties: false
+    EvidenceInput:
+      type: object
+      required:
+      - companyId
+      - evidenceType
+      - summary
+      properties:
+        companyId:
+          type: string
+          format: uuid
+        evidenceType:
+          type: string
+          enum:
+          - user_declaration
+          - metric
+          - observation
+        summary:
+          type: string
+        payload:
+          type: object
+        sourceRef:
+          anyOf:
+          - type: string
+          - type: 'null'
+        confidence:
+          type: 'null'
+        sensitivity:
+          type: string
+          enum:
+          - public
+          - internal
+          - personal
+          - financial
+          - restricted
+        purposeCodes:
+          type: array
+          items:
+            type: string
+      additionalProperties: false
+    DiagnosticAnswerInput:
+      type: object
+      additionalProperties: false
+      required:
+      - questionId
+      - expectedRevision
+      properties:
+        questionId:
+          type: string
+          minLength: 1
+          maxLength: 80
+        expectedRevision:
+          type: integer
+          minimum: 0
+          maximum: 9007199254740991
+        answerState:
+          type: string
+          enum:
+          - ANSWERED
+          - UNKNOWN
+          - NOT_APPLICABLE
+          - DEFERRED
+          default: ANSWERED
+        response: {}
+        maturity:
+          anyOf:
+          - type: integer
+            minimum: 0
+            maximum: 4
+          - type: 'null'
+        informationSlots:
+          type: object
+          additionalProperties: true
+          default: {}
+        evidenceRefs:
+          type: array
+          items:
+            type: string
+            format: uuid
+          maxItems: 20
+          default: []
+    MissionState:
+      type: string
+      enum:
+      - SUGGESTED
+      - ACCEPTED
+      - IN_PROGRESS
+      - EVIDENCE_PENDING
+      - COMPLETED
+      - OUTCOME_PENDING
+      - OUTCOME_RECORDED
+      - PAUSED
+      - BLOCKED
+      - CANCELLED
+      - EXPIRED
+    MissionEvidenceInput:
+      type: object
+      required:
+      - evidenceType
+      - summary
+      properties:
+        evidenceType:
+          type: string
+          enum:
+          - declaration
+          - metric
+          - link
+        summary:
+          type: string
+        payload:
+          type: object
+        sourceRef:
+          anyOf:
+          - type: string
+          - type: 'null'
+    MissionOutcomeInput:
+      type: object
+      required:
+      - outcomeStatus
+      properties:
+        outcomeStatus:
+          type: string
+          enum:
+          - no_change
+          - small_improvement
+          - improved
+          - significant_improvement
+          - worsened
+          - unknown
+        beforeValue: {}
+        afterValue: {}
+        metricCode:
+          anyOf:
+          - type: string
+          - type: 'null'
+        source:
+          type: string
+          enum:
+          - declared
+          default: declared
+        confidence:
+          type: 'null'
+          description: Confiança não pode ser autodeclarada.
+      additionalProperties: false
+    QualifiedSolution:
+      type: object
+      required:
+      - providerCapabilityId
+      - providerCompanyId
+      - providerName
+      - capabilityId
+      - capabilityCode
+      - capabilityTitle
+      - qualificationScore
+      - capacityStatus
+      - rankScore
+      - explanation
+      properties:
+        providerCapabilityId:
+          type: string
+          format: uuid
+        providerCompanyId:
+          type: string
+          format: uuid
+        providerName:
+          type: string
+        providerSector:
+          anyOf:
+          - type: string
+          - type: 'null'
+        capabilityId:
+          type: string
+          format: uuid
+        capabilityCode:
+          type: string
+        capabilityTitle:
+          type: string
+        qualificationScore:
+          type: number
+          minimum: 0
+          maximum: 100
+        capacityStatus:
+          type: string
+        rankScore:
+          type: number
+          minimum: 0
+          maximum: 1
+        explanation:
+          type: object
+    QualifiedSolutionSearch:
+      oneOf:
+      - type: object
+        required:
+        - status
+        - painId
+        - painCode
+        - solutions
+        properties:
+          status:
+            type: string
+            enum:
+            - POLICY_PENDING
+            - NO_CAPABILITY_MAPPING
+            - NO_ELIGIBLE_PROVIDERS
+          painId:
+            type: string
+            format: uuid
+          painCode:
+            type: string
+          solutions:
+            type: array
+            maxItems: 0
+      - type: object
+        required:
+        - status
+        - painId
+        - painCode
+        - solutions
+        properties:
+          status:
+            const: READY
+          painId:
+            type: string
+            format: uuid
+          painCode:
+            type: string
+          solutions:
+            type: array
+            items:
+              $ref: '#/components/schemas/QualifiedSolution'

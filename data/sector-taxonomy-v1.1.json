@@ -1,0 +1,29 @@
+{
+  "version": "v1.1",
+  "principle": "Sector influences priority; operating traits decide hard applicability whenever possible.",
+  "sectors": [
+    "PROFESSIONAL_SERVICES",
+    "RETAIL_COMMERCE",
+    "INDUSTRY_MANUFACTURING",
+    "TECHNOLOGY_DIGITAL",
+    "HEALTH_WELLNESS",
+    "CONSTRUCTION_REAL_ESTATE",
+    "FOOD_HOSPITALITY",
+    "LOGISTICS_MOBILITY",
+    "EDUCATION",
+    "AGRIBUSINESS",
+    "FINANCIAL_SERVICES",
+    "OTHER"
+  ],
+  "operatingTraits": [
+    "inventory_or_physical_assets",
+    "software_delivery",
+    "regulated_activity",
+    "sensitive_personal_data",
+    "outbound_marketing_or_lead_capture",
+    "multi_state_or_international_operations",
+    "capital_raising_or_investment_plan",
+    "physical_locations",
+    "recurring_revenue"
+  ]
+}

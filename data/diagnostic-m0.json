@@ -1,0 +1,375 @@
+{
+  "version": "3.0",
+  "questionCount": 24,
+  "questions": [
+    {
+      "id": "EST-001",
+      "dimension": "EST",
+      "phase": "E",
+      "prompt": "A empresa possui prioridades estratégicas claramente definidas para os próximos 12 meses?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Plano estratégico",
+        "OKRs",
+        "metas"
+      ],
+      "weight": 3,
+      "attentionSignal": "0/1 e mais de cinco prioridades",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "EST-002",
+      "dimension": "EST",
+      "phase": "E",
+      "prompt": "As decisões importantes têm responsável, prazo, critério e registro de aprovação?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Atas",
+        "decision records",
+        "matriz de alçadas"
+      ],
+      "weight": 3,
+      "attentionSignal": "Decisões críticas sem owner",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "FIN-001",
+      "dimension": "FIN",
+      "phase": "E",
+      "prompt": "A empresa conhece sua disponibilidade de caixa e as obrigações dos próximos 30, 60 e 90 dias?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Fluxo de caixa",
+        "contas a pagar/receber"
+      ],
+      "weight": 3,
+      "attentionSignal": "Caixa desconhecido ou insuficiente",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "FIN-002",
+      "dimension": "FIN",
+      "phase": "E",
+      "prompt": "A empresa conhece a margem de contribuição e a rentabilidade dos principais produtos, serviços ou clientes?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "DRE gerencial",
+        "custos",
+        "precificação"
+      ],
+      "weight": 3,
+      "attentionSignal": "Crescimento sem margem conhecida",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "VEN-001",
+      "dimension": "VEN",
+      "phase": "E",
+      "prompt": "A empresa possui um processo comercial com etapas, critérios de avanço e responsáveis definidos?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "CRM",
+        "playbook",
+        "pipeline"
+      ],
+      "weight": 3,
+      "attentionSignal": "Pipeline sem critérios",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "VEN-002",
+      "dimension": "VEN",
+      "phase": "E",
+      "prompt": "A liderança consegue prever a receita dos próximos 30–90 dias com base em oportunidades reais?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Forecast e histórico"
+      ],
+      "weight": 3,
+      "attentionSignal": "Forecast inexistente",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "MKT-001",
+      "dimension": "MKT",
+      "phase": "E",
+      "prompt": "A empresa possui público prioritário e posicionamento claramente definidos?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "ICP",
+        "personas",
+        "brandbook"
+      ],
+      "weight": 3,
+      "attentionSignal": "Mensagem genérica",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "MKT-002",
+      "dimension": "MKT",
+      "phase": "E",
+      "prompt": "A empresa sabe quais canais geram leads qualificados e receita, não apenas alcance?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Analytics",
+        "CRM",
+        "atribuição"
+      ],
+      "weight": 3,
+      "attentionSignal": "Investe sem atribuição",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "CLI-001",
+      "dimension": "CLI",
+      "phase": "E",
+      "prompt": "A empresa mede se o cliente alcançou o resultado prometido, e não apenas se a entrega foi concluída?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Pesquisas",
+        "outcomes",
+        "indicadores"
+      ],
+      "weight": 3,
+      "attentionSignal": "Entrega sem resultado",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "CLI-002",
+      "dimension": "CLI",
+      "phase": "E",
+      "prompt": "As principais causas de reclamação, cancelamento ou retrabalho são conhecidas e tratadas?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Tickets",
+        "churn",
+        "planos"
+      ],
+      "weight": 3,
+      "attentionSignal": "Problema recorrente",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "OPE-001",
+      "dimension": "OPE",
+      "phase": "E",
+      "prompt": "Os processos críticos possuem responsável, etapas, padrão e indicador definidos?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Mapa",
+        "SOP",
+        "KPI"
+      ],
+      "weight": 3,
+      "attentionSignal": "Processo crítico informal",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "OPE-002",
+      "dimension": "OPE",
+      "phase": "E",
+      "prompt": "A empresa conhece seus principais gargalos, perdas, atrasos e retrabalhos?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Relatórios operacionais"
+      ],
+      "weight": 3,
+      "attentionSignal": "Gargalo sem medição",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "PES-001",
+      "dimension": "PES",
+      "phase": "E",
+      "prompt": "As pessoas sabem o que se espera de seu papel, quais resultados são seus e quais decisões podem tomar?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Cargos",
+        "RACI",
+        "alçadas"
+      ],
+      "weight": 3,
+      "attentionSignal": "Papéis indefinidos",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "PES-002",
+      "dimension": "PES",
+      "phase": "E",
+      "prompt": "A operação consegue funcionar sem presença contínua do fundador ou gestor principal?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Substitutos",
+        "testes",
+        "organograma"
+      ],
+      "weight": 3,
+      "attentionSignal": "Paralisação sem líder",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "TEC-001",
+      "dimension": "TEC",
+      "phase": "E",
+      "prompt": "Os sistemas críticos, responsáveis, acessos e dependências estão inventariados?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Inventário e matriz"
+      ],
+      "weight": 3,
+      "attentionSignal": "Ativo crítico desconhecido",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "TEC-002",
+      "dimension": "TEC",
+      "phase": "E",
+      "prompt": "A empresa possui backup dos dados críticos e já testou a restauração?",
+      "responseType": "Escolha",
+      "evidenceSuggestions": [
+        "Relatórios e evidências"
+      ],
+      "weight": 3,
+      "attentionSignal": "Nunca restaurou",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "JUR-001",
+      "dimension": "JUR",
+      "phase": "E",
+      "prompt": "Os atos societários, licenças e responsáveis legais estão atualizados e acessíveis?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Atos",
+        "licenças",
+        "certidões"
+      ],
+      "weight": 3,
+      "attentionSignal": "Documento vencido/crítico",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "JUR-002",
+      "dimension": "JUR",
+      "phase": "E",
+      "prompt": "Contratos relevantes são revisados, aprovados, armazenados e acompanhados quanto a prazo e obrigação?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Contratos",
+        "CLM",
+        "agenda"
+      ],
+      "weight": 3,
+      "attentionSignal": "Obrigação vencida",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "TAX-001",
+      "dimension": "TAX",
+      "phase": "E",
+      "prompt": "Qual é o regime tributário atual e quando ele foi revisado pela última vez?",
+      "responseType": "Escolha + data",
+      "evidenceSuggestions": [
+        "CNPJ",
+        "opção/regime",
+        "parecer"
+      ],
+      "weight": 3,
+      "attentionSignal": "Regime desconhecido",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "TAX-002",
+      "dimension": "TAX",
+      "phase": "E",
+      "prompt": "A empresa enfrenta pressão de caixa relacionada a tributos, parcelamentos, retenções ou divergências fiscais?",
+      "responseType": "Múltipla + urgência",
+      "evidenceSuggestions": [
+        "Fluxo",
+        "guias",
+        "parcelamentos"
+      ],
+      "weight": 3,
+      "attentionSignal": "Obrigação imediata sem caixa",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "INO-001",
+      "dimension": "INO",
+      "phase": "E",
+      "prompt": "O crescimento atual pode ser sustentado sem aumentar custos, erros e pessoas na mesma proporção?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Unit economics",
+        "capacidade"
+      ],
+      "weight": 3,
+      "attentionSignal": "Escala destrói margem",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "INO-002",
+      "dimension": "INO",
+      "phase": "E",
+      "prompt": "A empresa testa novas ofertas, canais ou processos com hipótese, métrica e limite de investimento?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Experiment backlog"
+      ],
+      "weight": 3,
+      "attentionSignal": "Aposta sem gate",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "RSC-001",
+      "dimension": "RSC",
+      "phase": "E",
+      "prompt": "A empresa conhece seus cinco riscos mais críticos, seus responsáveis e medidas de resposta?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Registro de riscos"
+      ],
+      "weight": 3,
+      "attentionSignal": "Risco crítico sem owner",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "RSC-002",
+      "dimension": "RSC",
+      "phase": "E",
+      "prompt": "A empresa consegue manter operações essenciais diante da ausência de pessoa, sistema, fornecedor ou unidade crítica?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "BCP",
+        "testes"
+      ],
+      "weight": 3,
+      "attentionSignal": "Ponto único de falha",
+      "version": "3.0",
+      "active": true
+    }
+  ]
+}

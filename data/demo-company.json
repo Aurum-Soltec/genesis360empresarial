@@ -1,0 +1,13 @@
+{
+  "id": "demo-company-aurora",
+  "name": "Empresa Aurora",
+  "fictional": true,
+  "sector": "Serviços B2B",
+  "employees": 22,
+  "annualRevenueRange": "R$ 2,4 mi a R$ 4,8 mi",
+  "primaryGoal": "Aumentar previsibilidade de caixa e eficiência",
+  "growthScore": 64,
+  "confidence": 62,
+  "taxRuleVersion": "DEMO-001",
+  "realReferralEnabled": false
+}

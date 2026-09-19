@@ -1,0 +1,23 @@
+{
+  "baseline": "Genesis 360 V1",
+  "wave": "Wave 2 Diagnostic Engine",
+  "date": "2026-08-18",
+  "implemented": [
+    "V1-ST-010",
+    "V1-ST-012",
+    "V1-ST-013",
+    "V1-ST-014 foundation"
+  ],
+  "partial": [
+    "V1-ST-011 branching methodology",
+    "V1-ST-014 evidence richness"
+  ],
+  "runtime_gates_pending": [
+    "pnpm lint",
+    "pnpm typecheck",
+    "pnpm test",
+    "pnpm build",
+    "Supabase migration execution",
+    "cross-tenant A→B"
+  ]
+}

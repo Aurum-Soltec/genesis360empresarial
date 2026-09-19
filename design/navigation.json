@@ -1,0 +1,112 @@
+{
+  "version": "2.0.0",
+  "top": [
+    {
+      "code": "today",
+      "label": "Hoje",
+      "href": "/"
+    },
+    {
+      "code": "diagnostic",
+      "label": "Diagnóstico",
+      "href": "/diagnostico-v1"
+    },
+    {
+      "code": "evolution",
+      "label": "Evolução",
+      "href": "/missoes"
+    },
+    {
+      "code": "solutions",
+      "label": "Soluções",
+      "href": "/solucoes"
+    },
+    {
+      "code": "council",
+      "label": "Conselho",
+      "href": "/conselho"
+    },
+    {
+      "code": "ecosystem",
+      "label": "Ecossistema",
+      "href": "/ecossistema",
+      "feature": "ecosystem"
+    }
+  ],
+  "context": {
+    "today": [
+      {
+        "label": "Visão executiva",
+        "href": "/"
+      },
+      {
+        "label": "Prioridades",
+        "href": "/prioridades"
+      },
+      {
+        "label": "Indicadores",
+        "href": "/indicadores"
+      },
+      {
+        "label": "Histórico",
+        "href": "/historico"
+      }
+    ],
+    "diagnostic": [
+      {
+        "label": "Diagnóstico atual",
+        "href": "/diagnostico-v1"
+      },
+      {
+        "label": "Resultado",
+        "href": "/resultado-v1"
+      },
+      {
+        "label": "Evidências",
+        "href": "/documentos"
+      }
+    ],
+    "evolution": [
+      {
+        "label": "Missões",
+        "href": "/missoes"
+      }
+    ],
+    "solutions": [
+      {
+        "label": "Soluções qualificadas",
+        "href": "/solucoes"
+      },
+      {
+        "label": "Minhas capacidades",
+        "href": "/capacidades"
+      }
+    ],
+    "council": [
+      {
+        "label": "Conselho Genesis",
+        "href": "/conselho"
+      }
+    ],
+    "ecosystem": [
+      {
+        "label": "Visão do ecossistema",
+        "href": "/ecossistema"
+      }
+    ]
+  },
+  "utilities": [
+    {
+      "label": "Business Passport",
+      "href": "/passaporte"
+    },
+    {
+      "label": "Documentos",
+      "href": "/documentos"
+    },
+    {
+      "label": "Privacidade",
+      "href": "/privacidade"
+    }
+  ]
+}

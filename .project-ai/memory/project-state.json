@@ -1,0 +1,53 @@
+{
+  "project": "Genesis 360 Empresarial",
+  "version": "V1.2 Production Foundation Master",
+  "baselineDate": "2026-08-28",
+  "gate": "PRODUCTION FOUNDATION / READY FOR RUNTIME VERIFICATION",
+  "canonicalEntrypoint": "00_PRODUCTION_START_HERE.md",
+  "canonicalDocs": "docs/canonical/v1",
+  "architecture": "modular-monolith",
+  "runtime": {
+    "web": "Next.js/React/TypeScript",
+    "data": "Supabase/PostgreSQL",
+    "agentic": "minimal baseline + isolated Pydantic AI Slim spike; not production-approved"
+  },
+  "implemented": {
+    "identityTenancyConsent": "by contract; runtime proof pending",
+    "businessPassport": "foundation implemented",
+    "diagnostic": "V1.1 adaptive foundation: 144 library, 24 stable score anchors, 31 starter interactions, progress/confidence, structured response semantics",
+    "gds": "implemented",
+    "missions": "end-to-end core implemented",
+    "qualification": "fail-closed core implemented",
+    "qualifiedSolutions": "sanitized server matching implemented",
+    "outcomes": "Timeline closure implemented",
+    "visual": "Genesis Precision Light V2: route-aware contextual navigation, functional mobile drawer, Executive Home, Focused Diagnostic, Interpretation-first Result",
+    "dataSubmissionGovernance": "versioned attestation + governed upload-session contract; activation pending legal/security gates"
+  },
+  "blockers": [
+    "execute migrations 0001-0011 in real Supabase",
+    "execute pgTAP cross-tenant suite",
+    "pnpm lint/typecheck/test/build",
+    "backup/restore/rollback drill",
+    "security/supply-chain scans",
+    "browser E2E",
+    "PEND-003/004/005/006 before enabling provider network",
+    "PEND-010 before enabling real contact",
+    "execute migrations 0001-0012 in real Supabase",
+    "execute pgTAP including data-submission governance",
+    "calibrate confidence weights with real businesses",
+    "validate sector applicability/affinity",
+    "approve attestation/privacy legal copy",
+    "implement malware/content scan + governed binary storage before upload activation",
+    "execute Wave 8 browser validation desktop/tablet/mobile",
+    "execute WCAG 2.2 AA runtime checks including 200% zoom and 320px",
+    "approve visual baseline before migrating remaining frontend surfaces",
+    "bootstrap official GitHub repository",
+    "execute pgTAP",
+    "security scans + SBOM",
+    "backup/restore drill",
+    "browser UX/WCAG validation"
+  ],
+  "nextAction": "Execute PW-0: ST-104→ST-107; attach evidence and only fix demonstrated failures.",
+  "supersedes": ".project-ai/memory/archive/v3-project-state.json",
+  "repository": "https://github.com/Aurum-Soltec/genesis360empresarial"
+}

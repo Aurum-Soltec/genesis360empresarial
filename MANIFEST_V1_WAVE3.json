@@ -1,0 +1,24 @@
+{
+  "baseline": "Genesis 360 V1",
+  "wave": "Wave 3 Diagnostic UX + Pain/Cause/GDS",
+  "date": "2026-08-18",
+  "implemented": [
+    "Diagnostic UX",
+    "canonical Essential artifact",
+    "Applicability conservative baseline",
+    "Pain result UI",
+    "Cause hypothesis schema",
+    "GDS contract",
+    "Decision Record persistence"
+  ],
+  "partial": [
+    "sector/size branching methodology",
+    "diagnostic-to-passport projection expansion",
+    "root cause enrichment"
+  ],
+  "blockers": [
+    "runtime CI evidence",
+    "Supabase migrations",
+    "cross-tenant A→B"
+  ]
+}

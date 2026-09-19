@@ -1,0 +1,2322 @@
+{
+  "version": "3.0",
+  "questionCount": 144,
+  "questions": [
+    {
+      "id": "EST-001",
+      "dimension": "EST",
+      "phase": "E",
+      "prompt": "A empresa possui prioridades estratégicas claramente definidas para os próximos 12 meses?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Plano estratégico",
+        "OKRs",
+        "metas"
+      ],
+      "weight": 3,
+      "attentionSignal": "0/1 e mais de cinco prioridades",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "EST-002",
+      "dimension": "EST",
+      "phase": "E",
+      "prompt": "As decisões importantes têm responsável, prazo, critério e registro de aprovação?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Atas",
+        "decision records",
+        "matriz de alçadas"
+      ],
+      "weight": 3,
+      "attentionSignal": "Decisões críticas sem owner",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "EST-003",
+      "dimension": "EST",
+      "phase": "C",
+      "prompt": "A liderança consegue explicar de forma consistente qual problema central a empresa resolve e para quem?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Proposta de valor",
+        "apresentações",
+        "entrevistas"
+      ],
+      "weight": 2,
+      "attentionSignal": "Respostas divergentes",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "EST-004",
+      "dimension": "EST",
+      "phase": "C",
+      "prompt": "O modelo de receita, custos, canais e parceiros está documentado e atualizado?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Business model",
+        "plano comercial",
+        "orçamento"
+      ],
+      "weight": 2,
+      "attentionSignal": "Receita sem unidade econômica",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "EST-005",
+      "dimension": "EST",
+      "phase": "C",
+      "prompt": "Existem metas conectando estratégia, áreas, equipes e responsáveis?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Mapa de metas",
+        "OKRs",
+        "dashboards"
+      ],
+      "weight": 3,
+      "attentionSignal": "Metas órfãs ou conflitantes",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "EST-006",
+      "dimension": "EST",
+      "phase": "C",
+      "prompt": "A empresa revisa estratégia e prioridades em uma cadência definida?",
+      "responseType": "Escolha",
+      "evidenceSuggestions": [
+        "Calendário",
+        "atas",
+        "relatórios de revisão"
+      ],
+      "weight": 2,
+      "attentionSignal": "Sem revisão há mais de 12 meses",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "EST-007",
+      "dimension": "EST",
+      "phase": "C",
+      "prompt": "Há critérios objetivos para iniciar, pausar ou encerrar projetos?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Política de portfólio",
+        "business cases"
+      ],
+      "weight": 2,
+      "attentionSignal": "Projetos mantidos sem evidência",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "EST-008",
+      "dimension": "EST",
+      "phase": "C",
+      "prompt": "Quais decisões ainda dependem exclusivamente do fundador ou de uma única pessoa?",
+      "responseType": "Múltipla + texto",
+      "evidenceSuggestions": [
+        "Matriz decisória",
+        "organograma"
+      ],
+      "weight": 3,
+      "attentionSignal": "Dependência em finanças, vendas ou operação",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "EST-009",
+      "dimension": "EST",
+      "phase": "C",
+      "prompt": "Existem alçadas financeiras, contratuais e operacionais formalizadas?",
+      "responseType": "Sim/não/parcial",
+      "evidenceSuggestions": [
+        "Política de alçadas"
+      ],
+      "weight": 3,
+      "attentionSignal": "Ausência em decisões de alto impacto",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "EST-010",
+      "dimension": "EST",
+      "phase": "C",
+      "prompt": "A empresa acompanha premissas estratégicas e sinais de mudança de mercado?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Registro de hipóteses",
+        "pesquisas",
+        "relatórios"
+      ],
+      "weight": 2,
+      "attentionSignal": "Tese não revisada",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "EST-011",
+      "dimension": "EST",
+      "phase": "A",
+      "prompt": "O conselho, comitê ou sócios recebem informações suficientes e comparáveis para decidir?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Board pack",
+        "relatórios",
+        "atas"
+      ],
+      "weight": 2,
+      "attentionSignal": "Decisão sem dados",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "EST-012",
+      "dimension": "EST",
+      "phase": "A",
+      "prompt": "Há plano de sucessão, saída de sócio ou continuidade da liderança?",
+      "responseType": "Sim/não/parcial",
+      "evidenceSuggestions": [
+        "Acordo",
+        "plano de sucessão",
+        "procurações"
+      ],
+      "weight": 3,
+      "attentionSignal": "Nenhum substituto para papel crítico",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "FIN-001",
+      "dimension": "FIN",
+      "phase": "E",
+      "prompt": "A empresa conhece sua disponibilidade de caixa e as obrigações dos próximos 30, 60 e 90 dias?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Fluxo de caixa",
+        "contas a pagar/receber"
+      ],
+      "weight": 3,
+      "attentionSignal": "Caixa desconhecido ou insuficiente",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "FIN-002",
+      "dimension": "FIN",
+      "phase": "E",
+      "prompt": "A empresa conhece a margem de contribuição e a rentabilidade dos principais produtos, serviços ou clientes?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "DRE gerencial",
+        "custos",
+        "precificação"
+      ],
+      "weight": 3,
+      "attentionSignal": "Crescimento sem margem conhecida",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "FIN-003",
+      "dimension": "FIN",
+      "phase": "C",
+      "prompt": "Existe conciliação regular entre bancos, ERP e contabilidade?",
+      "responseType": "Escolha",
+      "evidenceSuggestions": [
+        "Conciliação",
+        "razão",
+        "extratos"
+      ],
+      "weight": 3,
+      "attentionSignal": "Diferenças não explicadas",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "FIN-004",
+      "dimension": "FIN",
+      "phase": "C",
+      "prompt": "O fluxo de caixa é projetado e comparado com o realizado?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Forecast e realizado"
+      ],
+      "weight": 3,
+      "attentionSignal": "Sem previsão mínima de 13 semanas",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "FIN-005",
+      "dimension": "FIN",
+      "phase": "C",
+      "prompt": "Qual é o prazo médio de recebimento, pagamento e estoque?",
+      "responseType": "Número/faixa",
+      "evidenceSuggestions": [
+        "Aging",
+        "estoque",
+        "fornecedores"
+      ],
+      "weight": 2,
+      "attentionSignal": "Ciclo financeiro crescente",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "FIN-006",
+      "dimension": "FIN",
+      "phase": "C",
+      "prompt": "Qual percentual da receita está vencido ou inadimplente?",
+      "responseType": "Percentual/faixa",
+      "evidenceSuggestions": [
+        "Aging de recebíveis"
+      ],
+      "weight": 3,
+      "attentionSignal": "Inadimplência crítica",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "FIN-007",
+      "dimension": "FIN",
+      "phase": "C",
+      "prompt": "Os preços são revisados com base em custos, impostos, mercado e valor percebido?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Política e memória de cálculo"
+      ],
+      "weight": 3,
+      "attentionSignal": "Preço sem custo/tributo",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "FIN-008",
+      "dimension": "FIN",
+      "phase": "C",
+      "prompt": "A empresa possui orçamento anual e responsáveis por desvios?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Budget",
+        "forecast",
+        "atas"
+      ],
+      "weight": 2,
+      "attentionSignal": "Desvio relevante sem ação",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "FIN-009",
+      "dimension": "FIN",
+      "phase": "C",
+      "prompt": "Existem despesas pessoais, de sócios ou não recorrentes misturadas à operação?",
+      "responseType": "Escolha sensível",
+      "evidenceSuggestions": [
+        "Plano de contas",
+        "política de despesas"
+      ],
+      "weight": 3,
+      "attentionSignal": "Mistura recorrente",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "FIN-010",
+      "dimension": "FIN",
+      "phase": "C",
+      "prompt": "Qual é a concentração de receita nos cinco maiores clientes?",
+      "responseType": "Percentual/faixa",
+      "evidenceSuggestions": [
+        "Relatório de receita por cliente"
+      ],
+      "weight": 2,
+      "attentionSignal": "Concentração elevada",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "FIN-011",
+      "dimension": "FIN",
+      "phase": "A",
+      "prompt": "A empresa possui dívidas, garantias, covenants ou parcelamentos que limitam decisões?",
+      "responseType": "Múltipla",
+      "evidenceSuggestions": [
+        "Contratos e cronograma da dívida"
+      ],
+      "weight": 3,
+      "attentionSignal": "Covenant/obrigação não monitorado",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "FIN-012",
+      "dimension": "FIN",
+      "phase": "A",
+      "prompt": "Há indicadores financeiros com owner e limite de alerta?",
+      "responseType": "Matriz",
+      "evidenceSuggestions": [
+        "Dashboard",
+        "política de limites"
+      ],
+      "weight": 2,
+      "attentionSignal": "Sem alertas de caixa/margem",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "VEN-001",
+      "dimension": "VEN",
+      "phase": "E",
+      "prompt": "A empresa possui um processo comercial com etapas, critérios de avanço e responsáveis definidos?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "CRM",
+        "playbook",
+        "pipeline"
+      ],
+      "weight": 3,
+      "attentionSignal": "Pipeline sem critérios",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "VEN-002",
+      "dimension": "VEN",
+      "phase": "E",
+      "prompt": "A liderança consegue prever a receita dos próximos 30–90 dias com base em oportunidades reais?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Forecast e histórico"
+      ],
+      "weight": 3,
+      "attentionSignal": "Forecast inexistente",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "VEN-003",
+      "dimension": "VEN",
+      "phase": "C",
+      "prompt": "Qual é a taxa de conversão por etapa e por origem?",
+      "responseType": "Percentual/matriz",
+      "evidenceSuggestions": [
+        "Funil do CRM"
+      ],
+      "weight": 3,
+      "attentionSignal": "Não mede conversão",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "VEN-004",
+      "dimension": "VEN",
+      "phase": "C",
+      "prompt": "Qual é o tempo médio de resposta a um lead e de fechamento?",
+      "responseType": "Número/faixa",
+      "evidenceSuggestions": [
+        "CRM",
+        "logs",
+        "relatórios"
+      ],
+      "weight": 2,
+      "attentionSignal": "Resposta tardia",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "VEN-005",
+      "dimension": "VEN",
+      "phase": "C",
+      "prompt": "Existe definição clara de ICP, qualificação e desqualificação?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "ICP",
+        "formulário",
+        "playbook"
+      ],
+      "weight": 3,
+      "attentionSignal": "Venda para cliente inadequado",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "VEN-006",
+      "dimension": "VEN",
+      "phase": "C",
+      "prompt": "Os motivos de perda são registrados e revisados?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Lost reasons",
+        "atas"
+      ],
+      "weight": 2,
+      "attentionSignal": "Motivo genérico ou ausente",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "VEN-007",
+      "dimension": "VEN",
+      "phase": "C",
+      "prompt": "Descontos e condições especiais obedecem a alçadas e margem mínima?",
+      "responseType": "Sim/não/parcial",
+      "evidenceSuggestions": [
+        "Política comercial",
+        "aprovações"
+      ],
+      "weight": 3,
+      "attentionSignal": "Desconto sem controle",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "VEN-008",
+      "dimension": "VEN",
+      "phase": "C",
+      "prompt": "A remuneração variável incentiva receita saudável, margem, retenção e qualidade?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Política de comissão"
+      ],
+      "weight": 2,
+      "attentionSignal": "Incentivo a venda ruim",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "VEN-009",
+      "dimension": "VEN",
+      "phase": "C",
+      "prompt": "A empresa acompanha produtividade e capacidade por vendedor ou canal?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Dashboards"
+      ],
+      "weight": 2,
+      "attentionSignal": "Meta incompatível com capacidade",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "VEN-010",
+      "dimension": "VEN",
+      "phase": "C",
+      "prompt": "Quanto da receita vem de recorrência, expansão, indicação e novos clientes?",
+      "responseType": "Matriz percentual",
+      "evidenceSuggestions": [
+        "Receita por origem"
+      ],
+      "weight": 2,
+      "attentionSignal": "Dependência de um canal",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "VEN-011",
+      "dimension": "VEN",
+      "phase": "A",
+      "prompt": "Há processo estruturado de parceiros, canais e atribuição de origem?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Contratos",
+        "referral logs"
+      ],
+      "weight": 2,
+      "attentionSignal": "Fee sem rastreabilidade",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "VEN-012",
+      "dimension": "VEN",
+      "phase": "A",
+      "prompt": "Vendas prometem prazos, funcionalidades ou resultados que a operação não consegue entregar?",
+      "responseType": "Escolha + frequência",
+      "evidenceSuggestions": [
+        "Contratos",
+        "reclamações",
+        "handoff"
+      ],
+      "weight": 3,
+      "attentionSignal": "Promessas recorrentes não cumpridas",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "MKT-001",
+      "dimension": "MKT",
+      "phase": "E",
+      "prompt": "A empresa possui público prioritário e posicionamento claramente definidos?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "ICP",
+        "personas",
+        "brandbook"
+      ],
+      "weight": 3,
+      "attentionSignal": "Mensagem genérica",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "MKT-002",
+      "dimension": "MKT",
+      "phase": "E",
+      "prompt": "A empresa sabe quais canais geram leads qualificados e receita, não apenas alcance?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Analytics",
+        "CRM",
+        "atribuição"
+      ],
+      "weight": 3,
+      "attentionSignal": "Investe sem atribuição",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "MKT-003",
+      "dimension": "MKT",
+      "phase": "C",
+      "prompt": "A proposta de valor é coerente em site, vendas, produto e atendimento?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Materiais",
+        "scripts",
+        "páginas"
+      ],
+      "weight": 2,
+      "attentionSignal": "Promessas divergentes",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "MKT-004",
+      "dimension": "MKT",
+      "phase": "C",
+      "prompt": "Existe mensuração de CAC, conversão e payback por canal?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Relatórios financeiros/comerciais"
+      ],
+      "weight": 3,
+      "attentionSignal": "CAC desconhecido",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "MKT-005",
+      "dimension": "MKT",
+      "phase": "C",
+      "prompt": "A empresa diferencia lead, MQL, SQL, oportunidade e cliente?",
+      "responseType": "Sim/não/parcial",
+      "evidenceSuggestions": [
+        "Definições no CRM"
+      ],
+      "weight": 2,
+      "attentionSignal": "Conceitos inconsistentes",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "MKT-006",
+      "dimension": "MKT",
+      "phase": "C",
+      "prompt": "Campanhas possuem objetivo, hipótese, orçamento, métrica e decisão de continuidade?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Briefings e relatórios"
+      ],
+      "weight": 2,
+      "attentionSignal": "Campanhas sem gate",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "MKT-007",
+      "dimension": "MKT",
+      "phase": "C",
+      "prompt": "A empresa mantém registro de consentimento, opt-out e origem dos contatos?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Base de consentimentos"
+      ],
+      "weight": 3,
+      "attentionSignal": "Contato sem base",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "MKT-008",
+      "dimension": "MKT",
+      "phase": "C",
+      "prompt": "Conteúdos e ofertas são revisados para evitar promessa enganosa ou não comprovada?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Checklist",
+        "aprovações"
+      ],
+      "weight": 3,
+      "attentionSignal": "Claim sem evidência",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "MKT-009",
+      "dimension": "MKT",
+      "phase": "C",
+      "prompt": "A marca possui ativos próprios e dependência controlada de plataformas externas?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Base",
+        "site",
+        "audiência"
+      ],
+      "weight": 2,
+      "attentionSignal": "Dependência extrema",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "MKT-010",
+      "dimension": "MKT",
+      "phase": "C",
+      "prompt": "A empresa acompanha participação de marca, reputação e menções críticas?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Social listening",
+        "pesquisas"
+      ],
+      "weight": 1,
+      "attentionSignal": "Crise não monitorada",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "MKT-011",
+      "dimension": "MKT",
+      "phase": "A",
+      "prompt": "Há experimentação estruturada de canais, mensagens e ofertas?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Backlog de testes"
+      ],
+      "weight": 2,
+      "attentionSignal": "Teste sem aprendizado",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "MKT-012",
+      "dimension": "MKT",
+      "phase": "A",
+      "prompt": "Existe processo para revisar materiais quando leis, preços, produtos ou condições mudam?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Controle de versão"
+      ],
+      "weight": 2,
+      "attentionSignal": "Material desatualizado",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "CLI-001",
+      "dimension": "CLI",
+      "phase": "E",
+      "prompt": "A empresa mede se o cliente alcançou o resultado prometido, e não apenas se a entrega foi concluída?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Pesquisas",
+        "outcomes",
+        "indicadores"
+      ],
+      "weight": 3,
+      "attentionSignal": "Entrega sem resultado",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "CLI-002",
+      "dimension": "CLI",
+      "phase": "E",
+      "prompt": "As principais causas de reclamação, cancelamento ou retrabalho são conhecidas e tratadas?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Tickets",
+        "churn",
+        "planos"
+      ],
+      "weight": 3,
+      "attentionSignal": "Problema recorrente",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "CLI-003",
+      "dimension": "CLI",
+      "phase": "C",
+      "prompt": "A empresa conhece os segmentos mais rentáveis, satisfeitos e aderentes?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Rentabilidade e satisfação"
+      ],
+      "weight": 2,
+      "attentionSignal": "Mesmo tratamento para todos",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "CLI-004",
+      "dimension": "CLI",
+      "phase": "C",
+      "prompt": "O onboarding possui etapas, responsável, prazo e critério de ativação?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Checklist",
+        "CRM/CS"
+      ],
+      "weight": 2,
+      "attentionSignal": "Cliente sem ativação",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "CLI-005",
+      "dimension": "CLI",
+      "phase": "C",
+      "prompt": "Há SLAs claros e monitorados para entrega e atendimento?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Contratos",
+        "relatórios"
+      ],
+      "weight": 3,
+      "attentionSignal": "SLA crítico descumprido",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "CLI-006",
+      "dimension": "CLI",
+      "phase": "C",
+      "prompt": "A empresa mede churn, retenção, recompra e expansão?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Relatórios de coorte"
+      ],
+      "weight": 3,
+      "attentionSignal": "Retenção desconhecida",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "CLI-007",
+      "dimension": "CLI",
+      "phase": "C",
+      "prompt": "Feedbacks são classificados, priorizados e vinculados a decisões?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Backlog",
+        "atas"
+      ],
+      "weight": 2,
+      "attentionSignal": "Feedback sem resposta",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "CLI-008",
+      "dimension": "CLI",
+      "phase": "C",
+      "prompt": "Existe processo de recuperação de clientes insatisfeitos?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Playbook",
+        "tickets"
+      ],
+      "weight": 2,
+      "attentionSignal": "Crise sem owner",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "CLI-009",
+      "dimension": "CLI",
+      "phase": "C",
+      "prompt": "A oferta possui escopo, limites, pré-requisitos e critérios de aceite claros?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Propostas",
+        "contratos"
+      ],
+      "weight": 3,
+      "attentionSignal": "Escopo ambíguo",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "CLI-010",
+      "dimension": "CLI",
+      "phase": "C",
+      "prompt": "A empresa acompanha custo de servir e rentabilidade por perfil de cliente?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "DRE por cliente",
+        "horas"
+      ],
+      "weight": 2,
+      "attentionSignal": "Cliente deficitário invisível",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "CLI-011",
+      "dimension": "CLI",
+      "phase": "A",
+      "prompt": "O roadmap é orientado por evidências de problema, valor e viabilidade?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Discovery",
+        "roadmap"
+      ],
+      "weight": 2,
+      "attentionSignal": "Feature por opinião",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "CLI-012",
+      "dimension": "CLI",
+      "phase": "A",
+      "prompt": "A empresa consegue comprovar cases e resultados divulgados?",
+      "responseType": "Sim/não/parcial",
+      "evidenceSuggestions": [
+        "Cases",
+        "autorizações",
+        "métricas"
+      ],
+      "weight": 3,
+      "attentionSignal": "Case sem consentimento/evidência",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "OPE-001",
+      "dimension": "OPE",
+      "phase": "E",
+      "prompt": "Os processos críticos possuem responsável, etapas, padrão e indicador definidos?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Mapa",
+        "SOP",
+        "KPI"
+      ],
+      "weight": 3,
+      "attentionSignal": "Processo crítico informal",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "OPE-002",
+      "dimension": "OPE",
+      "phase": "E",
+      "prompt": "A empresa conhece seus principais gargalos, perdas, atrasos e retrabalhos?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Relatórios operacionais"
+      ],
+      "weight": 3,
+      "attentionSignal": "Gargalo sem medição",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "OPE-003",
+      "dimension": "OPE",
+      "phase": "C",
+      "prompt": "A capacidade é planejada em relação à demanda e aos recursos disponíveis?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Plano de capacidade"
+      ],
+      "weight": 3,
+      "attentionSignal": "Venda acima da capacidade",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "OPE-004",
+      "dimension": "OPE",
+      "phase": "C",
+      "prompt": "Quais atividades dependem de conhecimento não documentado?",
+      "responseType": "Múltipla + texto",
+      "evidenceSuggestions": [
+        "SOPs",
+        "entrevistas"
+      ],
+      "weight": 3,
+      "attentionSignal": "Conhecimento em uma pessoa",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "OPE-005",
+      "dimension": "OPE",
+      "phase": "C",
+      "prompt": "Existem critérios de qualidade e aceite por produto, serviço ou etapa?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Checklists",
+        "inspeções"
+      ],
+      "weight": 2,
+      "attentionSignal": "Aceite subjetivo",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "OPE-006",
+      "dimension": "OPE",
+      "phase": "C",
+      "prompt": "Incidentes e não conformidades geram causa raiz, ação e verificação?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "RCA",
+        "CAPA"
+      ],
+      "weight": 3,
+      "attentionSignal": "Incidente repetido",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "OPE-007",
+      "dimension": "OPE",
+      "phase": "C",
+      "prompt": "A empresa mede tempo de ciclo, fila, produtividade e retrabalho?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Dashboards"
+      ],
+      "weight": 2,
+      "attentionSignal": "Otimização sem dados",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "OPE-008",
+      "dimension": "OPE",
+      "phase": "C",
+      "prompt": "Compras e fornecedores críticos possuem seleção, contrato, SLA e avaliação?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Contratos",
+        "scorecards"
+      ],
+      "weight": 3,
+      "attentionSignal": "Fornecedor crítico sem alternativa",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "OPE-009",
+      "dimension": "OPE",
+      "phase": "C",
+      "prompt": "Estoque, materiais ou ativos são controlados com inventário e perdas?",
+      "responseType": "Escala 0–4/N.A.",
+      "evidenceSuggestions": [
+        "Inventário",
+        "ERP"
+      ],
+      "weight": 2,
+      "attentionSignal": "Diferença material",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "OPE-010",
+      "dimension": "OPE",
+      "phase": "C",
+      "prompt": "Há segregação de funções nas compras, recebimento, pagamento e cadastro?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Matriz de acesso/processo"
+      ],
+      "weight": 3,
+      "attentionSignal": "Mesma pessoa controla todo ciclo",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "OPE-011",
+      "dimension": "OPE",
+      "phase": "A",
+      "prompt": "A empresa possui plano para operar durante falha de fornecedor, sistema, unidade ou pessoa-chave?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "BCP",
+        "contingência"
+      ],
+      "weight": 3,
+      "attentionSignal": "Nenhuma alternativa",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "OPE-012",
+      "dimension": "OPE",
+      "phase": "A",
+      "prompt": "Melhorias operacionais têm baseline, meta, owner e comprovação de resultado?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Projetos e outcomes"
+      ],
+      "weight": 2,
+      "attentionSignal": "Melhoria sem baseline",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "PES-001",
+      "dimension": "PES",
+      "phase": "E",
+      "prompt": "As pessoas sabem o que se espera de seu papel, quais resultados são seus e quais decisões podem tomar?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Cargos",
+        "RACI",
+        "alçadas"
+      ],
+      "weight": 3,
+      "attentionSignal": "Papéis indefinidos",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "PES-002",
+      "dimension": "PES",
+      "phase": "E",
+      "prompt": "A operação consegue funcionar sem presença contínua do fundador ou gestor principal?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Substitutos",
+        "testes",
+        "organograma"
+      ],
+      "weight": 3,
+      "attentionSignal": "Paralisação sem líder",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "PES-003",
+      "dimension": "PES",
+      "phase": "C",
+      "prompt": "Existem metas e feedbacks regulares conectados aos resultados?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Avaliações",
+        "1:1"
+      ],
+      "weight": 2,
+      "attentionSignal": "Cobrança sem critério",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "PES-004",
+      "dimension": "PES",
+      "phase": "C",
+      "prompt": "A carga de trabalho, horas extras e sobrecarga de pessoas-chave são monitoradas?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Indicadores agregados"
+      ],
+      "weight": 3,
+      "attentionSignal": "Sobrecarga recorrente",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "PES-005",
+      "dimension": "PES",
+      "phase": "C",
+      "prompt": "Há substitutos ou sucessores para funções críticas?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Plano de sucessão"
+      ],
+      "weight": 3,
+      "attentionSignal": "Papel sem backup",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "PES-006",
+      "dimension": "PES",
+      "phase": "C",
+      "prompt": "Contratação, promoção, remuneração e desligamento seguem critérios documentados?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Políticas e registros"
+      ],
+      "weight": 3,
+      "attentionSignal": "Decisão discriminatória/subjetiva",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "PES-007",
+      "dimension": "PES",
+      "phase": "C",
+      "prompt": "As competências necessárias hoje e nos próximos 12 meses estão mapeadas?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Matriz de competências"
+      ],
+      "weight": 2,
+      "attentionSignal": "Lacuna crítica",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "PES-008",
+      "dimension": "PES",
+      "phase": "C",
+      "prompt": "A empresa mede turnover, absenteísmo, tempo de contratação e retenção de talentos?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Indicadores agregados"
+      ],
+      "weight": 2,
+      "attentionSignal": "Saídas sem análise",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "PES-009",
+      "dimension": "PES",
+      "phase": "C",
+      "prompt": "As pessoas conseguem apontar riscos, erros e problemas sem sofrer retaliação?",
+      "responseType": "Escala confidencial 0–4",
+      "evidenceSuggestions": [
+        "Pesquisa anônima",
+        "canal"
+      ],
+      "weight": 3,
+      "attentionSignal": "Retaliação/medo",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "PES-010",
+      "dimension": "PES",
+      "phase": "C",
+      "prompt": "Conhecimento crítico é documentado, treinado e transferido?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Manuais",
+        "trilhas"
+      ],
+      "weight": 3,
+      "attentionSignal": "Conhecimento concentrado",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "PES-011",
+      "dimension": "PES",
+      "phase": "A",
+      "prompt": "A empresa mede performance sem incentivar excesso, manipulação ou comportamento inseguro?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Metas",
+        "incentivos"
+      ],
+      "weight": 3,
+      "attentionSignal": "Meta nociva",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "PES-012",
+      "dimension": "PES",
+      "phase": "A",
+      "prompt": "Existe plano para desenvolver líderes e multiplicadores internos?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Trilhas",
+        "sucessão"
+      ],
+      "weight": 2,
+      "attentionSignal": "Crescimento sem liderança",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "TEC-001",
+      "dimension": "TEC",
+      "phase": "E",
+      "prompt": "Os sistemas críticos, responsáveis, acessos e dependências estão inventariados?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Inventário e matriz"
+      ],
+      "weight": 3,
+      "attentionSignal": "Ativo crítico desconhecido",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "TEC-002",
+      "dimension": "TEC",
+      "phase": "E",
+      "prompt": "A empresa possui backup dos dados críticos e já testou a restauração?",
+      "responseType": "Escolha",
+      "evidenceSuggestions": [
+        "Relatórios e evidências"
+      ],
+      "weight": 3,
+      "attentionSignal": "Nunca restaurou",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "TEC-003",
+      "dimension": "TEC",
+      "phase": "C",
+      "prompt": "Acessos são concedidos por função, revisados e removidos no desligamento?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Matriz",
+        "logs"
+      ],
+      "weight": 3,
+      "attentionSignal": "Conta ativa indevida",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "TEC-004",
+      "dimension": "TEC",
+      "phase": "C",
+      "prompt": "MFA é usado em contas administrativas, financeiras e sistemas críticos?",
+      "responseType": "Sim/não/parcial",
+      "evidenceSuggestions": [
+        "Configurações",
+        "política"
+      ],
+      "weight": 3,
+      "attentionSignal": "Admin sem MFA",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "TEC-005",
+      "dimension": "TEC",
+      "phase": "C",
+      "prompt": "Dados possuem definição, owner, fonte, qualidade e frequência de atualização?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Dicionário/catálogo"
+      ],
+      "weight": 2,
+      "attentionSignal": "Indicadores contraditórios",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "TEC-006",
+      "dimension": "TEC",
+      "phase": "C",
+      "prompt": "Sistemas trocam dados de forma controlada ou dependem de planilhas e retrabalho manual?",
+      "responseType": "Matriz",
+      "evidenceSuggestions": [
+        "Integrações",
+        "fluxos"
+      ],
+      "weight": 2,
+      "attentionSignal": "Processo crítico manual",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "TEC-007",
+      "dimension": "TEC",
+      "phase": "C",
+      "prompt": "Incidentes, falhas e indisponibilidades são registrados, tratados e revisados?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Incident log",
+        "postmortem"
+      ],
+      "weight": 3,
+      "attentionSignal": "Incidente oculto/repetido",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "TEC-008",
+      "dimension": "TEC",
+      "phase": "C",
+      "prompt": "Fornecedores de tecnologia possuem contrato, SLA, segurança e plano de saída?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Contratos",
+        "DPA",
+        "BCP"
+      ],
+      "weight": 2,
+      "attentionSignal": "Lock-in sem saída",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "TEC-009",
+      "dimension": "TEC",
+      "phase": "C",
+      "prompt": "A empresa monitora vulnerabilidades, atualizações e dependências?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Scans",
+        "patch reports"
+      ],
+      "weight": 3,
+      "attentionSignal": "Falha crítica sem correção",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "TEC-010",
+      "dimension": "TEC",
+      "phase": "C",
+      "prompt": "Automações e IA possuem owner, limite, logs, revisão humana e métrica?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Inventário",
+        "política",
+        "evals"
+      ],
+      "weight": 3,
+      "attentionSignal": "IA decide tema crítico",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "TEC-011",
+      "dimension": "TEC",
+      "phase": "A",
+      "prompt": "Há segregação entre desenvolvimento, homologação e produção?",
+      "responseType": "Sim/não/parcial",
+      "evidenceSuggestions": [
+        "Ambientes",
+        "CI/CD"
+      ],
+      "weight": 3,
+      "attentionSignal": "Teste em produção",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "TEC-012",
+      "dimension": "TEC",
+      "phase": "A",
+      "prompt": "A empresa sabe quanto custa e qual resultado cada sistema, automação ou uso de IA gera?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "FinOps",
+        "ROI"
+      ],
+      "weight": 2,
+      "attentionSignal": "Custo sem valor",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "JUR-001",
+      "dimension": "JUR",
+      "phase": "E",
+      "prompt": "Os atos societários, licenças e responsáveis legais estão atualizados e acessíveis?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Atos",
+        "licenças",
+        "certidões"
+      ],
+      "weight": 3,
+      "attentionSignal": "Documento vencido/crítico",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "JUR-002",
+      "dimension": "JUR",
+      "phase": "E",
+      "prompt": "Contratos relevantes são revisados, aprovados, armazenados e acompanhados quanto a prazo e obrigação?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Contratos",
+        "CLM",
+        "agenda"
+      ],
+      "weight": 3,
+      "attentionSignal": "Obrigação vencida",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "JUR-003",
+      "dimension": "JUR",
+      "phase": "C",
+      "prompt": "A empresa conhece processos judiciais, administrativos, multas e contingências?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Mapa de contingências"
+      ],
+      "weight": 3,
+      "attentionSignal": "Passivo não dimensionado",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "JUR-004",
+      "dimension": "JUR",
+      "phase": "C",
+      "prompt": "Existem modelos contratuais e alçadas para assinatura e exceções?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Templates",
+        "procurações"
+      ],
+      "weight": 2,
+      "attentionSignal": "Assinatura sem poder",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "JUR-005",
+      "dimension": "JUR",
+      "phase": "C",
+      "prompt": "Há código de conduta, conflitos de interesse e canal de reporte?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Políticas",
+        "registros"
+      ],
+      "weight": 2,
+      "attentionSignal": "Ausência em setor de risco",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "JUR-006",
+      "dimension": "JUR",
+      "phase": "C",
+      "prompt": "A empresa mapeou quais dados pessoais coleta, por quê, onde armazena, com quem compartilha e por quanto tempo?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Inventário e mapa de dados"
+      ],
+      "weight": 3,
+      "attentionSignal": "Tratamento desconhecido",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "JUR-007",
+      "dimension": "JUR",
+      "phase": "C",
+      "prompt": "Os avisos, consentimentos e contratos refletem as finalidades reais do tratamento?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Políticas",
+        "termos",
+        "DPA"
+      ],
+      "weight": 3,
+      "attentionSignal": "Finalidade incompatível",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "JUR-008",
+      "dimension": "JUR",
+      "phase": "C",
+      "prompt": "Existe processo para acesso, correção, revogação e exclusão de dados quando aplicável?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "SOP e tickets"
+      ],
+      "weight": 3,
+      "attentionSignal": "Direito sem atendimento",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "JUR-009",
+      "dimension": "JUR",
+      "phase": "C",
+      "prompt": "Incidentes de dados possuem classificação, resposta, registro e comunicação?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Plano e incidentes"
+      ],
+      "weight": 3,
+      "attentionSignal": "Incidente não tratado",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "JUR-010",
+      "dimension": "JUR",
+      "phase": "C",
+      "prompt": "Fornecedores que recebem dados ou executam processo crítico são avaliados contratualmente?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "DPA",
+        "due diligence"
+      ],
+      "weight": 3,
+      "attentionSignal": "Compartilhamento sem contrato",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "JUR-011",
+      "dimension": "JUR",
+      "phase": "A",
+      "prompt": "Tratamentos de alto risco possuem avaliação de impacto e medidas de mitigação?",
+      "responseType": "Sim/não/parcial",
+      "evidenceSuggestions": [
+        "RIPD/DPIA",
+        "risk assessment"
+      ],
+      "weight": 3,
+      "attentionSignal": "Alto risco sem avaliação",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "JUR-012",
+      "dimension": "JUR",
+      "phase": "A",
+      "prompt": "Claims comerciais, marcas, propriedade intelectual e autorizações de uso estão protegidos?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Registros",
+        "licenças",
+        "autorizações"
+      ],
+      "weight": 2,
+      "attentionSignal": "Uso sem direito",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "TAX-001",
+      "dimension": "TAX",
+      "phase": "E",
+      "prompt": "Qual é o regime tributário atual e quando ele foi revisado pela última vez?",
+      "responseType": "Escolha + data",
+      "evidenceSuggestions": [
+        "CNPJ",
+        "opção/regime",
+        "parecer"
+      ],
+      "weight": 3,
+      "attentionSignal": "Regime desconhecido",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "TAX-002",
+      "dimension": "TAX",
+      "phase": "E",
+      "prompt": "A empresa enfrenta pressão de caixa relacionada a tributos, parcelamentos, retenções ou divergências fiscais?",
+      "responseType": "Múltipla + urgência",
+      "evidenceSuggestions": [
+        "Fluxo",
+        "guias",
+        "parcelamentos"
+      ],
+      "weight": 3,
+      "attentionSignal": "Obrigação imediata sem caixa",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "TAX-003",
+      "dimension": "TAX",
+      "phase": "C",
+      "prompt": "Os CNAEs, atividades reais, municípios e estados de operação estão atualizados e coerentes?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "CNPJ",
+        "inscrições",
+        "notas"
+      ],
+      "weight": 3,
+      "attentionSignal": "Atividade divergente",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "TAX-004",
+      "dimension": "TAX",
+      "phase": "C",
+      "prompt": "Escrituração, declarações, notas e recolhimentos são conciliados periodicamente?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "SPED",
+        "DCTFWeb",
+        "razão"
+      ],
+      "weight": 3,
+      "attentionSignal": "Diferença não explicada",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "TAX-005",
+      "dimension": "TAX",
+      "phase": "C",
+      "prompt": "Existem pagamentos em duplicidade, saldo credor, retenções, créditos acumulados ou divergências já identificadas?",
+      "responseType": "Múltipla",
+      "evidenceSuggestions": [
+        "Relatórios e pareceres"
+      ],
+      "weight": 3,
+      "attentionSignal": "Sinal requer revisão",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "TAX-006",
+      "dimension": "TAX",
+      "phase": "C",
+      "prompt": "A empresa passou por mudança relevante de atividade, regime, estrutura, unidade, folha ou cadeia de fornecedores nos últimos cinco anos?",
+      "responseType": "Múltipla + data",
+      "evidenceSuggestions": [
+        "Atos",
+        "regimes",
+        "relatórios"
+      ],
+      "weight": 2,
+      "attentionSignal": "Mudança não refletida",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "TAX-007",
+      "dimension": "TAX",
+      "phase": "C",
+      "prompt": "Há operações interestaduais, importação, exportação, substituição tributária, monofásico ou benefícios fiscais?",
+      "responseType": "Múltipla/N.A.",
+      "evidenceSuggestions": [
+        "Documentos fiscais"
+      ],
+      "weight": 3,
+      "attentionSignal": "Complexidade sem controle",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "TAX-008",
+      "dimension": "TAX",
+      "phase": "C",
+      "prompt": "Retenções sobre serviços, folha e pagamentos a terceiros são revisadas e conciliadas?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "EFD-Reinf",
+        "eSocial",
+        "notas"
+      ],
+      "weight": 3,
+      "attentionSignal": "Retenção divergente",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "TAX-009",
+      "dimension": "TAX",
+      "phase": "C",
+      "prompt": "Existem autos de infração, fiscalizações, parcelamentos, discussões ou teses em andamento?",
+      "responseType": "Múltipla",
+      "evidenceSuggestions": [
+        "Autos",
+        "processos",
+        "contratos"
+      ],
+      "weight": 3,
+      "attentionSignal": "Prazo/risco crítico",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "TAX-010",
+      "dimension": "TAX",
+      "phase": "C",
+      "prompt": "A empresa já realizou revisão tributária? Quais períodos, tributos, conclusões e responsáveis?",
+      "responseType": "Texto estruturado",
+      "evidenceSuggestions": [
+        "Relatório",
+        "parecer",
+        "contrato"
+      ],
+      "weight": 2,
+      "attentionSignal": "Revisões conflitantes",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "TAX-011",
+      "dimension": "TAX",
+      "phase": "A",
+      "prompt": "Os documentos necessários para uma análise especializada estão completos, legíveis, consistentes e autorizados para compartilhamento?",
+      "responseType": "Checklist",
+      "evidenceSuggestions": [
+        "Data room e consentimento"
+      ],
+      "weight": 3,
+      "attentionSignal": "Documento/consentimento ausente",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "TAX-012",
+      "dimension": "TAX",
+      "phase": "A",
+      "prompt": "Você autoriza o encaminhamento dos dados mínimos deste caso à parceira patrocinadora indicada, após visualizar os critérios e limites?",
+      "responseType": "Consentimento específico",
+      "evidenceSuggestions": [
+        "Consent versionado"
+      ],
+      "weight": 3,
+      "attentionSignal": "Sem consentimento: bloquear",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "INO-001",
+      "dimension": "INO",
+      "phase": "E",
+      "prompt": "O crescimento atual pode ser sustentado sem aumentar custos, erros e pessoas na mesma proporção?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Unit economics",
+        "capacidade"
+      ],
+      "weight": 3,
+      "attentionSignal": "Escala destrói margem",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "INO-002",
+      "dimension": "INO",
+      "phase": "E",
+      "prompt": "A empresa testa novas ofertas, canais ou processos com hipótese, métrica e limite de investimento?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Experiment backlog"
+      ],
+      "weight": 3,
+      "attentionSignal": "Aposta sem gate",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "INO-003",
+      "dimension": "INO",
+      "phase": "C",
+      "prompt": "Os principais gargalos de escala estão identificados e priorizados?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Plano de capacidade"
+      ],
+      "weight": 3,
+      "attentionSignal": "Gargalo invisível",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "INO-004",
+      "dimension": "INO",
+      "phase": "C",
+      "prompt": "Processos repetitivos foram avaliados antes de contratar mais pessoas?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Mapa de automação"
+      ],
+      "weight": 2,
+      "attentionSignal": "Contratação para caos",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "INO-005",
+      "dimension": "INO",
+      "phase": "C",
+      "prompt": "Automações são implementadas somente após o processo estar definido?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Fluxos",
+        "SOPs"
+      ],
+      "weight": 3,
+      "attentionSignal": "Automatização de confusão",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "INO-006",
+      "dimension": "INO",
+      "phase": "C",
+      "prompt": "A empresa mede tempo, erro, custo e resultado antes e depois de automatizar?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Baseline e ROI"
+      ],
+      "weight": 2,
+      "attentionSignal": "Automação sem métrica",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "INO-007",
+      "dimension": "INO",
+      "phase": "C",
+      "prompt": "A expansão tem critérios de entrada, capacidade, risco, investimento e saída?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Plano de expansão"
+      ],
+      "weight": 2,
+      "attentionSignal": "Expansão por impulso",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "INO-008",
+      "dimension": "INO",
+      "phase": "C",
+      "prompt": "Dados e aprendizados de clientes são convertidos em decisões e ativos reutilizáveis?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Knowledge base",
+        "roadmap"
+      ],
+      "weight": 2,
+      "attentionSignal": "Aprendizado disperso",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "INO-009",
+      "dimension": "INO",
+      "phase": "C",
+      "prompt": "A empresa possui vantagem difícil de copiar: dados, rede, método, marca, integração ou distribuição?",
+      "responseType": "Múltipla + evidência",
+      "evidenceSuggestions": [
+        "Ativos",
+        "contratos",
+        "métricas"
+      ],
+      "weight": 2,
+      "attentionSignal": "Diferencial apenas visual",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "INO-010",
+      "dimension": "INO",
+      "phase": "C",
+      "prompt": "Dependências técnicas e dívida acumulada são conhecidas e priorizadas?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Tech debt register"
+      ],
+      "weight": 2,
+      "attentionSignal": "Dívida bloqueia entrega",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "INO-011",
+      "dimension": "INO",
+      "phase": "A",
+      "prompt": "Há portfólio equilibrando operação, melhoria e inovação?",
+      "responseType": "Matriz percentual",
+      "evidenceSuggestions": [
+        "Portfólio e orçamento"
+      ],
+      "weight": 2,
+      "attentionSignal": "Inovação compromete operação",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "INO-012",
+      "dimension": "INO",
+      "phase": "A",
+      "prompt": "A empresa possui critérios para construir, comprar, integrar ou terceirizar tecnologia?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "ADRs",
+        "business cases"
+      ],
+      "weight": 2,
+      "attentionSignal": "Decisão por moda",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "RSC-001",
+      "dimension": "RSC",
+      "phase": "E",
+      "prompt": "A empresa conhece seus cinco riscos mais críticos, seus responsáveis e medidas de resposta?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Registro de riscos"
+      ],
+      "weight": 3,
+      "attentionSignal": "Risco crítico sem owner",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "RSC-002",
+      "dimension": "RSC",
+      "phase": "E",
+      "prompt": "A empresa consegue manter operações essenciais diante da ausência de pessoa, sistema, fornecedor ou unidade crítica?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "BCP",
+        "testes"
+      ],
+      "weight": 3,
+      "attentionSignal": "Ponto único de falha",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "RSC-003",
+      "dimension": "RSC",
+      "phase": "C",
+      "prompt": "Os riscos são avaliados por probabilidade, impacto, velocidade e controle existente?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Matriz de riscos"
+      ],
+      "weight": 2,
+      "attentionSignal": "Priorização subjetiva",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "RSC-004",
+      "dimension": "RSC",
+      "phase": "C",
+      "prompt": "Planos de continuidade e recuperação já foram testados?",
+      "responseType": "Escolha",
+      "evidenceSuggestions": [
+        "Relatórios de teste"
+      ],
+      "weight": 3,
+      "attentionSignal": "Nunca testado",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "RSC-005",
+      "dimension": "RSC",
+      "phase": "C",
+      "prompt": "Seguros cobrem riscos relevantes e são revisados?",
+      "responseType": "Escala 0–4/N.A.",
+      "evidenceSuggestions": [
+        "Apólices",
+        "avaliação"
+      ],
+      "weight": 2,
+      "attentionSignal": "Risco material descoberto",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "RSC-006",
+      "dimension": "RSC",
+      "phase": "C",
+      "prompt": "A empresa realiza cenários de queda de receita, aumento de custo, perda de cliente ou indisponibilidade?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Stress tests"
+      ],
+      "weight": 2,
+      "attentionSignal": "Sem plano de resposta",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "RSC-007",
+      "dimension": "RSC",
+      "phase": "C",
+      "prompt": "Cap table, acordos, propriedade intelectual e poderes estão claros?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Atos e contratos"
+      ],
+      "weight": 3,
+      "attentionSignal": "Conflito societário",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "RSC-008",
+      "dimension": "RSC",
+      "phase": "C",
+      "prompt": "Obrigações com investidores, financiadores e sócios são monitoradas?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Covenants",
+        "reports"
+      ],
+      "weight": 3,
+      "attentionSignal": "Obrigação vencida",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "RSC-009",
+      "dimension": "RSC",
+      "phase": "C",
+      "prompt": "Indicadores e documentos podem ser reconciliados e apresentados a terceiro com confiança?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Data room",
+        "auditoria"
+      ],
+      "weight": 2,
+      "attentionSignal": "Números conflitantes",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "RSC-010",
+      "dimension": "RSC",
+      "phase": "C",
+      "prompt": "Existe plano de uso de capital com marcos, responsáveis e retorno esperado?",
+      "responseType": "Escala 0–4/N.A.",
+      "evidenceSuggestions": [
+        "Use of funds",
+        "roadmap"
+      ],
+      "weight": 2,
+      "attentionSignal": "Capital sem marco",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "RSC-011",
+      "dimension": "RSC",
+      "phase": "A",
+      "prompt": "O data room possui índice, versão, owner, permissão e histórico?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Data room index"
+      ],
+      "weight": 2,
+      "attentionSignal": "Acesso excessivo",
+      "version": "3.0",
+      "active": true
+    },
+    {
+      "id": "RSC-012",
+      "dimension": "RSC",
+      "phase": "A",
+      "prompt": "A empresa está preparada para due diligence sem ocultar pendências materiais?",
+      "responseType": "Escala 0–4",
+      "evidenceSuggestions": [
+        "Checklist e pendências"
+      ],
+      "weight": 3,
+      "attentionSignal": "Omissão material",
+      "version": "3.0",
+      "active": true
+    }
+  ],
+  "documentCatalogByDimension": {
+    "EST": [
+      "Contrato/estatuto social e alterações consolidadas",
+      "Acordo de sócios ou acionistas, quando existente",
+      "Organograma e matriz de responsabilidades",
+      "Planejamento estratégico ou plano anual",
+      "OKRs, metas e indicadores estratégicos",
+      "Atas de reuniões de sócios, diretoria ou conselho",
+      "Orçamento e plano de investimentos",
+      "Políticas de alçadas e aprovação",
+      "Mapa de unidades, empresas e participações",
+      "Business plan, canvas ou tese de crescimento"
+    ],
+    "FIN": [
+      "DRE mensal e anual dos últimos 12–24 meses",
+      "Balanço patrimonial e balancetes",
+      "Fluxo de caixa realizado e projetado",
+      "Extratos ou conciliações bancárias, preferencialmente com dados desnecessários ocultados",
+      "Contas a receber e a pagar por vencimento",
+      "Relatório de inadimplência",
+      "Orçamento, forecast e realizado versus previsto",
+      "Planilha de precificação, custos e margens",
+      "Contratos de empréstimos, financiamentos e parcelamentos",
+      "Relatório de estoque e perdas, quando aplicável",
+      "Plano de investimentos e uso de capital",
+      "Relatórios gerenciais do ERP/contabilidade"
+    ],
+    "VEN": [
+      "Exportação do CRM ou pipeline",
+      "Funil por etapa, origem e vendedor",
+      "Metas e resultados comerciais",
+      "Playbook, scripts e cadências",
+      "Propostas e modelos comerciais",
+      "Política de preços, descontos e comissões",
+      "Relatório de motivos de perda",
+      "Contratos de clientes e SLAs",
+      "Carteira por cliente, produto e canal",
+      "Forecast comercial",
+      "Gravações ou transcrições autorizadas de vendas",
+      "Relatórios de tempo de resposta e follow-up"
+    ],
+    "MKT": [
+      "Plano de marketing e orçamento",
+      "Definição de ICP, personas e jornadas",
+      "Brandbook e mensagens principais",
+      "Relatórios de campanhas e mídia",
+      "Analytics de site e conversão",
+      "Calendário e desempenho de conteúdo",
+      "Relatórios de SEO e tráfego",
+      "Pesquisas de mercado e concorrência",
+      "Base de leads e consentimentos",
+      "Contratos com agências, plataformas e influenciadores",
+      "Materiais promocionais e claims",
+      "Relatórios de CAC por canal"
+    ],
+    "CLI": [
+      "Catálogo de produtos e serviços",
+      "Termos, contratos, propostas e SLAs",
+      "Mapa da jornada do cliente",
+      "Processo de onboarding",
+      "Relatórios de NPS, CSAT, CES ou pesquisas",
+      "Churn, cancelamentos e expansão",
+      "Tickets, reclamações e prazos de resposta",
+      "Roadmap de produto/serviço",
+      "Backlog de melhorias",
+      "Entrevistas e pesquisas com clientes",
+      "Base de conhecimento e scripts de suporte",
+      "Relatórios de devolução, garantia ou retrabalho"
+    ],
+    "OPE": [
+      "Mapa de processos e cadeia de valor",
+      "SOPs, manuais e checklists",
+      "Indicadores de produção, prazo, qualidade e retrabalho",
+      "Plano de capacidade e escala",
+      "Relatórios de estoque, perdas e inventário",
+      "Contratos e avaliação de fornecedores",
+      "Política de compras e aprovações",
+      "Registros de incidentes e não conformidades",
+      "Planos de manutenção",
+      "Certificações e auditorias de qualidade",
+      "Relatórios de produtividade e utilização",
+      "Planos de continuidade de processos críticos"
+    ],
+    "PES": [
+      "Organograma",
+      "Descrições de cargos e responsabilidades",
+      "Matriz RACI/alçadas",
+      "Políticas de pessoas e código de conduta",
+      "Plano de cargos, salários e incentivos",
+      "Metas e avaliações de desempenho",
+      "Plano de treinamento e trilhas",
+      "Indicadores agregados de turnover, absenteísmo e horas extras",
+      "Pesquisa de clima ou pulse",
+      "Plano de sucessão e mapa de pessoas-chave",
+      "Registros agregados de saúde e segurança ocupacional, quando aplicável",
+      "Calendário de rituais, 1:1 e feedbacks"
+    ],
+    "TEC": [
+      "Inventário de sistemas, ativos e fornecedores",
+      "Diagrama de arquitetura e integrações",
+      "Matriz de acessos e perfis",
+      "Políticas de segurança e uso aceitável",
+      "Relatórios de backup e testes de restauração",
+      "Registro de incidentes e vulnerabilidades",
+      "Contratos e SLAs de tecnologia",
+      "Dicionário e catálogo de dados",
+      "Mapas de integração/API",
+      "Inventário de automações e agentes de IA",
+      "Política de IA e avaliações",
+      "Plano de continuidade e recuperação"
+    ],
+    "JUR": [
+      "Contrato/estatuto social e alterações",
+      "Certidões e licenças aplicáveis",
+      "Contratos padrão e contratos materiais",
+      "Mapa de processos jurídicos e passivos",
+      "Código de conduta e políticas de compliance",
+      "Canal de denúncia e registros agregados",
+      "Política de privacidade, cookies e termos",
+      "Inventário de dados pessoais e bases/finalidades",
+      "Contratos com operadores/subprocessadores",
+      "Relatório de Impacto à Proteção de Dados quando aplicável",
+      "Plano de resposta a incidentes de dados",
+      "Apólices de seguro relevantes"
+    ],
+    "TAX": [
+      "Cartão CNPJ, CNAEs, regime e inscrições",
+      "ECD e ECF, quando aplicáveis",
+      "EFD-Contribuições, quando aplicável",
+      "DCTFWeb e informações do MIT, quando aplicáveis",
+      "EFD-Reinf e totalizadores do eSocial, quando aplicáveis",
+      "EFD ICMS/IPI e escriturações estaduais, quando aplicáveis",
+      "XMLs e relatórios de NF-e, NFC-e, CT-e e documentos fiscais eletrônicos aplicáveis",
+      "Notas fiscais de serviço e declarações municipais",
+      "Guias e comprovantes de recolhimento",
+      "Folha e encargos em formato agregado/adequado",
+      "PER/DCOMP, compensações, parcelamentos e autos",
+      "Pareceres, revisões e relatórios tributários anteriores"
+    ],
+    "INO": [
+      "Roadmap de produto e tecnologia",
+      "Backlog de experimentos e hipóteses",
+      "Relatórios de testes e aprendizados",
+      "Plano de expansão geográfica, canais ou unidades",
+      "Mapa de automações e oportunidades",
+      "Arquitetura de escala e capacidade",
+      "Unit economics e cenários",
+      "Plano de dados e analytics",
+      "Mapa de propriedade intelectual",
+      "Benchmark e pesquisas de mercado",
+      "Plano de contratação e fornecedores",
+      "Relatórios de inovação e portfólio"
+    ],
+    "RSC": [
+      "Registro de riscos e controles",
+      "Plano de continuidade e recuperação",
+      "Matriz de processos/pessoas/fornecedores críticos",
+      "Apólices de seguro",
+      "Relatórios de auditoria e controles internos",
+      "Cap table e acordo de sócios",
+      "Contratos de dívida, garantias e covenants",
+      "Relatórios de contingências",
+      "Orçamento e cenários de stress",
+      "Data room index",
+      "Pitch, plano de uso de recursos e milestones",
+      "Relatórios para investidores, conselho ou financiadores"
+    ]
+  }
+}

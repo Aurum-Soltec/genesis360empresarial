@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "evaluationWindowMinutes": 5,
+  "alerts": [
+    {"code":"API_ERROR_RATE_HIGH","metric":"http.error_rate_percent","operator":">","threshold":2,"severity":"SEV-2"},
+    {"code":"API_P95_HIGH","metric":"http.p95_ms","operator":">","threshold":750,"severity":"SEV-2"},
+    {"code":"OUTBOX_DEAD","metric":"outbox.dead_jobs","operator":">","threshold":0,"severity":"SEV-1"},
+    {"code":"OUTBOX_BACKLOG","metric":"outbox.backlog","operator":">","threshold":500,"severity":"SEV-2"},
+    {"code":"AUTH_FAILURE_SURGE","metric":"auth.failure_rate_percent","operator":">","threshold":10,"severity":"SEV-2"},
+    {"code":"TENANT_QUOTA_SURGE","metric":"quota.denials_per_minute","operator":">","threshold":100,"severity":"SEV-3"},
+    {"code":"DB_CONNECTION_SATURATION","metric":"db.connection_usage_percent","operator":">","threshold":80,"severity":"SEV-2"},
+    {"code":"AI_BUDGET_EXCEEDED","metric":"ai.budget_percent","operator":">=","threshold":100,"severity":"SEV-2"}
+  ]
+}

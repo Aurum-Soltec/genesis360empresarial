@@ -1,0 +1,146 @@
+[
+  {
+    "id": "RSK-001",
+    "risk": "Cross-tenant data leakage",
+    "severity": "critical",
+    "state": "open",
+    "mitigation": "private RLS helper + explicit grants + pgTAP A->B harness; runtime evidence pending",
+    "gate": "GATE-FOUNDATION"
+  },
+  {
+    "id": "RSK-002",
+    "risk": "False root-cause confidence",
+    "severity": "high",
+    "state": "controlled",
+    "mitigation": "hypothesis model + GDS + evidence",
+    "gate": "GATE-PRODUCT"
+  },
+  {
+    "id": "RSK-003",
+    "risk": "Commercial manipulation of ranking",
+    "severity": "high",
+    "state": "controlled",
+    "mitigation": "plan excluded from ranking + audit",
+    "gate": "GATE-TRUST"
+  },
+  {
+    "id": "RSK-004",
+    "risk": "AI tool misuse/prompt injection",
+    "severity": "high",
+    "state": "open",
+    "mitigation": "agent no-DB boundary + authored read tools + golden adversarial set + kill-switch design",
+    "gate": "GATE-AI"
+  },
+  {
+    "id": "RSK-005",
+    "risk": "Big Data without provenance/consent",
+    "severity": "high",
+    "state": "controlled",
+    "mitigation": "Business Facts + purposes + privacy model",
+    "gate": "GATE-DATA"
+  },
+  {
+    "id": "RSK-006",
+    "risk": "Unbounded AI cost",
+    "severity": "medium",
+    "state": "open",
+    "mitigation": "plan/run budgets + model routing + alerts",
+    "gate": "GATE-FINOPS"
+  },
+  {
+    "id": "RSK-007",
+    "risk": "UI becomes feature-heavy for SME manager",
+    "severity": "medium",
+    "state": "controlled",
+    "mitigation": "manager-first dashboard + visual density 4",
+    "gate": "GATE-UX"
+  },
+  {
+    "id": "RSK-008",
+    "risk": "Provider network activated before qualification methodology/threshold approval",
+    "severity": "high",
+    "state": "controlled",
+    "mitigation": "fail-closed policy; no published threshold means zero providers",
+    "gate": "GATE-PRODUCT"
+  },
+  {
+    "id": "RSK-009",
+    "risk": "Cross-tenant provider data disclosed outside sanitized matching service",
+    "severity": "high",
+    "state": "controlled",
+    "mitigation": "provider RLS remains tenant-local; cross-tenant lookup only through trusted server and sanitized DTO",
+    "gate": "GATE-SEC"
+  },
+  {
+    "id": "RSK-010",
+    "risk": "Consent workflow enabled with unapproved legal copy",
+    "severity": "high",
+    "state": "controlled",
+    "mitigation": "real contact flag remains disabled; consent UX does not create legal text automatically",
+    "gate": "GATE-SEC"
+  },
+  {
+    "id": "RSK-011",
+    "risk": "Adaptive questionnaire grows without information-yield discipline",
+    "severity": "medium",
+    "state": "controlled",
+    "mitigation": "stable starter path + deterministic triggers + Essential adaptive cap + metadata purpose",
+    "gate": "GATE-PRODUCT"
+  },
+  {
+    "id": "RSK-012",
+    "risk": "Confidence thermometer is mistaken for absolute truth",
+    "severity": "medium",
+    "state": "open",
+    "mitigation": "versioned breakdown + calibration with real cohorts + user-facing label 'analysis confidence'",
+    "gate": "GATE-PRODUCT"
+  },
+  {
+    "id": "RSK-013",
+    "risk": "User attestation is presented as waiver of GENESIS obligations",
+    "severity": "high",
+    "state": "controlled",
+    "mitigation": "separate GENESIS responsibility disclaimer + legal review + fail-closed activation",
+    "gate": "GATE-SEC"
+  },
+  {
+    "id": "RSK-014",
+    "risk": "Uploads are enabled before malware/content, storage and retention controls",
+    "severity": "high",
+    "state": "controlled",
+    "mitigation": "FEATURE_DATA_UPLOAD=false + draft attestation version + separate binary security gate",
+    "gate": "GATE-SEC"
+  },
+  {
+    "id": "RSK-015",
+    "risk": "Remaining legacy product surfaces drift visually from the three canonical Wave 8 screens",
+    "severity": "medium",
+    "state": "controlled",
+    "mitigation": "canonical design package + staged migration only after three-screen browser approval",
+    "gate": "GATE-UX"
+  },
+  {
+    "id": "RSK-016",
+    "risk": "Owned mobile drawer/accessibility behavior regresses without browser tests",
+    "severity": "medium",
+    "state": "open",
+    "mitigation": "focus containment + Escape handling + explicit Wave8 browser/WCAG gate; consider external primitive only if it reduces total risk",
+    "gate": "GATE-UX"
+  },
+  {
+    "id": "RSK-017",
+    "risk": "Foundation package is treated as production-ready without runtime evidence",
+    "severity": "high",
+    "state": "controlled",
+    "mitigation": "explicit runtime gates PW-0/PW-1/PW-2 and release evidence template",
+    "gate": "GATE-FOUNDATION"
+  },
+  {
+    "id": "RSK-018",
+    "risk": "Empty GitHub repository is bootstrapped without running local quality/secret checks",
+    "severity": "high",
+    "state": "open",
+    "mitigation": "bootstrap checklist + CI + no-force-push rule + secret scan before first push",
+    "gate": "GATE-REPO"
+  }
+]

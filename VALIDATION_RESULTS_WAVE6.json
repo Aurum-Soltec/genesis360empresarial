@@ -1,0 +1,86 @@
+{
+  "work_package": {
+    "status": "PASS",
+    "returncode": 0,
+    "output": "PASS - Genesis 360 Empresarial Work package structure is complete."
+  },
+  "openapi_contract": {
+    "status": "PASS",
+    "returncode": 0,
+    "output": "PASS - OpenAPI covers 15 API route file(s)."
+  },
+  "migration_static": {
+    "status": "PASS",
+    "returncode": 0,
+    "output": "Validated 11 migration(s): 0001_core.sql, 0002_v1_tenancy_and_consent.sql, 0003_v1_business_passport.sql, 0004_v1_diagnostic_engine.sql, 0005_v1_pain_cause_gds.sql, 0006_v1_missions_qualification_foundation.sql, 0007_v1_security_evidence_outbox.sql, 0008_v1_tenant_reference_integrity.sql, 0009_v1_end_to_end_core.sql, 0010_v1_outbox_transition_event_identity.sql, 0011_v1_least_privilege_rbac.sql"
+  },
+  "security_contracts": {
+    "status": "PASS",
+    "returncode": 0,
+    "output": "PASS - Wave 6 security/end-to-end contracts and database test harness are present."
+  },
+  "trust_boundaries": {
+    "status": "PASS",
+    "returncode": 0,
+    "output": "PASS - trusted server and agent data boundaries are statically enforced."
+  },
+  "json_parse": {
+    "status": "PASS",
+    "files": 26,
+    "errors": []
+  },
+  "yaml_parse": {
+    "status": "PASS",
+    "files": 1,
+    "errors": []
+  },
+  "toml_parse": {
+    "status": "PASS",
+    "files": 1,
+    "errors": []
+  },
+  "agent_python_syntax": {
+    "status": "PASS",
+    "files": 4,
+    "errors": []
+  },
+  "agent_no_db_contract": {
+    "status": "PASS",
+    "tests": 2
+  },
+  "typescript_syntax_only": {
+    "status": "PASS",
+    "files": 24,
+    "syntaxErrors": [],
+    "note": "Module/type resolution intentionally disabled because node_modules is not present."
+  },
+  "deterministic_core_runtime": {
+    "status": "PASS",
+    "output": "{\"eligible\":true,\"rank\":0.8250000000000001,\"mission\":true,\"rbac\":true}"
+  },
+  "diagnostic_profile_consistency": {
+    "status": "PASS",
+    "canonicalQuestions": 144,
+    "essentialQuestions": 36
+  },
+  "supabase_pgtap_runtime": {
+    "status": "NOT_RUN",
+    "reason": "Supabase CLI/local PostgreSQL is unavailable in this execution environment."
+  },
+  "pnpm_quality_runtime": {
+    "status": "NOT_RUN",
+    "reason": "pnpm/node_modules are unavailable; Corepack cannot reach the package registry from this environment."
+  },
+  "full_typescript_typecheck": {
+    "status": "NOT_RUN",
+    "reason": "Project expects TypeScript 6.0.3 and node_modules; global tsc is 5.8.3."
+  },
+  "inventory_metrics": {
+    "migrations": 11,
+    "databaseTestFiles": 9,
+    "apiRoutes": 15,
+    "canonicalRequirements": 105,
+    "stories": 76,
+    "agentGoldenCases": 10
+  }
+}

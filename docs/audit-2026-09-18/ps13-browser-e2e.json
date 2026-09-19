@@ -1,0 +1,59 @@
+{
+  "wave": "PS-2/PS-13",
+  "executedAt": "2026-09-19T17:20:09.925Z",
+  "browser": "installed Chrome via playwright-core",
+  "results": [
+    {
+      "name": "unauthenticated redirect",
+      "pass": true,
+      "detail": "http://127.0.0.1:3000/entrar?next=%2F"
+    },
+    {
+      "name": "multi-tenant chooser",
+      "pass": true,
+      "detail": "Contexto ativo\n\nEscolha a empresa\n\nmulti@genesis.test\n\nTenant A\nmanager\nTenant B\nauditor\nSair"
+    },
+    {
+      "name": "tenant A selected",
+      "pass": true,
+      "detail": "http://127.0.0.1:3000/"
+    },
+    {
+      "name": "tenant switch A to B",
+      "pass": true,
+      "detail": "http://127.0.0.1:3000/"
+    },
+    {
+      "name": "cross-tenant switch denied",
+      "pass": true,
+      "detail": "status=403"
+    },
+    {
+      "name": "own tenant switch allowed",
+      "pass": true,
+      "detail": "status=200"
+    },
+    {
+      "name": "user without tenant",
+      "pass": true,
+      "detail": "Contexto ativo\n\nEscolha a empresa\n\nno-tenant@genesis.test\n\nSeu acesso não possui uma empresa ativa. Solicite um convite ao administrador.\n\nSair"
+    },
+    {
+      "name": "keyboard focus available",
+      "pass": true,
+      "detail": "{\"tag\":\"INPUT\",\"name\":\"email\"}"
+    },
+    {
+      "name": "320px at 200% no horizontal overflow",
+      "pass": true,
+      "detail": "overflow=false"
+    },
+    {
+      "name": "expired session redirects",
+      "pass": true,
+      "detail": "http://127.0.0.1:3000/entrar?next=%2Fmissoes"
+    }
+  ],
+  "passed": 10,
+  "failed": 0
+}

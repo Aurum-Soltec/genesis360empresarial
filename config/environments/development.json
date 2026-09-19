@@ -1,0 +1,1 @@
+{"environment":"development","dataClass":"synthetic-only","separateSupabaseProject":true,"featureDefaults":{"agentic":false,"dataUpload":false,"ecosystem":false,"qualificationNetwork":false,"realContact":false},"workers":1,"observability":"local-structured-logs"}

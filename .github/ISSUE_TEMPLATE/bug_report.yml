@@ -1,0 +1,33 @@
+name: Bug
+description: Defeito no produto ou fundação.
+title: "[BUG] "
+labels: ["bug"]
+body:
+  - type: input
+    id: story
+    attributes:
+      label: Story/requisito relacionado
+  - type: textarea
+    id: actual
+    attributes:
+      label: Comportamento atual
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Comportamento esperado
+    validations:
+      required: true
+  - type: dropdown
+    id: risk
+    attributes:
+      label: Risco
+      options:
+        - P0 security/data/production blocker
+        - P1 product/reliability
+        - P2 improvement
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidência reproduzível

@@ -1,0 +1,5 @@
+{"id": "DEC-H001", "status": "approved_by_owner", "decision": "Public repository is intentional", "source": "User message in this conversation", "date": "2026-09-10"}
+{"id": "DEC-H002", "status": "approved_by_owner", "decision": "Free0 / Start99 / Pro297 BRL; Pro price no longer hypothetical", "source": "User message in this conversation", "date": "2026-09-10"}
+{"id": "DEC-H003", "status": "authorized_scope", "decision": "Repair and prove V1.2 incrementally; preserve modular architecture", "source": "User approval of previous audit", "date": "2026-09-10"}
+{"id": "DEC-H004", "status": "implemented_candidate_pending_integrated_review", "decision": "Versioned scoring/confidence, immutable snapshots and declared-only public writes", "source": "ADR-H001..H003"}
+{"id": "DEC-H005", "status": "pending", "decision": "OSS license, named owners, AI quotas, checkout and production thresholds are not approved by price/publicity alone", "source": "Scope gap"}

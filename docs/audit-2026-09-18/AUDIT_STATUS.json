@@ -1,0 +1,28 @@
+{
+  "auditDate": "2026-09-18",
+  "source": "Genesis 360 Empresarial 1.2.1 RC1 isolated public package",
+  "releaseVerdict": "NO_GO_PRODUCTION",
+  "developmentVerdict": "CONDITIONAL_GO_INTERNAL_RC2_CORE",
+  "checks": {
+    "lock": "pass",
+    "publicCopy": "pass",
+    "openapiStatic": "pass",
+    "designStatic": "pass",
+    "securityStatic": "pass",
+    "trustStatic": "pass",
+    "migrationStatic": "pass",
+    "originalIntegrity": "pass_not_release_approval",
+    "nativeHardening": { "passed": 34, "failed": 0 },
+    "adversarial": { "passed": 21, "failed": 10 },
+    "vitestSingleWorker": { "passed": 36, "failed": 1 },
+    "vitestDefaultPool": "unstable_workers",
+    "typecheck": "fail",
+    "build": "fail",
+    "lint": { "errors": 2, "warnings": 4 },
+    "dependencyAudit": { "highEntries": 2, "moderateEntries": 3, "criticalEntries": 0 },
+    "publicScannerNestedEnv": "missed_synthetic_nested_env",
+    "databaseRuntime": "pending_image_download_timeout"
+  },
+  "scopeForFiveDays": "internal pilot candidate for individual core only",
+  "featuresHeldOff": ["ecosystem", "qualified network", "real contact", "binary upload", "agentic", "tax integrations"]
+}

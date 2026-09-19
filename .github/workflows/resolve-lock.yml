@@ -1,0 +1,28 @@
+name: Resolve candidate lockfile (manual, no deployment)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  resolve:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.32.1
+          run_install: false
+      - run: pnpm deps:bootstrap
+      - name: Audit resolved dependencies
+        run: pnpm audit --audit-level=high
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: candidate-lockfile-review-required
+          path: pnpm-lock.yaml
+          if-no-files-found: error
+          retention-days: 7

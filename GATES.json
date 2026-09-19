@@ -1,0 +1,34 @@
+{
+  "version": "1.2.1-rc.2-production-scale-local",
+  "gateZero": "GZ-C / authorized incremental hardening",
+  "PW-0": {
+    "status": "local_pass_remote_pending",
+    "notApprovedForProduction": true,
+    "passedEvidence": [
+      "34 native regression tests",
+      "625 property combinations within one test",
+      "10-root semantic subset",
+      "96 source syntax checks",
+      "static integrity and publication checks",
+      "23 migrations and 95 pgTAP assertions",
+      "53 Vitest and 10 authenticated browser E2E tests",
+      "backup/restore and 2,000-tenant database workload"
+    ],
+    "blocked": [
+      "remote GitHub CI and branch protection",
+      "hosted staging end-to-end soak"
+    ]
+  },
+  "PW-1": {
+    "status": "local_foundation_pass_hosted_pending",
+    "requires": [
+      "external telemetry collector and paging",
+      "managed backup restore",
+      "hosted HTTP/Auth/worker/storage load"
+    ]
+  },
+  "production": {
+    "status": "blocked",
+    "reason": "Local foundation passed, but hosted operational evidence and remote delivery controls remain required"
+  }
+}

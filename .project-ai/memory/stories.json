@@ -1,0 +1,986 @@
+[
+  {
+    "id": "V1-ST-001",
+    "title": "Canonical docs",
+    "epic": "EPIC-01 Foundation & Canonical",
+    "status": "implemented",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-002",
+    "title": "Feature flags",
+    "epic": "EPIC-01 Foundation & Canonical",
+    "status": "implemented",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-003",
+    "title": "Auth/tenant active",
+    "epic": "EPIC-01 Foundation & Canonical",
+    "status": "implemented-runtime-pending",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-004",
+    "title": "Cross-tenant RLS",
+    "epic": "EPIC-01 Foundation & Canonical",
+    "status": "implemented-runtime-pending-blocker",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-005",
+    "title": "Consent purposes",
+    "epic": "EPIC-01 Foundation & Canonical",
+    "status": "implemented-legal-ux-pending",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-006",
+    "title": "Business facts/provenance",
+    "epic": "EPIC-02 Business Passport",
+    "status": "implemented",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-007",
+    "title": "Timeline",
+    "epic": "EPIC-02 Business Passport",
+    "status": "implemented",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-008",
+    "title": "Passport UI",
+    "epic": "EPIC-02 Business Passport",
+    "status": "implemented",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-009",
+    "title": "Progressive profiling",
+    "epic": "EPIC-02 Business Passport",
+    "status": "partial",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-010",
+    "title": "Question bank/versioning",
+    "epic": "EPIC-03 Diagnostic",
+    "status": "implemented",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-011",
+    "title": "Applicability/branching",
+    "epic": "EPIC-03 Diagnostic",
+    "status": "partial-methodology-pending",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-012",
+    "title": "Session/autosave/resume",
+    "epic": "EPIC-03 Diagnostic",
+    "status": "implemented",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-013",
+    "title": "Rules Engine",
+    "epic": "EPIC-03 Diagnostic",
+    "status": "implemented",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-014",
+    "title": "Result/pain/evidence",
+    "epic": "EPIC-03 Diagnostic",
+    "status": "implemented-foundation",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-015",
+    "title": "Pain Finding",
+    "epic": "EPIC-04 Decision/GDS",
+    "status": "implemented",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-016",
+    "title": "Cause hypotheses",
+    "epic": "EPIC-04 Decision/GDS",
+    "status": "implemented-schema",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-017",
+    "title": "Decision Record/GDS",
+    "epic": "EPIC-04 Decision/GDS",
+    "status": "implemented",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-018",
+    "title": "Mission Library",
+    "epic": "EPIC-05 Mission",
+    "status": "partial-library",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-019",
+    "title": "State machine",
+    "epic": "EPIC-05 Mission",
+    "status": "implemented",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-020",
+    "title": "Evidence",
+    "epic": "EPIC-05 Mission",
+    "status": "implemented",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-021",
+    "title": "Outcomes",
+    "epic": "EPIC-05 Mission",
+    "status": "implemented",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-022",
+    "title": "Gamification",
+    "epic": "EPIC-05 Mission",
+    "status": "partial",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-023",
+    "title": "Pain->capability taxonomy",
+    "epic": "EPIC-06 Qualification",
+    "status": "pending-methodology",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-024",
+    "title": "Provider capabilities",
+    "epic": "EPIC-06 Qualification",
+    "status": "implemented-schema",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-025",
+    "title": "Qualification/recertification",
+    "epic": "EPIC-06 Qualification",
+    "status": "pending-methodology",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-026",
+    "title": "Entitlements",
+    "epic": "EPIC-06 Qualification",
+    "status": "implemented-policy-pending",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-027",
+    "title": "Eligibility",
+    "epic": "EPIC-06 Qualification",
+    "status": "implemented",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-028",
+    "title": "Neutral ranking",
+    "epic": "EPIC-06 Qualification",
+    "status": "implemented",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-029",
+    "title": "Qualified solution UI",
+    "epic": "EPIC-06 Qualification",
+    "status": "implemented",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-030",
+    "title": "Consented contact/attribution",
+    "epic": "EPIC-06 Qualification",
+    "status": "partial-contact-implemented-attribution-pending",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-031",
+    "title": "Runtime spike",
+    "epic": "EPIC-07 Agentic",
+    "status": "spike-scaffolded-not-run",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-032",
+    "title": "Context assembly",
+    "epic": "EPIC-07 Agentic",
+    "status": "partial",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-033",
+    "title": "Council routing",
+    "epic": "EPIC-07 Agentic",
+    "status": "pending",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-034",
+    "title": "Tool contracts",
+    "epic": "EPIC-07 Agentic",
+    "status": "partial-read-tools",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-035",
+    "title": "Budgets/fallback/kill switch",
+    "epic": "EPIC-07 Agentic",
+    "status": "pending",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-036",
+    "title": "Golden set/evals",
+    "epic": "EPIC-07 Agentic",
+    "status": "seeded-not-run",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-037",
+    "title": "Ecosystem membership",
+    "epic": "EPIC-08 Ecosystem",
+    "status": "pending",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-038",
+    "title": "Institutional branding",
+    "epic": "EPIC-08 Ecosystem",
+    "status": "pending",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-039",
+    "title": "Aggregated dashboard",
+    "epic": "EPIC-08 Ecosystem",
+    "status": "pending",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-040",
+    "title": "Admin/rules/qualification",
+    "epic": "EPIC-09 Trust/Data/Admin",
+    "status": "pending",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-041",
+    "title": "Audit/correlation",
+    "epic": "EPIC-09 Trust/Data/Admin",
+    "status": "partial",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-042",
+    "title": "LGPD lifecycle",
+    "epic": "EPIC-09 Trust/Data/Admin",
+    "status": "partial",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-043",
+    "title": "Data quality/provenance",
+    "epic": "EPIC-09 Trust/Data/Admin",
+    "status": "implemented-foundation",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-044",
+    "title": "Benchmark guardrails",
+    "epic": "EPIC-09 Trust/Data/Admin",
+    "status": "pending",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-045",
+    "title": "Observability",
+    "epic": "EPIC-10 Production",
+    "status": "pending",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-046",
+    "title": "Backup/restore/rollback",
+    "epic": "EPIC-10 Production",
+    "status": "pending-blocker",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-047",
+    "title": "Security/supply-chain",
+    "epic": "EPIC-10 Production",
+    "status": "partial",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-048",
+    "title": "CI/CD/environments",
+    "epic": "EPIC-10 Production",
+    "status": "baseline-existing",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-049",
+    "title": "Performance/a11y",
+    "epic": "EPIC-10 Production",
+    "status": "partial",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-050",
+    "title": "FinOps",
+    "epic": "EPIC-10 Production",
+    "status": "docs-only",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-051",
+    "title": "E2E",
+    "epic": "EPIC-10 Production",
+    "status": "partial-db-e2e-browser-pending",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-052",
+    "title": "Production Readiness Review",
+    "epic": "EPIC-10 Production",
+    "status": "pending-blocker",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-053",
+    "title": "Light theme migration",
+    "epic": "EPIC-11 UX Light / Taste",
+    "status": "implemented",
+    "priority": "P0",
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-054",
+    "title": "Topbar + Context Sidebar",
+    "epic": "EPIC-11 UX Light / Taste",
+    "status": "implemented",
+    "priority": "P0",
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-055",
+    "title": "Manager Dashboard",
+    "epic": "EPIC-11 UX Light / Taste",
+    "status": "implemented",
+    "priority": "P0",
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-056",
+    "title": "Product empty/error/loading states",
+    "epic": "EPIC-11 UX Light / Taste",
+    "status": "partial",
+    "priority": "P0",
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-057",
+    "title": "Accessibility visual gate",
+    "epic": "EPIC-11 UX Light / Taste",
+    "status": "runtime-pending",
+    "priority": "P0",
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-058",
+    "title": "Motion system",
+    "epic": "EPIC-11 UX Light / Taste",
+    "status": "partial",
+    "priority": "P1",
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-059",
+    "title": "Visual regression",
+    "epic": "EPIC-11 UX Light / Taste",
+    "status": "pending",
+    "priority": "P1",
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-060",
+    "title": "GDS -> Mission creation",
+    "epic": "EPIC-12 Product Flow Completion",
+    "status": "implemented",
+    "priority": "P0",
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-061",
+    "title": "Mission -> Capability recommendation",
+    "epic": "EPIC-12 Product Flow Completion",
+    "status": "implemented-taxonomy-pending",
+    "priority": "P0",
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-062",
+    "title": "Qualified provider search API",
+    "epic": "EPIC-12 Product Flow Completion",
+    "status": "implemented-fail-closed",
+    "priority": "P0",
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-063",
+    "title": "Contact consent workflow",
+    "epic": "EPIC-12 Product Flow Completion",
+    "status": "implemented-legal-copy-pending",
+    "priority": "P0",
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-064",
+    "title": "Outcome closes Passport/Timeline loop",
+    "epic": "EPIC-12 Product Flow Completion",
+    "status": "implemented-timeline-passport-explicit-only",
+    "priority": "P0",
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-065",
+    "title": "Private RLS helper + explicit grants",
+    "epic": "EPIC-13 — Foundation Acceleration / Selective OSS",
+    "status": "implemented",
+    "priority": "P0",
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-066",
+    "title": "Cross-tenant pgTAP harness",
+    "epic": "EPIC-13 — Foundation Acceleration / Selective OSS",
+    "status": "implemented-not-run",
+    "priority": "P0",
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-067",
+    "title": "Evidence Ledger",
+    "epic": "EPIC-13 — Foundation Acceleration / Selective OSS",
+    "status": "implemented",
+    "priority": "P0",
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-068",
+    "title": "Durable event outbox",
+    "epic": "EPIC-13 — Foundation Acceleration / Selective OSS",
+    "status": "implemented",
+    "priority": "P1",
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-069",
+    "title": "Trusted server write boundary",
+    "epic": "EPIC-13 — Foundation Acceleration / Selective OSS",
+    "status": "implemented",
+    "priority": "P0",
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-070",
+    "title": "Pydantic AI Slim spike",
+    "epic": "EPIC-13 — Foundation Acceleration / Selective OSS",
+    "status": "spike-scaffolded-not-run",
+    "priority": "P1",
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-071",
+    "title": "Curated DevSecOps skill gates",
+    "epic": "EPIC-13 — Foundation Acceleration / Selective OSS",
+    "status": "implemented",
+    "priority": "P1",
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-072",
+    "title": "Provider Network Policy:** IMPLEMENTED; threshold permanece PEND-003.",
+    "epic": "EPIC-13 — Foundation Acceleration / Selective OSS",
+    "status": "implemented-threshold-pending",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-073",
+    "title": "Subscription/Plan Gate:** IMPLEMENTED; provider plans permanecem PEND-004.",
+    "epic": "EPIC-13 — Foundation Acceleration / Selective OSS",
+    "status": "implemented-plan-decision-pending",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-074",
+    "title": "Cross-Tenant Sanitized Matching:** IMPLEMENTED.",
+    "epic": "EPIC-13 — Foundation Acceleration / Selective OSS",
+    "status": "implemented",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-075",
+    "title": "Outbox Completion/Retry:** IMPLEMENTED.",
+    "epic": "EPIC-13 — Foundation Acceleration / Selective OSS",
+    "status": "implemented",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-076",
+    "title": "Minimal Agentic Baseline:** IMPLEMENTED for comparison.",
+    "epic": "EPIC-13 — Foundation Acceleration / Selective OSS",
+    "status": "implemented",
+    "priority": null,
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-077",
+    "title": "Question metadata/purpose/applicability",
+    "epic": "EPIC-14/15 Wave 7",
+    "status": "implemented-by-contract",
+    "priority": "P1",
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-078",
+    "title": "Stable 24-anchor score",
+    "epic": "EPIC-14/15 Wave 7",
+    "status": "implemented-by-contract",
+    "priority": "P1",
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-079",
+    "title": "31-question high-yield starter path",
+    "epic": "EPIC-14/15 Wave 7",
+    "status": "implemented-by-contract",
+    "priority": "P1",
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-080",
+    "title": "Adaptive follow-up selector",
+    "epic": "EPIC-14/15 Wave 7",
+    "status": "implemented-by-contract",
+    "priority": "P1",
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-081",
+    "title": "Progress Engine",
+    "epic": "EPIC-14/15 Wave 7",
+    "status": "implemented-by-contract",
+    "priority": "P1",
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-082",
+    "title": "Confidence Thermometer",
+    "epic": "EPIC-14/15 Wave 7",
+    "status": "implemented-by-contract",
+    "priority": "P1",
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-083",
+    "title": "Structured information slots",
+    "epic": "EPIC-14/15 Wave 7",
+    "status": "implemented-foundation",
+    "priority": "P1",
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-084",
+    "title": "Unknown/N.A./Deferred semantics",
+    "epic": "EPIC-14/15 Wave 7",
+    "status": "implemented-by-contract",
+    "priority": "P1",
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-085",
+    "title": "Diagnostic resume/idempotent draft",
+    "epic": "EPIC-14/15 Wave 7",
+    "status": "implemented-by-contract",
+    "priority": "P1",
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-086",
+    "title": "Sector/trait applicability calibration",
+    "epic": "EPIC-14/15 Wave 7",
+    "status": "calibration-pending",
+    "priority": "P1",
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-087",
+    "title": "Versioned attestation model",
+    "epic": "EPIC-14/15 Wave 7",
+    "status": "implemented-by-contract",
+    "priority": "P1",
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-088",
+    "title": "Auditable acceptance event",
+    "epic": "EPIC-14/15 Wave 7",
+    "status": "implemented-by-contract",
+    "priority": "P1",
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-089",
+    "title": "Governed upload session",
+    "epic": "EPIC-14/15 Wave 7",
+    "status": "implemented-foundation",
+    "priority": "P1",
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-090",
+    "title": "Copyright/confidentiality/IP warning",
+    "epic": "EPIC-14/15 Wave 7",
+    "status": "draft-copy",
+    "priority": "P1",
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-091",
+    "title": "GENESIS responsibility disclaimer",
+    "epic": "EPIC-14/15 Wave 7",
+    "status": "draft-copy",
+    "priority": "P1",
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-092",
+    "title": "Legal/privacy review",
+    "epic": "EPIC-14/15 Wave 7",
+    "status": "p0-blocker",
+    "priority": "P0",
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-093",
+    "title": "Binary upload security pipeline",
+    "epic": "EPIC-14/15 Wave 7",
+    "status": "p0-blocker",
+    "priority": "P0",
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-094",
+    "title": "Portable Design System package",
+    "epic": "EPIC-16 Genesis Precision Light",
+    "status": "implemented",
+    "priority": "P1",
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-095",
+    "title": "Route-aware contextual navigation",
+    "epic": "EPIC-16 Genesis Precision Light",
+    "status": "implemented",
+    "priority": "P1",
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-096",
+    "title": "Functional mobile drawer",
+    "epic": "EPIC-16 Genesis Precision Light",
+    "status": "implemented-static-verified",
+    "priority": "P1",
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-097",
+    "title": "Executive Home redesign",
+    "epic": "EPIC-16 Genesis Precision Light",
+    "status": "implemented",
+    "priority": "P1",
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-098",
+    "title": "Focused Diagnostic redesign",
+    "epic": "EPIC-16 Genesis Precision Light",
+    "status": "implemented",
+    "priority": "P1",
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-099",
+    "title": "Interpretation-first Result redesign",
+    "epic": "EPIC-16 Genesis Precision Light",
+    "status": "implemented",
+    "priority": "P1",
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-100",
+    "title": "Accessibility/contrast static gate",
+    "epic": "EPIC-16 Genesis Precision Light",
+    "status": "implemented",
+    "priority": "P1",
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-101",
+    "title": "Browser visual/accessibility validation",
+    "epic": "EPIC-16 Genesis Precision Light",
+    "status": "p0-runtime-pending",
+    "priority": "P0",
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-102",
+    "title": "Visual regression baseline",
+    "epic": "EPIC-16 Genesis Precision Light",
+    "status": "p1-after-approval",
+    "priority": "P1",
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-103",
+    "title": "Remaining surface migration",
+    "epic": "EPIC-16 Genesis Precision Light",
+    "status": "p1-after-canonical-approval",
+    "priority": "P1",
+    "source": "docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md"
+  },
+  {
+    "id": "V1-ST-104",
+    "title": "Bootstrap do novo repositório GitHub",
+    "epic": "EPIC-17 Production Readiness & Repository",
+    "status": "planned-production",
+    "priority": "P0",
+    "source": "docs/canonical/v1/delivery/STORIES_MASTER.md"
+  },
+  {
+    "id": "V1-ST-105",
+    "title": "Bootstrap limpo das migrations 0001→0012",
+    "epic": "EPIC-17 Production Readiness & Repository",
+    "status": "planned-production",
+    "priority": "P0",
+    "source": "docs/canonical/v1/delivery/STORIES_MASTER.md"
+  },
+  {
+    "id": "V1-ST-106",
+    "title": "Executar pgTAP tenancy/RBAC/governance completo",
+    "epic": "EPIC-17 Production Readiness & Repository",
+    "status": "planned-production",
+    "priority": "P0",
+    "source": "docs/canonical/v1/delivery/STORIES_MASTER.md"
+  },
+  {
+    "id": "V1-ST-107",
+    "title": "Full lint + TypeScript 6 + Vitest + Next build",
+    "epic": "EPIC-17 Production Readiness & Repository",
+    "status": "planned-production",
+    "priority": "P0",
+    "source": "docs/canonical/v1/delivery/STORIES_MASTER.md"
+  },
+  {
+    "id": "V1-ST-108",
+    "title": "E2E browser do happy path empresarial",
+    "epic": "EPIC-17 Production Readiness & Repository",
+    "status": "planned-production",
+    "priority": "P0",
+    "source": "docs/canonical/v1/delivery/STORIES_MASTER.md"
+  },
+  {
+    "id": "V1-ST-109",
+    "title": "E2E adversarial cross-tenant e permissions",
+    "epic": "EPIC-17 Production Readiness & Repository",
+    "status": "planned-production",
+    "priority": "P0",
+    "source": "docs/canonical/v1/delivery/STORIES_MASTER.md"
+  },
+  {
+    "id": "V1-ST-110",
+    "title": "Backup/restore/rollback drill",
+    "epic": "EPIC-17 Production Readiness & Repository",
+    "status": "planned-production",
+    "priority": "P0",
+    "source": "docs/canonical/v1/delivery/STORIES_MASTER.md"
+  },
+  {
+    "id": "V1-ST-111",
+    "title": "SBOM + license + dependency + secret/security scans",
+    "epic": "EPIC-17 Production Readiness & Repository",
+    "status": "planned-production",
+    "priority": "P0",
+    "source": "docs/canonical/v1/delivery/STORIES_MASTER.md"
+  },
+  {
+    "id": "V1-ST-112",
+    "title": "Observabilidade e correlation IDs ponta a ponta",
+    "epic": "EPIC-17 Production Readiness & Repository",
+    "status": "planned-production",
+    "priority": "P0",
+    "source": "docs/canonical/v1/delivery/STORIES_MASTER.md"
+  },
+  {
+    "id": "V1-ST-113",
+    "title": "Configurar dev/staging/prod e promoção controlada",
+    "epic": "EPIC-17 Production Readiness & Repository",
+    "status": "planned-production",
+    "priority": "P0",
+    "source": "docs/canonical/v1/delivery/STORIES_MASTER.md"
+  },
+  {
+    "id": "V1-ST-114",
+    "title": "Aprovar e ativar versão jurídica de Data Submission Attestation",
+    "epic": "EPIC-18 Activation Decisions",
+    "status": "planned-production",
+    "priority": "P0",
+    "source": "docs/canonical/v1/delivery/STORIES_MASTER.md"
+  },
+  {
+    "id": "V1-ST-115",
+    "title": "Implementar pipeline seguro de upload binário",
+    "epic": "EPIC-18 Activation Decisions",
+    "status": "planned-production",
+    "priority": "P0",
+    "source": "docs/canonical/v1/delivery/STORIES_MASTER.md"
+  },
+  {
+    "id": "V1-ST-116",
+    "title": "Fechar metodologia de qualification e thresholds",
+    "epic": "EPIC-18 Activation Decisions",
+    "status": "planned-production",
+    "priority": "P0",
+    "source": "docs/canonical/v1/delivery/STORIES_MASTER.md"
+  },
+  {
+    "id": "V1-ST-117",
+    "title": "Fechar provider-plan eligibility",
+    "epic": "EPIC-18 Activation Decisions",
+    "status": "planned-production",
+    "priority": "P0",
+    "source": "docs/canonical/v1/delivery/STORIES_MASTER.md"
+  },
+  {
+    "id": "V1-ST-118",
+    "title": "Calibrar confidence engine com empresas piloto",
+    "epic": "EPIC-18 Activation Decisions",
+    "status": "planned-production",
+    "priority": "P1",
+    "source": "docs/canonical/v1/delivery/STORIES_MASTER.md"
+  },
+  {
+    "id": "V1-ST-119",
+    "title": "Calibrar applicability setorial/operating traits",
+    "epic": "EPIC-18 Activation Decisions",
+    "status": "planned-production",
+    "priority": "P1",
+    "source": "docs/canonical/v1/delivery/STORIES_MASTER.md"
+  },
+  {
+    "id": "V1-ST-120",
+    "title": "Executar spike Minimal vs Pydantic AI Slim",
+    "epic": "EPIC-18 Activation Decisions",
+    "status": "planned-production",
+    "priority": "P1",
+    "source": "docs/canonical/v1/delivery/STORIES_MASTER.md"
+  },
+  {
+    "id": "V1-ST-121",
+    "title": "Migrar superfícies restantes para Precision Light V2",
+    "epic": "EPIC-18 Activation Decisions",
+    "status": "planned-production",
+    "priority": "P1",
+    "source": "docs/canonical/v1/delivery/STORIES_MASTER.md"
+  },
+  {
+    "id": "V1-ST-122",
+    "title": "Production Readiness Review e release candidate",
+    "epic": "EPIC-17 Production Readiness & Repository",
+    "status": "planned-production",
+    "priority": "P0",
+    "source": "docs/canonical/v1/delivery/STORIES_MASTER.md"
+  },
+  {
+    "id": "V1-ST-123",
+    "title": "Piloto controlado com rollout/rollback",
+    "epic": "EPIC-17 Production Readiness & Repository",
+    "status": "planned-production",
+    "priority": "P0",
+    "source": "docs/canonical/v1/delivery/STORIES_MASTER.md"
+  }
+]

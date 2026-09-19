@@ -1,0 +1,69 @@
+{
+  "product": "Genesis 360 Empresarial",
+  "version": "V1.2 Production Foundation Master",
+  "baseline": "2026-08-28",
+  "status": "foundation-ready-for-runtime-verification",
+  "slogan": "Inteligência para pequenas e médias empresas crescerem com maturidade.",
+  "work_entrypoint": "00_WORK_START_HERE.md",
+  "canonical_docs": "docs/canonical/v1",
+  "design_system": "Genesis Light",
+  "taste_dials": {
+    "designVariance": 6,
+    "motionIntensity": 4,
+    "visualDensity": 4
+  },
+  "production_gate": "blocked",
+  "next_action": "Bootstrap GitHub and execute PW-0 ST-104→ST-107 with evidence.",
+  "wave": "Production Kickoff",
+  "migrations": 12,
+  "dbTestFiles": 10,
+  "agenticCandidate": "pydantic-ai-slim==2.33.0",
+  "agenticStatus": "spike-only",
+  "agenticBaseline": "minimal-zod-orchestrator",
+  "apiRoutes": 19,
+  "canonicalRequirements": 132,
+  "stories": 123,
+  "staticValidation": "PASS",
+  "runtimeValidation": "PENDING",
+  "diagnostic": {
+    "questionLibrary": 144,
+    "stableScoreAnchors": 24,
+    "starterInteractions": 31,
+    "essentialTypicalRange": [
+      31,
+      42
+    ],
+    "fullAdaptiveRange": [
+      31,
+      60
+    ],
+    "strategyVersion": "1.1"
+  },
+  "dataUpload": {
+    "attestationContract": "implemented",
+    "legalCopy": "draft",
+    "binaryUpload": "disabled"
+  },
+  "designSystem": {
+    "name": "Genesis Precision Light",
+    "version": "2.0.0",
+    "theme": "light-only",
+    "canonicalScreens": [
+      "Executive Home",
+      "Diagnostic Journey",
+      "Diagnostic Result"
+    ],
+    "runtimeDependencyAdded": false
+  },
+  "backend": {
+    "wave7Frozen": true,
+    "hashGate": "scripts/check-wave8-backend-integrity.mjs"
+  },
+  "files": 436,
+  "browserValidation": "PENDING",
+  "repository": "https://github.com/Aurum-Soltec/genesis360empresarial",
+  "canonicalEntrypoint": "00_PRODUCTION_START_HERE.md",
+  "productionWaves": 7,
+  "sourceFoundationSha256": "d00586fb9f6cc2cf281ed1a8474bcf319ce08b3727f359c4e01d971de57875e0",
+  "sourceWave8Sha256": "3c7ac0a7141a8011602a82bec49d255681571428bd1c553819dad5e42d2fab6e"
+}

@@ -1,0 +1,56 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  quality:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - name: Lockfile gate (intentional block until resolution is committed)
+        run: node scripts/check-lockfile.mjs
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.32.1
+          run_install: false
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm quality
+      - run: pnpm audit --audit-level=high
+  database:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: supabase/setup-cli@v1
+        with:
+          version: 2.117.0
+      - name: Start isolated local Supabase
+        run: supabase start
+      - name: Apply migrations and local seed
+        run: supabase db reset --local
+      - name: Execute all pgTAP tests (not a static substitute)
+        shell: bash
+        run: |
+          set -o pipefail
+          mkdir -p test-results
+          supabase test db 2>&1 | tee test-results/database.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: database-evidence
+          path: test-results/database.log
+          if-no-files-found: ignore
+          retention-days: 7
+      - name: Stop local database
+        if: always()
+        run: supabase stop --no-backup

@@ -1,0 +1,191 @@
+{
+  "GATE-TRUTH": {
+    "state": "passed",
+    "evidence": [
+      "PRD/ADRs/source catalog"
+    ]
+  },
+  "GATE-PRODUCT": {
+    "state": "in-progress",
+    "evidence": [
+      "PRD V1",
+      "domain contracts"
+    ],
+    "pending": [
+      "PEND-003 qualification threshold",
+      "PEND-004 provider plan eligibility",
+      "PEND-005 qualification methodology",
+      "PEND-006 capability taxonomy",
+      "PEND-010 approved consent copy",
+      "runtime E2E evidence",
+      "PEND-011 sector taxonomy calibration",
+      "PEND-012 confidence calibration",
+      "PEND-013 legal attestation copy activation",
+      "PEND-014 upload storage/scanning policy"
+    ],
+    "implemented": [
+      "Passport/Diagnostic/GDS foundation",
+      "Decision -> Mission",
+      "Mission evidence/outcome",
+      "Pain -> Capability plumbing",
+      "Qualified Solution service",
+      "Consented Contact plumbing",
+      "Diagnostic V1.1 metadata for all 144 questions",
+      "24 stable score anchors",
+      "31-interaction high-yield starter path",
+      "deterministic adaptive follow-ups",
+      "progress + confidence model"
+    ]
+  },
+  "GATE-ARCH": {
+    "state": "local-scale-pass-hosted-runtime-pending",
+    "evidence": [
+      "architecture docs",
+      "23 migrations applied from zero",
+      "95/95 pgTAP",
+      "production build",
+      "2,000 tenant PostgreSQL workload with zero errors and p99 5.711ms"
+    ],
+    "pending": [
+      "production environment verification",
+      "hosted end-to-end capacity evidence"
+    ],
+    "implemented": [
+      "Genesis Precision Light V2 approved as canonical frontend grammar",
+      "Wave 8 preserves modular monolith/backend contracts"
+    ]
+  },
+  "GATE-CONTRACT": {
+    "state": "local-runtime-pass",
+    "pending": ["hosted invitation email and session expiry timing"],
+    "implemented": [
+      "tenant/company composite integrity",
+      "trusted write RPCs",
+      "mission lifecycle contracts",
+      "matching fail-closed contracts",
+      "outbox lifecycle contracts",
+      "OpenAPI 3.1 synchronized with current API routes",
+      "Data Submission Attestation RPC contract",
+      "governed upload-session contract",
+      "diagnostic state/progress/confidence endpoint"
+    ]
+  },
+  "GATE-SEC": {
+    "state": "in-progress",
+    "pending": [
+      "authenticated HTTP/browser adversarial suite",
+      "SBOM and full license review",
+      "trusted data access boundary consolidation",
+      "legal/privacy review of attestation copy",
+      "binary upload malware/content scanning"
+    ],
+    "implemented": [
+      "private RLS helper",
+      "explicit grants",
+      "cross-tenant pgTAP suite",
+      "tenant/company composite FKs",
+      "same-tenant consent privacy policy",
+      "trusted server boundary",
+      "cross-tenant provider matching only via server",
+      "versioned attestation audit model",
+      "upload-session fail-closed attestation gate",
+      "explicit user/tenant/company/purpose binding"
+      ,"95/95 pgTAP on isolated PostgreSQL/Supabase runtime"
+      ,"31/31 process-level adversarial tests"
+      ,"dependency audit with zero known advisories"
+      ,"authenticated Chrome cross-tenant denial"
+      ,"trusted data access boundary consolidation"
+    ]
+  },
+  "GATE-UX": {
+    "state": "local-critical-flows-pass",
+    "pending": [
+      "full WCAG 2.2 AA audit across all pages",
+      "full visual regression suite",
+      "migration of remaining product surfaces"
+    ],
+    "implemented": [
+      "Genesis Precision Light V2 canonical package",
+      "route-aware macro navigation",
+      "contextual sidebar",
+      "functional mobile drawer with keyboard focus containment",
+      "Executive Home canonical redesign",
+      "Focused Diagnostic canonical redesign",
+      "Interpretation-first Result canonical redesign",
+      "static contrast checks",
+      "reduced-motion contract",
+      "Chrome desktop and 320px/200% zoom evidence",
+      "keyboard focus and session/tenant-switch E2E"
+    ]
+  },
+  "GATE-AI": {
+    "state": "in-progress",
+    "pending": [
+      "execute minimal vs Pydantic comparison",
+      "install/scan pinned Pydantic spike",
+      "run golden evals",
+      "measure latency/cost/LOC"
+    ],
+    "implemented": [
+      "minimal zero-new-dependency orchestrator baseline",
+      "isolated Pydantic AI Slim spike scaffold",
+      "no-DB credential contract",
+      "10-case golden set"
+    ]
+  },
+  "GATE-PROD": {
+    "state": "blocked",
+    "pending": [
+      "CI",
+      "hosted staging and end-to-end load",
+      "remote CI and branch protection",
+      "external observability collector and paging",
+      "managed backup restore drill",
+      "malware scanning provider",
+      "legal/privacy review and FinOps"
+    ]
+  },
+  "GATE-FOUNDATION": {
+    "state": "local-runtime-pass-external-ci-pending",
+    "implemented": [
+      "canonical PRD/architecture/backlog/design/security/operations package",
+      "23 migration files applied from zero",
+      "13 database test files with 95/95 passing assertions",
+      "22 API routes",
+      "lint, TypeScript, native tests, Vitest and Next build passing",
+      "GitHub bootstrap artifacts",
+      "Production Waves PW-0..PW-6",
+      "Definition of Ready/Done"
+    ],
+    "pending": [
+      "initial GitHub push and protected branch",
+      "CI run on GitHub",
+      "hosted staging E2E"
+    ]
+  },
+  "GATE-REPO": {
+    "state": "ready-to-bootstrap",
+    "implemented": [
+      "target repository documented",
+      "bootstrap script",
+      "PR template",
+      "issue templates",
+      "contribution/security policies"
+    ],
+    "pending": [
+      "initial push",
+      "branch protection",
+      "CI run on GitHub"
+    ]
+  },
+  "GATE-RELEASE-CANDIDATE": {
+    "state": "local-review-complete-production-blocked",
+    "implemented": ["PS-14 local production readiness report and NO-GO decision"],
+    "pending": [
+      "remote CI and staging",
+      "external observability and managed restore",
+      "hosted 100-tenant end-to-end soak",
+      "formal production GO decision"
+    ]
+  }
+}

@@ -1,0 +1,924 @@
+{
+  "version": "1.2.1-rc.2",
+  "status": "p0_remediated_runtime_verified_candidate_not_production_approval",
+  "files": [
+    {
+      "path": ".env.example",
+      "beforeSha256": null,
+      "afterSha256": "65af3648e675bfe0abf6530c144d51d8bac785434a78b8b6cbd718df34f450da",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": ".github/dependabot.yml",
+      "beforeSha256": null,
+      "afterSha256": "06c866a85cd0a1c3d033f0d3774ae43993506bca4984d095de7e6ab53cac95c6",
+      "reason": "hardening implementation or executable regression/configuration"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "beforeSha256": "ef1ec2bf9ceb08e562be26ca41cb5760830c6ae82d74d549816a45b68117c90e",
+      "afterSha256": "767733626599df985c88e30dfb2697639b8aa5e9f514c7426024acc9c919d71f",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": ".github/workflows/resolve-lock.yml",
+      "beforeSha256": null,
+      "afterSha256": "5feb3689ba0a3531bb4cb3fee98112922df567d0b9439df00fcfdf0cc392fe55",
+      "reason": "hardening implementation or executable regression/configuration"
+    },
+    {
+      "path": ".gitignore",
+      "beforeSha256": "4eac5bbb11569dab2af38dfa2b1c45723501595c53958b78606b4f01c3194e0d",
+      "afterSha256": "00b3089af132ab89793b8098258da851d34b4b0c9d9d1c002da77eaaf4f5cccb",
+      "reason": "HSP-0 publication boundary excludes private work-package sources and generated dependency stores"
+    },
+    {
+      "path": ".node-version",
+      "beforeSha256": null,
+      "afterSha256": "73fb1b615e2043a933be1c0895cde4358036acc28d785692509b822aa53c761f",
+      "reason": "hardening implementation or executable regression/configuration"
+    },
+    {
+      "path": ".npmrc",
+      "beforeSha256": null,
+      "afterSha256": "027bcc9df93ce6a0f59b95492d39881cf7bfae00746d09d8352034193b6f2fdc",
+      "reason": "hardening implementation or executable regression/configuration"
+    },
+    {
+      "path": ".nvmrc",
+      "beforeSha256": null,
+      "afterSha256": "73fb1b615e2043a933be1c0895cde4358036acc28d785692509b822aa53c761f",
+      "reason": "hardening implementation or executable regression/configuration"
+    },
+    {
+      "path": "AGENTS.md",
+      "beforeSha256": null,
+      "afterSha256": "0a9e126697848fc68cac60e75fb344ebbfb9327363f230e70289592cffcef215",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "GATES.json",
+      "beforeSha256": null,
+      "afterSha256": "eb936d3b520c9b0900dc49c333420a9fc5354b718ff23b8839729378f88685d8",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "PROJECT-STATE.md",
+      "beforeSha256": null,
+      "afterSha256": "eebc996f50cb5e12fc58ef86ec2dcc67f30669f080136a8a58decb537656bfdd",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "START_HERE_V1_2_1.md",
+      "beforeSha256": null,
+      "afterSha256": "fef36fb278eaec410dccd1bf2de5d6ef8f1d24281fb3610e3a4f092156ef1972",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "app/api/attestations/current/route.ts",
+      "beforeSha256": "bd91a56b3ddbd3b9b6b8c47c165370cf5aff66b43d3d891a4ab0a39a3b5ce45e",
+      "afterSha256": "5ffc7013f8d68bc212c70ed729de6faefbaf51947afec227fd8c7f649e3e5e94",
+      "reason": "hardening implementation or executable regression/configuration"
+    },
+    {
+      "path": "app/api/attestations/route.ts",
+      "beforeSha256": "9ba023bf9368332a9f6131d1a9b863854055a407d9b0474bac5a01438cd09948",
+      "afterSha256": "b664b4f1003d22038c61c1fd50adc9456f878d5d6b2f450d8246aa5d254be765",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "app/api/auth/signout/route.ts",
+      "beforeSha256": null,
+      "afterSha256": "33e36f939df3e34fe9f1717b62f06e3c4b62b8906675f9a75700fe081f1872aa",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "app/api/consents/route.ts",
+      "beforeSha256": "b5f7578a8deebf991da450bd9eb24be89d140ee1ae196983a73757cc357c4440",
+      "afterSha256": "9eb8bd68a193c33b08c029edd0b62a24fe02472b84fdd352a7da759d5c405f91",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "app/api/decisions/[id]/missions/route.ts",
+      "beforeSha256": "2efbc9f0d5db8889ba1b8a592565aad6a2b9531f97ce14b32062d2525986d08c",
+      "afterSha256": "fb6fe5d4d7b124d72349e6b30ea3b5330cde89b2694ebea77af2b5fa609bc3f1",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "app/api/diagnostics/[id]/answers/route.ts",
+      "beforeSha256": "fd1f9011389956a655e9e580cd14d6a74de8efdee0e53a5ab2b3ebc582b818da",
+      "afterSha256": "66d4ce47c8fde32d9a08b2497f5907f364b35e282cb5781b1d73cb6f4a37ae4d",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "app/api/diagnostics/[id]/submit/route.ts",
+      "beforeSha256": "6ac828d78a7c1bb38ac3d958e10005efa3f0e4f3d84a85006160f7548eb67ecc",
+      "afterSha256": "e178cc145faab60b115427eab229b60e3a68fb92cd6f82424797ae50d5478134",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "app/api/diagnostics/route.ts",
+      "beforeSha256": "c0507148308d18e692d29ae0c86e0caa283024edc71a527141e6f00fdc006a7d",
+      "afterSha256": "5dd3e4d121458d23c3fff004480e9dc75e697dc190481496a456d024840c0e5c",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "app/api/evidence/route.ts",
+      "beforeSha256": "ba99f94e4758e5a4a3b63ae6897636e7a04ba0eda7adab21388cfb189d790f61",
+      "afterSha256": "906305411b4584a4a88f6041bdeda511f2ed713e474b06f757295170b66e43f4",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "app/api/missions/[id]/evidence/route.ts",
+      "beforeSha256": "5d5db67f730bb16c7a2cb7426ea1e0c76f1f01390b226e9d11ec63e5d12e9a5b",
+      "afterSha256": "78602b32ef3b91761d347b8162fe2ccb5393a5f342f86c90cb84a35c2f4c0f53",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "app/api/missions/[id]/outcome/route.ts",
+      "beforeSha256": "edd61c40a6930638238a8a1528d6bfa3474d1a8030d0999a0690020491e121a3",
+      "afterSha256": "588c247b09c86a395ade37f62687fba4b32abe543cb38c86514f3ee6d660054b",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "app/api/missions/[id]/transition/route.ts",
+      "beforeSha256": "46058bda8f537a6176b2f84f9a6e456a63221976582c028548a7bb24de64bdfa",
+      "afterSha256": "9ba75b9da550723c17261d7b2a7eddfb9a379232022d91201a8183922206c69a",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "app/api/pains/[id]/gds/route.ts",
+      "beforeSha256": "4900c791e4ab7a20611654c9f1935297298e4c4943c3a8c30582d3075ad157f4",
+      "afterSha256": "6f8e839c6bcd4f5a9ba59d065a76f4f824048e624c02d3555debad434d9487e6",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "app/api/passport/facts/route.ts",
+      "beforeSha256": "fc332402f2b10f776740ded12efef29cb6f545d61c650690b93e549134abd01f",
+      "afterSha256": "d7b3096ea347e1f277455dacad8f30eceef662929901f9c2782ffd9585b005a2",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "app/api/passport/timeline/route.ts",
+      "beforeSha256": "0bc784300cd40e8a913e82d1e46c97e38a73aad2ee04c2b9e42f1d81c97e101a",
+      "afterSha256": "3c4031376878ef9b036e8ed0081c87244ee4848b46511e7111b648e6ec3548f1",
+      "reason": "hardening implementation or executable regression/configuration"
+    },
+    {
+      "path": "app/api/solutions/contact/route.ts",
+      "beforeSha256": "ade190a05c0a3c0fce5c661f33d007c9229bb1f072740ebb6875bcb80604ca30",
+      "afterSha256": "cc0a8000df84657ba09041c1d3f5e4ba7ade150df469d303935cc677a741c403",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "app/api/tenant/active/route.ts",
+      "beforeSha256": "b4bf748ce30bcb0456fdea836a3dc6fd377773ae26c118559c0908393b4560a4",
+      "afterSha256": "5ecb31bc9d3b2a4ffb322462052beae9efe821eaa2c546b4003fefb707129849",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "app/api/tenant/members/route.ts",
+      "beforeSha256": null,
+      "afterSha256": "991a98cd2ef6a83b95937da571e75ca79f3f0cef5fdcc962775483f640041ac9",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "app/api/upload-sessions/[id]/target/route.ts",
+      "beforeSha256": null,
+      "afterSha256": "2bcb8eb1f03a619c686b457f0348472c2b2a9fb0b38b719811d58a15b1535d05",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "app/api/upload-sessions/route.ts",
+      "beforeSha256": "a2ea0e544c55ae0fa13059d43e01d92aadd37b02a123871e70b71b398251ce8a",
+      "afterSha256": "078d254ee5c9de51c36bbdd97953529dd83680f5ccc52b30c1318efe0f20ed64",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "app/auth/callback/route.ts",
+      "beforeSha256": null,
+      "afterSha256": "82f7201eb700c986fd1840caac7ad36f83e55670b0c9f3a83ea643a7287b1b57",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "app/diagnostico-v1/journey.tsx",
+      "beforeSha256": "8eb09aafe48c5960cabfd7b6045a9a9c64863aba309c38985089647f07429102",
+      "afterSha256": "93d051a77fd03b4152bf97d67182aad5657a103451883cea1736eca86ba6578d",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "app/entrar/page.tsx",
+      "beforeSha256": null,
+      "afterSha256": "6770a7db676324c281028531af990d5ee76c2459377e7566c5ec14d2e7e02b3e",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "app/globals.css",
+      "beforeSha256": null,
+      "afterSha256": "52d09eed855a29ebf169bda6f2e6bd6af30fee17426fdf2d635db62446ece4b9",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "app/indicadores/page.tsx",
+      "beforeSha256": null,
+      "afterSha256": "19b3b2bbccb79da8f977059a3235ddb70aeac4663115e6f760629f49fca256fb",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "app/missoes/mission-actions.tsx",
+      "beforeSha256": "dd22c4c87f5e3932d11ce47540a4aadad6fec3810a7c4841d429376c173645df",
+      "afterSha256": "df0538ea93c2f126738218a568546ee08aee221b719f80b17056342ed7e2b6da",
+      "reason": "hardening implementation or executable regression/configuration"
+    },
+    {
+      "path": "app/nova-senha/page.tsx",
+      "beforeSha256": null,
+      "afterSha256": "babda26eb67414581282ce0367102e07037469cb4295a4aac04192fd44435633",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "app/page.tsx",
+      "beforeSha256": "a043c2282f3d02a050520e71fbd1a41bd16a476d1139324fc1ffe53b5e8bc9fc",
+      "afterSha256": "4dd8dfe30b1e78a3561437b521f168317bb2faff6ebbfe32ca257a47386b844d",
+      "reason": "hardening implementation or executable regression/configuration"
+    },
+    {
+      "path": "app/privacidade/page.tsx",
+      "beforeSha256": null,
+      "afterSha256": "41327e515d58ef0cee0cb779b8a854d2120f06c662a533c371f6a6419351585f",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "app/recuperar-acesso/page.tsx",
+      "beforeSha256": null,
+      "afterSha256": "9ad7c8e5fc9d5ba00dfca36bd07ad5b8c68340dc5bd50938eeffee50b80c2f89",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "app/resultado-v1/page.tsx",
+      "beforeSha256": "212f2318c3f791059beb1965d499c33aca89ef363cc2e02df03f2298dd700cd7",
+      "afterSha256": "ca6c484a62a17f2f84bb890408940eb573f3c34f0a19fef7710726dd455ce524",
+      "reason": "hardening implementation or executable regression/configuration"
+    },
+    {
+      "path": "app/selecionar-empresa/page.tsx",
+      "beforeSha256": null,
+      "afterSha256": "e1875a1fe6f32d242a97d6f1895cbfd79baf253cd5ef2ed6f418e5d29519ae80",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "app/selecionar-empresa/tenant-chooser.tsx",
+      "beforeSha256": null,
+      "afterSha256": "6c42195bcc085932518b114caebf96f9a38f0218f861a38baebb9e088082391d",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "components/app-navigation.tsx",
+      "beforeSha256": null,
+      "afterSha256": "b08892546dc7eb647e9640ec20ef7b2e759f04c4653197d5361e0417141ae149",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "config/environments/development.json",
+      "beforeSha256": null,
+      "afterSha256": "8f36d2517e9e7df2b31f5941557b41b349400dd0979940a2abbd49f51f61f61f",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "config/environments/production.json",
+      "beforeSha256": null,
+      "afterSha256": "576091fb8f619b66de7d5cea4f5add03d79e8e6bfb0a5b257b1d549ae2bf6da2",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "config/environments/staging.json",
+      "beforeSha256": null,
+      "afterSha256": "671c020480424a7432b56ce966307eaa9558793dbcce30daa9ff08174ba1615f",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "config/observability/alerts.json",
+      "beforeSha256": null,
+      "afterSha256": "36e223f1c43c7efa9c0ed7fa8b4d2f5a13a7170e5937bbc9239ed71d355a4b3c",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "data/commercial-plans.json",
+      "beforeSha256": null,
+      "afterSha256": "86670075340da32de800179883d6b410bcdd06119cc992f66969ae3b3b1c3ed0",
+      "reason": "hardening implementation or executable regression/configuration"
+    },
+    {
+      "path": "docs/API/openapi.yaml",
+      "beforeSha256": "5abb945f3110d6fcf36f61e0619bdf154be4c3fbde04ad2834d3e9f14e0931ea",
+      "afterSha256": "fc3adcf65dbf961757f716395ddfcc7e5da5c7dec779f3a892059c57041a5a69",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "docs/audit-2026-09-18/adversarial.test.cjs",
+      "beforeSha256": null,
+      "afterSha256": "a460aa4b52e13c77823e6d58e4734d33bb6b08e0c7a363e793fc4ea88bd61963",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "docs/audit-2026-09-18/ps10-load-percentiles.json",
+      "beforeSha256": null,
+      "afterSha256": "95628a894f21275c04d4f8a54983836f9f5680ebbfaf4fac9c5c0ac5a47a6bf0",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "docs/audit-2026-09-18/ps13-browser-e2e.json",
+      "beforeSha256": null,
+      "afterSha256": "b4547446f4277ab95dbd27dba74b0833f064b1b1296d06259e7b7f4e81ceab2f",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "docs/audit-2026-09-18/ps3-worker-runtime.json",
+      "beforeSha256": null,
+      "afterSha256": "acdbf2dacdd6547ede8565d376d8fd58066610b11ce5fc459b16f6830db29f0b",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "docs/audit-2026-09-18/ps8-backup-restore.json",
+      "beforeSha256": null,
+      "afterSha256": "032f0c76f274725e1ecae50efcf046023b792fbfd9f5237373afed52af3adc83",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "docs/audit-2026-09-18/ps9-dependency-audit.json",
+      "beforeSha256": null,
+      "afterSha256": "7798930d70849c07d4cbdec4e9f81fbdf6cdb2b96fff654213f3aa84c4bac39d",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "docs/audit-2026-09-18/ps9-license-inventory.json",
+      "beforeSha256": null,
+      "afterSha256": "2d199bc8db85f6e2ba5686a926a121d5f1d92dd37d09a5865483a4d1755573c9",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "docs/audit-2026-09-18/run_rc2_gates.ps1",
+      "beforeSha256": null,
+      "afterSha256": "f0fce7287650f83859cba6a798b080bf1c172bfb01bfd626a36f810c94022848",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "docs/canonical/v1/architecture/ENTERPRISE_MEMORY_CONTRACT.md",
+      "beforeSha256": null,
+      "afterSha256": "c67132d10e775865c02e97e4b2818580cd6351a1b271b5d16bd07811f8fd8ed0",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "docs/canonical/v1/delivery/EPICS_CATALOG.json",
+      "beforeSha256": null,
+      "afterSha256": "8ffaedf145160ec9f4a370da39a739890c9b56e5e6de7bb389c593d3a98b34f2",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "docs/canonical/v1/delivery/EPICS_MASTER.md",
+      "beforeSha256": null,
+      "afterSha256": "1356899b4c85c972bf419cf63108d43287cba183585c13c224e45a0ce2570f5f",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "docs/canonical/v1/delivery/GENESIS_360_PRODUCTION_READINESS_REPORT.md",
+      "beforeSha256": null,
+      "afterSha256": "f07697695be3d2709c4628f530c89bf3801a0c1e4152356aa2debd666356dff6",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "docs/canonical/v1/delivery/GENESIS_360_PRODUCTION_SCALE_BASELINE_RC2.md",
+      "beforeSha256": null,
+      "afterSha256": "a1af547708249f6713a7d1c3498f9849eb97ad10d4c50ba590863c525c4bcac3",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "docs/canonical/v1/delivery/RC2_SCOPE_FREEZE_2026-09-19.md",
+      "beforeSha256": null,
+      "afterSha256": "d7ea6a91e267edc66d73ba512bcab9d73ae36522dac90fc1d3f5843d1b292b5a",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "docs/canonical/v1/delivery/STORIES_CATALOG.csv",
+      "beforeSha256": null,
+      "afterSha256": "3102b26f0a6e35ac6cc91f15ff3705d851dd0fd5807889a9df18b93523e056d4",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "docs/canonical/v1/delivery/STORIES_MASTER.md",
+      "beforeSha256": null,
+      "afterSha256": "fc1f4d99702f1103db5eabbcb2732f74e520a94a078b2547869c3face87adf01",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "docs/canonical/v1/gates/GATES.json",
+      "beforeSha256": null,
+      "afterSha256": "dc8f3d46eb3fd1fe06a0397af7c74c85b1981d7d781f3a57363f2fc3103c2736",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "docs/canonical/v1/operations/BACKUP_RESTORE_RUNBOOK.md",
+      "beforeSha256": null,
+      "afterSha256": "8436d7b73c438f45d16c30a5332d1b0802a83bf332163eb8a9e271dfb4445389",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "docs/canonical/v1/operations/ENVIRONMENTS_AND_RELEASES.md",
+      "beforeSha256": null,
+      "afterSha256": "51e931167bb40952f527db0de39facea5a63a1fd474bc1886f63e0de4f315dd1",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "docs/canonical/v1/operations/SRE_OBSERVABILITY.md",
+      "beforeSha256": null,
+      "afterSha256": "ec3b2e0aea14bb195c48b27d982ea43d82e87bf015ae2a2a46946e9e457ef1b6",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "docs/canonical/v1/quality/LEGACY_CROSS_TENANT_TEST_SPEC.md",
+      "beforeSha256": null,
+      "afterSha256": "be77d3424fda9c070835064ca529c3c9d8943dcc821abe6499e20aba7dc6bbfb",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "eslint.config.mjs",
+      "beforeSha256": "add679ad73ee401b633f7e036a1b1e6a3e380826b77e2fb93636d0d488ec0da6",
+      "afterSha256": "383a3720002f79da7c080494f6667ecbb6d085c85e61fc194c2aaf38ba0043b7",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "instrumentation.ts",
+      "beforeSha256": null,
+      "afterSha256": "74afbfd80fda659b6489f9f85f1332a538b44f07d8bfc5fa029545df4109eb85",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "lib/agent-runtime/tool-authorization.test.ts",
+      "beforeSha256": null,
+      "afterSha256": "6cb3379b509a0bccb1d341901cce2ad731d3f30c6752f392fd09de0562d5d857",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "lib/agent-runtime/tool-authorization.ts",
+      "beforeSha256": null,
+      "afterSha256": "4c978e03b95f68fc93d848fa56004a09bff6265a971bb8732bf3c8371a3a6352",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "lib/api-errors.ts",
+      "beforeSha256": null,
+      "afterSha256": "3b6d3a3d4bbc7b9f705b9492a54968c47831f9c7c28c3478978cc8962df78822",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "lib/authz.ts",
+      "beforeSha256": "b3a4a85e4505f95baa37843e12e7f84c9082d777ba2e5e43ae438710fb076850",
+      "afterSha256": "08f5d1c6d8a1181658a2df5999bc575d1ca723dda00912dcb573c6451d50e382",
+      "reason": "hardening implementation or executable regression/configuration"
+    },
+    {
+      "path": "lib/business-passport.ts",
+      "beforeSha256": "b7d5d62655656d749dad53b4671181c74db6fb9647bcb6ddad23e74ec1256295",
+      "afterSha256": "9ad7d98d90aae63ce21302aa44f89aa22f5c450d82947816a57aeead0e3486f1",
+      "reason": "hardening implementation or executable regression/configuration"
+    },
+    {
+      "path": "lib/commercial-plans.ts",
+      "beforeSha256": null,
+      "afterSha256": "4ff976adfd5cdd4ad1784205df98ce2a27531994d915b48fefafb87f83305c9e",
+      "reason": "hardening implementation or executable regression/configuration"
+    },
+    {
+      "path": "lib/consent.ts",
+      "beforeSha256": "40dbd97b08041c7dfa417d45edb9bb7b4e3ae3b236717a17dbda021f5e9042c2",
+      "afterSha256": "257bf12c3f6660adc3406db302d2880b2b14a8f493d62cf859f09f1a5abfc8cb",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "lib/dashboard-overview.ts",
+      "beforeSha256": "d943b9228de6efc4dd62160d7d64295c689ab7679bcf56ffa527d2d1f1c90eb5",
+      "afterSha256": "be8d0947b91a398a3b3f3f0459b0ec709da842935b4944cfe4bd9e066cbd2647",
+      "reason": "hardening implementation or executable regression/configuration"
+    },
+    {
+      "path": "lib/diagnostic-answer-quality.ts",
+      "beforeSha256": "3cd2e7f9daaca93f41c6cebc92b94937a653536f31f66e1156a78fe0701319a9",
+      "afterSha256": "88460766647d9c52df78d793aa7eeda963e9fba48e33a8743a98da67aff67e10",
+      "reason": "hardening implementation or executable regression/configuration"
+    },
+    {
+      "path": "lib/diagnostic-confidence.ts",
+      "beforeSha256": "545e32d18084d20af7d039e801c864e29742ec289f5cb73b6d73bbf1d532e1ae",
+      "afterSha256": "04add9e18d6d90de61908192a8279d8b65125ffc505e5d67de6776826015df3d",
+      "reason": "hardening implementation or executable regression/configuration"
+    },
+    {
+      "path": "lib/diagnostic-engine.ts",
+      "beforeSha256": null,
+      "afterSha256": "b748b93415bd5eaf07954d436918665a8e2fed36726992eff277c9662a6dfb3d",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "lib/diagnostic-evaluation.ts",
+      "beforeSha256": null,
+      "afterSha256": "07e0bcc48a09cafc6fcc4b4156201ef523dd8475b890805e81872ea2b06777d6",
+      "reason": "hardening implementation or executable regression/configuration"
+    },
+    {
+      "path": "lib/diagnostic-rules.ts",
+      "beforeSha256": "3ddfeb6ab44745f8b042fb20b106e56fa04838b942c31af0de37ac9640b0c4a8",
+      "afterSha256": "e936fb8ec4e45d1530bdc0eb42ced45ae4a570189cf3a885485659c63a353973",
+      "reason": "hardening implementation or executable regression/configuration"
+    },
+    {
+      "path": "lib/diagnostic-scoring.ts",
+      "beforeSha256": null,
+      "afterSha256": "15e738ad18c583fc7dcda686e278040bd37c8783e4365cf94121169a6c3fa663",
+      "reason": "hardening implementation or executable regression/configuration"
+    },
+    {
+      "path": "lib/diagnostic-strategy.ts",
+      "beforeSha256": "b71aced4f9482dc65d82f2e53992abba62b39207c3d98a52aff6df296c683448",
+      "afterSha256": "919d1bde7aafe783e4c213441bf3537dfac90cf84e4fe4bdd79daf4a08feec62",
+      "reason": "hardening implementation or executable regression/configuration"
+    },
+    {
+      "path": "lib/evidence.ts",
+      "beforeSha256": "1aca870e8c803fcacb49e04d9fcd613b405ef057a26bef4c540febe9fb022a49",
+      "afterSha256": "ef34623622234527a6c788cbbb8216bde6e11a9136d22e199a9e3cf3c5ff75b3",
+      "reason": "hardening implementation or executable regression/configuration"
+    },
+    {
+      "path": "lib/feature-flags.test.ts",
+      "beforeSha256": null,
+      "afterSha256": "288d923ca6232f44a0562e9b24006b172096fa8962dba60dab94ede7c938812d",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "lib/feature-flags.ts",
+      "beforeSha256": null,
+      "afterSha256": "65f7bd1a129ddd87db487a3a4a36ea4d8565c7fff4d5b33cd350dc28da81c4ad",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "lib/http-security.ts",
+      "beforeSha256": null,
+      "afterSha256": "5f4c7c59d4ce21a163153c962d03bda05cdc9316347715838bfed8961dd44244",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "lib/observability.test.ts",
+      "beforeSha256": null,
+      "afterSha256": "73dba776317dcf05ca1316acec7fb9b308431999b1cf05f0fd07d6d086a6ba92",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "lib/observability.ts",
+      "beforeSha256": null,
+      "afterSha256": "3f6a89a04ad892688286f8b2ae1df97f4ff0283f7169629377199a39762cabd9",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "lib/qualification-engine.test.ts",
+      "beforeSha256": null,
+      "afterSha256": "536af87e3f80029c9624a2077be7d9f44441b3cb73370d9c0130626b457ded66",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "lib/qualification-engine.ts",
+      "beforeSha256": null,
+      "afterSha256": "86dee002c395c5ffea5ea0dd177f734a33df44f3c4dc1e5b39ef6c491da51c25",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "lib/server/diagnostic-context.ts",
+      "beforeSha256": "1a2d9fa26732cd7681a9e1a2f8190a62cd473ba5b93514bc394b21ac02688708",
+      "afterSha256": "2056c490cc0aaa8477a84360d543a4a47956bc641340def2343dd7e0387bb050",
+      "reason": "hardening implementation or executable regression/configuration"
+    },
+    {
+      "path": "lib/server/diagnostic-state.ts",
+      "beforeSha256": "a79d932516f01102c6247cb51980d48c143827c7e757a942517a652aa18403cf",
+      "afterSha256": "93e11876401a4eefa460f777bfb8077dcef973d235b2b868fa92ef44a72731b3",
+      "reason": "hardening implementation or executable regression/configuration"
+    },
+    {
+      "path": "lib/server/qualified-solutions.ts",
+      "beforeSha256": "eb2daf46db4f3708d1e6f35f85afb6c23a7f2fe40e9a57936d3e613336581d5b",
+      "afterSha256": "a7662695bfc4c9c06e72b19d6653a312c5d48be97a36e46ee5f1afaf58352833",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "lib/server/trusted-data-access.test.ts",
+      "beforeSha256": null,
+      "afterSha256": "fed39ea14c9cac5f7fbbadee535cfc6d6678200da26ece16cead254ecb73de24",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "lib/server/trusted-data-access.ts",
+      "beforeSha256": null,
+      "afterSha256": "5cd6a5c4b8ae3af07cfb90eb1f7416cefc1a1d6699d4560715533e232cd09d2c",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "lib/supabase/client.ts",
+      "beforeSha256": "73787f3ad552de8ce15ed18512997082031a9b9dd9f471d21c41183c57d8acc3",
+      "afterSha256": "f51f6d7d477d4c19e8f1fbe6c52ddabd5d52e0aa1ccf5c6456284c64df707ecb",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "lib/supabase/server.ts",
+      "beforeSha256": "961d3536548737ff03452d8055bf0c0f72136e78e7c9600da5f73d6490b31ce9",
+      "afterSha256": "b21f8d2b04fcd1e31b51b031cf7e2d2f554f9d4e64aaaceea0268a8ba24252ef",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "lib/tenant-context.ts",
+      "beforeSha256": "57ff9aa5e7145a764216f9ae6826f7140f0c95ce54caf8c7839b89753357f657",
+      "afterSha256": "18127c1cd9a761dbe8d5f7bcc93e9b22e10e14053bc29df687eeb5ec0a76d471",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "next.config.ts",
+      "beforeSha256": "13c14eaf596f16b598a3d8f6c7b061d2f1aeedf14b5afa6624844c83354b9b4c",
+      "afterSha256": "510d81c9c441c03bace06cc9352294d2067c11b6bc8fbe70cedc19f82cf1b787",
+      "reason": "hardening implementation or executable regression/configuration"
+    },
+    {
+      "path": "package.json",
+      "beforeSha256": "70a9059f3482473c543dedaf96edddf781c503fa11f480494a481c04f2f77355",
+      "afterSha256": "bc1a17aa383b92e13f3d40aea7a56077cb73d1fe890a94e7769103bd7e72620b",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "beforeSha256": "7d7809f389a4a95ded317adb096dcb3b973150fd6ea19b326c077ad6d46fb02c",
+      "afterSha256": "4748d6bba735b3813f9161eb91c52502dc504e096618233a7d4dc484b924a0cb",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "proxy.ts",
+      "beforeSha256": null,
+      "afterSha256": "5aa4ba3f0d90451b853382a4e5bec23d5416e6cb736dd89da42d86ae04e166bd",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "scripts/bootstrap-dependencies.mjs",
+      "beforeSha256": null,
+      "afterSha256": "e2ee278c440f49916a2293b17a1b4bacaead0c470ee78a77f35fff8a5e8c5645",
+      "reason": "hardening implementation or executable regression/configuration"
+    },
+    {
+      "path": "scripts/check-delivery-config.mjs",
+      "beforeSha256": null,
+      "afterSha256": "06bb0068d1887a23fef14b108e1ef8f95e5c72535616a538c7aee64bcd7a9c4c",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "scripts/check-hardening-integrity.mjs",
+      "beforeSha256": null,
+      "afterSha256": "e7b0e788b81073ffe09252824661cb508c159e6009a8d0e9bc7d690e5d708485",
+      "reason": "hardening implementation or executable regression/configuration"
+    },
+    {
+      "path": "scripts/check-lockfile.mjs",
+      "beforeSha256": null,
+      "afterSha256": "eddd5631ae88ac098420a878c164cdbf80393ddd7501ab0311b0576ac1e57c74",
+      "reason": "hardening implementation or executable regression/configuration"
+    },
+    {
+      "path": "scripts/check-production-scale-baseline.mjs",
+      "beforeSha256": null,
+      "afterSha256": "b433cbd2d2aacd0660dfb25c4c11c3ee1b60b8a068a1cdf70ea5ccdeb1751429",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "scripts/check-public-package.mjs",
+      "beforeSha256": null,
+      "afterSha256": "348eece660680c11f1bed48e17e8c58a9ebcf6bc3aeaafc8a4ebfd1a7f9fd779",
+      "reason": "HSP-0 scanner enumerates Git publication candidates instead of ignored private and generated files"
+    },
+    {
+      "path": "scripts/check-trust-boundaries.mjs",
+      "beforeSha256": null,
+      "afterSha256": "2bc8832674e91d657df8230a14df4714852f3b498b32ef3ccd1467e4868362dc",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "scripts/check-typescript-syntax.cjs",
+      "beforeSha256": null,
+      "afterSha256": "b847ed91f095f0bbb2b7b8b2777c5e020f6adab771da4df7e2a3a3b26c7127d4",
+      "reason": "hardening implementation or executable regression/configuration"
+    },
+    {
+      "path": "scripts/run-backup-restore-drill.ps1",
+      "beforeSha256": null,
+      "afterSha256": "909eb04c50654363a694129617a0b6f515e940fb80a96fae606e6ec804474e8f",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "scripts/scale-seed.sql",
+      "beforeSha256": null,
+      "afterSha256": "f1f30d335f6e5e660c1d5b770f480b0b2dcc1b2e1dd35ed1558f8129de5cdfda",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "scripts/scale-workload.sql",
+      "beforeSha256": null,
+      "afterSha256": "0bbdc94a282c275a05780ec4fca57e8319e0baec2616b6999a79d31997671886",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "scripts/testing/register-typescript.cjs",
+      "beforeSha256": null,
+      "afterSha256": "0178a3f917667d02c68566be31cce557524542cc4ea81cdbe27c740c2baf418e",
+      "reason": "hardening implementation or executable regression/configuration"
+    },
+    {
+      "path": "scripts/testing/reproduce-audit.cjs",
+      "beforeSha256": null,
+      "afterSha256": "acc0b991506ab4fa7732936b22c23f6b0d5c31fb9581cecc437842cc64969df3",
+      "reason": "hardening implementation or executable regression/configuration"
+    },
+    {
+      "path": "scripts/typecheck-domain.mjs",
+      "beforeSha256": null,
+      "afterSha256": "b29608fcbd8edad88e87dc6658bdcf526cb9ca528e300d7c13366985bdb8971d",
+      "reason": "hardening implementation or executable regression/configuration"
+    },
+    {
+      "path": "supabase/config.toml",
+      "beforeSha256": null,
+      "afterSha256": "ef68519f3365b8bf7b680a58e9cf2ef3120b86f52bf4308a71c20e3012a9e2f8",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "supabase/migrations/0013_v1_2_1_diagnostic_snapshot.sql",
+      "beforeSha256": null,
+      "afterSha256": "600fecd7319d9561af256790e1c92eca79d2dcc13f7a55dccfbe7ac54b10bdfc",
+      "reason": "hardening implementation or executable regression/configuration"
+    },
+    {
+      "path": "supabase/migrations/0014_v1_2_1_declaration_trust.sql",
+      "beforeSha256": null,
+      "afterSha256": "6a0c5fc3b028d564fa1f65cf97db1ed759ebc8244f047dbf24ddcd8231dce8f3",
+      "reason": "hardening implementation or executable regression/configuration"
+    },
+    {
+      "path": "supabase/migrations/0015_v1_2_1_approved_prices.sql",
+      "beforeSha256": null,
+      "afterSha256": "f409d38348665c789adab72d3bfc6f995f3e5c6f98d36c2f0f2517831a6c8949",
+      "reason": "hardening implementation or executable regression/configuration"
+    },
+    {
+      "path": "supabase/migrations/0016_rc2_p0_fail_closed_guards.sql",
+      "beforeSha256": null,
+      "afterSha256": "a1f3b023787d65975080ab74e0ad7dd667d11acee559c772625829432f9f458a",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "supabase/migrations/0017_rc2_p0_runtime_contract_fixes.sql",
+      "beforeSha256": null,
+      "afterSha256": "9ca577e40a843c102fc2b1e9ed984a56695e12581a73704fc146e8196aa9536e",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "supabase/migrations/0018_production_async_runtime.sql",
+      "beforeSha256": null,
+      "afterSha256": "b6b4a328544677b4cbd6544482f3668999dbd82494c698ab2f5c8af098780048",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "supabase/migrations/0019_production_database_scale.sql",
+      "beforeSha256": null,
+      "afterSha256": "ab4cfc44d5211bd4999b0f8696ad7680ccbd62b067935f6e4a678399453ab033",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "supabase/migrations/0020_production_tenant_quotas.sql",
+      "beforeSha256": null,
+      "afterSha256": "ea035382e631b1c03759aca22a398c7308691c3d852b21f4a94a1d8636a34582",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "supabase/migrations/0021_production_storage_foundation.sql",
+      "beforeSha256": null,
+      "afterSha256": "ff4bb49847a49f2515bc3cd47acfe2e1c21948502c19d2523c747524386aab71",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "supabase/migrations/0022_agent_foundation_disabled.sql",
+      "beforeSha256": null,
+      "afterSha256": "c09ceb3617331438682ceb053ce97e12f89ad6c47bd4409f1a72fde7cecca3d1",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "supabase/migrations/0023_operational_observability_views.sql",
+      "beforeSha256": null,
+      "afterSha256": "61aee0ddf3a600c7929c1f4a83ebc00e677f95c05415532484722dfdc646e05e",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "supabase/seed.sql",
+      "beforeSha256": "51d071b82259bb0581d53318c39941d414dda19dfcddd2482f1486772ece09a4",
+      "afterSha256": "f989859a30b0df07f1487bc17c07718cb11e0673c1c59c3af36497a0acfeee55",
+      "reason": "hardening implementation or executable regression/configuration"
+    },
+    {
+      "path": "supabase/tests/0002_cross_tenant_rls.sql",
+      "beforeSha256": "3b8eb93ef0ef718a4bed228a57e1acb7cbd22416457ecbddf7ac749dd71f8361",
+      "afterSha256": "40ffd62e4be3323c6f0b95f841721235b3a0d6c636a3f0c6a73149c969c9fb92",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "supabase/tests/000_setup_test_helpers.sql",
+      "beforeSha256": "e160b5024acf52c3c656aa8be1e2aea88deb79a1312166cea28d38544ec86b21",
+      "afterSha256": "54b7778d5f6a326073d0a696b4bacd9a9580196a9981237068740f538f5bc368",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "supabase/tests/002_cross_tenant_rls.test.sql",
+      "beforeSha256": "9b5cf5cff42b9634dde958d90eb41341f94409b659d7de91b4dcb27bc2dfa999",
+      "afterSha256": "14f2338311195fa063cf3f51465d86adfb57ccfd83d61698bb105a031b57c2de",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "supabase/tests/005_end_to_end_core.test.sql",
+      "beforeSha256": "4f8772411de400f11c3b93aedcd34e27b851b221acf8352180a6b0a57ff9bd5e",
+      "afterSha256": "bdcc72389babbb4c1c1d557be770ddcd4791a5bb1301ea15beef98e0bf1f9e8b",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "supabase/tests/006_consent_privacy.test.sql",
+      "beforeSha256": "53a335a5586b15429456fc1cc4812ee862c7308961e06b61c2e4100e03f13620",
+      "afterSha256": "b886ac9e9cf6f97c992186b6cb9dbba4424c758ec72bffe06c0a9cb6d2c2c337",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "supabase/tests/007_rc2_p0_guards.test.sql",
+      "beforeSha256": null,
+      "afterSha256": "2f0e03ce6ad6e6f84738336a296e65472332905d33e6b97650f44de5427c2d97",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "supabase/tests/010_hardening_v1_2_1.test.sql",
+      "beforeSha256": null,
+      "afterSha256": "174e6d336de7f02da4d694d558441db2aad61a43ab1de1cab9a9bcd898533c76",
+      "reason": "hardening implementation or executable regression/configuration"
+    },
+    {
+      "path": "supabase/tests/011_production_scale_foundation.test.sql",
+      "beforeSha256": null,
+      "afterSha256": "c036289211352d0591e746647cd30f1e207f728b4b420fc0279dc3365fa9d305",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "tests/e2e-production.mjs",
+      "beforeSha256": null,
+      "afterSha256": "1ff07f7af04d8d7e88f709f9f78b35a073fe287d9f305a70039906d2db2d4799",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "tests/hardening-contracts.test.ts",
+      "beforeSha256": null,
+      "afterSha256": "713dbaf4fdfe03e49a93a294e94d004c4f235a382bf6f09542e3a410b7d4376d",
+      "reason": "hardening implementation or executable regression/configuration"
+    },
+    {
+      "path": "tests/hardening-native/core.test.cjs",
+      "beforeSha256": null,
+      "afterSha256": "c32e726e697e7254b70213063dbecdb4bbb5388760a929234783e46c3a727fdd",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "vitest.config.mts",
+      "beforeSha256": null,
+      "afterSha256": "c8580b31f2075106d70a4978d910b8f9d967230bd003db665ddf60cc4b9dd611",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "workers/outbox-runtime.d.mts",
+      "beforeSha256": null,
+      "afterSha256": "2175db5ca8c734bd52acf5e8c704875456499002fa5a2271e02231ce6112d999",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "workers/outbox-runtime.mjs",
+      "beforeSha256": null,
+      "afterSha256": "d81fbb8a4f706cc2601b46bca94e68f03893e36af0fa43e3fcaf3c4108863072",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "workers/outbox-runtime.test.ts",
+      "beforeSha256": null,
+      "afterSha256": "90e12d6504a69976cf6ec4d557ec3295779d6fe33df1554013bb2afc97db8233",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "workers/outbox-worker.mjs",
+      "beforeSha256": null,
+      "afterSha256": "9a331f89d50fd08761ce1068789f5b0c6b722d7b0b79049eebb99ae64bcfdb67",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    }
+  ]
+}

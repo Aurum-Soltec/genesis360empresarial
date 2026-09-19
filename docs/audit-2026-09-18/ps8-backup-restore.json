@@ -1,0 +1,26 @@
+{
+  "wave": "PS-8",
+  "executed_at": "2026-09-19T17:00:02.8039092Z",
+  "backup_duration_seconds": 0.364,
+  "restore_duration_seconds": 2.062,
+  "rpo_observed_seconds": 3.312,
+  "backup_sha256": "34bb8e8701a3b14dec9991affb09dbc0d0861dd1472880e0ff3e92f752eee3cd",
+  "source_counts": {
+    "tenants": 1,
+    "memberships": 0,
+    "diagnostics": 0,
+    "outbox": 0,
+    "migrations": 21,
+    "public_policies": 37
+  },
+  "restored_counts": {
+    "tenants": 1,
+    "memberships": 0,
+    "diagnostics": 0,
+    "outbox": 0,
+    "migrations": 21,
+    "public_policies": 37
+  },
+  "recovery_marker": true,
+  "integrity_pass": true
+}

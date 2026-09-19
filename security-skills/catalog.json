@@ -1,0 +1,32 @@
+{
+  "version": "1.0.0",
+  "date": "2026-08-28",
+  "runtimeDependency": false,
+  "skills": [
+    {
+      "id": "SEC-RLS",
+      "file": "multi-tenant-rls.md",
+      "gate": "GATE-SEC"
+    },
+    {
+      "id": "SEC-AGENT",
+      "file": "agent-tool-abuse.md",
+      "gate": "GATE-AI"
+    },
+    {
+      "id": "SEC-SUPPLY",
+      "file": "supply-chain.md",
+      "gate": "GATE-SEC"
+    },
+    {
+      "id": "SEC-PRIVACY",
+      "file": "privacy-data-boundaries.md",
+      "gate": "GATE-DATA"
+    },
+    {
+      "id": "SEC-IR",
+      "file": "incident-readiness.md",
+      "gate": "GATE-PROD"
+    }
+  ]
+}

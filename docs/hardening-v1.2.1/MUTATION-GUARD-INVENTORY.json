@@ -1,0 +1,92 @@
+[
+  {
+    "path": "app/api/diagnostics/route.ts",
+    "method": "POST",
+    "sameOriginGuardPresent": true,
+    "roleGuardPresent": true
+  },
+  {
+    "path": "app/api/attestations/route.ts",
+    "method": "POST",
+    "sameOriginGuardPresent": true,
+    "roleGuardPresent": true
+  },
+  {
+    "path": "app/api/upload-sessions/route.ts",
+    "method": "POST",
+    "sameOriginGuardPresent": true,
+    "roleGuardPresent": true
+  },
+  {
+    "path": "app/api/evidence/route.ts",
+    "method": "POST",
+    "sameOriginGuardPresent": true,
+    "roleGuardPresent": true
+  },
+  {
+    "path": "app/api/consents/route.ts",
+    "method": "POST",
+    "sameOriginGuardPresent": true,
+    "roleGuardPresent": true
+  },
+  {
+    "path": "app/api/decisions/[id]/missions/route.ts",
+    "method": "POST",
+    "sameOriginGuardPresent": true,
+    "roleGuardPresent": true
+  },
+  {
+    "path": "app/api/solutions/contact/route.ts",
+    "method": "POST",
+    "sameOriginGuardPresent": true,
+    "roleGuardPresent": true
+  },
+  {
+    "path": "app/api/missions/[id]/outcome/route.ts",
+    "method": "POST",
+    "sameOriginGuardPresent": true,
+    "roleGuardPresent": true
+  },
+  {
+    "path": "app/api/missions/[id]/transition/route.ts",
+    "method": "POST",
+    "sameOriginGuardPresent": true,
+    "roleGuardPresent": true
+  },
+  {
+    "path": "app/api/missions/[id]/evidence/route.ts",
+    "method": "POST",
+    "sameOriginGuardPresent": true,
+    "roleGuardPresent": true
+  },
+  {
+    "path": "app/api/passport/facts/route.ts",
+    "method": "POST",
+    "sameOriginGuardPresent": true,
+    "roleGuardPresent": true
+  },
+  {
+    "path": "app/api/tenant/active/route.ts",
+    "method": "POST",
+    "sameOriginGuardPresent": true,
+    "roleGuardPresent": true
+  },
+  {
+    "path": "app/api/pains/[id]/gds/route.ts",
+    "method": "POST",
+    "sameOriginGuardPresent": true,
+    "roleGuardPresent": true
+  },
+  {
+    "path": "app/api/diagnostics/[id]/answers/route.ts",
+    "method": "PUT",
+    "sameOriginGuardPresent": true,
+    "roleGuardPresent": true
+  },
+  {
+    "path": "app/api/diagnostics/[id]/submit/route.ts",
+    "method": "POST",
+    "sameOriginGuardPresent": true,
+    "roleGuardPresent": true
+  }
+]

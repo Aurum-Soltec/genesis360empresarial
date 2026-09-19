@@ -1,0 +1,61 @@
+# Repository Map
+
+- `.env.example`
+- `.github/` — 5 arquivos
+- `.gitignore`
+- `.project-ai/` — 14 arquivos
+- `00_PRODUCTION_START_HERE.md`
+- `00_WORK_START_HERE.md`
+- `AGENTS.md`
+- `app/` — 43 arquivos
+- `CHANGELOG_V1_EMPRESARIAL.md`
+- `components/` — 6 arquivos
+- `CONTRIBUTING.md`
+- `data/` — 7 arquivos
+- `design/` — 2 arquivos
+- `design-system/` — 8 arquivos
+- `docs/` — 138 arquivos
+- `eslint.config.mjs`
+- `intelligence/` — 13 arquivos
+- `INVENTORY.json`
+- `lib/` — 39 arquivos
+- `MANIFEST.json`
+- `MANIFEST_V1_WAVE1.json`
+- `MANIFEST_V1_WAVE2.json`
+- `MANIFEST_V1_WAVE3.json`
+- `MANIFEST_V1_WAVE4.json`
+- `next-env.d.ts`
+- `next.config.ts`
+- `package.json`
+- `pnpm-lock.yaml`
+- `postcss.config.mjs`
+- `preview/` — 1 arquivos
+- `prompts/` — 86 arquivos
+- `proxy.ts`
+- `README.md`
+- `scripts/` — 8 arquivos
+- `security-skills/` — 7 arquivos
+- `SECURITY.md`
+- `supabase/` — 23 arquivos
+- `THIRD_PARTY_NOTICES.md`
+- `tsconfig.json`
+- `tsconfig.tsbuildinfo`
+- `VALIDATION_RESULTS_WAVE5.json`
+- `VALIDATION_RESULTS_WAVE6.json`
+- `VALIDATION_RESULTS_WAVE7.json`
+- `VALIDATION_RESULTS_WAVE8.json`
+- `vitest.config.mts`
+- `WORK_PACKAGE_MANIFEST.json`
+
+## Pastas críticas
+- `/app` — UI e HTTP routes.
+- `/components` — UI compartilhada.
+- `/lib` — domínio/application helpers.
+- `/lib/server` — boundary privilegiado server-only.
+- `/data` — banco metodológico e contratos de diagnóstico.
+- `/supabase/migrations` — schema.
+- `/supabase/tests` — testes de banco/RLS.
+- `/design-system` — Genesis Precision Light.
+- `/docs/canonical/v1` — autoridade documental.
+- `/intelligence` — spike agentic isolado.
+- `/.project-ai` — contexto/handoff para Work/agentes.

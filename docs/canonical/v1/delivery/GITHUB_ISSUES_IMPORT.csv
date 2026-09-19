@@ -1,0 +1,1486 @@
+title,body,labels,milestone
+V1-ST-001 Canonical docs,"Story: V1-ST-001
+Epic: EPIC-01 Foundation & Canonical
+Status baseline: implemented
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-002 Feature flags,"Story: V1-ST-002
+Epic: EPIC-01 Foundation & Canonical
+Status baseline: implemented
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-003 Auth/tenant active,"Story: V1-ST-003
+Epic: EPIC-01 Foundation & Canonical
+Status baseline: implemented-runtime-pending
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] Teste negativo A→B comprova negação de acesso.
+- [ ] Least privilege e server boundary permanecem explícitos.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,runtime",V1 Baseline
+V1-ST-004 Cross-tenant RLS,"Story: V1-ST-004
+Epic: EPIC-01 Foundation & Canonical
+Status baseline: implemented-runtime-pending-blocker
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] Teste negativo A→B comprova negação de acesso.
+- [ ] Least privilege e server boundary permanecem explícitos.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,runtime",V1 Baseline
+V1-ST-005 Consent purposes,"Story: V1-ST-005
+Epic: EPIC-01 Foundation & Canonical
+Status baseline: implemented-legal-ux-pending
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-006 Business facts/provenance,"Story: V1-ST-006
+Epic: EPIC-02 Business Passport
+Status baseline: implemented
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-007 Timeline,"Story: V1-ST-007
+Epic: EPIC-02 Business Passport
+Status baseline: implemented
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-008 Passport UI,"Story: V1-ST-008
+Epic: EPIC-02 Business Passport
+Status baseline: implemented
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-009 Progressive profiling,"Story: V1-ST-009
+Epic: EPIC-02 Business Passport
+Status baseline: partial
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-010 Question bank/versioning,"Story: V1-ST-010
+Epic: EPIC-03 Diagnostic
+Status baseline: implemented
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-011 Applicability/branching,"Story: V1-ST-011
+Epic: EPIC-03 Diagnostic
+Status baseline: partial-methodology-pending
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-012 Session/autosave/resume,"Story: V1-ST-012
+Epic: EPIC-03 Diagnostic
+Status baseline: implemented
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-013 Rules Engine,"Story: V1-ST-013
+Epic: EPIC-03 Diagnostic
+Status baseline: implemented
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-014 Result/pain/evidence,"Story: V1-ST-014
+Epic: EPIC-03 Diagnostic
+Status baseline: implemented-foundation
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-015 Pain Finding,"Story: V1-ST-015
+Epic: EPIC-04 Decision/GDS
+Status baseline: implemented
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-016 Cause hypotheses,"Story: V1-ST-016
+Epic: EPIC-04 Decision/GDS
+Status baseline: implemented-schema
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-017 Decision Record/GDS,"Story: V1-ST-017
+Epic: EPIC-04 Decision/GDS
+Status baseline: implemented
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-018 Mission Library,"Story: V1-ST-018
+Epic: EPIC-05 Mission
+Status baseline: partial-library
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] State machine inválida falha fechado.
+- [ ] Evidência/outcome respeitam idempotência e auditabilidade.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-019 State machine,"Story: V1-ST-019
+Epic: EPIC-05 Mission
+Status baseline: implemented
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] State machine inválida falha fechado.
+- [ ] Evidência/outcome respeitam idempotência e auditabilidade.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-020 Evidence,"Story: V1-ST-020
+Epic: EPIC-05 Mission
+Status baseline: implemented
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] State machine inválida falha fechado.
+- [ ] Evidência/outcome respeitam idempotência e auditabilidade.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-021 Outcomes,"Story: V1-ST-021
+Epic: EPIC-05 Mission
+Status baseline: implemented
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] State machine inválida falha fechado.
+- [ ] Evidência/outcome respeitam idempotência e auditabilidade.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-022 Gamification,"Story: V1-ST-022
+Epic: EPIC-05 Mission
+Status baseline: partial
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] State machine inválida falha fechado.
+- [ ] Evidência/outcome respeitam idempotência e auditabilidade.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-023 Pain->capability taxonomy,"Story: V1-ST-023
+Epic: EPIC-06 Qualification
+Status baseline: pending-methodology
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] Plan tier não altera ranking.
+- [ ] Policy/threshold ausente não exibe provider.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-024 Provider capabilities,"Story: V1-ST-024
+Epic: EPIC-06 Qualification
+Status baseline: implemented-schema
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] Plan tier não altera ranking.
+- [ ] Policy/threshold ausente não exibe provider.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-025 Qualification/recertification,"Story: V1-ST-025
+Epic: EPIC-06 Qualification
+Status baseline: pending-methodology
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] Plan tier não altera ranking.
+- [ ] Policy/threshold ausente não exibe provider.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-026 Entitlements,"Story: V1-ST-026
+Epic: EPIC-06 Qualification
+Status baseline: implemented-policy-pending
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] Plan tier não altera ranking.
+- [ ] Policy/threshold ausente não exibe provider.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-027 Eligibility,"Story: V1-ST-027
+Epic: EPIC-06 Qualification
+Status baseline: implemented
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] Plan tier não altera ranking.
+- [ ] Policy/threshold ausente não exibe provider.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-028 Neutral ranking,"Story: V1-ST-028
+Epic: EPIC-06 Qualification
+Status baseline: implemented
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] Plan tier não altera ranking.
+- [ ] Policy/threshold ausente não exibe provider.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-029 Qualified solution UI,"Story: V1-ST-029
+Epic: EPIC-06 Qualification
+Status baseline: implemented
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] Plan tier não altera ranking.
+- [ ] Policy/threshold ausente não exibe provider.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-030 Consented contact/attribution,"Story: V1-ST-030
+Epic: EPIC-06 Qualification
+Status baseline: partial-contact-implemented-attribution-pending
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] Plan tier não altera ranking.
+- [ ] Policy/threshold ausente não exibe provider.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-031 Runtime spike,"Story: V1-ST-031
+Epic: EPIC-07 Agentic
+Status baseline: spike-scaffolded-not-run
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] Sem credencial de banco no agente.
+- [ ] Tool allowlist, budget, timeout e evals estão evidenciados.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-032 Context assembly,"Story: V1-ST-032
+Epic: EPIC-07 Agentic
+Status baseline: partial
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] Sem credencial de banco no agente.
+- [ ] Tool allowlist, budget, timeout e evals estão evidenciados.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-033 Council routing,"Story: V1-ST-033
+Epic: EPIC-07 Agentic
+Status baseline: pending
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] Sem credencial de banco no agente.
+- [ ] Tool allowlist, budget, timeout e evals estão evidenciados.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-034 Tool contracts,"Story: V1-ST-034
+Epic: EPIC-07 Agentic
+Status baseline: partial-read-tools
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] Sem credencial de banco no agente.
+- [ ] Tool allowlist, budget, timeout e evals estão evidenciados.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-035 Budgets/fallback/kill switch,"Story: V1-ST-035
+Epic: EPIC-07 Agentic
+Status baseline: pending
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] Sem credencial de banco no agente.
+- [ ] Tool allowlist, budget, timeout e evals estão evidenciados.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-036 Golden set/evals,"Story: V1-ST-036
+Epic: EPIC-07 Agentic
+Status baseline: seeded-not-run
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] Sem credencial de banco no agente.
+- [ ] Tool allowlist, budget, timeout e evals estão evidenciados.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-037 Ecosystem membership,"Story: V1-ST-037
+Epic: EPIC-08 Ecosystem
+Status baseline: pending
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-038 Institutional branding,"Story: V1-ST-038
+Epic: EPIC-08 Ecosystem
+Status baseline: pending
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-039 Aggregated dashboard,"Story: V1-ST-039
+Epic: EPIC-08 Ecosystem
+Status baseline: pending
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-040 Admin/rules/qualification,"Story: V1-ST-040
+Epic: EPIC-09 Trust/Data/Admin
+Status baseline: pending
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] Plan tier não altera ranking.
+- [ ] Policy/threshold ausente não exibe provider.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-041 Audit/correlation,"Story: V1-ST-041
+Epic: EPIC-09 Trust/Data/Admin
+Status baseline: partial
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-042 LGPD lifecycle,"Story: V1-ST-042
+Epic: EPIC-09 Trust/Data/Admin
+Status baseline: partial
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-043 Data quality/provenance,"Story: V1-ST-043
+Epic: EPIC-09 Trust/Data/Admin
+Status baseline: implemented-foundation
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-044 Benchmark guardrails,"Story: V1-ST-044
+Epic: EPIC-09 Trust/Data/Admin
+Status baseline: pending
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-045 Observability,"Story: V1-ST-045
+Epic: EPIC-10 Production
+Status baseline: pending
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-046 Backup/restore/rollback,"Story: V1-ST-046
+Epic: EPIC-10 Production
+Status baseline: pending-blocker
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] RTO/RPO alvo registrado.
+- [ ] Restore executado e evidência anexada.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-047 Security/supply-chain,"Story: V1-ST-047
+Epic: EPIC-10 Production
+Status baseline: partial
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] Scan gera artefato rastreável.
+- [ ] Achados críticos/altos são resolvidos ou aceitos formalmente.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-048 CI/CD/environments,"Story: V1-ST-048
+Epic: EPIC-10 Production
+Status baseline: baseline-existing
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-049 Performance/a11y,"Story: V1-ST-049
+Epic: EPIC-10 Production
+Status baseline: partial
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-050 FinOps,"Story: V1-ST-050
+Epic: EPIC-10 Production
+Status baseline: docs-only
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-051 E2E,"Story: V1-ST-051
+Epic: EPIC-10 Production
+Status baseline: partial-db-e2e-browser-pending
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-052 Production Readiness Review,"Story: V1-ST-052
+Epic: EPIC-10 Production
+Status baseline: pending-blocker
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-053 Light theme migration,"Story: V1-ST-053
+Epic: EPIC-11 UX Light / Taste
+Status baseline: implemented
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p0,product",V1 Baseline
+V1-ST-054 Topbar + Context Sidebar,"Story: V1-ST-054
+Epic: EPIC-11 UX Light / Taste
+Status baseline: implemented
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p0,product",V1 Baseline
+V1-ST-055 Manager Dashboard,"Story: V1-ST-055
+Epic: EPIC-11 UX Light / Taste
+Status baseline: implemented
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p0,product",V1 Baseline
+V1-ST-056 Product empty/error/loading states,"Story: V1-ST-056
+Epic: EPIC-11 UX Light / Taste
+Status baseline: partial
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p0,product",V1 Baseline
+V1-ST-057 Accessibility visual gate,"Story: V1-ST-057
+Epic: EPIC-11 UX Light / Taste
+Status baseline: runtime-pending
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p0,runtime",V1 Baseline
+V1-ST-058 Motion system,"Story: V1-ST-058
+Epic: EPIC-11 UX Light / Taste
+Status baseline: partial
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-059 Visual regression,"Story: V1-ST-059
+Epic: EPIC-11 UX Light / Taste
+Status baseline: pending
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-060 GDS -> Mission creation,"Story: V1-ST-060
+Epic: EPIC-12 Product Flow Completion
+Status baseline: implemented
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] State machine inválida falha fechado.
+- [ ] Evidência/outcome respeitam idempotência e auditabilidade.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p0,product",V1 Baseline
+V1-ST-061 Mission -> Capability recommendation,"Story: V1-ST-061
+Epic: EPIC-12 Product Flow Completion
+Status baseline: implemented-taxonomy-pending
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] State machine inválida falha fechado.
+- [ ] Evidência/outcome respeitam idempotência e auditabilidade.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p0,product",V1 Baseline
+V1-ST-062 Qualified provider search API,"Story: V1-ST-062
+Epic: EPIC-12 Product Flow Completion
+Status baseline: implemented-fail-closed
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] Plan tier não altera ranking.
+- [ ] Policy/threshold ausente não exibe provider.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p0,product",V1 Baseline
+V1-ST-063 Contact consent workflow,"Story: V1-ST-063
+Epic: EPIC-12 Product Flow Completion
+Status baseline: implemented-legal-copy-pending
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p0,product",V1 Baseline
+V1-ST-064 Outcome closes Passport/Timeline loop,"Story: V1-ST-064
+Epic: EPIC-12 Product Flow Completion
+Status baseline: implemented-timeline-passport-explicit-only
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p0,product",V1 Baseline
+V1-ST-065 Private RLS helper + explicit grants,"Story: V1-ST-065
+Epic: EPIC-13 — Foundation Acceleration / Selective OSS
+Status baseline: implemented
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] Teste negativo A→B comprova negação de acesso.
+- [ ] Least privilege e server boundary permanecem explícitos.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p0,product",V1 Baseline
+V1-ST-066 Cross-tenant pgTAP harness,"Story: V1-ST-066
+Epic: EPIC-13 — Foundation Acceleration / Selective OSS
+Status baseline: implemented-not-run
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] Teste negativo A→B comprova negação de acesso.
+- [ ] Least privilege e server boundary permanecem explícitos.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p0,product",V1 Baseline
+V1-ST-067 Evidence Ledger,"Story: V1-ST-067
+Epic: EPIC-13 — Foundation Acceleration / Selective OSS
+Status baseline: implemented
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p0,product",V1 Baseline
+V1-ST-068 Durable event outbox,"Story: V1-ST-068
+Epic: EPIC-13 — Foundation Acceleration / Selective OSS
+Status baseline: implemented
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-069 Trusted server write boundary,"Story: V1-ST-069
+Epic: EPIC-13 — Foundation Acceleration / Selective OSS
+Status baseline: implemented
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p0,product",V1 Baseline
+V1-ST-070 Pydantic AI Slim spike,"Story: V1-ST-070
+Epic: EPIC-13 — Foundation Acceleration / Selective OSS
+Status baseline: spike-scaffolded-not-run
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] Sem credencial de banco no agente.
+- [ ] Tool allowlist, budget, timeout e evals estão evidenciados.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-071 Curated DevSecOps skill gates,"Story: V1-ST-071
+Epic: EPIC-13 — Foundation Acceleration / Selective OSS
+Status baseline: implemented
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-072 Provider Network Policy:** IMPLEMENTED; threshold permanece PEND-003.,"Story: V1-ST-072
+Epic: EPIC-13 — Foundation Acceleration / Selective OSS
+Status baseline: implemented-threshold-pending
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] Plan tier não altera ranking.
+- [ ] Policy/threshold ausente não exibe provider.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-073 Subscription/Plan Gate:** IMPLEMENTED; provider plans permanecem PEND-004.,"Story: V1-ST-073
+Epic: EPIC-13 — Foundation Acceleration / Selective OSS
+Status baseline: implemented-plan-decision-pending
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] Plan tier não altera ranking.
+- [ ] Policy/threshold ausente não exibe provider.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-074 Cross-Tenant Sanitized Matching:** IMPLEMENTED.,"Story: V1-ST-074
+Epic: EPIC-13 — Foundation Acceleration / Selective OSS
+Status baseline: implemented
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] Teste negativo A→B comprova negação de acesso.
+- [ ] Least privilege e server boundary permanecem explícitos.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-075 Outbox Completion/Retry:** IMPLEMENTED.,"Story: V1-ST-075
+Epic: EPIC-13 — Foundation Acceleration / Selective OSS
+Status baseline: implemented
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-076 Minimal Agentic Baseline:** IMPLEMENTED for comparison.,"Story: V1-ST-076
+Epic: EPIC-13 — Foundation Acceleration / Selective OSS
+Status baseline: implemented
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] Sem credencial de banco no agente.
+- [ ] Tool allowlist, budget, timeout e evals estão evidenciados.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-077 Question metadata/purpose/applicability,"Story: V1-ST-077
+Epic: EPIC-14/15 Wave 7
+Status baseline: implemented-by-contract
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-078 Stable 24-anchor score,"Story: V1-ST-078
+Epic: EPIC-14/15 Wave 7
+Status baseline: implemented-by-contract
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] Score, coverage e confidence não são misturados.
+- [ ] Unknown/N.A. preservam semântica canônica.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-079 31-question high-yield starter path,"Story: V1-ST-079
+Epic: EPIC-14/15 Wave 7
+Status baseline: implemented-by-contract
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-080 Adaptive follow-up selector,"Story: V1-ST-080
+Epic: EPIC-14/15 Wave 7
+Status baseline: implemented-by-contract
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-081 Progress Engine,"Story: V1-ST-081
+Epic: EPIC-14/15 Wave 7
+Status baseline: implemented-by-contract
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-082 Confidence Thermometer,"Story: V1-ST-082
+Epic: EPIC-14/15 Wave 7
+Status baseline: implemented-by-contract
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-083 Structured information slots,"Story: V1-ST-083
+Epic: EPIC-14/15 Wave 7
+Status baseline: implemented-foundation
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-084 Unknown/N.A./Deferred semantics,"Story: V1-ST-084
+Epic: EPIC-14/15 Wave 7
+Status baseline: implemented-by-contract
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-085 Diagnostic resume/idempotent draft,"Story: V1-ST-085
+Epic: EPIC-14/15 Wave 7
+Status baseline: implemented-by-contract
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] Score, coverage e confidence não são misturados.
+- [ ] Unknown/N.A. preservam semântica canônica.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-086 Sector/trait applicability calibration,"Story: V1-ST-086
+Epic: EPIC-14/15 Wave 7
+Status baseline: calibration-pending
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-087 Versioned attestation model,"Story: V1-ST-087
+Epic: EPIC-14/15 Wave 7
+Status baseline: implemented-by-contract
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] Sem attestation ativa/válida o fluxo falha fechado.
+- [ ] Retenção, scan e acesso seguem governança aprovada.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-088 Auditable acceptance event,"Story: V1-ST-088
+Epic: EPIC-14/15 Wave 7
+Status baseline: implemented-by-contract
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-089 Governed upload session,"Story: V1-ST-089
+Epic: EPIC-14/15 Wave 7
+Status baseline: implemented-foundation
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] Sem attestation ativa/válida o fluxo falha fechado.
+- [ ] Retenção, scan e acesso seguem governança aprovada.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-090 Copyright/confidentiality/IP warning,"Story: V1-ST-090
+Epic: EPIC-14/15 Wave 7
+Status baseline: draft-copy
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-091 GENESIS responsibility disclaimer,"Story: V1-ST-091
+Epic: EPIC-14/15 Wave 7
+Status baseline: draft-copy
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-092 Legal/privacy review,"Story: V1-ST-092
+Epic: EPIC-14/15 Wave 7
+Status baseline: p0-blocker
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p0,product",V1 Baseline
+V1-ST-093 Binary upload security pipeline,"Story: V1-ST-093
+Epic: EPIC-14/15 Wave 7
+Status baseline: p0-blocker
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] Sem attestation ativa/válida o fluxo falha fechado.
+- [ ] Retenção, scan e acesso seguem governança aprovada.
+- [ ] Scan gera artefato rastreável.
+- [ ] Achados críticos/altos são resolvidos ou aceitos formalmente.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p0,product",V1 Baseline
+V1-ST-094 Portable Design System package,"Story: V1-ST-094
+Epic: EPIC-16 Genesis Precision Light
+Status baseline: implemented
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] Desktop/tablet/mobile verificados.
+- [ ] Keyboard/focus/WCAG 2.2 AA validados.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-095 Route-aware contextual navigation,"Story: V1-ST-095
+Epic: EPIC-16 Genesis Precision Light
+Status baseline: implemented
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] Desktop/tablet/mobile verificados.
+- [ ] Keyboard/focus/WCAG 2.2 AA validados.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-096 Functional mobile drawer,"Story: V1-ST-096
+Epic: EPIC-16 Genesis Precision Light
+Status baseline: implemented-static-verified
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] Desktop/tablet/mobile verificados.
+- [ ] Keyboard/focus/WCAG 2.2 AA validados.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-097 Executive Home redesign,"Story: V1-ST-097
+Epic: EPIC-16 Genesis Precision Light
+Status baseline: implemented
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] Desktop/tablet/mobile verificados.
+- [ ] Keyboard/focus/WCAG 2.2 AA validados.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-098 Focused Diagnostic redesign,"Story: V1-ST-098
+Epic: EPIC-16 Genesis Precision Light
+Status baseline: implemented
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] Score, coverage e confidence não são misturados.
+- [ ] Unknown/N.A. preservam semântica canônica.
+- [ ] Desktop/tablet/mobile verificados.
+- [ ] Keyboard/focus/WCAG 2.2 AA validados.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-099 Interpretation-first Result redesign,"Story: V1-ST-099
+Epic: EPIC-16 Genesis Precision Light
+Status baseline: implemented
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] Desktop/tablet/mobile verificados.
+- [ ] Keyboard/focus/WCAG 2.2 AA validados.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-100 Accessibility/contrast static gate,"Story: V1-ST-100
+Epic: EPIC-16 Genesis Precision Light
+Status baseline: implemented
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] Desktop/tablet/mobile verificados.
+- [ ] Keyboard/focus/WCAG 2.2 AA validados.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-101 Browser visual/accessibility validation,"Story: V1-ST-101
+Epic: EPIC-16 Genesis Precision Light
+Status baseline: p0-runtime-pending
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] Desktop/tablet/mobile verificados.
+- [ ] Keyboard/focus/WCAG 2.2 AA validados.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p0,runtime",V1 Baseline
+V1-ST-102 Visual regression baseline,"Story: V1-ST-102
+Epic: EPIC-16 Genesis Precision Light
+Status baseline: p1-after-approval
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] Desktop/tablet/mobile verificados.
+- [ ] Keyboard/focus/WCAG 2.2 AA validados.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-103 Remaining surface migration,"Story: V1-ST-103
+Epic: EPIC-16 Genesis Precision Light
+Status baseline: p1-after-canonical-approval
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] Desktop/tablet/mobile verificados.
+- [ ] Keyboard/focus/WCAG 2.2 AA validados.
+
+Source: docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md","story,p1,product",V1 Baseline
+V1-ST-104 Bootstrap do novo repositório GitHub,"Story: V1-ST-104
+Epic: EPIC-17 Production Readiness & Repository
+Status baseline: planned-production
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] Remote correto configurado.
+- [ ] Branch principal protegida e CI obrigatória documentada.
+
+Source: docs/canonical/v1/delivery/STORIES_MASTER.md","story,p0,runtime",Production Foundation
+V1-ST-105 Bootstrap limpo das migrations 0001→0012,"Story: V1-ST-105
+Epic: EPIC-17 Production Readiness & Repository
+Status baseline: planned-production
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/STORIES_MASTER.md","story,p0,runtime",Production Foundation
+V1-ST-106 Executar pgTAP tenancy/RBAC/governance completo,"Story: V1-ST-106
+Epic: EPIC-17 Production Readiness & Repository
+Status baseline: planned-production
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] Teste negativo A→B comprova negação de acesso.
+- [ ] Least privilege e server boundary permanecem explícitos.
+
+Source: docs/canonical/v1/delivery/STORIES_MASTER.md","story,p0,runtime",Production Foundation
+V1-ST-107 Full lint + TypeScript 6 + Vitest + Next build,"Story: V1-ST-107
+Epic: EPIC-17 Production Readiness & Repository
+Status baseline: planned-production
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/STORIES_MASTER.md","story,p0,runtime",Production Foundation
+V1-ST-108 E2E browser do happy path empresarial,"Story: V1-ST-108
+Epic: EPIC-17 Production Readiness & Repository
+Status baseline: planned-production
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] Desktop/tablet/mobile verificados.
+- [ ] Keyboard/focus/WCAG 2.2 AA validados.
+
+Source: docs/canonical/v1/delivery/STORIES_MASTER.md","story,p0,runtime",Production Foundation
+V1-ST-109 E2E adversarial cross-tenant e permissions,"Story: V1-ST-109
+Epic: EPIC-17 Production Readiness & Repository
+Status baseline: planned-production
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] Teste negativo A→B comprova negação de acesso.
+- [ ] Least privilege e server boundary permanecem explícitos.
+- [ ] State machine inválida falha fechado.
+- [ ] Evidência/outcome respeitam idempotência e auditabilidade.
+
+Source: docs/canonical/v1/delivery/STORIES_MASTER.md","story,p0,runtime",Production Foundation
+V1-ST-110 Backup/restore/rollback drill,"Story: V1-ST-110
+Epic: EPIC-17 Production Readiness & Repository
+Status baseline: planned-production
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] RTO/RPO alvo registrado.
+- [ ] Restore executado e evidência anexada.
+
+Source: docs/canonical/v1/delivery/STORIES_MASTER.md","story,p0,runtime",Production Foundation
+V1-ST-111 SBOM + license + dependency + secret/security scans,"Story: V1-ST-111
+Epic: EPIC-17 Production Readiness & Repository
+Status baseline: planned-production
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] Scan gera artefato rastreável.
+- [ ] Achados críticos/altos são resolvidos ou aceitos formalmente.
+
+Source: docs/canonical/v1/delivery/STORIES_MASTER.md","story,p0,runtime",Production Foundation
+V1-ST-112 Observabilidade e correlation IDs ponta a ponta,"Story: V1-ST-112
+Epic: EPIC-17 Production Readiness & Repository
+Status baseline: planned-production
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/STORIES_MASTER.md","story,p0,runtime",Production Foundation
+V1-ST-113 Configurar dev/staging/prod e promoção controlada,"Story: V1-ST-113
+Epic: EPIC-17 Production Readiness & Repository
+Status baseline: planned-production
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/STORIES_MASTER.md","story,p0,runtime",Production Foundation
+V1-ST-114 Aprovar e ativar versão jurídica de Data Submission Attestation,"Story: V1-ST-114
+Epic: EPIC-18 Activation Decisions
+Status baseline: planned-production
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] State machine inválida falha fechado.
+- [ ] Evidência/outcome respeitam idempotência e auditabilidade.
+- [ ] Sem attestation ativa/válida o fluxo falha fechado.
+- [ ] Retenção, scan e acesso seguem governança aprovada.
+
+Source: docs/canonical/v1/delivery/STORIES_MASTER.md","story,p0,runtime",Production Foundation
+V1-ST-115 Implementar pipeline seguro de upload binário,"Story: V1-ST-115
+Epic: EPIC-18 Activation Decisions
+Status baseline: planned-production
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] Sem attestation ativa/válida o fluxo falha fechado.
+- [ ] Retenção, scan e acesso seguem governança aprovada.
+
+Source: docs/canonical/v1/delivery/STORIES_MASTER.md","story,p0,runtime",Production Foundation
+V1-ST-116 Fechar metodologia de qualification e thresholds,"Story: V1-ST-116
+Epic: EPIC-18 Activation Decisions
+Status baseline: planned-production
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] Plan tier não altera ranking.
+- [ ] Policy/threshold ausente não exibe provider.
+
+Source: docs/canonical/v1/delivery/STORIES_MASTER.md","story,p0,runtime",Production Foundation
+V1-ST-117 Fechar provider-plan eligibility,"Story: V1-ST-117
+Epic: EPIC-18 Activation Decisions
+Status baseline: planned-production
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] Plan tier não altera ranking.
+- [ ] Policy/threshold ausente não exibe provider.
+
+Source: docs/canonical/v1/delivery/STORIES_MASTER.md","story,p0,runtime",Production Foundation
+V1-ST-118 Calibrar confidence engine com empresas piloto,"Story: V1-ST-118
+Epic: EPIC-18 Activation Decisions
+Status baseline: planned-production
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/STORIES_MASTER.md","story,p1,runtime",Production Foundation
+V1-ST-119 Calibrar applicability setorial/operating traits,"Story: V1-ST-119
+Epic: EPIC-18 Activation Decisions
+Status baseline: planned-production
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/STORIES_MASTER.md","story,p1,runtime",Production Foundation
+V1-ST-120 Executar spike Minimal vs Pydantic AI Slim,"Story: V1-ST-120
+Epic: EPIC-18 Activation Decisions
+Status baseline: planned-production
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] Sem credencial de banco no agente.
+- [ ] Tool allowlist, budget, timeout e evals estão evidenciados.
+
+Source: docs/canonical/v1/delivery/STORIES_MASTER.md","story,p1,runtime",Production Foundation
+V1-ST-121 Migrar superfícies restantes para Precision Light V2,"Story: V1-ST-121
+Epic: EPIC-18 Activation Decisions
+Status baseline: planned-production
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] Desktop/tablet/mobile verificados.
+- [ ] Keyboard/focus/WCAG 2.2 AA validados.
+
+Source: docs/canonical/v1/delivery/STORIES_MASTER.md","story,p1,runtime",Production Foundation
+V1-ST-122 Production Readiness Review e release candidate,"Story: V1-ST-122
+Epic: EPIC-17 Production Readiness & Repository
+Status baseline: planned-production
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+
+Source: docs/canonical/v1/delivery/STORIES_MASTER.md","story,p0,runtime",Production Foundation
+V1-ST-123 Piloto controlado com rollout/rollback,"Story: V1-ST-123
+Epic: EPIC-17 Production Readiness & Repository
+Status baseline: planned-production
+
+Acceptance criteria:
+- [ ] Contrato/decisão canônica permanece consistente.
+- [ ] Testes proporcionais ao risco são definidos e executados quando o ambiente permitir.
+- [ ] Nenhum dado fake é introduzido em superfície de produção.
+- [ ] Documentação/traceabilidade são atualizadas.
+- [ ] RTO/RPO alvo registrado.
+- [ ] Restore executado e evidência anexada.
+
+Source: docs/canonical/v1/delivery/STORIES_MASTER.md","story,p0,runtime",Production Foundation

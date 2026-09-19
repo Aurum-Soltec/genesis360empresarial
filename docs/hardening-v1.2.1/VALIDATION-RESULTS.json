@@ -1,0 +1,163 @@
+{
+  "candidate": "1.2.1-rc.1",
+  "asOf": "2026-09-10",
+  "sourceArchiveSha256": "3ba66ee4e3720f57afeee0c018967f54f4f03a2b29b3cc9ffb6d0ad97253d1ed",
+  "environment": {
+    "nodeExecuted": "22.16.0",
+    "typescriptExecuted": "5.8.3",
+    "nodeTarget": "24.21.0",
+    "typescriptTarget": "6.0.3",
+    "networkPackageAccess": false,
+    "dockerAvailable": false,
+    "postgresAvailable": false,
+    "targetDependenciesInstalled": false
+  },
+  "executedNativeTests": {
+    "tests": 34,
+    "passed": 34,
+    "failed": 0,
+    "propertyCombinationsWithinOneTest": 625,
+    "httpIntegration": false
+  },
+  "checks": [
+    {
+      "id": "domain-native",
+      "command": "node --test tests/hardening-native/core.test.cjs",
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "status": "PASS",
+      "scope": "actual deterministic code and Node Request/body guards; not HTTP integration",
+      "log": "domain-native.log"
+    },
+    {
+      "id": "domain-types",
+      "command": "node scripts/typecheck-domain.mjs",
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "status": "PASS",
+      "scope": "semantic check of 10 selected pure roots plus imports; TypeScript global, not target full project",
+      "log": "domain-types.log"
+    },
+    {
+      "id": "typescript-syntax",
+      "command": "node scripts/check-typescript-syntax.cjs",
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "status": "PASS",
+      "scope": "syntax/transpile only",
+      "log": "typescript-syntax.log"
+    },
+    {
+      "id": "public-package",
+      "command": "node scripts/check-public-package.mjs",
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "status": "PASS",
+      "scope": "denylist and narrow credential heuristics",
+      "log": "public-package.log"
+    },
+    {
+      "id": "structure",
+      "command": "node scripts/verify-work-package.mjs",
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "status": "PASS",
+      "scope": "file presence",
+      "log": "structure.log"
+    },
+    {
+      "id": "openapi-paths",
+      "command": "node scripts/check-openapi.mjs",
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "status": "PASS",
+      "scope": "route path coverage only",
+      "log": "openapi-paths.log"
+    },
+    {
+      "id": "design-tokens",
+      "command": "node scripts/check-design-system.mjs",
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "status": "PASS",
+      "scope": "static token checks, not browser/WCAG audit",
+      "log": "design-tokens.log"
+    },
+    {
+      "id": "migration-static",
+      "command": "node scripts/check-migrations.mjs",
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "status": "PASS",
+      "scope": "text checks only; no SQL execution",
+      "log": "migration-static.log"
+    },
+    {
+      "id": "security-static",
+      "command": "node scripts/check-security-contracts.mjs",
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "status": "PASS",
+      "scope": "legacy security token/file checks only",
+      "log": "security-static.log"
+    },
+    {
+      "id": "trust-boundaries-static",
+      "command": "node scripts/check-trust-boundaries.mjs",
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "status": "PASS",
+      "scope": "source boundary checks only",
+      "log": "trust-boundaries-static.log"
+    },
+    {
+      "id": "candidate-integrity",
+      "command": "node scripts/check-hardening-integrity.mjs",
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "status": "PASS",
+      "scope": "reviewable before/after hashes, not approval",
+      "log": "candidate-integrity.log"
+    },
+    {
+      "id": "legacy-integrity-negative",
+      "command": "node scripts/check-wave8-backend-integrity.mjs",
+      "exitCode": 1,
+      "expectedExitCode": 1,
+      "status": "EXPECTED_NEGATIVE",
+      "scope": "expected failure: audited code was intentionally changed",
+      "log": "legacy-integrity-negative.log"
+    },
+    {
+      "id": "dependency-lock-gate",
+      "command": "node scripts/check-lockfile.mjs",
+      "exitCode": 1,
+      "expectedExitCode": 1,
+      "status": "EXPECTED_BLOCK",
+      "scope": "expected block: new dependency resolution not fabricated",
+      "log": "dependency-lock-gate.log"
+    }
+  ],
+  "preparedButNotExecuted": {
+    "vitest": "12 TypeScript test files including 10 new strict-input contract tests; actual suite not run",
+    "sql": "26 assertions in new pgTAP file plus existing database suite; no database execution",
+    "fullTypecheck": true,
+    "nextBuild": true,
+    "httpAuthenticated": true,
+    "browserE2E": true,
+    "load": true,
+    "restore": true,
+    "concurrentDatabaseSessions": true,
+    "dependencyAudit": true,
+    "productionDeployment": true
+  },
+  "additionalReviews": {
+    "jsonYamlTomlParse": "PASS: structure parse only",
+    "twelveOriginalMigrationsUnchanged": true,
+    "publicRestrictedSourcesRemoved": 2,
+    "originalCachesRemoved": 5,
+    "mutatingRouteFiles": 15,
+    "reviewableCodeConfigDeltas": 66
+  },
+  "releaseDecision": "BLOCKED: dependency resolution, integrated quality/database and operational gates incomplete"
+}

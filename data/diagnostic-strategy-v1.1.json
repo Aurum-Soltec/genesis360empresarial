@@ -1,0 +1,169 @@
+{
+  "version": "1.1",
+  "masterVersion": "3.0",
+  "principles": [
+    "Question count is not a success metric.",
+    "Growth Score uses a stable comparable anchor set.",
+    "Adaptive questions improve context, confidence, cause, evidence and risk without silently changing the score denominator.",
+    "Sector affects priority; hard applicability prefers confirmed operating traits.",
+    "Unknown is not low maturity. Not applicable leaves the denominator."
+  ],
+  "stages": [
+    {
+      "code": "DIRECTION",
+      "name": "Direção",
+      "order": 1,
+      "dimensions": [
+        "EST",
+        "INO"
+      ]
+    },
+    {
+      "code": "MARKET_REVENUE",
+      "name": "Mercado & Receita",
+      "order": 2,
+      "dimensions": [
+        "MKT",
+        "VEN"
+      ]
+    },
+    {
+      "code": "CUSTOMER_OPERATIONS",
+      "name": "Cliente & Operação",
+      "order": 3,
+      "dimensions": [
+        "CLI",
+        "OPE"
+      ]
+    },
+    {
+      "code": "FINANCE_TAX",
+      "name": "Finanças & Fiscal",
+      "order": 4,
+      "dimensions": [
+        "FIN",
+        "TAX"
+      ]
+    },
+    {
+      "code": "PEOPLE_TECH",
+      "name": "Pessoas & Tecnologia",
+      "order": 5,
+      "dimensions": [
+        "PES",
+        "TEC"
+      ]
+    },
+    {
+      "code": "GOVERNANCE_RISK",
+      "name": "Governança & Risco",
+      "order": 6,
+      "dimensions": [
+        "JUR",
+        "RSC"
+      ]
+    }
+  ],
+  "coreScoreQuestionIds": [
+    "EST-001",
+    "EST-002",
+    "FIN-001",
+    "FIN-002",
+    "VEN-001",
+    "VEN-002",
+    "MKT-001",
+    "MKT-002",
+    "CLI-001",
+    "CLI-002",
+    "OPE-001",
+    "OPE-002",
+    "PES-001",
+    "PES-002",
+    "TEC-001",
+    "TEC-002",
+    "JUR-001",
+    "JUR-002",
+    "INO-001",
+    "INO-002",
+    "RSC-001",
+    "RSC-002",
+    "TAX-003",
+    "TAX-004"
+  ],
+  "starterContextQuestionIds": [
+    "TAX-001",
+    "TAX-002",
+    "EST-008",
+    "VEN-003",
+    "OPE-004",
+    "TEC-006",
+    "RSC-003"
+  ],
+  "starterQuestionIds": [
+    "EST-001",
+    "EST-002",
+    "EST-008",
+    "INO-001",
+    "INO-002",
+    "VEN-001",
+    "VEN-002",
+    "VEN-003",
+    "MKT-001",
+    "MKT-002",
+    "CLI-001",
+    "CLI-002",
+    "OPE-001",
+    "OPE-002",
+    "OPE-004",
+    "FIN-001",
+    "FIN-002",
+    "TAX-001",
+    "TAX-002",
+    "TAX-003",
+    "TAX-004",
+    "PES-001",
+    "PES-002",
+    "TEC-001",
+    "TEC-002",
+    "TEC-006",
+    "JUR-001",
+    "JUR-002",
+    "RSC-001",
+    "RSC-002",
+    "RSC-003"
+  ],
+  "essential": {
+    "starterCount": 31,
+    "adaptiveMax": 11,
+    "typicalRange": [
+      31,
+      42
+    ]
+  },
+  "full": {
+    "starterCount": 31,
+    "adaptiveMax": 29,
+    "typicalRange": [
+      31,
+      60
+    ]
+  },
+  "adaptiveTriggers": {
+    "oneFollowupWhen": {
+      "dimensionScoreAtOrBelow": 0.75,
+      "dimensionConfidenceBelow": 0.72,
+      "hasUnknownOrDeferred": true
+    },
+    "secondFollowupWhen": {
+      "dimensionScoreAtOrBelow": 0.5,
+      "dimensionConfidenceBelow": 0.55
+    }
+  },
+  "confidenceWeights": {
+    "criticalCoverage": 0.35,
+    "informationCompleteness": 0.25,
+    "evidenceProvenance": 0.2,
+    "consistency": 0.1,
+    "freshness": 0.1
+  }
+}

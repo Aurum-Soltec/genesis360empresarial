@@ -1,0 +1,55 @@
+{
+  "candidate": "1.2.1-rc.2",
+  "executedAt": "2026-09-19",
+  "scope": "internal_individual_core",
+  "status": "production_scale_foundation_local_verified_production_blocked",
+  "runtime": {
+    "node": "24.21.0",
+    "pnpm": "10.32.1",
+    "next": "16.3.3"
+  },
+  "p0": {
+    "identified": 10,
+    "remediated": 10,
+    "verified": 10
+  },
+  "gates": {
+    "lock": "pass",
+    "workPackage": "pass",
+    "openapiRoutes": 22,
+    "design": "pass",
+    "integrityOriginalFiles": 53,
+    "integrityRecordedChanges": 153,
+    "security": "pass",
+    "trustBoundaries": "pass",
+    "migrations": 23,
+    "lintErrors": 0,
+    "lintWarnings": 0,
+    "typecheck": "pass",
+    "nativeTests": { "passed": 34, "failed": 0 },
+    "vitest": { "filesPassed": 16, "passed": 53, "failed": 0 },
+    "adversarial": { "passed": 31, "failed": 0 },
+    "pgtap": { "filesPassed": 13, "passed": 95, "failed": 0 },
+    "browserE2E": { "passed": 10, "failed": 0, "engine": "installed Chrome via playwright-core" },
+    "build": { "status": "pass", "generatedPages": 38 },
+    "restore": { "status": "pass-local", "seconds": 2.062, "integrity": true },
+    "capacity": { "status": "pass-database-workload-local", "tenants": 2000, "p99Ms": 5.711, "errors": 0 },
+    "publicScanner": { "nestedEnvBlocked": true, "cleanPackagePassed": true },
+    "dependencyAudit": {
+      "entries": 559,
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0
+    }
+  },
+  "productionGate": "blocked_pending_remote_ci_hosted_staging_external_observability_managed_restore_and_end_to_end_load",
+  "disabledCapabilities": [
+    "ecosystem",
+    "qualified_network",
+    "real_contact",
+    "binary_upload",
+    "agentic"
+  ]
+}

@@ -1,0 +1,1 @@
+{"environment":"production","dataClass":"customer","separateSupabaseProject":true,"featureDefaults":{"agentic":false,"dataUpload":false,"ecosystem":false,"qualificationNetwork":false,"realContact":false},"workers":2,"observability":"required","backup":"managed-daily-minimum","promotionSource":"staging-approved-immutable-artifact"}

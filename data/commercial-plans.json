@@ -1,0 +1,35 @@
+{
+  "version": "commercial-v1.2.1",
+  "currency": "BRL",
+  "billingInterval": "month",
+  "priceDecision": {
+    "status": "approved",
+    "source": "Project owner in this conversation",
+    "recordedOn": "2026-09-10"
+  },
+  "contractTermsSource": "V1.2 plan_catalog / retained; legal launch review pending",
+  "plans": [
+    {
+      "code": "FREE",
+      "name": "Genesis Free",
+      "monthlyPriceCents": 0,
+      "contractMonths": 0
+    },
+    {
+      "code": "START",
+      "name": "Genesis Start",
+      "monthlyPriceCents": 9900,
+      "contractMonths": 12
+    },
+    {
+      "code": "PRO",
+      "name": "Genesis Pro",
+      "monthlyPriceCents": 29700,
+      "contractMonths": 12
+    }
+  ],
+  "humanAccompanimentIncluded": false,
+  "checkoutEnabled": false,
+  "providerNetworkEligibilityApproved": false,
+  "aiQuotasApproved": false
+}

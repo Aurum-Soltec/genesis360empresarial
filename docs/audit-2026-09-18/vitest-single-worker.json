@@ -1,0 +1,9 @@
+{
+  "id": "vitest-single-worker",
+  "commandMode": "threads, maxWorkers=1, fileParallelism=false",
+  "exitCode": 1,
+  "seconds": 39.75,
+  "testFiles": { "passed": 11, "failed": 1, "total": 12 },
+  "tests": { "passed": 36, "failed": 1, "total": 37 },
+  "failure": "lib/feature-flags.test.ts expected the old flag object without dataUpload"
+}

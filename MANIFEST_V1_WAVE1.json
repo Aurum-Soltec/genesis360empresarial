@@ -1,0 +1,17 @@
+{
+  "baseline": "Genesis 360 V1",
+  "date": "2026-08-18",
+  "wave": "Wave 1A Foundation + Business Passport",
+  "status": "implementation-with-runtime-gates-pending",
+  "new_or_material_files": [
+    "proxy.ts",
+    "supabase/migrations/0003_v1_business_passport.sql",
+    "lib/business-passport.ts",
+    "lib/business-passport.test.ts",
+    "app/api/passport/facts/route.ts",
+    "app/api/passport/timeline/route.ts",
+    "app/api/consents/route.ts",
+    "app/passaporte/page.tsx",
+    "docs/v1/WAVE1_FOUNDATION_PASSPORT_IMPLEMENTATION_REPORT.md"
+  ]
+}

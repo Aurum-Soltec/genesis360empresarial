@@ -1,0 +1,926 @@
+[
+  {
+    "id": "ACT-001",
+    "title": "Empresário PME",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Busca clareza, prioridade, orientação prática, evolução e acesso a soluções adequadas.",
+    "status": "canonical"
+  },
+  {
+    "id": "ACT-002",
+    "title": "Empresa prestadora",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Pode ser simultaneamente usuária do Genesis e fornecedora de capacidades qualificadas.",
+    "status": "canonical"
+  },
+  {
+    "id": "ACT-003",
+    "title": "Ecossistema",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "AECG, BNI, NTW, associações, grupos e redes empresariais que distribuem o Genesis e recebem inteligência agregada autorizada.",
+    "status": "canonical"
+  },
+  {
+    "id": "ACT-004",
+    "title": "Operação Genesis",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Administra produto, regras, qualificações, planos, conteúdo, incidentes, auditoria e qualidade.",
+    "status": "canonical"
+  },
+  {
+    "id": "ACT-005",
+    "title": "Especialista externo",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Executa serviço humano contratado separadamente. Não faz parte da assinatura SaaS. ------------------------------------------------------------------------",
+    "status": "canonical"
+  },
+  {
+    "id": "DEC-001",
+    "title": "Nenhum plano inclui acompanhamento humano",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Free, Start e Pro são produtos digitais. Consultoria, implantação, BPO, tecnologia, jurídico, tributário, mentoria, reunião executiva ou qualquer intervenção humana são serviços separados. **Regra:** upgrade compra mais inteligência, automação, contexto e capacidade analítica; nunca horas humanas embutidas.",
+    "status": "canonical"
+  },
+  {
+    "id": "DEC-002",
+    "title": "Execução é separada da inteligência",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "O Genesis identifica necessidade, orienta, estrutura missão e pode apresentar empresas qualificadas. A execução profissional ocorre fora do SaaS e pode ser prestada por PGTI, BPO Finance ou terceiros elegíveis.",
+    "status": "canonical"
+  },
+  {
+    "id": "DEC-003",
+    "title": "Neutralidade do diagnóstico",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "O diagnóstico não pode favorecer PGTI, BPO Finance, patrocinador, parceiro ou empresa do grupo. Interesse comercial nunca altera dor, score, causa ou solução necessária.",
+    "status": "canonical"
+  },
+  {
+    "id": "DEC-004",
+    "title": "Plano habilita elegibilidade, não compra ranking",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Uma empresa precisa estar em plano elegível para aparecer na área de soluções qualificadas. O plano não deve ser o principal fator de ordenação.",
+    "status": "canonical"
+  },
+  {
+    "id": "DEC-005",
+    "title": "V1 é production-ready",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "A V1 será validada com usuários reais e deverá atender gates de segurança, privacidade, multi-tenancy, observabilidade, backup/restore, testes, CI/CD, rollback, custos e operação.",
+    "status": "canonical"
+  },
+  {
+    "id": "DEC-006",
+    "title": "Dados antes de \"Big Data\"",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Nenhuma inferência agregada será tratada como verdade sem qualidade, proveniência, volume e metodologia suficientes. ------------------------------------------------------------------------",
+    "status": "canonical"
+  },
+  {
+    "id": "GATE-V1-01",
+    "title": "Produto",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Fluxo real: onboarding → diagnóstico → score → dor → GDS → missão → solução necessária → empresa elegível → outcome.",
+    "status": "canonical"
+  },
+  {
+    "id": "GATE-V1-02",
+    "title": "Dados",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Passport/Timeline persistentes, versionados, com proveniência e regras de acesso.",
+    "status": "canonical"
+  },
+  {
+    "id": "GATE-V1-03",
+    "title": "Tenant",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Testes cross-tenant negativos aprovados.",
+    "status": "canonical"
+  },
+  {
+    "id": "GATE-V1-04",
+    "title": "Segurança",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Sem P0/P1 crítico aberto; auth, RLS, secrets, dependency/license scan e threat model aprovados.",
+    "status": "canonical"
+  },
+  {
+    "id": "GATE-V1-05",
+    "title": "IA",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Golden set + evals adversariais; tool authorization; budgets; kill switch; fallback.",
+    "status": "canonical"
+  },
+  {
+    "id": "GATE-V1-06",
+    "title": "Operação",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Observabilidade, backup/restore testado, rollback, runbooks e owners.",
+    "status": "canonical"
+  },
+  {
+    "id": "GATE-V1-07",
+    "title": "Legal/privacidade",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Termos, política, consentimentos/finalidades, DPA quando aplicável e fluxos de titular aprovados.",
+    "status": "canonical"
+  },
+  {
+    "id": "GATE-V1-08",
+    "title": "FinOps",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Custo/run, custo/empresa, budgets e alertas definidos.",
+    "status": "canonical"
+  },
+  {
+    "id": "GATE-V1-09",
+    "title": "Evidência",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "CI verde + smoke/E2E dos fluxos críticos + evidência de deploy. ------------------------------------------------------------------------",
+    "status": "canonical"
+  },
+  {
+    "id": "NSM-001",
+    "title": "North Star",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "**Empresas que completaram um ciclo de valor no período:** diagnóstico atualizado + prioridade/decisão registrada + missão concluída + outcome registrado.",
+    "status": "canonical"
+  },
+  {
+    "id": "OBJ-001",
+    "title": "Clareza",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Permitir que uma PME compreenda sua maturidade, principais dores, causas prováveis e prioridades.",
+    "status": "canonical"
+  },
+  {
+    "id": "OBJ-002",
+    "title": "Execução",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Converter recomendações em missões estruturadas, mensuráveis e acompanháveis.",
+    "status": "canonical"
+  },
+  {
+    "id": "OBJ-003",
+    "title": "Inteligência contínua",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Manter memória empresarial temporal para que recomendações evoluam com a empresa.",
+    "status": "canonical"
+  },
+  {
+    "id": "OBJ-004",
+    "title": "Rede qualificada",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Conectar necessidades detectadas a empresas elegíveis e qualificadas para entregar a categoria de solução necessária.",
+    "status": "canonical"
+  },
+  {
+    "id": "OBJ-005",
+    "title": "Big Data empresarial",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Construir, com governança, consentimento, proveniência e qualidade, uma base longitudinal que relacione perfil, problema, decisão, ação, solução, fornecedor e resultado.",
+    "status": "canonical"
+  },
+  {
+    "id": "OBJ-006",
+    "title": "Escala",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Operar os planos sem acompanhamento humano incluído, preservando margem e capacidade de atender milhares de PMEs. ------------------------------------------------------------------------",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-AI-001",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Orquestrador seleciona especialistas conforme domínio e risco.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-AI-002",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Context assembly usa apenas dados autorizados e necessários.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-AI-003",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Toda tool possui schema, allowlist, autorização, timeout e audit trail.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-AI-004",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Ações de escrita relevantes exigem validação determinística e, quando irreversíveis, confirmação explícita do usuário.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-AI-005",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Budget por plano e por run: tokens, custo, tempo e tool calls.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-AI-006",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Golden set e evals normal/edge/adversarial bloqueiam regressões críticas.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-AI-007",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Fallback para resposta determinística/abstenção quando confiança ou dados forem insuficientes.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-AI-008",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "CTO-Tax, jurídico, capital e outros domínios regulados não executam atos profissionais autonomamente. ------------------------------------------------------------------------",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-DATA-001",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Coletar dados por progressive profiling; não transformar diagnóstico em formulário excessivo.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-DATA-002",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Preservar proveniência, temporalidade, sensibilidade, consentimento e confiança.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-DATA-003",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Separar dados individuais, agregados, anonimizados/pseudonimizados e derivados.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-DATA-004",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Outcome Graph V1 pode ser relacional em PostgreSQL. Graph DB não é requisito.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-DATA-005",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Não declarar causalidade a partir de mera correlação observacional.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-DATA-006",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Benchmark só é exibido quando houver amostra, qualidade e regras de privacidade suficientes. ------------------------------------------------------------------------",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-DGN-101",
+    "title": "Biblioteca, não formulário inflado",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Wave 7 approved V1.1 requirement.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-DGN-102",
+    "title": "Núcleo comparável",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Wave 7 approved V1.1 requirement.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-DGN-103",
+    "title": "Caminho inicial de alto rendimento",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Wave 7 approved V1.1 requirement.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-DGN-104",
+    "title": "Aprofundamento adaptativo",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Wave 7 approved V1.1 requirement.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-DGN-105",
+    "title": "Setor e aplicabilidade",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Wave 7 approved V1.1 requirement.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-DGN-106",
+    "title": "Semântica de respostas",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Wave 7 approved V1.1 requirement.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-DGN-107",
+    "title": "Progresso",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Wave 7 approved V1.1 requirement.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-DGN-108",
+    "title": "Termômetro de confiabilidade",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Wave 7 approved V1.1 requirement.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-DGN-109",
+    "title": "Qualidade sem premiar verbosidade",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Wave 7 approved V1.1 requirement.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-DGN-110",
+    "title": "Recomendações de confiança",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Wave 7 approved V1.1 requirement.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-DIAG-001",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Diagnóstico versionado, adaptativo e progressivo.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-DIAG-002",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Cobrir no mínimo: estratégia/modelo, comercial/marketing, financeiro, operações/processos, pessoas, tecnologia/dados/IA e governança/riscos.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-DIAG-003",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Não exigir todas as perguntas para todos os perfis; aplicar branching por porte, setor, estágio e respostas anteriores.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-DIAG-004",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Score principal determinístico e versionado.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-DIAG-005",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "IA pode interpretar texto, sintetizar evidências e levantar hipóteses, mas não substituir cálculo determinístico nem autorização.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-DIAG-006",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Resultado deve apresentar score, cobertura, confiança, Top dores, evidências, gaps, causas prováveis e prioridades.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-DIAG-007",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Toda conclusão deve indicar proveniência suficiente para auditoria interna. ------------------------------------------------------------------------",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-ECO-001",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Permitir associação de empresas a um ou mais ecossistemas autorizados.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-ECO-002",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Permitir branding/configuração institucional sem fork do core.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-ECO-003",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Dashboard institucional somente com dados agregados/anonimizados ou outra base jurídica explicitamente aprovada.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-ECO-004",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Exibir distribuição de dores, maturidade, evolução, categorias de demanda, adoção e outcomes sem revelar dados individuais indevidos.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-ECO-005",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Permitir priorização de empresas qualificadas do próprio ecossistema apenas como filtro/contexto legítimo, nunca falsificando fit ou score. ------------------------------------------------------------------------",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-GDS-001",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Recomendação relevante deve seguir estrutura: problema → evidências → lacunas → causa → hipóteses → alternativas → recomendação → impacto → riscos → confiança → validação → missão → métrica.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-GDS-002",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Distinguir fato, inferência, hipótese e recomendação.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-GDS-003",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "A recomendação de solução não seleciona automaticamente um fornecedor. ------------------------------------------------------------------------",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-GOV-111",
+    "title": "Data Submission Attestation",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Wave 7 approved V1.1 requirement.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-GOV-112",
+    "title": "Aviso explícito de conteúdo não autorizado",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Wave 7 approved V1.1 requirement.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-GOV-113",
+    "title": "Auditoria da declaração",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Wave 7 approved V1.1 requirement.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-GOV-114",
+    "title": "Responsabilidade independente da GENESIS",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Wave 7 approved V1.1 requirement.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-GOV-115",
+    "title": "Upload fail-closed",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Wave 7 approved V1.1 requirement.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-MIS-001",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Missões derivam prioritariamente de uma biblioteca versionada, não de geração livre do LLM.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-MIS-002",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Template de missão contém trigger, pré-requisitos, objetivo, passos, critério de conclusão, evidência, KPI esperado, risco, esforço e aplicabilidade.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-MIS-003",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "IA pode personalizar texto e sequência dentro dos limites do template.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-MIS-004",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Conclusão pode exigir evidência proporcional ao risco.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-MIS-005",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Após janela apropriada, solicitar outcome e, quando possível, indicador antes/depois.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-MIS-006",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Gamificação não premia clique ou consumo de IA; premia completude, execução, evidência, melhoria e outcomes.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-OSS-001",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Dependência estrutural exige due diligence antes de adoção.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-OSS-002",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Preferência: MIT, Apache-2.0, BSD-2-Clause, BSD-3-Clause e equivalentes aprovadas.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-OSS-003",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "GPL/AGPL e copyleft forte: rejeitados por padrão para incorporação no core, salvo exceção formal jurídica + ADR.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-OSS-004",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Verificar licença do componente e dependências transitivas relevantes, NOTICE/attribution, saúde, CVEs, releases, manutenção e exit strategy.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-OSS-005",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Gerar inventário/SBOM e executar scan de licenças no CI.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-OSS-006",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Nenhum README substitui o arquivo LICENSE e a due diligence. ------------------------------------------------------------------------",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-PASS-001",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Armazenar identidade, setor, porte, região, modelo de negócio, maturidade, indicadores, processos, tecnologia, riscos, objetivos e capabilities.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-PASS-002",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Cada fato relevante deve suportar: valor, fonte, data, confiança, sensibilidade e escopo de uso.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-PASS-003",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Distinguir no mínimo: `declared`, `inferred`, `verified`, `imported`.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-PASS-004",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Exibir completude e freshness do Passport.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-PASS-005",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Não apagar silenciosamente estados anteriores; mudanças relevantes alimentam Timeline.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-PASS-006",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Permitir que o Passport seja fonte para diagnóstico, agentes, missões, matching, qualificação e benchmark. ------------------------------------------------------------------------",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-QUAL-001",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Modelar taxonomia versionada de `pain → required_capability → service/product capability`.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-QUAL-002",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Empresa só pode aparecer se: - qualificação ativa; - score mínimo da categoria atendido; - plano elegível ativo; - capability compatível; - compliance obrigatório válido; - capacidade/status de atendimento compatível.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-QUAL-003",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Ranking deve priorizar fit, qualificação, maturidade/segurança, capacidade, reputação/outcomes e contexto.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-QUAL-004",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Plano pode habilitar participação, mas não comprar posição artificial.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-QUAL-005",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Registrar explicação do match e versão da regra.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-QUAL-006",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Registrar impression → interesse → contato consentido → oportunidade → contratação declarada → outcome, respeitando privacidade.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-QUAL-007",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "PGTI e BPO Finance obedecem exatamente às mesmas regras de elegibilidade e ranking. ------------------------------------------------------------------------",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-UX-001",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Mobile-first para diagnóstico e acompanhamento.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-UX-002",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Estados loading, empty, validation, permission, failure, recovery e success em jornadas críticas.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-UX-003",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Baseline web: WCAG 2.2 AA.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-UX-004",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Explicar por que uma dor, missão ou empresa qualificada apareceu.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-UX-005",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Distinguir sugestão de IA de ação executada.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-UX-006",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Passport deve mostrar completude, freshness e evolução sem criar falsa precisão. ------------------------------------------------------------------------",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-UX-118",
+    "title": "Executive-first Home",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Wave 8 approved Genesis Precision Light requirement.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-UX-119",
+    "title": "Macro + context navigation",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Wave 8 approved Genesis Precision Light requirement.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-UX-120",
+    "title": "Active location",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Wave 8 approved Genesis Precision Light requirement.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-UX-121",
+    "title": "Functional mobile navigation",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Wave 8 approved Genesis Precision Light requirement.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-UX-122",
+    "title": "Focused diagnostic",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Wave 8 approved Genesis Precision Light requirement.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-UX-123",
+    "title": "Interpretation-first Result",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Wave 8 approved Genesis Precision Light requirement.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-UX-124",
+    "title": "Surface restraint",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Wave 8 approved Genesis Precision Light requirement.",
+    "status": "canonical"
+  },
+  {
+    "id": "RF-UX-125",
+    "title": "Visual language",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Wave 8 approved Genesis Precision Light requirement.",
+    "status": "canonical"
+  },
+  {
+    "id": "RNF-COST-001",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Nenhum plano será comercializado como \"IA ilimitada\". Cada plano terá budgets internos de tokens, modelos, tool calls, contexto, frequência e custo. ------------------------------------------------------------------------",
+    "status": "canonical"
+  },
+  {
+    "id": "RNF-DGN-116",
+    "title": "Determinismo",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Wave 7 approved V1.1 requirement.",
+    "status": "canonical"
+  },
+  {
+    "id": "RNF-GOV-117",
+    "title": "Minimização",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Wave 7 approved V1.1 requirement.",
+    "status": "canonical"
+  },
+  {
+    "id": "RNF-REL-001",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Build, lint, typecheck, unit/integration/contract/security tests no CI.",
+    "status": "canonical"
+  },
+  {
+    "id": "RNF-REL-002",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Backups automáticos e restore testado antes de produção.",
+    "status": "canonical"
+  },
+  {
+    "id": "RNF-REL-003",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Observabilidade com logs estruturados, métricas, traces/correlation IDs e eventos de produto.",
+    "status": "canonical"
+  },
+  {
+    "id": "RNF-REL-004",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Rate limits, timeouts, retry policy e circuit/fallback para provedores externos/IA.",
+    "status": "canonical"
+  },
+  {
+    "id": "RNF-REL-005",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Feature flags e kill switch para agentic, matching e integrações de maior risco.",
+    "status": "canonical"
+  },
+  {
+    "id": "RNF-REL-006",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Runbooks, rollback e owner por fluxo crítico.",
+    "status": "canonical"
+  },
+  {
+    "id": "RNF-REL-007",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "SLOs iniciais serão definidos após workload model; não inventar \"nines\" antes de medir. ------------------------------------------------------------------------",
+    "status": "canonical"
+  },
+  {
+    "id": "RNF-SEC-001",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Deny-by-default e least privilege.",
+    "status": "canonical"
+  },
+  {
+    "id": "RNF-SEC-002",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "`tenant_id` em todo recurso tenant-owned e isolamento comprovado por testes cross-tenant.",
+    "status": "canonical"
+  },
+  {
+    "id": "RNF-SEC-003",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Tenant ativo deve ser explícito; não inferir silenciosamente \"primeira membership\".",
+    "status": "canonical"
+  },
+  {
+    "id": "RNF-SEC-004",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "RLS em PostgreSQL para dados tenant-owned.",
+    "status": "canonical"
+  },
+  {
+    "id": "RNF-SEC-005",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Admin/break-glass temporário, justificado e auditado.",
+    "status": "canonical"
+  },
+  {
+    "id": "RNF-SEC-006",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Secrets fora de código/prompts; secret scan no CI.",
+    "status": "canonical"
+  },
+  {
+    "id": "RNF-SEC-007",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Consentimento versionado por finalidade e revogável.",
+    "status": "canonical"
+  },
+  {
+    "id": "RNF-SEC-008",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Dados usados para ecossistema, matching, benchmark ou IA respeitam finalidade e autorização.",
+    "status": "canonical"
+  },
+  {
+    "id": "RNF-SEC-009",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Logs não devem expor PII/secrets; aplicar redaction e limites de cardinalidade.",
+    "status": "canonical"
+  },
+  {
+    "id": "RNF-SEC-010",
+    "title": "",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Threat model inclui cross-tenant leakage, privilege escalation, prompt injection, data poisoning, fraude de qualificação, manipulação de ranking e tool misuse. ------------------------------------------------------------------------",
+    "status": "canonical"
+  },
+  {
+    "id": "RNF-UX-126",
+    "title": "WCAG",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Wave 8 approved Genesis Precision Light requirement.",
+    "status": "canonical"
+  },
+  {
+    "id": "RNF-UX-127",
+    "title": "No unnecessary dependency",
+    "source": "docs/canonical/v1/product/PRD_GENESIS_360_V1_CANONICO.md",
+    "summary": "Wave 8 approved Genesis Precision Light requirement.",
+    "status": "canonical"
+  }
+]

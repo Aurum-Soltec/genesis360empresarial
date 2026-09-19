@@ -1,0 +1,1 @@
+{"environment":"staging","dataClass":"synthetic-or-anonymized","separateSupabaseProject":true,"featureDefaults":{"agentic":false,"dataUpload":false,"ecosystem":false,"qualificationNetwork":false,"realContact":false},"workers":1,"observability":"required","promotionSource":"immutable-ci-artifact"}

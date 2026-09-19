@@ -1,0 +1,384 @@
+[
+  {
+    "epic": "EPIC-01 Foundation & Canonical",
+    "stories": [
+      "V1-ST-001",
+      "V1-ST-002",
+      "V1-ST-003",
+      "V1-ST-004",
+      "V1-ST-005"
+    ],
+    "storyCount": 5,
+    "statusCounts": {
+      "implemented": 2,
+      "implemented-runtime-partial-browser-e2e-pending": 1,
+      "implemented-runtime-verified": 1,
+      "implemented-legal-ux-pending": 1
+    },
+    "priorities": {
+      "P1": 5
+    }
+  },
+  {
+    "epic": "EPIC-02 Business Passport",
+    "stories": [
+      "V1-ST-006",
+      "V1-ST-007",
+      "V1-ST-008",
+      "V1-ST-009"
+    ],
+    "storyCount": 4,
+    "statusCounts": {
+      "implemented": 3,
+      "partial": 1
+    },
+    "priorities": {
+      "P1": 4
+    }
+  },
+  {
+    "epic": "EPIC-03 Diagnostic",
+    "stories": [
+      "V1-ST-010",
+      "V1-ST-011",
+      "V1-ST-012",
+      "V1-ST-013",
+      "V1-ST-014"
+    ],
+    "storyCount": 5,
+    "statusCounts": {
+      "implemented": 3,
+      "partial-methodology-pending": 1,
+      "implemented-foundation": 1
+    },
+    "priorities": {
+      "P1": 5
+    }
+  },
+  {
+    "epic": "EPIC-04 Decision/GDS",
+    "stories": [
+      "V1-ST-015",
+      "V1-ST-016",
+      "V1-ST-017"
+    ],
+    "storyCount": 3,
+    "statusCounts": {
+      "implemented": 2,
+      "implemented-schema": 1
+    },
+    "priorities": {
+      "P1": 3
+    }
+  },
+  {
+    "epic": "EPIC-05 Mission",
+    "stories": [
+      "V1-ST-018",
+      "V1-ST-019",
+      "V1-ST-020",
+      "V1-ST-021",
+      "V1-ST-022"
+    ],
+    "storyCount": 5,
+    "statusCounts": {
+      "partial-library": 1,
+      "implemented": 3,
+      "partial": 1
+    },
+    "priorities": {
+      "P1": 5
+    }
+  },
+  {
+    "epic": "EPIC-06 Qualification",
+    "stories": [
+      "V1-ST-023",
+      "V1-ST-024",
+      "V1-ST-025",
+      "V1-ST-026",
+      "V1-ST-027",
+      "V1-ST-028",
+      "V1-ST-029",
+      "V1-ST-030"
+    ],
+    "storyCount": 8,
+    "statusCounts": {
+      "pending-methodology": 2,
+      "implemented-schema": 1,
+      "implemented-policy-pending": 1,
+      "implemented": 3,
+      "partial-contact-implemented-attribution-pending": 1
+    },
+    "priorities": {
+      "P1": 8
+    }
+  },
+  {
+    "epic": "EPIC-07 Agentic",
+    "stories": [
+      "V1-ST-031",
+      "V1-ST-032",
+      "V1-ST-033",
+      "V1-ST-034",
+      "V1-ST-035",
+      "V1-ST-036"
+    ],
+    "storyCount": 6,
+    "statusCounts": {
+      "spike-scaffolded-not-run": 1,
+      "partial": 1,
+      "pending": 2,
+      "partial-read-tools": 1,
+      "seeded-not-run": 1
+    },
+    "priorities": {
+      "P1": 6
+    }
+  },
+  {
+    "epic": "EPIC-08 Ecosystem",
+    "stories": [
+      "V1-ST-037",
+      "V1-ST-038",
+      "V1-ST-039"
+    ],
+    "storyCount": 3,
+    "statusCounts": {
+      "pending": 3
+    },
+    "priorities": {
+      "P1": 3
+    }
+  },
+  {
+    "epic": "EPIC-09 Trust/Data/Admin",
+    "stories": [
+      "V1-ST-040",
+      "V1-ST-041",
+      "V1-ST-042",
+      "V1-ST-043",
+      "V1-ST-044"
+    ],
+    "storyCount": 5,
+    "statusCounts": {
+      "pending": 2,
+      "partial": 2,
+      "implemented-foundation": 1
+    },
+    "priorities": {
+      "P1": 5
+    }
+  },
+  {
+    "epic": "EPIC-10 Production",
+    "stories": [
+      "V1-ST-045",
+      "V1-ST-046",
+      "V1-ST-047",
+      "V1-ST-048",
+      "V1-ST-049",
+      "V1-ST-050",
+      "V1-ST-051",
+      "V1-ST-052"
+    ],
+    "storyCount": 8,
+    "statusCounts": {
+      "pending": 1,
+      "pending-blocker": 2,
+      "partial": 2,
+      "baseline-existing": 1,
+      "docs-only": 1,
+      "partial-db-e2e-browser-pending": 1
+    },
+    "priorities": {
+      "P1": 8
+    }
+  },
+  {
+    "epic": "EPIC-11 UX Light / Taste",
+    "stories": [
+      "V1-ST-053",
+      "V1-ST-054",
+      "V1-ST-055",
+      "V1-ST-056",
+      "V1-ST-057",
+      "V1-ST-058",
+      "V1-ST-059"
+    ],
+    "storyCount": 7,
+    "statusCounts": {
+      "implemented": 3,
+      "partial": 2,
+      "runtime-pending": 1,
+      "pending": 1
+    },
+    "priorities": {
+      "P0": 5,
+      "P1": 2
+    }
+  },
+  {
+    "epic": "EPIC-12 Product Flow Completion",
+    "stories": [
+      "V1-ST-060",
+      "V1-ST-061",
+      "V1-ST-062",
+      "V1-ST-063",
+      "V1-ST-064"
+    ],
+    "storyCount": 5,
+    "statusCounts": {
+      "implemented": 1,
+      "implemented-taxonomy-pending": 1,
+      "implemented-fail-closed": 1,
+      "implemented-legal-copy-pending": 1,
+      "implemented-timeline-passport-explicit-only": 1
+    },
+    "priorities": {
+      "P0": 5
+    }
+  },
+  {
+    "epic": "EPIC-13 — Foundation Acceleration / Selective OSS",
+    "stories": [
+      "V1-ST-065",
+      "V1-ST-066",
+      "V1-ST-067",
+      "V1-ST-068",
+      "V1-ST-069",
+      "V1-ST-070",
+      "V1-ST-071",
+      "V1-ST-072",
+      "V1-ST-073",
+      "V1-ST-074",
+      "V1-ST-075",
+      "V1-ST-076"
+    ],
+    "storyCount": 12,
+    "statusCounts": {
+      "implemented": 8,
+      "implemented-runtime-verified": 1,
+      "spike-scaffolded-not-run": 1,
+      "implemented-threshold-pending": 1,
+      "implemented-plan-decision-pending": 1
+    },
+    "priorities": {
+      "P0": 4,
+      "P1": 8
+    }
+  },
+  {
+    "epic": "EPIC-14/15 Wave 7",
+    "stories": [
+      "V1-ST-077",
+      "V1-ST-078",
+      "V1-ST-079",
+      "V1-ST-080",
+      "V1-ST-081",
+      "V1-ST-082",
+      "V1-ST-083",
+      "V1-ST-084",
+      "V1-ST-085",
+      "V1-ST-086",
+      "V1-ST-087",
+      "V1-ST-088",
+      "V1-ST-089",
+      "V1-ST-090",
+      "V1-ST-091",
+      "V1-ST-092",
+      "V1-ST-093"
+    ],
+    "storyCount": 17,
+    "statusCounts": {
+      "implemented-by-contract": 10,
+      "implemented-foundation": 2,
+      "calibration-pending": 1,
+      "draft-copy": 2,
+      "p0-blocker": 2
+    },
+    "priorities": {
+      "P1": 15,
+      "P0": 2
+    }
+  },
+  {
+    "epic": "EPIC-16 Genesis Precision Light",
+    "stories": [
+      "V1-ST-094",
+      "V1-ST-095",
+      "V1-ST-096",
+      "V1-ST-097",
+      "V1-ST-098",
+      "V1-ST-099",
+      "V1-ST-100",
+      "V1-ST-101",
+      "V1-ST-102",
+      "V1-ST-103"
+    ],
+    "storyCount": 10,
+    "statusCounts": {
+      "implemented": 6,
+      "implemented-static-verified": 1,
+      "completed-local-critical-flows": 1,
+      "partial-local-baseline-full-suite-pending": 1,
+      "p1-after-canonical-approval": 1
+    },
+    "priorities": {
+      "P1": 9,
+      "P0": 1
+    }
+  },
+  {
+    "epic": "EPIC-17 Production Readiness & Repository",
+    "stories": [
+      "V1-ST-104",
+      "V1-ST-105",
+      "V1-ST-106",
+      "V1-ST-107",
+      "V1-ST-108",
+      "V1-ST-109",
+      "V1-ST-110",
+      "V1-ST-111",
+      "V1-ST-112",
+      "V1-ST-113",
+      "V1-ST-122",
+      "V1-ST-123"
+    ],
+    "storyCount": 12,
+    "statusCounts": {
+      "planned-production": 2,
+      "completed-local-runtime": 5,
+      "completed-local-runtime-staging-pending": 1,
+      "partial-dependency-secret-sbom-license-pending": 1,
+      "implemented-local-external-collector-pending": 1,
+      "implemented-local-remote-ci-pending": 1,
+      "completed-local-review-production-blocked": 1
+    },
+    "priorities": {
+      "P0": 12
+    }
+  },
+  {
+    "epic": "EPIC-18 Activation Decisions",
+    "stories": [
+      "V1-ST-114",
+      "V1-ST-115",
+      "V1-ST-116",
+      "V1-ST-117",
+      "V1-ST-118",
+      "V1-ST-119",
+      "V1-ST-120",
+      "V1-ST-121"
+    ],
+    "storyCount": 8,
+    "statusCounts": {
+      "planned-production": 7,
+      "foundation-implemented-scanner-and-activation-pending": 1
+    },
+    "priorities": {
+      "P0": 4,
+      "P1": 4
+    }
+  }
+]

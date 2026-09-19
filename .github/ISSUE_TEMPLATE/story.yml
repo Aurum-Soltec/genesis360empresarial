@@ -1,0 +1,33 @@
+name: Story
+description: Implementação rastreável do backlog Genesis.
+title: "[STORY] "
+labels: ["story"]
+body:
+  - type: input
+    id: story
+    attributes:
+      label: Story ID
+      placeholder: V1-ST-104
+    validations:
+      required: true
+  - type: input
+    id: epic
+    attributes:
+      label: Epic
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objetivo
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Critérios de aceite
+      placeholder: "- [ ] ..."
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidência esperada

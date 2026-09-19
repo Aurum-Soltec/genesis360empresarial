@@ -1,0 +1,44 @@
+{
+  "wave": "PS-10",
+  "executed_at": "2026-09-19T17:04:55.6426609Z",
+  "dataset": {
+    "outbox_events": 10000,
+    "diagnostics": 10000,
+    "companies": 2000,
+    "audit_events": 20000,
+    "tenants": 2000
+  },
+  "results": [
+    {
+      "tenants": 100,
+      "clients": 5,
+      "samples": 32531,
+      "p50_ms": 0.723,
+      "p95_ms": 1.009,
+      "p99_ms": 1.352,
+      "max_ms": 6.246,
+      "errors": 0
+    },
+    {
+      "tenants": 500,
+      "clients": 15,
+      "samples": 62405,
+      "p50_ms": 1.118,
+      "p95_ms": 1.777,
+      "p99_ms": 2.376,
+      "max_ms": 11.414,
+      "errors": 0
+    },
+    {
+      "tenants": 2000,
+      "clients": 30,
+      "samples": 82596,
+      "p50_ms": 1.666,
+      "p95_ms": 3.18,
+      "p99_ms": 5.711,
+      "max_ms": 32.446,
+      "errors": 0
+    }
+  ],
+  "scope": "PostgreSQL critical read workload on local Docker; excludes WAN, browser, Auth and hosted platform saturation."
+}
