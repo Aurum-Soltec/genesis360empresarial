@@ -641,8 +641,8 @@
     {
       "path": "next.config.ts",
       "beforeSha256": "13c14eaf596f16b598a3d8f6c7b061d2f1aeedf14b5afa6624844c83354b9b4c",
-      "afterSha256": "510d81c9c441c03bace06cc9352294d2067c11b6bc8fbe70cedc19f82cf1b787",
-      "reason": "hardening implementation or executable regression/configuration"
+      "afterSha256": "6baa6a4aa0fc495d9e3fb23ab67defd55a52a8f38d7ad2817678a8eb80672a87",
+      "reason": "HSP-2 hosted security headers: CSP, HSTS, Permissions Policy and cross-origin opener isolation"
     },
     {
       "path": "package.json",
