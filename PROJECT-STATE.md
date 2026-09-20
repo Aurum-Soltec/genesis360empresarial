@@ -1,6 +1,27 @@
 # PROJECT-STATE — Genesis 360 Empresarial
 
-Atualização: **2026-09-19**. Candidato: **V1.2.1 RC2 + Production & Scale Foundation local**.
+Atualização: **2026-09-20**. Candidato: **V1.2.1 RC2 + Production & Scale Foundation em staging hospedado**.
+
+## Hosted Staging & Pilot Readiness — HSP-0 a HSP-4
+
+O candidato foi publicado no GitHub público da organização Aurum-Soltec, protegido
+por pull request e CI obrigatório, e implantado em staging isolado no Railway com
+Supabase hospedado em `sa-east-1`. O artefato funcional ensaiado é identificável
+pelo commit `5e91ce37d5b931eafeb1a598bdfeb62235cb11dc`.
+
+HSP-0 passou. HSP-1 comprovou 23 migrations, 95/95 pgTAP, Auth/tenant switch,
+negação cross-tenant, browser E2E 10/10 e worker contínuo. HSP-2 comprovou headers,
+flags sensíveis desligadas, telemetria do provedor, restore lógico isolado e
+proteções gratuitas do GitHub. O teste HSP-3 de 100 tenants percorreu por 60 minutos
+`HTTP -> Auth -> Tenant Context -> API -> Application Services -> PostgreSQL ->
+Outbox -> Worker -> Observabilidade`, com zero falhas e FAIL do SLO de latência;
+o resultado final está no relatório HSP.
+HSP-1 permanece BLOCKED apenas no subgate de convite real; HSP-2 permanece BLOCKED
+em recovery gerenciado e paging externo.
+
+A decisão HSP-4 é **NO-GO para piloto controlado** enquanto os gates objetivos
+descritos em `docs/canonical/v1/delivery/GENESIS_360_HSP_0_4_FINAL_REPORT_2026-09-20.md`
+não forem corrigidos. `PILOT-1` e todas as ondas posteriores permanecem não iniciadas.
 
 ## Production & Scale Foundation
 
@@ -8,7 +29,8 @@ A baseline reconciliada está em
 `docs/canonical/v1/delivery/GENESIS_360_PRODUCTION_SCALE_BASELINE_RC2.md`.
 As Waves PS-0–PS-14 foram executadas no escopo local e estão consolidadas em
 `docs/canonical/v1/delivery/GENESIS_360_PRODUCTION_READINESS_REPORT.md`.
-O resultado é GO para staging/piloto interno controlado e NO-GO para produção aberta.
+Naquela avaliação histórica, o resultado era GO para staging e NO-GO para produção
+aberta. A decisão operacional vigente é a HSP-4: NO-GO para piloto controlado.
 
 ## Atualização RC2 — 2026-09-19
 
@@ -42,10 +64,10 @@ bloqueado até staging/CI remoto, observabilidade externa, restore gerenciado e 
 fim a fim hospedada. A decisão PS-14 atual é NO-GO para produção aberta.
 
 ## Estado real
-Código alterado em cópia separada do ZIP original. Nenhum push, provisionamento de nuvem ou deployment foi executado.
-Repositório público é uma decisão aprovada pelo proprietário.
-O pacote público exclui as fontes restritas e os caches; o original permanece intacto.
-Gate de produção: **BLOQUEADO**. Fundação local: **88%**; MVP: **78%**; V1: **62%**.
+O repositório público, CI remoto, branch protection, staging Supabase e serviços web/worker
+Railway estão operacionais. O pacote público continua excluindo fontes restritas,
+caches, dumps, dados de autenticação e credenciais. Gate de produção: **BLOQUEADO**.
+Percentuais reconciliados por evidência: Fundação **92%**; MVP **82%**; V1 **64%**.
 
 ## Decisões do proprietário
 Free, Start R$99 e Pro R$297 aprovados. Preço do Pro não é mais hipótese.
@@ -66,8 +88,9 @@ Consultar `docs/audit-2026-09-18/RC2_P0_REMEDIATION_EVIDENCE.md` e
 `RC2_VALIDATION_RESULTS.json`. Os recibos anteriores em
 `docs/hardening-v1.2.1/` permanecem como histórico do RC1.
 O RC2 possui typecheck, build, testes de domínio, Vitest, adversariais e pgTAP
-executados. Ainda não possui navegador/HTTP autenticado E2E, operação contínua
-ou restore comprovado; por isso o gate de produção permanece bloqueado.
+executados. A etapa HSP acrescentou navegador/HTTP autenticado E2E, operação
+contínua, restore lógico e carga fim a fim. O gate de produção permanece bloqueado
+pelos gaps objetivos registrados no relatório HSP-4.
 
 ## Dependências
 Alvo: Node24.21.0, pnpm10.32.1, Next16.3.3 e React/ReactDOM19.2.8.
@@ -77,13 +100,11 @@ PostCSS foi elevado para 8.5.23, Vitest para 4.1.11 e tipos Node para 24.13.6.
 A árvore auditada não contém advisory conhecido no momento da execução.
 
 ## O que NÃO está encerrado
-CI/branch protection remotos, staging hospedado, coletor e paging de observabilidade,
-restore gerenciado, carga HTTP/Auth/worker/storage, e-mail real de convite,
-scanner antimalware, cobrança/entitlements completos, metodologia de fornecedores,
-revisão legal/LGPD, ecossistema, contato real e agentes ativos.
+Coletor/paging externo, backup gerenciado e retenção automática, e-mail real de convite,
+SBOM/licenças completos, scanner antimalware, cobrança/entitlements completos,
+metodologia de fornecedores, revisão legal/LGPD, ecossistema, contato real e agentes
+ativos. A latência hospedada da HSP-3 excedeu o SLO e exige correção baseada em medida.
 
 ## Próximo gate
-Provisionar staging isolado, publicar a cópia saneada, executar CI remoto e branch
-protection, conectar telemetria/alertas, executar restore gerenciado e repetir o
-cenário de 100 tenants pelo caminho fim a fim por pelo menos 60 minutos.
-Responsáveis nominais de engenharia, segurança, metodologia e operação precisam ser designados pelo proprietário.
+Corrigir os itens NO-GO da HSP-4 e repetir somente os gates afetados. Não iniciar
+`PILOT-1` sem nova autorização do proprietário e sem uma decisão HSP-4 `GO`.

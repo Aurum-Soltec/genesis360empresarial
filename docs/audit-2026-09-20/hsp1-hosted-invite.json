@@ -1,0 +1,8 @@
+{
+  "wave": "HSP-1",
+  "executedAt": "2026-09-20T22:38:44.636Z",
+  "status": 502,
+  "apiAccepted": false,
+  "mailboxReceiptVerified": false,
+  "note": "Synthetic invitation; mailbox delivery and callback completion require an owned inbox or SMTP capture."
+}

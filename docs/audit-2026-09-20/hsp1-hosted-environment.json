@@ -1,0 +1,26 @@
+{
+  "wave": "HSP-1",
+  "capturedAt": "2026-09-20T23:14:00Z",
+  "supabase": {
+    "projectName": "genesis360-staging",
+    "projectRef": "memhdbkfiocheulskqxw",
+    "region": "sa-east-1",
+    "plan": "free",
+    "migrationsApplied": 23,
+    "pgTap": {"passed": 95, "failed": 0}
+  },
+  "railway": {
+    "projectName": "genesis360-staging",
+    "projectId": "4683da12-a0d1-4825-974c-f8d9e3be6e03",
+    "providerEnvironmentLabel": "production",
+    "isolationNote": "Dedicated project; provider default environment label retained",
+    "plan": "trial",
+    "region": "us-east4-eqdc4a",
+    "artifactCommit": "5e91ce37d5b931eafeb1a598bdfeb62235cb11dc",
+    "runtime": {"node": "24.21.0", "pnpm": "10.32.1"},
+    "services": [
+      {"name":"web","serviceId":"a7e5d209-668b-4bdc-9e0c-006e42874180","deploymentId":"fddca647-c83c-4c86-b55b-36a0a4c5afa3","status":"RUNNING"},
+      {"name":"worker","serviceId":"3f6b22da-10b3-4005-aad3-0f728f4386c2","deploymentId":"926063f4-ca7e-4aa1-8847-86b0feb2b149","status":"RUNNING"}
+    ]
+  }
+}

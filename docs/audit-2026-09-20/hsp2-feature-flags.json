@@ -1,0 +1,21 @@
+{
+  "wave": "HSP-2",
+  "capturedAt": "2026-09-20T23:17:49.2331706Z",
+  "services": {
+    "web": {
+      "FEATURE_AGENTIC": "false",
+      "FEATURE_DATA_UPLOAD": "false",
+      "FEATURE_QUALIFICATION_NETWORK": "false",
+      "FEATURE_REAL_CONTACT": "false",
+      "FEATURE_ECOSYSTEM": "false"
+    },
+    "worker": {
+      "FEATURE_AGENTIC": "false",
+      "FEATURE_DATA_UPLOAD": "false",
+      "FEATURE_QUALIFICATION_NETWORK": "false",
+      "FEATURE_REAL_CONTACT": "false",
+      "FEATURE_ECOSYSTEM": "false"
+    }
+  },
+  "pass": true
+}

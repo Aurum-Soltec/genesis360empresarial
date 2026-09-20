@@ -1,0 +1,11 @@
+{
+  "capturedAt": "2026-09-20T23:37:51.945Z",
+  "counts": {
+    "tenants": 102,
+    "memberships": 104,
+    "companies": 102,
+    "outbox": 6301,
+    "outboxAttempts": 6301,
+    "authUsers": null
+  }
+}

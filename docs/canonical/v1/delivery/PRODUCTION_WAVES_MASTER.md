@@ -2,6 +2,20 @@
 
 As Waves 0–8 registram a evolução histórica da fundação. As **PW** abaixo são as ondas de execução para transformar a baseline em produção.
 
+## Execução canônica Hosted Staging & Pilot Readiness — 2026-09-20
+
+| Wave | Estado | Resultado objetivo |
+|---|---|---|
+| HSP-0 — Baseline, repositório e controle remoto | **PASS** | GitHub público organizacional, `main` protegida, PR e CI obrigatórios; commit baseline e correção de headers rastreáveis. |
+| HSP-1 — Staging hospedado isolado | **BLOCKED no convite; core PASS** | Supabase/Railway hospedados, migrations 23/23, pgTAP 95/95, browser 10/10 e worker contínuo; convite real bloqueado por SMTP/inbox controlado. |
+| HSP-2 — Segurança, observabilidade e recuperação | **BLOCKED; subgates técnicos PASS** | Headers, flags, logs, métricas, GitHub security e restore lógico passaram; paging externo e backup gerenciado/retido não estão disponíveis na solução gratuita atual. |
+| HSP-3 — Prova de 100 tenants | **FAIL de performance** | Caminho fim a fim e isolamento passaram sem erro funcional; p95 hospedado excedeu o SLO de 750 ms. |
+| HSP-4 — Production Readiness Review hospedado | **CONCLUÍDA — NO-GO** | Relatório reconciliado; piloto e ondas seguintes permanecem não iniciados. |
+
+Próxima sequência aprovada, porém sem autorização de execução nesta etapa:
+`PILOT-1 -> SCALE-500 -> V1-F -> SCALE-2000 -> V1-GA -> AGENTIC-1 -> MEMORY-1`.
+Nenhuma dessas ondas foi iniciada.
+
 ## Histórico consolidado
 - Wave 0 — tenancy/consent;
 - Wave 1 — Business Passport;

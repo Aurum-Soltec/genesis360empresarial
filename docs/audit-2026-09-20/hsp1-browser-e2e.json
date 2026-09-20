@@ -1,0 +1,59 @@
+{
+  "wave": "HSP-1",
+  "executedAt": "2026-09-20T22:32:27.502Z",
+  "baseURL": "https://web-production-76d1b.up.railway.app",
+  "results": [
+    {
+      "name": "unauthenticated redirect",
+      "pass": true,
+      "detail": "https://web-production-76d1b.up.railway.app/entrar?next=%2F"
+    },
+    {
+      "name": "multi-tenant chooser",
+      "pass": true,
+      "detail": "Contexto ativo\n\nEscolha a empresa\n\nmulti@genesis.test\n\nTenant A\nowner\nTenant B\nowner\nSair"
+    },
+    {
+      "name": "tenant A selected",
+      "pass": true,
+      "detail": "https://web-production-76d1b.up.railway.app/"
+    },
+    {
+      "name": "tenant switch A to B",
+      "pass": true,
+      "detail": "https://web-production-76d1b.up.railway.app/"
+    },
+    {
+      "name": "cross-tenant switch denied",
+      "pass": true,
+      "detail": "status=403"
+    },
+    {
+      "name": "own tenant switch allowed",
+      "pass": true,
+      "detail": "status=200"
+    },
+    {
+      "name": "user without tenant",
+      "pass": true,
+      "detail": "Contexto ativo\n\nEscolha a empresa\n\nno-tenant@genesis.test\n\nSeu acesso não possui uma empresa ativa. Solicite um convite ao administrador.\n\nSair"
+    },
+    {
+      "name": "keyboard focus available",
+      "pass": true,
+      "detail": "{\"tag\":\"INPUT\",\"name\":\"email\"}"
+    },
+    {
+      "name": "320px at 200% no horizontal overflow",
+      "pass": true,
+      "detail": "overflow=false"
+    },
+    {
+      "name": "expired session redirects",
+      "pass": true,
+      "detail": "https://web-production-76d1b.up.railway.app/entrar?next=%2Fmissoes"
+    }
+  ],
+  "passed": 10,
+  "failed": 0
+}

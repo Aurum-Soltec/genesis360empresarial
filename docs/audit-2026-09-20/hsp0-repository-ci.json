@@ -1,0 +1,48 @@
+{
+  "wave": "HSP-0/HSP-2",
+  "repository": "https://github.com/Aurum-Soltec/genesis360empresarial",
+  "branch": "main",
+  "requiredChecks": [
+    "quality",
+    "database"
+  ],
+  "requirePullRequest": true,
+  "approvalsRequired": 0,
+  "enforceAdmins": true,
+  "forcePushAllowed": false,
+  "deletionAllowed": false,
+  "runs": [
+    {
+      "conclusion": "success",
+      "databaseId": 35520665377,
+      "headSha": "2b7b8d91dcbc69fbb4cc1cc5bcd0209e02a311fb",
+      "name": "CI",
+      "status": "completed",
+      "url": "https://github.com/Aurum-Soltec/genesis360empresarial/actions/runs/35520665377"
+    },
+    {
+      "conclusion": "success",
+      "databaseId": 35541611582,
+      "headSha": "c750d477bb11b99e7494f9a7145f9e8fadf9f61b",
+      "name": "CI",
+      "status": "completed",
+      "url": "https://github.com/Aurum-Soltec/genesis360empresarial/actions/runs/35541611582"
+    },
+    {
+      "conclusion": "success",
+      "databaseId": 35541750402,
+      "headSha": "5e91ce37d5b931eafeb1a598bdfeb62235cb11dc",
+      "name": "CI",
+      "status": "completed",
+      "url": "https://github.com/Aurum-Soltec/genesis360empresarial/actions/runs/35541750402"
+    },
+    {
+      "conclusion": "success",
+      "databaseId": 35543226136,
+      "headSha": "5e91ce37d5b931eafeb1a598bdfeb62235cb11dc",
+      "name": "CodeQL Setup",
+      "status": "completed",
+      "url": "https://github.com/Aurum-Soltec/genesis360empresarial/actions/runs/35543226136"
+    }
+  ]
+}

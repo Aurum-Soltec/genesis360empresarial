@@ -1,5 +1,9 @@
 # Genesis 360 Production & Scale Baseline — RC2
 
+> **Estado posterior — 2026-09-20:** a baseline abaixo foi preservada e promovida
+> para staging hospedado. A decisão operacional atual e as evidências HSP-0 a
+> HSP-4 estão em `GENESIS_360_HSP_0_4_FINAL_REPORT_2026-09-20.md`.
+
 **Snapshot:** 2026-09-19  
 **Candidate:** V1.2.1 RC2  
 **Authority:** runtime evidence takes precedence over stale planning labels.

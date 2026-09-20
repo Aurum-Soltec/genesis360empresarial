@@ -35,9 +35,9 @@ const stories = fs.readFileSync(
 const expectedStories = [
   ["V1-ST-004", "implemented-runtime-verified"],
   ["V1-ST-066", "implemented-runtime-verified"],
-  ["V1-ST-105", "completed-local-runtime"],
-  ["V1-ST-106", "completed-local-runtime"],
-  ["V1-ST-107", "completed-local-runtime"],
+  ["V1-ST-105", "completed-hosted-runtime"],
+  ["V1-ST-106", "completed-hosted-runtime"],
+  ["V1-ST-107", "completed-remote-ci"],
 ];
 for (const [story, status] of expectedStories) {
   const line = stories.split(/\r?\n/).find((candidate) => candidate.startsWith(`${story},`));
@@ -64,5 +64,5 @@ if (validation.gates.pgtap.passed !== 95) fail("expected 95 passing pgTAP assert
 if (validation.gates.adversarial.passed !== 31) fail("expected 31 adversarial passes");
 
 console.log(
-  `PASS - production/scale RC2 baseline reconciled: ${migrations.length} migrations, ${dbTests.length} DB test files, ${apiRoutes.length} API routes.`,
+  `PASS - production/scale HSP-4 baseline reconciled: ${migrations.length} migrations, ${dbTests.length} DB test files, ${apiRoutes.length} API routes.`,
 );

@@ -1,0 +1,16 @@
+{
+  "wave": "HSP-2",
+  "repository": "Aurum-Soltec/genesis360empresarial",
+  "dependabotSecurityUpdates": "enabled",
+  "secretScanning": "enabled",
+  "secretScanningPushProtection": "enabled",
+  "dependabotOpenAlerts": 0,
+  "secretScanningOpenAlerts": 0,
+  "codeqlDefaultSetup": "configured",
+  "codeqlRun": 35543226136,
+  "codeqlConclusion": "success",
+  "codeScanningOpenAlerts": 0,
+  "licenseInventoryPackages": 433,
+  "scope": "Free controls on public repository and frozen-lockfile inventory",
+  "githubSbomPackageCount": 1
+}
