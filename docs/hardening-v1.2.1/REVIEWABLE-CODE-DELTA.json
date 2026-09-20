@@ -371,8 +371,8 @@
     {
       "path": "docs/canonical/v1/delivery/EPICS_CATALOG.json",
       "beforeSha256": null,
-      "afterSha256": "8ffaedf145160ec9f4a370da39a739890c9b56e5e6de7bb389c593d3a98b34f2",
-      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+      "afterSha256": "f206ad39ac2446fa7589f489b32d9914050167bd78c2d6f4da010dd63675905c",
+      "reason": "HSP-0 canonical Git LF digest for cross-platform integrity verification"
     },
     {
       "path": "docs/canonical/v1/delivery/EPICS_MASTER.md",
@@ -401,8 +401,8 @@
     {
       "path": "docs/canonical/v1/delivery/STORIES_CATALOG.csv",
       "beforeSha256": null,
-      "afterSha256": "3102b26f0a6e35ac6cc91f15ff3705d851dd0fd5807889a9df18b93523e056d4",
-      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+      "afterSha256": "3fde24df57858c575ca0b3313746ff78fe8abaeb1ea7654de90fe3c4226f3da4",
+      "reason": "HSP-0 canonical Git LF digest for cross-platform integrity verification"
     },
     {
       "path": "docs/canonical/v1/delivery/STORIES_MASTER.md",
@@ -677,8 +677,8 @@
     {
       "path": "scripts/check-hardening-integrity.mjs",
       "beforeSha256": null,
-      "afterSha256": "e7b0e788b81073ffe09252824661cb508c159e6009a8d0e9bc7d690e5d708485",
-      "reason": "hardening implementation or executable regression/configuration"
+      "afterSha256": "1ed4b6d6ffb7edd4c19ff3b95da8017dae0d4a5c963f02374a24161b26f21722",
+      "reason": "HSP-0 integrity verification remains strict while accepting Git LF/CRLF normalization across Windows and Linux"
     },
     {
       "path": "scripts/check-lockfile.mjs",
