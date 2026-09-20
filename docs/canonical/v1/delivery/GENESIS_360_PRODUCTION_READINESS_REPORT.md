@@ -1,5 +1,11 @@
 # Genesis 360 Production Readiness Report — PS-14
 
+> **Atualização hospedada — 2026-09-20:** este relatório registra a evidência local
+> histórica. A decisão operacional vigente está em
+> `GENESIS_360_HSP_0_4_FINAL_REPORT_2026-09-20.md`: **NO-GO para piloto controlado**.
+> CI, staging e carga hospedada já foram executados; os gaps vigentes são os
+> registrados no relatório HSP-4.
+
 Data: 2026-09-19  
 Candidato: V1.2.1 RC2 + Production & Scale Foundation local  
 Decisão: **NO-GO para produção aberta; GO condicional para staging e piloto interno controlado.**

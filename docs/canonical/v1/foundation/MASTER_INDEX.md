@@ -1,5 +1,12 @@
 # Master Index — Genesis 360 Empresarial V1.2
 
+## Estado operacional vigente
+
+- `../../../../PROJECT-STATE.md`
+- `../delivery/GENESIS_360_HSP_0_4_FINAL_REPORT_2026-09-20.md`
+- HSP-0 a HSP-4 encerradas em **NO-GO para piloto controlado**.
+- `PILOT-1` e ondas posteriores não iniciadas.
+
 ## Produto
 - `product/PRD_GENESIS_360_V1_CANONICO.md`
 - `01_PRODUCT_VISION_AND_PRINCIPLES.md`

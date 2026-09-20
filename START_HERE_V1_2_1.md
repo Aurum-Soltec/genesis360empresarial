@@ -1,5 +1,11 @@
 # Começar pela V1.2.1 RC2
 
+> **HSP-4, 2026-09-20:** repositório, CI e staging hospedado já foram executados.
+> A decisão vigente é **NO-GO para piloto controlado**. Leia primeiro
+> `PROJECT-STATE.md` e
+> `docs/canonical/v1/delivery/GENESIS_360_HSP_0_4_FINAL_REPORT_2026-09-20.md`.
+> Não iniciar `PILOT-1` nem ondas posteriores sem nova autorização.
+
 > **RC2, 2026-09-19:** para o trabalho atual, leia primeiro
 > `PROJECT-STATE.md` e
 > `docs/canonical/v1/delivery/RC2_SCOPE_FREEZE_2026-09-19.md`.
@@ -12,8 +18,8 @@ Usar **somente a pasta `genesis360empresarial` deste pacote saneado**, incluindo
 Não misturar com os três dossiês originais nem com a extração antiga.
 O ZIP original continua preservado fora do repositório para consulta privada.
 
-Repositório aprovado: `https://github.com/Aurum-Soltec/genesis360empresarial`.
-Esta entrega não fez push nem alterou configurações do GitHub.
+Repositório aprovado e publicado: `https://github.com/Aurum-Soltec/genesis360empresarial`.
+O histórico abaixo descreve o procedimento usado na publicação inicial.
 
 Na pasta copiada para o clone do repositório:
 ```sh

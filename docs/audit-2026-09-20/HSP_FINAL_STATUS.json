@@ -1,0 +1,17 @@
+{
+  "date": "2026-09-20",
+  "baseline": "V1.2.1 RC2 + Production & Scale Foundation",
+  "testedArtifact": "5e91ce37d5b931eafeb1a598bdfeb62235cb11dc",
+  "waves": {
+    "HSP-0": "PASS",
+    "HSP-1": "BLOCKED_INVITATION_CORE_PASS",
+    "HSP-2": "BLOCKED_OPERATIONAL_CONTROLS_SUBGATES_PASS",
+    "HSP-3": "FAIL_PERFORMANCE_FUNCTIONAL_PASS",
+    "HSP-4": "COMPLETE_NO_GO"
+  },
+  "load": {"tenants":100,"durationSeconds":3600.9,"requests":18610,"expectedCrossTenantDenials":600,"failures":0,"errorRatePercent":0,"outboxFinalBacklog":0,"deadJobs":0},
+  "percentComplete": {"foundation":92,"mvp":82,"v1":64},
+  "declarations": {"oneHundredTenantsReady":false,"controlledPilot":"NO-GO","openProduction":"NO-GO"},
+  "conclusion": "NO-GO COM CORRECOES OBJETIVAS",
+  "postHspWavesStarted": false
+}

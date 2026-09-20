@@ -1,0 +1,263 @@
+project_ref=memhdbkfiocheulskqxw
+started_at=2026-09-20T18:38:47.4130796Z
+file=000_setup_test_helpers.sql exit=0 assertions=1 plan=True tap_failure=False
+CREATE SCHEMA
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+REVOKE
+REVOKE
+GRANT
+GRANT
+1..1
+ok 1 - local Supabase test helpers installed without dbdev
+file=0002_cross_tenant_rls.sql exit=0 assertions=1 plan=True tap_failure=False
+BEGIN
+1..1
+ok 1 - Tenant RLS membership helper exists
+ROLLBACK
+file=001_schema_rls.test.sql exit=0 assertions=2 plan=True tap_failure=False
+BEGIN
+1..2
+ok 1 - all tables in schema public have RLS enabled
+ok 2 - memberships has user-leading index required by tenant RLS helper
+ROLLBACK
+file=002_cross_tenant_rls.test.sql exit=0 assertions=11 plan=True tap_failure=False
+BEGIN
+1..11
+
+
+
+INSERT 0 2
+INSERT 0 2
+INSERT 0 2
+INSERT 0 1
+
+ok 1 - User A sees only own tenant company
+ok 2 - User A sees zero Tenant B companies
+ok 3 - Private helper recognizes Tenant A membership
+ok 4 - Private helper rejects Tenant B membership
+ok 5 - User A cannot insert into Tenant B
+ok 6 - User A cannot update Tenant B
+ok 7 - Authenticated clients have no direct company DELETE privilege
+ok 8 - User A sees zero Tenant B evidence
+ok 9 - Authenticated client cannot write controlled Evidence Ledger directly
+ok 10 - Authenticated client cannot bypass consent API with direct table write
+ok 11 - Legacy exposed helper is not callable by authenticated clients
+ROLLBACK
+file=003_mission_state_machine.test.sql exit=0 assertions=3 plan=True tap_failure=False
+BEGIN
+1..3
+
+
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+ok 1 - SUGGESTED -> ACCEPTED is valid
+ok 2 - Mission cannot jump directly to outcome
+ok 3 - Invalid transition leaves state unchanged
+ROLLBACK
+file=004_tenant_reference_integrity.test.sql exit=0 assertions=3 plan=True tap_failure=False
+BEGIN
+1..3
+
+
+
+INSERT 0 2
+INSERT 0 2
+INSERT 0 2
+INSERT 0 1
+INSERT 0 1
+ok 1 - Even service role cannot create cross-tenant diagnostic reference
+INSERT 0 1
+ok 2 - Company/tenant trigger rejects cross-tenant company before relation is persisted
+ok 3 - Same-tenant diagnostic reference remains valid
+ROLLBACK
+file=005_end_to_end_core.test.sql exit=0 assertions=11 plan=True tap_failure=False
+BEGIN
+1..11
+
+
+
+INSERT 0 2
+INSERT 0 2
+INSERT 0 2
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+ok 1 - Decision can create a mission through trusted domain RPC
+ok 2 - Created mission starts SUGGESTED
+ok 3 - Published pain->capability rule is projected to the mission
+UPDATE 1
+UPDATE 1
+ok 4 - Mission accepts evidence through trusted RPC
+ok 5 - Evidence moves IN_PROGRESS mission to EVIDENCE_PENDING
+UPDATE 1
+ok 6 - Completed mission records an outcome
+ok 7 - Outcome closes mission state machine
+ok 8 - Outcome is written to Business Timeline
+ok 9 - Every mission status transition gets a distinct durable outbox event
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+ok 10 - Contact request emits durable outbox event
+ok 11 - Contact request cannot reuse consent from another consumer tenant
+ROLLBACK
+file=006_consent_privacy.test.sql exit=0 assertions=2 plan=True tap_failure=False
+BEGIN
+1..2
+
+
+
+INSERT 0 1
+INSERT 0 2
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+
+ok 1 - Owner cannot read another user consent merely because they share a tenant
+
+ok 2 - User can read own consent decision
+ROLLBACK
+file=007_rc2_p0_guards.test.sql exit=0 assertions=6 plan=True tap_failure=False
+BEGIN
+1..6
+
+
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+ok 1 - Consent version cannot authorize a different purpose
+ok 2 - New active consent version must declare its purpose
+ok 3 - Qualification score above 100 is rejected
+ok 4 - Consent version authorizes its bound purpose
+ok 5 - Authenticated role can read own consent through RLS
+ok 6 - Diagnostic snapshot has a rule-version column
+ROLLBACK
+file=008_role_access.test.sql exit=0 assertions=7 plan=True tap_failure=False
+BEGIN
+1..7
+
+
+
+
+
+INSERT 0 1
+INSERT 0 4
+INSERT 0 1
+INSERT 0 2
+INSERT 0 1
+
+ok 1 - Member can read tenant company
+ok 2 - Member cannot create company
+ok 3 - Member sees internal fact but not financial fact
+ok 4 - Member cannot read audit events
+
+ok 5 - Manager can create company
+ok 6 - Manager can read sensitive Business Passport fact
+
+ok 7 - Auditor can read audit events
+ROLLBACK
+file=009_data_submission_governance.test.sql exit=0 assertions=7 plan=True tap_failure=False
+BEGIN
+1..7
+
+
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+ok 1 - Draft legal copy cannot be accepted
+UPDATE 1
+ok 2 - Active attestation can be accepted
+ok 3 - Attestation acceptance is auditable through the outbox
+ok 4 - Upload session can be created only after active attestation
+ok 5 - Exactly one governed upload session exists
+UPDATE 1
+ok 6 - Retired text requires a fresh attestation version
+
+ok 7 - User can read own attestation audit record
+ROLLBACK
+file=010_hardening_v1_2_1.test.sql exit=0 assertions=26 plan=True tap_failure=False
+BEGIN
+
+
+
+
+INSERT 0 1
+INSERT 0 2
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+ok 1 - Authenticated clients cannot bypass API by calling privileged answer RPC
+ok 2 - Authenticated clients cannot forge a result snapshot
+ok 3 - Cross-tenant actor denied
+ok 4 - Tenant membership alone does not authorize fact writes
+ok 5 - Self-verification denied at the SQL boundary
+ok 6 - Declared fact cannot claim confidence1
+ok 7 - Authorized declaration succeeds
+ok 8 - Fact stays unverified
+ok 9 - Unknown confidence stays NULL
+0d10642b-37aa-41f4-9304-6a05a1965ede
+ok 10 - Identical current fact is not duplicated
+dc6822da-1f09-4ee2-a1a7-a82968ba83ba
+ok 11 - One current fact after update
+ok 12 - Fact history has non-empty validity intervals
+ok 13 - First versioned answer is saved
+ok 14 - Revision increments once
+ok 15 - Stale answer cannot overwrite new data
+ok 16 - Unresolvable evidence reference denied in SQL
+DO
+ok 17 - Stale calculated snapshot cannot finalize
+ok 18 - Current snapshot finalizes atomically
+ok 19 - Canonical overall score persisted
+ok 20 - Canonical confidence persisted
+ok 21 - Twelve dimension records
+ok 22 - Repeated submission returns existing snapshot, not recomputation
+ok 23 - Replay does not duplicate results
+ok 24 - Late answer cannot mutate finalized diagnosis
+ok 25 - Snapshot and summary cannot diverge after submit
+ok 26 - Old unversioned writer disabled
+1..26
+ROLLBACK
+file=011_production_scale_foundation.test.sql exit=0 assertions=15 plan=True tap_failure=False
+BEGIN
+1..15
+ok 1 - outbox attempts are durable
+ok 2 - tenant quotas exist
+ok 3 - rate windows exist
+ok 4 - storage quotas exist
+ok 5 - outbox metrics view exists
+ok 6 - database metrics view exists
+ok 7 - quota function exists
+ok 8 - controlled reprocess exists
+ok 9 - document bucket is private
+ok 10 - bucket limit is 10 MiB
+ok 11 - storage has three scoped policies
+
+
+INSERT 0 1
+INSERT 0 1
+
+ok 12 - first request is allowed
+ok 13 - excess request is denied atomically
+
+INSERT 0 1
+ok 14 - owner-authorized dead event can be reprocessed
+ok 15 - reprocessed event returns to pending
+ROLLBACK
+finished_at=2026-09-20T18:39:20.7032926Z
+total_assertions=95
+result=PASS

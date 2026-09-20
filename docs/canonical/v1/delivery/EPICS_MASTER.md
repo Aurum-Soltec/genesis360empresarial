@@ -200,18 +200,18 @@
 **Exit gate:** Repo bootstrap, runtime gates, restore, security, E2E e PRR aprovados.
 **Stories:** 12
 
-- `V1-ST-104` — Bootstrap do novo repositório GitHub — **planned-production** — P0
-- `V1-ST-105` — Bootstrap limpo das migrations 0001→0023 — **completed-local-runtime** — P0
-- `V1-ST-106` — Executar pgTAP tenancy/RBAC/governance completo — **completed-local-runtime** — P0
-- `V1-ST-107` — Full lint + TypeScript 6 + Vitest + Next build — **completed-local-runtime** — P0
-- `V1-ST-108` — E2E browser do happy path empresarial — **completed-local-runtime** — P0
-- `V1-ST-109` — E2E adversarial cross-tenant e permissions — **completed-local-runtime** — P0
-- `V1-ST-110` — Backup/restore/rollback drill — **completed-local-runtime-staging-pending** — P0
-- `V1-ST-111` — SBOM + license + dependency + secret/security scans — **partial-dependency-secret-sbom-license-pending** — P0
-- `V1-ST-112` — Observabilidade e correlation IDs ponta a ponta — **implemented-local-external-collector-pending** — P0
-- `V1-ST-113` — Configurar dev/staging/prod e promoção controlada — **implemented-local-remote-ci-pending** — P0
-- `V1-ST-122` — Production Readiness Review e release candidate — **completed-local-review-production-blocked** — P0
-- `V1-ST-123` — Piloto controlado com rollout/rollback — **planned-production** — P0
+- `V1-ST-104` — Bootstrap do novo repositório GitHub — **completed-remote-repository** — P0
+- `V1-ST-105` — Bootstrap limpo das migrations 0001→0023 — **completed-hosted-runtime** — P0
+- `V1-ST-106` — Executar pgTAP tenancy/RBAC/governance completo — **completed-hosted-runtime** — P0
+- `V1-ST-107` — Full lint + TypeScript 6 + Vitest + Next build — **completed-remote-ci** — P0
+- `V1-ST-108` — E2E browser do happy path empresarial — **completed-hosted-runtime** — P0
+- `V1-ST-109` — E2E adversarial cross-tenant e permissions — **completed-hosted-runtime** — P0
+- `V1-ST-110` — Backup/restore/rollback drill — **partial-hosted-logical-pass-managed-backup-pending** — P0
+- `V1-ST-111` — SBOM + license + dependency + secret/security scans — **partial-scans-and-license-inventory-pass-sbom-legal-pending** — P0
+- `V1-ST-112` — Observabilidade e correlation IDs ponta a ponta — **partial-hosted-observability-external-paging-pending** — P0
+- `V1-ST-113` — Configurar dev/staging/prod e promoção controlada — **completed-hosted-staging-and-remote-ci** — P0
+- `V1-ST-122` — Production Readiness Review e release candidate — **completed-hsp4-no-go** — P0
+- `V1-ST-123` — Piloto controlado com rollout/rollback — **planned-not-started** — P0
 
 ## EPIC-18 Activation Decisions
 **Objetivo:** Fechar decisões metodológicas/jurídicas antes de habilitar capacidades sensíveis.

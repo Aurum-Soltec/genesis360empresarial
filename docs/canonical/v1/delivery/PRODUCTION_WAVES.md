@@ -1,5 +1,9 @@
 # PRODUCTION WAVES
 
+> **Atualização operacional — 2026-09-20:** este mapa permanece histórico. A
+> execução vigente usa HSP-0 a HSP-4 conforme `PRODUCTION_WAVES_MASTER.md` e foi
+> encerrada com NO-GO em `GENESIS_360_HSP_0_4_FINAL_REPORT_2026-09-20.md`.
+
 As Waves 0-4 existentes representam evolução histórica da fundação. A partir deste pacote, usar identificadores `PW-*` para produção.
 
 ## PW-0 - Foundation Verification

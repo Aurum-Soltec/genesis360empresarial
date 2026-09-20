@@ -1,0 +1,17 @@
+{
+  "wave": "HSP-2",
+  "capturedAt": "2026-09-20T23:13:33.0517278Z",
+  "status": 200,
+  "headers": {
+    "Content-Security-Policy": "default-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' https://*.supabase.co wss://*.supabase.co; upgrade-insecure-requests",
+    "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
+    "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+    "Cross-Origin-Opener-Policy": "same-origin",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "DENY",
+    "Referrer-Policy": "strict-origin-when-cross-origin",
+    "X-Correlation-Id": "83887cf4-ffdc-4c92-9d8b-af2a997c8d64"
+  },
+  "xPoweredByPresent": false,
+  "pass": true
+}

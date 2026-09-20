@@ -1,0 +1,17 @@
+{
+  "wave": "HSP-2",
+  "restored_at": "2026-09-20T22:15:59.1223273Z",
+  "restore_duration_seconds": 3.179,
+  "rto_target_seconds": 1800,
+  "rto_pass": true,
+  "counts": {
+    "tenants": 2,
+    "memberships": 4,
+    "companies": 2,
+    "outbox": 1,
+    "outbox_attempts": 1,
+    "auth_users": 4,
+    "migrations": 23,
+    "public_policies": 37
+  }
+}

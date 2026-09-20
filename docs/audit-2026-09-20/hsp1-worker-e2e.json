@@ -1,0 +1,20 @@
+{
+  "wave": "HSP-1",
+  "executedAt": "2026-09-20T22:05:49.554Z",
+  "eventId": "f68f71d0-be7e-4be3-9d8f-738758861afb",
+  "status": "processed",
+  "attempts": 1,
+  "workerId": "staging-worker-1",
+  "processingLatencyMs": 2481,
+  "attemptEvidence": [
+    {
+      "attempt": 1,
+      "result": "processed",
+      "duration_ms": 143,
+      "error_code": null,
+      "worker_id": "staging-worker-1",
+      "recorded_at": "2026-09-20T22:05:49.729968+00:00"
+    }
+  ],
+  "pass": true
+}

@@ -38,26 +38,22 @@
     ]
   },
   "GATE-ARCH": {
-    "state": "local-scale-pass-hosted-runtime-pending",
+    "state": "hosted-functional-pass-latency-fail",
     "evidence": [
-      "architecture docs",
-      "23 migrations applied from zero",
-      "95/95 pgTAP",
-      "production build",
-      "2,000 tenant PostgreSQL workload with zero errors and p99 5.711ms"
+      "23 hosted migrations",
+      "95/95 hosted pgTAP",
+      "hosted authenticated E2E",
+      "100-tenant end-to-end soak"
     ],
     "pending": [
-      "production environment verification",
-      "hosted end-to-end capacity evidence"
-    ],
-    "implemented": [
-      "Genesis Precision Light V2 approved as canonical frontend grammar",
-      "Wave 8 preserves modular monolith/backend contracts"
+      "remediate hosted p95 above 750ms SLO and repeat affected gate"
     ]
   },
   "GATE-CONTRACT": {
-    "state": "local-runtime-pass",
-    "pending": ["hosted invitation email and session expiry timing"],
+    "state": "blocked-hosted-invitation",
+    "pending": [
+      "hosted invitation email delivery and callback with controlled inbox"
+    ],
     "implemented": [
       "tenant/company composite integrity",
       "trusted write RPCs",
@@ -71,11 +67,11 @@
     ]
   },
   "GATE-SEC": {
-    "state": "in-progress",
+    "state": "blocked-operational-controls",
     "pending": [
-      "authenticated HTTP/browser adversarial suite",
-      "SBOM and full license review",
-      "trusted data access boundary consolidation",
+      "complete SBOM and legal disposition for identified license combination",
+      "external alert receiver/paging",
+      "managed backup retention and restore drill",
       "legal/privacy review of attestation copy",
       "binary upload malware/content scanning"
     ],
@@ -89,12 +85,18 @@
       "cross-tenant provider matching only via server",
       "versioned attestation audit model",
       "upload-session fail-closed attestation gate",
-      "explicit user/tenant/company/purpose binding"
-      ,"95/95 pgTAP on isolated PostgreSQL/Supabase runtime"
-      ,"31/31 process-level adversarial tests"
-      ,"dependency audit with zero known advisories"
-      ,"authenticated Chrome cross-tenant denial"
-      ,"trusted data access boundary consolidation"
+      "explicit user/tenant/company/purpose binding",
+      "95/95 pgTAP on isolated PostgreSQL/Supabase runtime",
+      "31/31 process-level adversarial tests",
+      "dependency audit with zero known advisories",
+      "authenticated Chrome cross-tenant denial",
+      "trusted data access boundary consolidation",
+      "hosted Auth and cross-tenant browser denial",
+      "HSTS/CSP/Permissions-Policy/COOP headers",
+      "GitHub secret scanning and push protection",
+      "Dependabot alerts and security updates with zero open alerts",
+      "CodeQL default setup passing with zero open alerts",
+      "433-package license inventory from frozen lockfile"
     ]
   },
   "GATE-UX": {
@@ -134,58 +136,57 @@
     ]
   },
   "GATE-PROD": {
-    "state": "blocked",
+    "state": "blocked-hsp4-no-go",
     "pending": [
-      "CI",
-      "hosted staging and end-to-end load",
-      "remote CI and branch protection",
-      "external observability collector and paging",
-      "managed backup restore drill",
-      "malware scanning provider",
-      "legal/privacy review and FinOps"
+      "hosted p95 remediation",
+      "external alert receiver/paging",
+      "managed backup and automatic retention",
+      "controlled invitation email E2E",
+      "complete SBOM and legal license disposition",
+      "legal/privacy and upload activation gates"
     ]
   },
   "GATE-FOUNDATION": {
-    "state": "local-runtime-pass-external-ci-pending",
+    "state": "hosted-runtime-pass-with-operational-gaps",
     "implemented": [
-      "canonical PRD/architecture/backlog/design/security/operations package",
-      "23 migration files applied from zero",
-      "13 database test files with 95/95 passing assertions",
-      "22 API routes",
-      "lint, TypeScript, native tests, Vitest and Next build passing",
-      "GitHub bootstrap artifacts",
-      "Production Waves PW-0..PW-6",
-      "Definition of Ready/Done"
+      "canonical baseline preserved",
+      "23 hosted migrations",
+      "95/95 hosted pgTAP",
+      "remote protected CI",
+      "hosted web and continuous worker",
+      "authenticated browser E2E 10/10",
+      "isolated logical restore",
+      "100-tenant end-to-end soak"
     ],
     "pending": [
-      "initial GitHub push and protected branch",
-      "CI run on GitHub",
-      "hosted staging E2E"
+      "managed recovery",
+      "external paging",
+      "hosted latency remediation"
     ]
   },
   "GATE-REPO": {
-    "state": "ready-to-bootstrap",
+    "state": "passed",
     "implemented": [
-      "target repository documented",
-      "bootstrap script",
-      "PR template",
-      "issue templates",
-      "contribution/security policies"
+      "public organization repository",
+      "protected main requiring pull request and CI",
+      "force push and deletion disabled",
+      "remote CI passing on exact main commits",
+      "secret scanning and push protection enabled",
+      "Dependabot security updates enabled"
     ],
     "pending": [
-      "initial push",
-      "branch protection",
-      "CI run on GitHub"
+      "second write-access reviewer before requiring one approval"
     ]
   },
   "GATE-RELEASE-CANDIDATE": {
-    "state": "local-review-complete-production-blocked",
-    "implemented": ["PS-14 local production readiness report and NO-GO decision"],
+    "state": "hsp4-complete-no-go",
+    "implemented": [
+      "HSP-0 through HSP-4 executed",
+      "hosted evidence and objective NO-GO recorded"
+    ],
     "pending": [
-      "remote CI and staging",
-      "external observability and managed restore",
-      "hosted 100-tenant end-to-end soak",
-      "formal production GO decision"
+      "correct HSP-4 blockers and repeat affected gates",
+      "new owner authorization before PILOT-1"
     ]
   }
 }

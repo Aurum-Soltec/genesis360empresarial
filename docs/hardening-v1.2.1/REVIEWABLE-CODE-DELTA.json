@@ -1,6 +1,6 @@
 {
-  "version": "1.2.1-rc.2",
-  "status": "p0_remediated_runtime_verified_candidate_not_production_approval",
+  "version": "1.2.1-rc.2-hsp4",
+  "status": "hsp4_complete_no_go_pilot_blocked",
   "files": [
     {
       "path": ".env.example",
@@ -54,24 +54,6 @@
       "path": "AGENTS.md",
       "beforeSha256": null,
       "afterSha256": "0a9e126697848fc68cac60e75fb344ebbfb9327363f230e70289592cffcef215",
-      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
-    },
-    {
-      "path": "GATES.json",
-      "beforeSha256": null,
-      "afterSha256": "eb936d3b520c9b0900dc49c333420a9fc5354b718ff23b8839729378f88685d8",
-      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
-    },
-    {
-      "path": "PROJECT-STATE.md",
-      "beforeSha256": null,
-      "afterSha256": "eebc996f50cb5e12fc58ef86ec2dcc67f30669f080136a8a58decb537656bfdd",
-      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
-    },
-    {
-      "path": "START_HERE_V1_2_1.md",
-      "beforeSha256": null,
-      "afterSha256": "fef36fb278eaec410dccd1bf2de5d6ef8f1d24281fb3610e3a4f092156ef1972",
       "reason": "RC2 P0 remediation, executable regression, or scope evidence"
     },
     {
@@ -363,6 +345,132 @@
       "reason": "RC2 P0 remediation, executable regression, or scope evidence"
     },
     {
+      "path": "docs/audit-2026-09-20/HSP_FINAL_STATUS.json",
+      "beforeSha256": null,
+      "afterSha256": "0ae6c8e90d6c0e4aa3793da01135f78d85f519fb94b73911b034859ebac39a51",
+      "reason": "HSP-0..HSP-4 hosted evidence or canonical reconciliation"
+    },
+    {
+      "path": "docs/audit-2026-09-20/hsp0-repository-ci.json",
+      "beforeSha256": null,
+      "afterSha256": "684de3400bb53aab3778f071b4805be2594e2fa3cbf7374f05de911523076f2d",
+      "reason": "HSP-0..HSP-4 hosted evidence or canonical reconciliation"
+    },
+    {
+      "path": "docs/audit-2026-09-20/hsp1-browser-e2e.json",
+      "beforeSha256": null,
+      "afterSha256": "e90d37d8a1191e46bdfa1f9d0ef82e99947acef94d7bcb42632878a2553e2037",
+      "reason": "HSP-0..HSP-4 hosted evidence or canonical reconciliation"
+    },
+    {
+      "path": "docs/audit-2026-09-20/hsp1-home-desktop.png",
+      "beforeSha256": null,
+      "afterSha256": "8632e3d956f8a4a4cc1a903ce2439bad42b42720f4b521e252065ad7fb37768f",
+      "reason": "HSP-0..HSP-4 hosted evidence or canonical reconciliation"
+    },
+    {
+      "path": "docs/audit-2026-09-20/hsp1-hosted-environment.json",
+      "beforeSha256": null,
+      "afterSha256": "b39e14f145c53bba02377b57d3a7ea1490082b1f4a49ce72225524401b6b9f2d",
+      "reason": "HSP-0..HSP-4 hosted evidence or canonical reconciliation"
+    },
+    {
+      "path": "docs/audit-2026-09-20/hsp1-hosted-invite.json",
+      "beforeSha256": null,
+      "afterSha256": "2c39d41d694ea48c3a2891c4e39a976e580f98cd22342f06a4e9c8524c8df1ec",
+      "reason": "HSP-0..HSP-4 hosted evidence or canonical reconciliation"
+    },
+    {
+      "path": "docs/audit-2026-09-20/hsp1-hosted-pgtap.txt",
+      "beforeSha256": null,
+      "afterSha256": "e1d971eb17f93c2e7291eaea0d697670c0b59f763a3720029c63a74af250f811",
+      "reason": "HSP-0..HSP-4 hosted evidence or canonical reconciliation"
+    },
+    {
+      "path": "docs/audit-2026-09-20/hsp1-login-320-zoom200.png",
+      "beforeSha256": null,
+      "afterSha256": "7cc806686003a2ce87e1218f79e1f9acce5fd7cf13c69cae945810d29b912ad1",
+      "reason": "HSP-0..HSP-4 hosted evidence or canonical reconciliation"
+    },
+    {
+      "path": "docs/audit-2026-09-20/hsp1-worker-e2e.json",
+      "beforeSha256": null,
+      "afterSha256": "a16b03b1e47bdd63943114853df8705e6084492d849f4351ee07f7c4cccecd6c",
+      "reason": "HSP-0..HSP-4 hosted evidence or canonical reconciliation"
+    },
+    {
+      "path": "docs/audit-2026-09-20/hsp2-auth-policy.json",
+      "beforeSha256": null,
+      "afterSha256": "3400467aa85a73c54d915ba88c09254a72220b81a52cb1a6338a5e20d71e225f",
+      "reason": "HSP-0..HSP-4 hosted evidence or canonical reconciliation"
+    },
+    {
+      "path": "docs/audit-2026-09-20/hsp2-feature-flags.json",
+      "beforeSha256": null,
+      "afterSha256": "0fb995238a4bb303ef06e8939e2a21ffa690c6f96f2404a5e6ae38ecc9865d94",
+      "reason": "HSP-0..HSP-4 hosted evidence or canonical reconciliation"
+    },
+    {
+      "path": "docs/audit-2026-09-20/hsp2-github-security.json",
+      "beforeSha256": null,
+      "afterSha256": "db17e2f9a7832a7f910fd562930c6887b2487b06935d89648d5a970c8e6dad14",
+      "reason": "HSP-0..HSP-4 hosted evidence or canonical reconciliation"
+    },
+    {
+      "path": "docs/audit-2026-09-20/hsp2-hosted-logical-restore.json",
+      "beforeSha256": null,
+      "afterSha256": "29d03a93ae6bab80c050f71435fa9ba31034ae8586c4bb3b92f6f202e5c5333e",
+      "reason": "HSP-0..HSP-4 hosted evidence or canonical reconciliation"
+    },
+    {
+      "path": "docs/audit-2026-09-20/hsp2-license-inventory.json",
+      "beforeSha256": null,
+      "afterSha256": "24f21e948894bbd6f3f615a035fbdc7333431f826bed6c81e904ffe9771e7fad",
+      "reason": "HSP-0..HSP-4 hosted evidence or canonical reconciliation"
+    },
+    {
+      "path": "docs/audit-2026-09-20/hsp2-operational-health-during-load.json",
+      "beforeSha256": null,
+      "afterSha256": "0cde286ea63da3ceb40a72485c68f31204b104e7edd772c923b90c910e3fcc05",
+      "reason": "HSP-0..HSP-4 hosted evidence or canonical reconciliation"
+    },
+    {
+      "path": "docs/audit-2026-09-20/hsp2-sbom.spdx.json",
+      "beforeSha256": null,
+      "afterSha256": "5077f393b890ee1f99aee75822cfb969fb57e71c402016c8085c4cd7e099fb4c",
+      "reason": "HSP-0..HSP-4 hosted evidence or canonical reconciliation"
+    },
+    {
+      "path": "docs/audit-2026-09-20/hsp2-security-headers.json",
+      "beforeSha256": null,
+      "afterSha256": "55b14733f03195492e24344e484c1327d2cbf6b43ca0f093d76d1e3b632402de",
+      "reason": "HSP-0..HSP-4 hosted evidence or canonical reconciliation"
+    },
+    {
+      "path": "docs/audit-2026-09-20/hsp3-100-tenants-load.json",
+      "beforeSha256": null,
+      "afterSha256": "6a968947ff191842e367a2004a1f523d16d15b79f46d325d7e75763edd025560",
+      "reason": "HSP-0..HSP-4 hosted evidence or canonical reconciliation"
+    },
+    {
+      "path": "docs/audit-2026-09-20/hsp3-hosted-inventory.json",
+      "beforeSha256": null,
+      "afterSha256": "92ab7f7b1036a1230933533f6c367b3d2874010447085f75dc7683eff90d6cd9",
+      "reason": "HSP-0..HSP-4 hosted evidence or canonical reconciliation"
+    },
+    {
+      "path": "docs/audit-2026-09-20/hsp3-hosted-metrics.json",
+      "beforeSha256": null,
+      "afterSha256": "29f126cfbdc1d997a4c4fd2a40230ce40d388d78fdd069556cc3856873822767",
+      "reason": "HSP-0..HSP-4 hosted evidence or canonical reconciliation"
+    },
+    {
+      "path": "docs/audit-2026-09-20/hsp3-operational-health-final.json",
+      "beforeSha256": null,
+      "afterSha256": "2b9dd28f12d72d1db427426e537656f995958360ca8798135a5b62a72054e9a9",
+      "reason": "HSP-0..HSP-4 hosted evidence or canonical reconciliation"
+    },
+    {
       "path": "docs/canonical/v1/architecture/ENTERPRISE_MEMORY_CONTRACT.md",
       "beforeSha256": null,
       "afterSha256": "c67132d10e775865c02e97e4b2818580cd6351a1b271b5d16bd07811f8fd8ed0",
@@ -371,26 +479,44 @@
     {
       "path": "docs/canonical/v1/delivery/EPICS_CATALOG.json",
       "beforeSha256": null,
-      "afterSha256": "f206ad39ac2446fa7589f489b32d9914050167bd78c2d6f4da010dd63675905c",
+      "afterSha256": "9af2dd45105532590b028f887e6c1a9638ab02b64df56ae094033fe84cbb7007",
       "reason": "HSP-0 canonical Git LF digest for cross-platform integrity verification"
     },
     {
       "path": "docs/canonical/v1/delivery/EPICS_MASTER.md",
       "beforeSha256": null,
-      "afterSha256": "1356899b4c85c972bf419cf63108d43287cba183585c13c224e45a0ce2570f5f",
+      "afterSha256": "6c8cd57c3ba860428f3d1649f0d4a90f23c6f735faca8b65648b38d62917b3c7",
       "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "docs/canonical/v1/delivery/GENESIS_360_HSP_0_4_FINAL_REPORT_2026-09-20.md",
+      "beforeSha256": null,
+      "afterSha256": "5b6300aca764fb4b91884d0342c5b9ff15c0f96493f126c5494e360062f1ebcb",
+      "reason": "HSP-0..HSP-4 hosted evidence or canonical reconciliation"
     },
     {
       "path": "docs/canonical/v1/delivery/GENESIS_360_PRODUCTION_READINESS_REPORT.md",
       "beforeSha256": null,
-      "afterSha256": "f07697695be3d2709c4628f530c89bf3801a0c1e4152356aa2debd666356dff6",
+      "afterSha256": "ad08da690e61c1eb5b27f018031d88df9f532c1c96efbc89cc3883b1e4faf6c3",
       "reason": "RC2 P0 remediation, executable regression, or scope evidence"
     },
     {
       "path": "docs/canonical/v1/delivery/GENESIS_360_PRODUCTION_SCALE_BASELINE_RC2.md",
       "beforeSha256": null,
-      "afterSha256": "a1af547708249f6713a7d1c3498f9849eb97ad10d4c50ba590863c525c4bcac3",
+      "afterSha256": "c60fa516917aa652b085119193c80fbf866bbd8bcd7aaea3915f44426e4e9226",
       "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "docs/canonical/v1/delivery/PRODUCTION_WAVES_MASTER.md",
+      "beforeSha256": null,
+      "afterSha256": "14af8551a84daf473cb9ec2c78818b789d3bc6500fbd92ee1cbfe5718735d62e",
+      "reason": "HSP-0..HSP-4 hosted evidence or canonical reconciliation"
+    },
+    {
+      "path": "docs/canonical/v1/delivery/PRODUCTION_WAVES.md",
+      "beforeSha256": null,
+      "afterSha256": "fe82dd3e99e80142b971f72c867df24ab1d66d1d61390c42802b2a101ccdfdf0",
+      "reason": "HSP-0..HSP-4 hosted evidence or canonical reconciliation"
     },
     {
       "path": "docs/canonical/v1/delivery/RC2_SCOPE_FREEZE_2026-09-19.md",
@@ -401,19 +527,25 @@
     {
       "path": "docs/canonical/v1/delivery/STORIES_CATALOG.csv",
       "beforeSha256": null,
-      "afterSha256": "3fde24df57858c575ca0b3313746ff78fe8abaeb1ea7654de90fe3c4226f3da4",
+      "afterSha256": "b010fda89d6cc5770564ba73d415ec2d2d5af3a29979c737be59da4eae6e7d27",
       "reason": "HSP-0 canonical Git LF digest for cross-platform integrity verification"
     },
     {
       "path": "docs/canonical/v1/delivery/STORIES_MASTER.md",
       "beforeSha256": null,
-      "afterSha256": "fc1f4d99702f1103db5eabbcb2732f74e520a94a078b2547869c3face87adf01",
+      "afterSha256": "a3f3ad9426753d3eaabe96609d514f4b17b586e1ff8a280476bfc14b8af87673",
       "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "docs/canonical/v1/foundation/MASTER_INDEX.md",
+      "beforeSha256": null,
+      "afterSha256": "cf6955a9ca4afe2ff0ca0f627d792ee8434bcc8817a0f61f49c74ef4801c8107",
+      "reason": "HSP-0..HSP-4 hosted evidence or canonical reconciliation"
     },
     {
       "path": "docs/canonical/v1/gates/GATES.json",
       "beforeSha256": null,
-      "afterSha256": "dc8f3d46eb3fd1fe06a0397af7c74c85b1981d7d781f3a57363f2fc3103c2736",
+      "afterSha256": "cd81e6aefa9228fe362befa930d0407f806a9a691429d5e395db446f8f615ca3",
       "reason": "RC2 P0 remediation, executable regression, or scope evidence"
     },
     {
@@ -444,6 +576,12 @@
       "path": "eslint.config.mjs",
       "beforeSha256": "add679ad73ee401b633f7e036a1b1e6a3e380826b77e2fb93636d0d488ec0da6",
       "afterSha256": "383a3720002f79da7c080494f6667ecbb6d085c85e61fc194c2aaf38ba0043b7",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "GATES.json",
+      "beforeSha256": null,
+      "afterSha256": "0bbead31fbc1457d082cdeae406d1a080fe23ed904b9ee3f47268d517d9077f5",
       "reason": "RC2 P0 remediation, executable regression, or scope evidence"
     },
     {
@@ -657,6 +795,12 @@
       "reason": "RC2 P0 remediation, executable regression, or scope evidence"
     },
     {
+      "path": "PROJECT-STATE.md",
+      "beforeSha256": null,
+      "afterSha256": "8abe5681a817c12d3187c0a332742a1e8d2572b9be511eb1a94c9e652b16d1e7",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
       "path": "proxy.ts",
       "beforeSha256": null,
       "afterSha256": "5aa4ba3f0d90451b853382a4e5bec23d5416e6cb736dd89da42d86ae04e166bd",
@@ -689,7 +833,7 @@
     {
       "path": "scripts/check-production-scale-baseline.mjs",
       "beforeSha256": null,
-      "afterSha256": "b433cbd2d2aacd0660dfb25c4c11c3ee1b60b8a068a1cdf70ea5ccdeb1751429",
+      "afterSha256": "d3757a69ffbe4e2b1506b1b1c52d00887978eff2bc1d3cd447862df347277107",
       "reason": "RC2 P0 remediation, executable regression, or scope evidence"
     },
     {
@@ -745,6 +889,12 @@
       "beforeSha256": null,
       "afterSha256": "b29608fcbd8edad88e87dc6658bdcf526cb9ca528e300d7c13366985bdb8971d",
       "reason": "hardening implementation or executable regression/configuration"
+    },
+    {
+      "path": "START_HERE_V1_2_1.md",
+      "beforeSha256": null,
+      "afterSha256": "61ab8b3470e9d31fc58e7f7ee179206a0072355efccbb49b65fe4169f5008514",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
     },
     {
       "path": "supabase/config.toml",
@@ -825,15 +975,15 @@
       "reason": "hardening implementation or executable regression/configuration"
     },
     {
-      "path": "supabase/tests/0002_cross_tenant_rls.sql",
-      "beforeSha256": "3b8eb93ef0ef718a4bed228a57e1acb7cbd22416457ecbddf7ac749dd71f8361",
-      "afterSha256": "40ffd62e4be3323c6f0b95f841721235b3a0d6c636a3f0c6a73149c969c9fb92",
-      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
-    },
-    {
       "path": "supabase/tests/000_setup_test_helpers.sql",
       "beforeSha256": "e160b5024acf52c3c656aa8be1e2aea88deb79a1312166cea28d38544ec86b21",
       "afterSha256": "54b7778d5f6a326073d0a696b4bacd9a9580196a9981237068740f538f5bc368",
+      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "supabase/tests/0002_cross_tenant_rls.sql",
+      "beforeSha256": "3b8eb93ef0ef718a4bed228a57e1acb7cbd22416457ecbddf7ac749dd71f8361",
+      "afterSha256": "40ffd62e4be3323c6f0b95f841721235b3a0d6c636a3f0c6a73149c969c9fb92",
       "reason": "RC2 P0 remediation, executable regression, or scope evidence"
     },
     {

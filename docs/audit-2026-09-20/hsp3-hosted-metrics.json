@@ -1,0 +1,113 @@
+{
+  "wave": "HSP-3",
+  "capturedAt": "2026-09-20T23:38:24.655Z",
+  "window": {
+    "since": "2026-09-20T22:22:45.808459200+00:00",
+    "until": "2026-09-20T23:37:48.102868700+00:00"
+  },
+  "services": [
+    {
+      "name": "web",
+      "cpu": {
+        "current": 0.1176139,
+        "limit": 2,
+        "unit": "vCPU",
+        "utilization_pct": 5.9
+      },
+      "memory": {
+        "current_mb": 231.475249152,
+        "limit_mb": 1023.99737856,
+        "utilization_pct": 22.6
+      },
+      "network": {
+        "egress_mb": 3.84940544,
+        "ingress_mb": 3.756843008
+      },
+      "http": {
+        "2xx": 19370,
+        "3xx": 2,
+        "4xx": 640,
+        "5xx": 1,
+        "error_rate": 0.004996752111127767,
+        "p50_ms": 823,
+        "p90_ms": 1108,
+        "p95_ms": 1131,
+        "p99_ms": 1243,
+        "total": 20013
+      }
+    },
+    {
+      "name": "worker",
+      "cpu": {
+        "current": 0.008509966666666667,
+        "limit": 2,
+        "unit": "vCPU",
+        "utilization_pct": 0.4
+      },
+      "memory": {
+        "current_mb": 125.422272512,
+        "limit_mb": 1023.99737856,
+        "utilization_pct": 12.2
+      },
+      "network": {
+        "egress_mb": 0.250041344,
+        "ingress_mb": 0.230322176
+      }
+    }
+  ],
+  "operationalHealth": {
+    "wave": "HSP-2",
+    "capturedAt": "2026-09-20T23:37:51.112Z",
+    "outbox": {
+      "backlog": 0,
+      "dead_jobs": 0,
+      "throughput_5m": 500,
+      "failure_percent": 0,
+      "attempt_p95_ms": 158
+    },
+    "database": {
+      "datname": "postgres",
+      "connections": 19,
+      "xact_commit": 301748,
+      "xact_rollback": 47,
+      "blks_read": 1832,
+      "blks_hit": 3124606,
+      "deadlocks": 0,
+      "temp_bytes": 0
+    }
+  },
+  "inventory": {
+    "capturedAt": "2026-09-20T23:37:51.945Z",
+    "counts": {
+      "tenants": 102,
+      "memberships": 104,
+      "companies": 102,
+      "outbox": 6301,
+      "outboxAttempts": 6301,
+      "authUsers": null
+    }
+  },
+  "finops": {
+    "billingPeriod": {
+      "end": "2026-09-20T23:59:59.999+00:00",
+      "start": "2026-09-20T20:53:37.064+00:00"
+    },
+    "currentUsageDollars": 0.022745197431975308,
+    "services": [
+      {
+        "name": "web",
+        "cpuDollars": 0.002026160887345679,
+        "memoryDollars": 0.00413585682962963,
+        "egressDollars": 0.0132727197,
+        "totalDollars": 0.01943473741697531
+      },
+      {
+        "name": "worker",
+        "cpuDollars": 0.00022946395833333335,
+        "memoryDollars": 0.0021247249066666664,
+        "egressDollars": 0.00095627115,
+        "totalDollars": 0.003310460015
+      }
+    ]
+  }
+}

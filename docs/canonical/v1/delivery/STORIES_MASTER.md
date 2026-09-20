@@ -1375,7 +1375,7 @@ Estados `implemented*` indicam implementação existente; não significam prova 
 ## EPIC-17 Production Readiness & Repository
 
 ### V1-ST-104 — Bootstrap do novo repositório GitHub
-- **Status:** `planned-production`
+- **Status:** `completed-remote-repository`
 - **Prioridade:** `P0`
 - **Source:** `docs/canonical/v1/delivery/STORIES_MASTER.md`
 - **Critérios de aceite:**
@@ -1389,7 +1389,7 @@ Estados `implemented*` indicam implementação existente; não significam prova 
 - **Rollback:** obrigatório quando houver migration, configuração, segurança ou mudança de fluxo crítico.
 
 ### V1-ST-105 — Bootstrap limpo das migrations 0001→0023
-- **Status:** `completed-local-runtime`
+- **Status:** `completed-hosted-runtime`
 - **Prioridade:** `P0`
 - **Source:** `docs/canonical/v1/delivery/STORIES_MASTER.md`
 - **Critérios de aceite:**
@@ -1401,7 +1401,7 @@ Estados `implemented*` indicam implementação existente; não significam prova 
 - **Rollback:** obrigatório quando houver migration, configuração, segurança ou mudança de fluxo crítico.
 
 ### V1-ST-106 — Executar pgTAP tenancy/RBAC/governance completo
-- **Status:** `completed-local-runtime`
+- **Status:** `completed-hosted-runtime`
 - **Prioridade:** `P0`
 - **Source:** `docs/canonical/v1/delivery/STORIES_MASTER.md`
 - **Critérios de aceite:**
@@ -1415,7 +1415,7 @@ Estados `implemented*` indicam implementação existente; não significam prova 
 - **Rollback:** obrigatório quando houver migration, configuração, segurança ou mudança de fluxo crítico.
 
 ### V1-ST-107 — Full lint + TypeScript 6 + Vitest + Next build
-- **Status:** `completed-local-runtime`
+- **Status:** `completed-remote-ci`
 - **Prioridade:** `P0`
 - **Source:** `docs/canonical/v1/delivery/STORIES_MASTER.md`
 - **Critérios de aceite:**
@@ -1427,7 +1427,7 @@ Estados `implemented*` indicam implementação existente; não significam prova 
 - **Rollback:** obrigatório quando houver migration, configuração, segurança ou mudança de fluxo crítico.
 
 ### V1-ST-108 — E2E browser do happy path empresarial
-- **Status:** `completed-local-runtime`
+- **Status:** `completed-hosted-runtime`
 - **Prioridade:** `P0`
 - **Source:** `docs/canonical/v1/delivery/STORIES_MASTER.md`
 - **Critérios de aceite:**
@@ -1441,7 +1441,7 @@ Estados `implemented*` indicam implementação existente; não significam prova 
 - **Rollback:** obrigatório quando houver migration, configuração, segurança ou mudança de fluxo crítico.
 
 ### V1-ST-109 — E2E adversarial cross-tenant e permissions
-- **Status:** `completed-local-runtime`
+- **Status:** `completed-hosted-runtime`
 - **Prioridade:** `P0`
 - **Source:** `docs/canonical/v1/delivery/STORIES_MASTER.md`
 - **Critérios de aceite:**
@@ -1457,7 +1457,7 @@ Estados `implemented*` indicam implementação existente; não significam prova 
 - **Rollback:** obrigatório quando houver migration, configuração, segurança ou mudança de fluxo crítico.
 
 ### V1-ST-110 — Backup/restore/rollback drill
-- **Status:** `completed-local-runtime-staging-pending`
+- **Status:** `partial-hosted-logical-pass-managed-backup-pending`
 - **Prioridade:** `P0`
 - **Source:** `docs/canonical/v1/delivery/STORIES_MASTER.md`
 - **Critérios de aceite:**
@@ -1471,7 +1471,7 @@ Estados `implemented*` indicam implementação existente; não significam prova 
 - **Rollback:** obrigatório quando houver migration, configuração, segurança ou mudança de fluxo crítico.
 
 ### V1-ST-111 — SBOM + license + dependency + secret/security scans
-- **Status:** `partial-dependency-secret-sbom-license-pending`
+- **Status:** `partial-scans-and-license-inventory-pass-sbom-legal-pending`
 - **Prioridade:** `P0`
 - **Source:** `docs/canonical/v1/delivery/STORIES_MASTER.md`
 - **Critérios de aceite:**
@@ -1485,7 +1485,7 @@ Estados `implemented*` indicam implementação existente; não significam prova 
 - **Rollback:** obrigatório quando houver migration, configuração, segurança ou mudança de fluxo crítico.
 
 ### V1-ST-112 — Observabilidade e correlation IDs ponta a ponta
-- **Status:** `implemented-local-external-collector-pending`
+- **Status:** `partial-hosted-observability-external-paging-pending`
 - **Prioridade:** `P0`
 - **Source:** `docs/canonical/v1/delivery/STORIES_MASTER.md`
 - **Critérios de aceite:**
@@ -1497,7 +1497,7 @@ Estados `implemented*` indicam implementação existente; não significam prova 
 - **Rollback:** obrigatório quando houver migration, configuração, segurança ou mudança de fluxo crítico.
 
 ### V1-ST-113 — Configurar dev/staging/prod e promoção controlada
-- **Status:** `implemented-local-remote-ci-pending`
+- **Status:** `completed-hosted-staging-and-remote-ci`
 - **Prioridade:** `P0`
 - **Source:** `docs/canonical/v1/delivery/STORIES_MASTER.md`
 - **Critérios de aceite:**
@@ -1623,7 +1623,7 @@ Estados `implemented*` indicam implementação existente; não significam prova 
 ## EPIC-17 Production Readiness & Repository
 
 ### V1-ST-122 — Production Readiness Review e release candidate
-- **Status:** `completed-local-review-production-blocked`
+- **Status:** `completed-hsp4-no-go`
 - **Prioridade:** `P0`
 - **Source:** `docs/canonical/v1/delivery/STORIES_MASTER.md`
 - **Critérios de aceite:**
@@ -1635,7 +1635,7 @@ Estados `implemented*` indicam implementação existente; não significam prova 
 - **Rollback:** obrigatório quando houver migration, configuração, segurança ou mudança de fluxo crítico.
 
 ### V1-ST-123 — Piloto controlado com rollout/rollback
-- **Status:** `planned-production`
+- **Status:** `planned-not-started`
 - **Prioridade:** `P0`
 - **Source:** `docs/canonical/v1/delivery/STORIES_MASTER.md`
 - **Critérios de aceite:**

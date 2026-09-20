@@ -1,34 +1,10 @@
 {
-  "version": "1.2.1-rc.2-production-scale-local",
+  "version": "1.2.1-rc.2-hsp4",
   "gateZero": "GZ-C / authorized incremental hardening",
-  "PW-0": {
-    "status": "local_pass_remote_pending",
-    "notApprovedForProduction": true,
-    "passedEvidence": [
-      "34 native regression tests",
-      "625 property combinations within one test",
-      "10-root semantic subset",
-      "96 source syntax checks",
-      "static integrity and publication checks",
-      "23 migrations and 95 pgTAP assertions",
-      "53 Vitest and 10 authenticated browser E2E tests",
-      "backup/restore and 2,000-tenant database workload"
-    ],
-    "blocked": [
-      "remote GitHub CI and branch protection",
-      "hosted staging end-to-end soak"
-    ]
-  },
-  "PW-1": {
-    "status": "local_foundation_pass_hosted_pending",
-    "requires": [
-      "external telemetry collector and paging",
-      "managed backup restore",
-      "hosted HTTP/Auth/worker/storage load"
-    ]
-  },
-  "production": {
-    "status": "blocked",
-    "reason": "Local foundation passed, but hosted operational evidence and remote delivery controls remain required"
-  }
+  "HSP-0": {"status":"passed","evidence":["public organization repository","protected main requiring pull request and CI","remote CI passing"]},
+  "HSP-1": {"status":"blocked_external_invitation_core_pass","evidence":["hosted isolated staging","23 migrations and 95 pgTAP assertions","10 authenticated browser E2E tests","continuous hosted worker"],"blocked":["controlled SMTP/inbox invitation delivery and callback"]},
+  "HSP-2": {"status":"partial_blocked","passed":["security headers and five sensitive flags off","provider metrics and structured logs","isolated logical restore","Dependabot and secret scanning controls"],"blocked":["external paging receiver","managed backup retention and drill","complete SBOM and legal license disposition"]},
+  "HSP-3": {"status":"functional_pass_performance_fail","evidence":["100-tenant hosted HTTP/Auth/tenant/API/PostgreSQL/outbox/worker soak","cross-tenant denials preserved","zero functional failures"],"failed":["hosted p95 latency SLO"]},
+  "HSP-4": {"status":"complete_no_go"},
+  "production": {"status":"blocked","pilot":"no-go","reason":"Hosted latency, managed recovery, external paging, invitation and supply-chain gates remain open"}
 }

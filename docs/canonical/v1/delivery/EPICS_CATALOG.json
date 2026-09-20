@@ -347,13 +347,15 @@
     ],
     "storyCount": 12,
     "statusCounts": {
-      "planned-production": 2,
-      "completed-local-runtime": 5,
-      "completed-local-runtime-staging-pending": 1,
-      "partial-dependency-secret-sbom-license-pending": 1,
-      "implemented-local-external-collector-pending": 1,
-      "implemented-local-remote-ci-pending": 1,
-      "completed-local-review-production-blocked": 1
+      "completed-remote-repository": 1,
+      "completed-hosted-runtime": 4,
+      "completed-remote-ci": 1,
+      "partial-hosted-logical-pass-managed-backup-pending": 1,
+      "partial-scans-and-license-inventory-pass-sbom-legal-pending": 1,
+      "partial-hosted-observability-external-paging-pending": 1,
+      "completed-hosted-staging-and-remote-ci": 1,
+      "completed-hsp4-no-go": 1,
+      "planned-not-started": 1
     },
     "priorities": {
       "P0": 12

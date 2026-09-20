@@ -1,0 +1,21 @@
+{
+  "wave": "HSP-2",
+  "capturedAt": "2026-09-20T22:39:57.088Z",
+  "outbox": {
+    "backlog": 10,
+    "dead_jobs": 0,
+    "throughput_5m": 517,
+    "failure_percent": 0,
+    "attempt_p95_ms": 176.15
+  },
+  "database": {
+    "datname": "postgres",
+    "connections": 22,
+    "xact_commit": 41926,
+    "xact_rollback": 46,
+    "blks_read": 1829,
+    "blks_hit": 915323,
+    "deadlocks": 0,
+    "temp_bytes": 0
+  }
+}
