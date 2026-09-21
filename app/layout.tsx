@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Genesis 360º Empresarial",
-  description: "Inteligência para pequenas e médias empresas crescerem com maturidade.",
+  description: "Inteligência empresarial confiável para transformar informação em decisões e resultados.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

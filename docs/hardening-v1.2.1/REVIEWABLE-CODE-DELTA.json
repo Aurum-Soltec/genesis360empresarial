@@ -1,6 +1,6 @@
 {
-  "version": "1.2.1-rc.2-hsp4",
-  "status": "hsp4_complete_no_go_pilot_blocked",
+  "version": "1.2.1-rc.2-demo-readiness-2",
+  "status": "demo_readiness_reproducible_candidate",
   "files": [
     {
       "path": ".env.example",
@@ -189,22 +189,34 @@
       "reason": "RC2 P0 remediation, executable regression, or scope evidence"
     },
     {
+      "path": "app/documentos/page.tsx",
+      "beforeSha256": "daea76752044b3f14092353540fa4e56d73b057e33de4360edc0f37ea0e3362a",
+      "afterSha256": "ed7989b95192cedf5f10dd757b59af7f171c3a231f0e2ae6bbb63bff8b670cde",
+      "reason": "Demo readiness: tenant evidence inventory, report provenance, print/PDF layout, tests, and synchronized state"
+    },
+    {
       "path": "app/entrar/page.tsx",
       "beforeSha256": null,
-      "afterSha256": "6770a7db676324c281028531af990d5ee76c2459377e7566c5ec14d2e7e02b3e",
-      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+      "afterSha256": "bb62d98bac670ccc2ad7cf077caef3015d0cb58826814ef74bb49c96794829fb",
+      "reason": "Owner-approved Genesis 360 branding alignment; canonical Precision Light tokens, official logo asset, and UI integration"
     },
     {
       "path": "app/globals.css",
       "beforeSha256": null,
-      "afterSha256": "52d09eed855a29ebf169bda6f2e6bd6af30fee17426fdf2d635db62446ece4b9",
-      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+      "afterSha256": "bb30eae65705fe0bf6fb1fd04ff5a13b3b9d575d937d70d943a3a0cc6730f12c",
+      "reason": "Demo readiness: tenant evidence inventory, report provenance, print/PDF layout, tests, and synchronized state"
     },
     {
       "path": "app/indicadores/page.tsx",
       "beforeSha256": null,
       "afterSha256": "19b3b2bbccb79da8f977059a3235ddb70aeac4663115e6f760629f49fca256fb",
       "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "app/layout.tsx",
+      "beforeSha256": "10c4899d2d1e86962727ba34f5bcb2677bb65d52df95b115170a924972a94194",
+      "afterSha256": "29bb82772b83280c4a95055e35c4f074d4fd03a8943d4eae4c03589f456e6c5a",
+      "reason": "Owner-approved Genesis 360 branding alignment; canonical Precision Light tokens, official logo asset, and UI integration"
     },
     {
       "path": "app/missoes/mission-actions.tsx",
@@ -239,8 +251,8 @@
     {
       "path": "app/resultado-v1/page.tsx",
       "beforeSha256": "212f2318c3f791059beb1965d499c33aca89ef363cc2e02df03f2298dd700cd7",
-      "afterSha256": "ca6c484a62a17f2f84bb890408940eb573f3c34f0a19fef7710726dd455ce524",
-      "reason": "hardening implementation or executable regression/configuration"
+      "afterSha256": "f9dee254c9208e29371a8f9a16140843312b91686e01828cb6d9f193eaf69a8b",
+      "reason": "Reproducible demo flow: authenticated deterministic scenario, diagnostic-linked evidence, traceable result, screenshots and PDF evidence"
     },
     {
       "path": "app/selecionar-empresa/page.tsx",
@@ -257,8 +269,20 @@
     {
       "path": "components/app-navigation.tsx",
       "beforeSha256": null,
-      "afterSha256": "b08892546dc7eb647e9640ec20ef7b2e759f04c4653197d5361e0417141ae149",
-      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+      "afterSha256": "546c350bb162b13d62e3c520610920cbc2d7ce608c5486a2de949e41c1a5e46f",
+      "reason": "Owner-approved Genesis 360 branding alignment; canonical Precision Light tokens, official logo asset, and UI integration"
+    },
+    {
+      "path": "components/brand-mark.tsx",
+      "beforeSha256": "e2a67d1427946b802981605eb9742e8dba169f24b9f11de71c5a631beba480d7",
+      "afterSha256": "1ec6f0894d84b18928acb705296d9e6c3ef99b02f23419f5658c11aae9deebe9",
+      "reason": "Owner-approved Genesis 360 branding alignment; canonical Precision Light tokens, official logo asset, and UI integration"
+    },
+    {
+      "path": "components/print-report-button.tsx",
+      "beforeSha256": null,
+      "afterSha256": "557232275acd65774017a3cc88234a1309d86e54574a030a089547c221233edc",
+      "reason": "Demo readiness: tenant evidence inventory, report provenance, print/PDF layout, tests, and synchronized state"
     },
     {
       "path": "config/environments/development.json",
@@ -289,6 +313,24 @@
       "beforeSha256": null,
       "afterSha256": "86670075340da32de800179883d6b410bcdd06119cc992f66969ae3b3b1c3ed0",
       "reason": "hardening implementation or executable regression/configuration"
+    },
+    {
+      "path": "design-system/genesis-precision-light/DESIGN.md",
+      "beforeSha256": "690578450e5b95b6c0867bfaf08260b1eefe95a1fe5454a3d525c8da2d6dc667",
+      "afterSha256": "ae1d103698365c1c816484f996d9658e1df3bb4836691907b7df72acc896f4f4",
+      "reason": "Owner-approved Genesis 360 branding alignment; canonical Precision Light tokens, official logo asset, and UI integration"
+    },
+    {
+      "path": "design-system/genesis-precision-light/manifest.json",
+      "beforeSha256": "c8d610830da54fe377bee7ab8040adf732888f9c283e384e401916024cb4c8ad",
+      "afterSha256": "80038fd273dbc22779043f2e2877da57529d20be29199f4dfb4a73f1adf8aa3f",
+      "reason": "Owner-approved Genesis 360 branding alignment; canonical Precision Light tokens, official logo asset, and UI integration"
+    },
+    {
+      "path": "design-system/genesis-precision-light/tokens.css",
+      "beforeSha256": "0ca69a38e0eb6388a70c941d5d6114e8b72845c29830be123c86473b940950ad",
+      "afterSha256": "5f9aa6d33d11e86826bf565f23be64d84ec6d2575de39d0b06c2f7dbc732662d",
+      "reason": "Owner-approved Genesis 360 branding alignment; canonical Precision Light tokens, official logo asset, and UI integration"
     },
     {
       "path": "docs/API/openapi.yaml",
@@ -471,10 +513,22 @@
       "reason": "HSP-0..HSP-4 hosted evidence or canonical reconciliation"
     },
     {
+      "path": "docs/canonical/v1/architecture/ADR-022_GENESIS_PRECISION_LIGHT_V2.md",
+      "beforeSha256": "a8a065dd6f4a69f478514788b7b66e2b92e8450fce2f584328a0a92570e729fc",
+      "afterSha256": "c40c498c3c493d8a57123d0417dabe0ae638c74d28cff8ff134064dc004f095e",
+      "reason": "Owner-approved Genesis 360 branding alignment; canonical Precision Light tokens, official logo asset, and UI integration"
+    },
+    {
       "path": "docs/canonical/v1/architecture/ENTERPRISE_MEMORY_CONTRACT.md",
       "beforeSha256": null,
       "afterSha256": "c67132d10e775865c02e97e4b2818580cd6351a1b271b5d16bd07811f8fd8ed0",
       "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "docs/canonical/v1/delivery/DEMO_READINESS_WAVE_2026-09-21.md",
+      "beforeSha256": null,
+      "afterSha256": "aa5c0c3f7098e63b496bde6a7a55bd304d8ea467d22eb88160378bb04511c438",
+      "reason": "Reproducible demo flow: authenticated deterministic scenario, diagnostic-linked evidence, traceable result, screenshots and PDF evidence"
     },
     {
       "path": "docs/canonical/v1/delivery/EPICS_CATALOG.json",
@@ -571,6 +625,12 @@
       "beforeSha256": null,
       "afterSha256": "be77d3424fda9c070835064ca529c3c9d8943dcc821abe6499e20aba7dc6bbfb",
       "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "docs/canonical/v1/ux/GENESIS_PRECISION_LIGHT_V2.md",
+      "beforeSha256": "ae23d525f9397d75eed026a3156848c6d03fc40a39c69127db5881b398b172d0",
+      "afterSha256": "79a30f3d668fc16cac179c791bb7011e3da0b6924be1f1c6f9db1992586f11b8",
+      "reason": "Owner-approved Genesis 360 branding alignment; canonical Precision Light tokens, official logo asset, and UI integration"
     },
     {
       "path": "eslint.config.mjs",
@@ -729,6 +789,18 @@
       "reason": "RC2 P0 remediation, executable regression, or scope evidence"
     },
     {
+      "path": "lib/report-provenance.test.ts",
+      "beforeSha256": null,
+      "afterSha256": "82137c923737efc8db67099cebb7ae890f8c20b9471aaf3f5e879ca2303cfe3e",
+      "reason": "Demo readiness: tenant evidence inventory, report provenance, print/PDF layout, tests, and synchronized state"
+    },
+    {
+      "path": "lib/report-provenance.ts",
+      "beforeSha256": null,
+      "afterSha256": "85dc22998f3b9580e09c07e377df60963434f16b9ff8639d9e8957389c9fdfd8",
+      "reason": "Demo readiness: tenant evidence inventory, report provenance, print/PDF layout, tests, and synchronized state"
+    },
+    {
       "path": "lib/server/diagnostic-context.ts",
       "beforeSha256": "1a2d9fa26732cd7681a9e1a2f8190a62cd473ba5b93514bc394b21ac02688708",
       "afterSha256": "2056c490cc0aaa8477a84360d543a4a47956bc641340def2343dd7e0387bb050",
@@ -785,8 +857,8 @@
     {
       "path": "package.json",
       "beforeSha256": "70a9059f3482473c543dedaf96edddf781c503fa11f480494a481c04f2f77355",
-      "afterSha256": "bc1a17aa383b92e13f3d40aea7a56077cb73d1fe890a94e7769103bd7e72620b",
-      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+      "afterSha256": "21866fa2cd1074f0931005cc1e9761fc20a2ea0afd4eeaf57ac0a3a83fbe202e",
+      "reason": "Reproducible demo flow: authenticated deterministic scenario, diagnostic-linked evidence, traceable result, screenshots and PDF evidence"
     },
     {
       "path": "pnpm-lock.yaml",
@@ -797,14 +869,20 @@
     {
       "path": "PROJECT-STATE.md",
       "beforeSha256": null,
-      "afterSha256": "8abe5681a817c12d3187c0a332742a1e8d2572b9be511eb1a94c9e652b16d1e7",
-      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+      "afterSha256": "7725efca54907c037c7d6f5cb10e37d75f26154df113fca38a5ef5f02bab0467",
+      "reason": "Reproducible demo flow: authenticated deterministic scenario, diagnostic-linked evidence, traceable result, screenshots and PDF evidence"
     },
     {
       "path": "proxy.ts",
       "beforeSha256": null,
       "afterSha256": "5aa4ba3f0d90451b853382a4e5bec23d5416e6cb736dd89da42d86ae04e166bd",
       "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "public/brand/genesis-360-empresarial.png",
+      "beforeSha256": null,
+      "afterSha256": "f9f0c19cc3106ed1165db754aba86899ea7e8c4e87db0c51b4423c83f7534307",
+      "reason": "Owner-approved Genesis 360 branding alignment; canonical Precision Light tokens, official logo asset, and UI integration"
     },
     {
       "path": "scripts/bootstrap-dependencies.mjs",
@@ -817,6 +895,12 @@
       "beforeSha256": null,
       "afterSha256": "06bb0068d1887a23fef14b108e1ef8f95e5c72535616a538c7aee64bcd7a9c4c",
       "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "scripts/check-design-system.mjs",
+      "beforeSha256": "63712029a9ae6ed6d6d783255117d8ad4a21e92b63942bc83afe4b8f93e3198b",
+      "afterSha256": "b7859cf6451a01f039b3c6f084f70e51627ea240cbf1e085156684808e840007",
+      "reason": "Owner-approved Genesis 360 branding alignment; canonical Precision Light tokens, official logo asset, and UI integration"
     },
     {
       "path": "scripts/check-hardening-integrity.mjs",
@@ -853,6 +937,12 @@
       "beforeSha256": null,
       "afterSha256": "b847ed91f095f0bbb2b7b8b2777c5e020f6adab771da4df7e2a3a3b26c7127d4",
       "reason": "hardening implementation or executable regression/configuration"
+    },
+    {
+      "path": "scripts/prepare-demo-scenario.mjs",
+      "beforeSha256": null,
+      "afterSha256": "77219dfb3a72bb0ceaa12d1d60ab74602773f7805afed58a74bc315815ca824e",
+      "reason": "Reproducible demo flow: authenticated deterministic scenario, diagnostic-linked evidence, traceable result, screenshots and PDF evidence"
     },
     {
       "path": "scripts/run-backup-restore-drill.ps1",

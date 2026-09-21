@@ -229,7 +229,7 @@ export function AppNavigation({
 
       <header className="precision-topbar">
         <Link className="precision-brand-link" href="/" aria-label="Genesis 360 Empresarial — início">
-          <BrandMark />
+          <BrandMark priority />
         </Link>
 
         <nav className="precision-topnav" aria-label="Módulos principais">

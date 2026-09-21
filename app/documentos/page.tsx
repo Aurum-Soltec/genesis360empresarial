@@ -24,6 +24,33 @@ export default async function DocumentosPage() {
     .eq("status", "active")
     .maybeSingle();
 
+  const { data: evidence, error: evidenceError } = company
+    ? await db
+        .from("evidence_items")
+        .select("id,evidence_type,source_ref,summary,captured_at,verification_status,sensitivity")
+        .eq("tenant_id", ctx.tenantId)
+        .eq("company_id", company.id)
+        .order("captured_at", { ascending: false })
+        .limit(50)
+    : { data: [], error: null };
+
+  const evidenceTypeLabel: Record<string, string> = {
+    user_declaration: "Declaração",
+    document: "Documento",
+    metric: "Métrica",
+    integration: "Integração",
+    observation: "Observação",
+    agent_output: "Saída de agente",
+  };
+
+  const evidenceStatusLabel: Record<string, string> = {
+    unverified: "Não verificada",
+    pending: "Em verificação",
+    verified: "Verificada",
+    rejected: "Rejeitada",
+    expired: "Expirada",
+  };
+
   return (
     <AppShell>
       <header className="page-header">
@@ -71,6 +98,49 @@ export default async function DocumentosPage() {
           </p>
         </section>
       )}
+
+      <section className="evidence-register" aria-labelledby="evidence-register-title">
+        <div className="section-heading-row">
+          <div>
+            <span className="section-eyebrow">Base informacional</span>
+            <h2 id="evidence-register-title">Evidências registradas</h2>
+          </div>
+          <span className="badge">{evidence?.length ?? 0} registros</span>
+        </div>
+
+        {evidenceError ? (
+          <div className="precision-empty" role="status">
+            <strong>Não foi possível carregar as evidências.</strong>
+            <p>A indisponibilidade permanece explícita e não é convertida em ausência de dados.</p>
+          </div>
+        ) : evidence?.length ? (
+          <ol className="evidence-list">
+            {evidence.map((item) => (
+              <li key={item.id}>
+                <div className="evidence-list-main">
+                  <div className="evidence-list-meta">
+                    <span>{evidenceTypeLabel[item.evidence_type] ?? item.evidence_type}</span>
+                    <span>{new Intl.DateTimeFormat("pt-BR").format(new Date(item.captured_at))}</span>
+                  </div>
+                  <strong>{item.summary}</strong>
+                  {item.source_ref ? <small>Fonte: {item.source_ref}</small> : null}
+                </div>
+                <span className={`evidence-status is-${item.verification_status}`}>
+                  {evidenceStatusLabel[item.verification_status] ?? item.verification_status}
+                </span>
+              </li>
+            ))}
+          </ol>
+        ) : (
+          <div className="precision-empty">
+            <strong>Nenhuma evidência registrada para esta empresa.</strong>
+            <p>
+              Declarações e referências documentais aparecerão aqui com origem,
+              data e estado de verificação. Ausência de evidência não será tratada como confirmação.
+            </p>
+          </div>
+        )}
+      </section>
     </AppShell>
   );
 }

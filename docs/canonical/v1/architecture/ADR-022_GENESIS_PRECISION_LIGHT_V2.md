@@ -42,3 +42,13 @@ Adopt an external component primitive only when:
 - interaction complexity is non-trivial;
 - accessibility burden is recurring;
 - the component removes more code/risk than it adds.
+
+## Brand alignment addendum — 2026-09-21
+The owner approved the supplied Genesis 360 Empresarial identity as the visual
+source for the product. Precision Light remains the interaction system and is
+aligned to the official deep green, technology green and lime palette.
+
+The supplied horizontal PNG is the canonical application mark. The previous
+CSS approximation is retired. DIN Next remains a brand reference only until
+licensed webfont files and embedding rights are supplied; the runtime therefore
+continues to use a local system sans stack without a network font dependency.

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
+import { BrandMark } from "@/components/brand-mark";
 import { createClient } from "@/lib/supabase/client";
 
 export default function SignInPage() {
@@ -31,6 +32,9 @@ export default function SignInPage() {
   return (
     <main className="focused-shell">
       <section className="focused-panel">
+        <div className="focused-brand">
+          <BrandMark priority />
+        </div>
         <p className="eyebrow">Acesso seguro</p>
         <h1>Entrar no Genesis 360</h1>
         <form onSubmit={submit} className="stack">

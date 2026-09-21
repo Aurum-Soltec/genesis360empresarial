@@ -29,12 +29,14 @@ const diagnostic = fs.readFileSync("app/diagnostico-v1/journey.tsx", "utf8");
 const result = fs.readFileSync("app/resultado-v1/page.tsx", "utf8");
 
 for (const token of [
-  "--g-canvas: #f7f8f6",
-  "--g-ink: #111814",
-  "--g-green: #1f5a34",
-  "--g-lime: #a8ff3e",
-  "--g-topbar: 68px",
-  "--g-sidebar: 232px",
+  "--g-canvas: #f5f8f7",
+  "--g-ink: #082b29",
+  "--g-deep: #0b3d3a",
+  "--g-green: #08783d",
+  "--g-brand-green: #00c853",
+  "--g-lime: #7ed321",
+  "--g-topbar: 76px",
+  "--g-sidebar: 236px",
 ]) {
   if (!css.includes(token)) {
     console.error(`TOKEN DRIFT: ${token}`);
@@ -100,10 +102,11 @@ function contrast(a, b) {
 }
 
 const contrastPairs = [
-  ["primary text / white", "#111814", "#FFFFFF", 7],
-  ["secondary text / white", "#58635C", "#FFFFFF", 4.5],
-  ["Genesis green / white", "#1F5A34", "#FFFFFF", 4.5],
-  ["ink / lime", "#111814", "#A8FF3E", 7],
+  ["primary text / white", "#082B29", "#FFFFFF", 7],
+  ["secondary text / white", "#4F625F", "#FFFFFF", 4.5],
+  ["accessible Genesis green / white", "#08783D", "#FFFFFF", 4.5],
+  ["white / Genesis deep", "#FFFFFF", "#0B3D3A", 7],
+  ["ink / lime", "#082B29", "#7ED321", 7],
 ];
 
 for (const [label, fg, bg, minimum] of contrastPairs) {

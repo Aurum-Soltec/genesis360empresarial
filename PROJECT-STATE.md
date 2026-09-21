@@ -1,6 +1,26 @@
 # PROJECT-STATE — Genesis 360 Empresarial
 
-Atualização: **2026-09-20**. Candidato: **V1.2.1 RC2 + Production & Scale Foundation em staging hospedado**.
+Atualização: **2026-09-21**. Candidato: **V1.2.1 RC2 + Production & Scale Foundation em staging hospedado**.
+
+## Demo Readiness local — 2026-09-21
+
+O candidato local recebeu a identidade visual oficial Genesis 360 Empresarial e
+um primeiro corte do fluxo demonstrável `diagnóstico -> evidências -> resultado
+rastreável -> relatório executivo`. O resultado passa a apresentar cobertura de
+proveniência, fontes vinculadas, estado de verificação, versões metodológicas e
+uma composição A4 imprimível/salvável em PDF sem dependência externa.
+
+A proveniência reconcilia referências anexadas às respostas e evidências ligadas
+diretamente ao diagnóstico. `pnpm demo:prepare` prepara um cenário Essential
+fictício usando somente autenticação e APIs normais, e gera capturas, PDF e um
+registro de execução sem credenciais ou cookies.
+
+A área Documentos lista o ledger de evidências do tenant. O upload binário para
+usuários reais continua desligado; scanner de conteúdo, retenção e gate jurídico
+permanecem pendentes. Esta tranche não altera tenancy, RLS, scoring, Trusted Data
+Access Boundary, outbox ou worker. A implementação local precisa ser promovida e
+revalidada no ambiente hospedado com uma conta dedicada de demonstração antes de
+receber crédito de runtime em staging.
 
 ## Hosted Staging & Pilot Readiness — HSP-0 a HSP-4
 
