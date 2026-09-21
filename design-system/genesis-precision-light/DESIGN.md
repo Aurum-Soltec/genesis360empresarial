@@ -27,16 +27,24 @@ Default information order:
 Avoid symmetric “four KPI cards” as the default page structure.
 
 ## Color and contrast
-Canvas is warm-light `#F7F8F6`; primary surfaces are white.
+Canvas is a cool light neutral `#F5F8F7`; primary surfaces are white.
 
-Genesis Green is an action/authority color. Genesis Lime is a brand signal, not a large background.
+Genesis Deep `#0B3D3A` carries authority. Accessible Genesis Green `#08783D`
+carries text actions. Technology Green `#00C853` and Genesis Lime `#7ED321`
+are brand signals, not large backgrounds or body-text colors.
+
+The official horizontal mark is served from
+`/public/brand/genesis-360-empresarial.png`. Do not reconstruct it with CSS or
+replace it with an approximate glyph.
 
 Primary text must remain near-black. Secondary copy must preserve WCAG AA contrast for normal text.
 
 Status is never represented only by color.
 
 ## Typography
-Use a high-quality native/system sans stack in this Wave to avoid adding a font/runtime dependency before the build gate.
+Use a high-quality native/system sans stack in this Wave. The brand reference
+names DIN Next, but it must not be distributed until licensed font files are
+provided and approved for web embedding.
 
 Hierarchy:
 - executive display: 44–48px / 600–650;

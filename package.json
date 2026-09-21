@@ -26,6 +26,7 @@
     "production:state-check": "node scripts/check-production-scale-baseline.mjs",
     "delivery:check": "node scripts/check-delivery-config.mjs",
     "test:e2e:production": "node tests/e2e-production.mjs",
+    "demo:prepare": "node scripts/prepare-demo-scenario.mjs",
     "worker:outbox": "node workers/outbox-worker.mjs",
     "worker:outbox:once": "node workers/outbox-worker.mjs --once",
     "typecheck:domain": "node scripts/typecheck-domain.mjs"

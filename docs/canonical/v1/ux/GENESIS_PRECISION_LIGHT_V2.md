@@ -27,13 +27,20 @@ This is an inspiration model, not a visual copy.
 - no decorative gradients;
 - no global glassmorphism.
 
+### Brand alignment — 2026-09-21
+- official horizontal Genesis 360 Empresarial mark in navigation and access;
+- deep green `#0B3D3A` for authority and primary controls;
+- accessible green `#08783D` for text actions;
+- technology green `#00C853` and lime `#7ED321` as restrained signals;
+- cool-light canvas `#F5F8F7` and white primary surfaces.
+
 ## UI principle
 Use hierarchy before containers.
 
 If spacing, typography and a divider can communicate the relationship, do not add a card.
 
 ## Font decision
-Wave 8 keeps the high-quality native/system stack to avoid a new dependency and build-time font risk before runtime verification.
+Wave 8 keeps the high-quality native/system stack to avoid a new dependency and build-time font risk before runtime verification. DIN Next is not bundled because licensed webfont files and embedding rights were not provided with the visual reference.
 
 A branded font can be introduced later only through a measured ADR.
 

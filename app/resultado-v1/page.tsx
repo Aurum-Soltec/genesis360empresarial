@@ -1,6 +1,13 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { AppShell } from "@/components/app-shell";
+import { BrandMark } from "@/components/brand-mark";
+import { PrintReportButton } from "@/components/print-report-button";
+import {
+  answersWithEvidence,
+  evidenceIdsFromAnswers,
+  verifiedEvidenceCount,
+} from "@/lib/report-provenance";
 import { requireTenantContext } from "@/lib/tenant-context";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
@@ -86,6 +93,46 @@ export default async function ResultadoV1({
     .order("severity", { ascending: false })
     .limit(3);
 
+  const { data: answerEvidenceRows, error: answerEvidenceError } = await db
+    .from("answers")
+    .select("evidence_refs")
+    .eq("tenant_id", ctx.tenantId)
+    .eq("diagnostic_id", diagnosticId);
+
+  const { data: diagnosticEvidenceLinks, error: diagnosticEvidenceLinksError } = await db
+    .from("evidence_links")
+    .select("evidence_id")
+    .eq("tenant_id", ctx.tenantId)
+    .eq("company_id", diagnosticRow.company_id)
+    .eq("subject_type", "diagnostic")
+    .eq("subject_id", diagnosticId);
+
+  const evidenceIds = [
+    ...new Set([
+      ...evidenceIdsFromAnswers(answerEvidenceRows),
+      ...(diagnosticEvidenceLinks ?? []).map((link) => link.evidence_id),
+    ]),
+  ];
+  const { data: evidenceRows, error: evidenceError } = evidenceIds.length
+    ? await db
+        .from("evidence_items")
+        .select("id,evidence_type,source_ref,summary,captured_at,verification_status")
+        .eq("tenant_id", ctx.tenantId)
+        .eq("company_id", diagnosticRow.company_id)
+        .in("id", evidenceIds)
+        .order("captured_at", { ascending: false })
+    : { data: [], error: null };
+
+  const provenanceAvailable =
+    !answerEvidenceError && !diagnosticEvidenceLinksError && !evidenceError;
+  const evidencedAnswers = answersWithEvidence(answerEvidenceRows);
+  const verifiedEvidence = verifiedEvidenceCount(evidenceRows);
+  const ruleVersions = [...new Set((scores ?? []).map((score) => score.rule_version).filter(Boolean))];
+  const reportDate = diagnosticRow.submitted_at
+    ? new Intl.DateTimeFormat("pt-BR", { dateStyle: "long", timeStyle: "short" })
+        .format(new Date(diagnosticRow.submitted_at))
+    : "Data de conclusão indisponível";
+
   const overall: number | null = diagnosticRow.growth_score;
   const confidence: number | null = diagnosticRow.confidence_rule_version && diagnosticRow.confidence !== null
     ? Math.round(Number(diagnosticRow.confidence)) : null;
@@ -95,6 +142,10 @@ export default async function ResultadoV1({
   return (
     <AppShell>
       <div className="result-experience">
+        <div className="report-print-brand" aria-hidden="true">
+          <BrandMark />
+          <span>Relatório executivo de diagnóstico empresarial</span>
+        </div>
         <header className="result-header">
           <div>
             <span className="section-eyebrow">Sua leitura empresarial</span>
@@ -104,9 +155,12 @@ export default async function ResultadoV1({
               metodologia continuam disponíveis sem competir com a decisão.
             </p>
           </div>
-          <Link className="button button-secondary" href="/diagnostico-v1">
-            Atualizar diagnóstico
-          </Link>
+          <div className="result-header-actions">
+            <PrintReportButton />
+            <Link className="button button-secondary" href="/diagnostico-v1">
+              Atualizar diagnóstico
+            </Link>
+          </div>
         </header>
 
         <section className="result-hero">
@@ -244,6 +298,69 @@ export default async function ResultadoV1({
               <p>Sem score persistido para este diagnóstico.</p>
             </div>
           )}
+        </section>
+
+        <section className="result-section report-provenance" aria-labelledby="report-provenance-title">
+          <div className="section-heading-row">
+            <div>
+              <span className="section-eyebrow">Rastreabilidade</span>
+              <h2 id="report-provenance-title">Como esta leitura foi sustentada</h2>
+            </div>
+            <Link className="text-action report-screen-only" href="/documentos">
+              Revisar evidências
+            </Link>
+          </div>
+
+          <div className="provenance-metrics">
+            <div>
+              <span>Respostas avaliadas</span>
+              <strong>{answerEvidenceRows?.length ?? "Indisponível"}</strong>
+            </div>
+            <div>
+              <span>Respostas com evidência</span>
+              <strong>{provenanceAvailable ? evidencedAnswers : "Indisponível"}</strong>
+            </div>
+            <div>
+              <span>Fontes vinculadas</span>
+              <strong>{provenanceAvailable ? evidenceIds.length : "Indisponível"}</strong>
+            </div>
+            <div>
+              <span>Evidências verificadas</span>
+              <strong>{provenanceAvailable ? verifiedEvidence : "Indisponível"}</strong>
+            </div>
+          </div>
+
+          {!provenanceAvailable ? (
+            <div className="precision-empty compact">
+              <p>A proveniência não pôde ser carregada. O relatório não presume ausência de evidência.</p>
+            </div>
+          ) : evidenceRows?.length ? (
+            <ol className="report-evidence-list">
+              {evidenceRows.slice(0, 8).map((item) => (
+                <li key={item.id}>
+                  <div>
+                    <strong>{item.summary}</strong>
+                    <span>
+                      {item.source_ref ? `${item.source_ref} · ` : ""}
+                      {new Intl.DateTimeFormat("pt-BR").format(new Date(item.captured_at))}
+                    </span>
+                  </div>
+                  <span>{item.verification_status === "verified" ? "Verificada" : "Não verificada"}</span>
+                </li>
+              ))}
+            </ol>
+          ) : (
+            <div className="precision-empty compact">
+              <p>Esta leitura foi calculada com respostas declaradas, sem evidência vinculada.</p>
+            </div>
+          )}
+
+          <div className="report-method-meta">
+            <span>Diagnóstico: {diagnosticId}</span>
+            <span>Concluído em: {reportDate}</span>
+            <span>Regra de score: {ruleVersions.join(", ") || "não informada"}</span>
+            <span>Regra de confiança: {diagnosticRow.confidence_rule_version ?? "não informada"}</span>
+          </div>
         </section>
 
         <details className="methodology-disclosure">
