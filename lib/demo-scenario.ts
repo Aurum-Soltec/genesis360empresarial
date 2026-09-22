@@ -39,6 +39,10 @@ export const DemoEvidenceTemplates = [
 ] as const;
 
 export function demoEvidenceAlreadyLoaded(sourceRefs: Array<string | null>): boolean {
+  return demoEvidenceLoadedCount(sourceRefs) === DemoEvidenceTemplates.length;
+}
+
+export function demoEvidenceLoadedCount(sourceRefs: Array<string | null>): number {
   const present = new Set(sourceRefs.filter(Boolean));
-  return DemoEvidenceTemplates.every((item) => present.has(item.sourceRef));
+  return DemoEvidenceTemplates.filter((item) => present.has(item.sourceRef)).length;
 }
