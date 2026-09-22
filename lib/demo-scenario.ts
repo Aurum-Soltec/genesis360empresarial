@@ -46,3 +46,7 @@ export function demoEvidenceLoadedCount(sourceRefs: Array<string | null>): numbe
   const present = new Set(sourceRefs.filter(Boolean));
   return DemoEvidenceTemplates.filter((item) => present.has(item.sourceRef)).length;
 }
+
+export function isCanonicalDemoEvidence(sourceRef: string | null): boolean {
+  return DemoEvidenceTemplates.some((item) => item.sourceRef === sourceRef);
+}
