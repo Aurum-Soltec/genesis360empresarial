@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { AppShell } from "@/components/app-shell";
+import { demoEvidenceLoadedCount } from "@/lib/demo-scenario";
 import { canAccessDemoAdministration } from "@/lib/demo-solution-preview";
 import { getFeatureFlags, isDemoTenantAllowed } from "@/lib/feature-flags";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
@@ -27,6 +28,7 @@ export default async function DemoAdministrationPage() {
     ? await db.from("evidence_items").select("id,verification_status,source_ref").eq("tenant_id", ctx.tenantId).eq("company_id", company.id)
     : { data: [] };
   const verifiedEvidence = (evidence ?? []).filter((item) => item.verification_status === "verified").length;
+  const canonicalEvidence = demoEvidenceLoadedCount((evidence ?? []).map((item) => item.source_ref));
   const flagRows = [
     ["Agentic", flags.agentic],
     ["Data Upload para usuários reais", flags.dataUpload],
@@ -54,7 +56,7 @@ export default async function DemoAdministrationPage() {
       <section className="admin-demo-metrics" aria-label="Indicadores administrativos">
         <article><span>Empresa</span><strong>{company?.trade_name ?? "Pendente"}</strong><small>{company?.fictional ? "Cadastro fictício controlado" : "Confirme o marcador fictício"}</small></article>
         <article><span>Diagnóstico</span><strong>{scored ? "Concluído" : latest?.status ?? "Pendente"}</strong><small>{scored ? `${scored.profile_code} · score ${scored.growth_score ?? "—"}` : "Sem relatório disponível"}</small></article>
-        <article><span>Evidências</span><strong>{evidence?.length ?? 0}</strong><small>{verifiedEvidence} verificadas · demais declaradas</small></article>
+        <article><span>Evidências da demo</span><strong>{canonicalEvidence} canônicas</strong><small>{evidence?.length ?? 0} registros no ledger · {verifiedEvidence} verificadas</small></article>
         <article><span>Acessos do tenant</span><strong>{memberships?.length ?? 0}</strong><small>Seu perfil: {ctx.role}</small></article>
       </section>
 
@@ -63,7 +65,7 @@ export default async function DemoAdministrationPage() {
           <div className="section-heading-row"><div><span className="section-eyebrow">Controle da apresentação</span><h2>Gate operacional</h2></div></div>
           <ol className="admin-checklist">
             <li className={company?.fictional ? "is-ready" : ""}><span>Empresa fictícia isolada</span><strong>{company?.fictional ? "PASS" : "REVISAR"}</strong></li>
-            <li className={(evidence?.length ?? 0) >= 3 ? "is-ready" : ""}><span>Pacote documental demonstrativo</span><strong>{(evidence?.length ?? 0) >= 3 ? "PASS" : "PENDENTE"}</strong></li>
+            <li className={canonicalEvidence >= 3 ? "is-ready" : ""}><span>Pacote documental demonstrativo</span><strong>{canonicalEvidence >= 3 ? "PASS" : "PENDENTE"}</strong></li>
             <li className={scored ? "is-ready" : ""}><span>Diagnóstico e relatório</span><strong>{scored ? "PASS" : "PENDENTE"}</strong></li>
             <li className={scored ? "is-ready" : ""}><span>Soluções simuladas explicáveis</span><strong>{scored ? "PASS" : "PENDENTE"}</strong></li>
           </ol>

@@ -1,6 +1,6 @@
 {
-  "version": "1.2.1-rc.2-presentation-complete-2",
-  "status": "presentation_complete_local_verification_pending",
+  "version": "1.2.1-rc.2-presentation-coherence-3",
+  "status": "presentation_coherence_local_verification_pending",
   "files": [
     {
       "path": ".env.example",
@@ -203,8 +203,8 @@
     {
       "path": "app/demonstracao/administracao/page.tsx",
       "beforeSha256": null,
-      "afterSha256": "5eb133686102cc4e23b0a83e6c1d45306a1117fdfa3216b9fb16a695e22b6e0f",
-      "reason": "Presentation-complete demo: explainable solution preview, restricted administration, and executable end-to-end evidence"
+      "afterSha256": "141c46da8cb15ff5c5a359eaea5b667ffa7079c63f8abb73278844c28c54fbff",
+      "reason": "Presentation coherence: stable tie-breaking and canonical demo-evidence accounting"
     },
     {
       "path": "app/demonstracao/page.tsx",
@@ -911,14 +911,14 @@
     {
       "path": "lib/report-insights.test.ts",
       "beforeSha256": null,
-      "afterSha256": "6184f1f803d0a9d7b2df111a04a173e655366b3dee7a0ddbe929cca782051a26",
-      "reason": "Controlled complete demo flow: fictional evidence, Full diagnostic, executive plan, Council synthesis, and presentation cockpit"
+      "afterSha256": "0840241427f373a00767c93d6cf72439c976bf9ab14e9998245bf8abde79c9e9",
+      "reason": "Presentation coherence: stable tie-breaking and canonical demo-evidence accounting"
     },
     {
       "path": "lib/report-insights.ts",
       "beforeSha256": null,
-      "afterSha256": "120c31604efe2260ddf3ed9330edc5ec785d30d0862783f4d09c01fb5ba1a9b2",
-      "reason": "Controlled complete demo flow: fictional evidence, Full diagnostic, executive plan, Council synthesis, and presentation cockpit"
+      "afterSha256": "c2bf1cd86af721730b757f00216d73c2860b1b3fc81bb44d5fc1d0de290ea275",
+      "reason": "Presentation coherence: stable tie-breaking and canonical demo-evidence accounting"
     },
     {
       "path": "lib/report-provenance.test.ts",
