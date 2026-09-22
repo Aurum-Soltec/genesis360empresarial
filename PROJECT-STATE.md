@@ -104,6 +104,16 @@ de correlação, anti-sniffing e anti-framing também foram observados no runtim
 Evidência e limites:
 `docs/canonical/v1/delivery/DEMO_BOUNDARY_AUDIT_2026-09-22.md`.
 
+### Ensaio operacional da reunião — PASS
+
+O fluxo foi ensaiado pelos sete CTAs reais do cockpit, sem navegação direta para
+substituir cliques. Todos chegaram ao destino esperado; as três perguntas do
+Conselho produziram respostas distintas e citadas; as três explicações de
+aderência foram abertas; e a ação de PDF estava disponível. A maior navegação
+observada foi 3,347 s no staging gratuito. O roteiro executável de 12–15 minutos,
+disclosures e recuperação segura estão em
+`docs/canonical/v1/delivery/DEMO_MEETING_RUNBOOK_2026-09-22.md`.
+
 ## Hosted Staging & Pilot Readiness — HSP-0 a HSP-4
 
 O candidato foi publicado no GitHub público da organização Aurum-Soltec, protegido

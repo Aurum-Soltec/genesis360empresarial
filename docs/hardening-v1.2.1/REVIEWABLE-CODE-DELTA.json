@@ -1,6 +1,6 @@
 {
-  "version": "1.2.1-rc.2-demo-boundary-audit",
-  "status": "presentation_complete_boundaries_runtime_pass",
+  "version": "1.2.1-rc.2-presentation-rehearsal-pass",
+  "status": "presentation_meeting_rehearsal_runtime_pass",
   "files": [
     {
       "path": ".env.example",
@@ -609,6 +609,12 @@
       "reason": "Hosted negative audit proves Presentation Complete sensitive boundaries remain fail-closed"
     },
     {
+      "path": "docs/canonical/v1/delivery/DEMO_MEETING_RUNBOOK_2026-09-22.md",
+      "beforeSha256": null,
+      "afterSha256": "b01abb7d2532617a3655a20c4095137aa76e6f2cc1d5a1beb007f7924b661197",
+      "reason": "Executed seven-step hosted meeting rehearsal and safe presenter runbook"
+    },
+    {
       "path": "docs/canonical/v1/delivery/DEMO_READINESS_WAVE_2026-09-21.md",
       "beforeSha256": null,
       "afterSha256": "3080a009c6dcf3eab55cb6aa9f7f43404b569e4692959d550d790a1587e345d7",
@@ -1007,8 +1013,8 @@
     {
       "path": "PROJECT-STATE.md",
       "beforeSha256": null,
-      "afterSha256": "38ec7bc1ddf909e08f51392d17dcc509feaa3295a49530b56b5e8ebffef3c730",
-      "reason": "Hosted negative audit proves Presentation Complete sensitive boundaries remain fail-closed"
+      "afterSha256": "d872785f2e9e30f89ffc11d5a7e13962907c06372e92168c7f2216f9ee92ac3d",
+      "reason": "Executed seven-step hosted meeting rehearsal and safe presenter runbook"
     },
     {
       "path": "proxy.ts",
