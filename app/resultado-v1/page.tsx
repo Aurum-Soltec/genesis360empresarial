@@ -261,7 +261,7 @@ export default async function ResultadoV1({
           )}
         </section>
 
-        <section className="result-section">
+        <section className="result-section result-dimensions-section">
           <div className="section-heading-row">
             <div>
               <span className="section-eyebrow">Maturidade por dimensão</span>

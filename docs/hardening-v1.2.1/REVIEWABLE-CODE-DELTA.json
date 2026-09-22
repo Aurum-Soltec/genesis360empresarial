@@ -1,6 +1,6 @@
 {
-  "version": "1.2.1-rc.2-demo-readiness-2",
-  "status": "demo_readiness_reproducible_candidate",
+  "version": "1.2.1-rc.2-demo-readiness-3",
+  "status": "demo_report_print_candidate",
   "files": [
     {
       "path": ".env.example",
@@ -203,8 +203,8 @@
     {
       "path": "app/globals.css",
       "beforeSha256": null,
-      "afterSha256": "bb30eae65705fe0bf6fb1fd04ff5a13b3b9d575d937d70d943a3a0cc6730f12c",
-      "reason": "Demo readiness: tenant evidence inventory, report provenance, print/PDF layout, tests, and synchronized state"
+      "afterSha256": "0b1cf411ec94a282d7874cb4d75f02b2acffd2b208ef41c5ea4684f1f8784039",
+      "reason": "Demo PDF visual QA: hide interactive skip/action controls, preserve section headings, and compact A4 pagination"
     },
     {
       "path": "app/indicadores/page.tsx",
@@ -251,8 +251,8 @@
     {
       "path": "app/resultado-v1/page.tsx",
       "beforeSha256": "212f2318c3f791059beb1965d499c33aca89ef363cc2e02df03f2298dd700cd7",
-      "afterSha256": "f9dee254c9208e29371a8f9a16140843312b91686e01828cb6d9f193eaf69a8b",
-      "reason": "Reproducible demo flow: authenticated deterministic scenario, diagnostic-linked evidence, traceable result, screenshots and PDF evidence"
+      "afterSha256": "0ccb97c221eba9b974caab9734bb7b94719a33722742df2c16a7d285bfa8fe95",
+      "reason": "Demo PDF visual QA: hide interactive skip/action controls, preserve section headings, and compact A4 pagination"
     },
     {
       "path": "app/selecionar-empresa/page.tsx",

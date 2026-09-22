@@ -1702,14 +1702,16 @@ button:disabled {
 }
 
 @media print {
-  @page { size: A4; margin: 14mm; }
+  @page { size: A4; margin: 10mm; }
   html,
   body { background: #fff !important; color: #082b29; }
   .precision-topbar,
   .precision-sidebar,
+  .skip-link,
   .report-screen-only,
   .report-print-action,
   .result-header-actions,
+  .result-next-move .action-row,
   .methodology-disclosure { display: none !important; }
   .precision-shell { display: block; min-height: 0; }
   .precision-main { padding: 0; }
@@ -1726,7 +1728,7 @@ button:disabled {
     font-size: 10px;
   }
   .report-print-brand .brand-mark { width: 52mm; }
-  .result-header { padding: 9mm 0 7mm; }
+  .result-header { padding: 7mm 0 5mm; }
   .result-header h1 { font-size: 26pt; }
   .result-hero {
     grid-template-columns: 38mm 48mm minmax(0, 1fr);
@@ -1736,10 +1738,27 @@ button:disabled {
   }
   .result-score,
   .result-confidence,
-  .result-next-move { min-height: 52mm; padding: 8mm 6mm; }
+  .result-next-move { min-height: 43mm; padding: 6mm 5mm; }
   .result-score > strong { font-size: 42pt; }
   .result-next-move h2 { font-size: 18pt; }
-  .result-section { padding: 9mm 0; break-inside: auto; }
+  .result-section { padding: 6mm 0; break-inside: auto; }
+  .result-dimensions-section { break-before: page; }
+  .section-heading-row {
+    margin-bottom: 12px;
+    break-inside: avoid;
+    break-after: avoid;
+  }
+  .executive-priority-list li { padding: 12px 4px; }
+  .dimension-bars { gap: 7px; }
+  .dimension-bar-row { font-size: 10px; }
+  .report-provenance { padding-bottom: 0; }
+  .provenance-metrics { margin-bottom: 14px; }
+  .provenance-metrics > div { padding: 12px; }
+  .provenance-metrics strong { margin-top: 5px; font-size: 20px; }
+  .report-evidence-list li { padding: 10px 4px; }
+  .report-evidence-list strong { font-size: 11px; }
+  .report-evidence-list li > div > span { margin-top: 3px; font-size: 9px; }
+  .report-method-meta { margin-top: 12px; padding: 12px; }
   .executive-priority-list li,
   .dimension-bar-row,
   .report-evidence-list li,
