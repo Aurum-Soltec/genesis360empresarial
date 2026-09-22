@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { AppShell } from "@/components/app-shell";
+import { demoEvidenceLoadedCount } from "@/lib/demo-scenario";
 import { isDemoTenantAllowed } from "@/lib/feature-flags";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { requireTenantContext } from "@/lib/tenant-context";
@@ -19,9 +20,10 @@ export default async function DemonstracaoPage() {
     : { data: [] };
   const scored = diagnostics?.find((item) => item.status === "scored");
   const draft = diagnostics?.find((item) => item.status === "draft");
+  const evidenceCount = demoEvidenceLoadedCount((evidence ?? []).map((item) => item.source_ref));
   const steps = [
     { number: "01", title: "Empresa fictícia", detail: company ? `${company.trade_name}${company.sector ? ` · ${company.sector}` : ""}` : "Empresa ainda não cadastrada", ready: Boolean(company), href: "/passaporte", action: "Ver empresa" },
-    { number: "02", title: "Documentação", detail: `${evidence?.length ?? 0} de 3 fontes fictícias registradas`, ready: (evidence?.length ?? 0) >= 3, href: "/documentos", action: "Enviar pacote" },
+    { number: "02", title: "Documentação", detail: `${evidenceCount} de 3 fontes fictícias registradas`, ready: evidenceCount >= 3, href: "/documentos", action: "Enviar pacote" },
     { number: "03", title: "Diagnóstico completo", detail: draft ? `${draft.profile_code} em andamento` : scored ? `${scored.profile_code} concluído` : "Pronto para iniciar", ready: Boolean(scored), href: "/diagnostico-v1", action: draft ? "Continuar" : "Abrir diagnóstico" },
     { number: "04", title: "Relatório executivo", detail: scored ? `Growth Score ${scored.growth_score ?? "—"} · confiança ${Math.round(Number(scored.confidence ?? 0))}%` : "Gerado após a conclusão", ready: Boolean(scored), href: scored ? `/resultado-v1?diagnostic=${scored.id}` : "/diagnostico-v1", action: "Abrir relatório" },
     { number: "05", title: "Conselho Genesis", detail: scored ? "Sínteses rastreáveis disponíveis" : "Disponível após o relatório", ready: Boolean(scored), href: "/conselho", action: "Interagir" },

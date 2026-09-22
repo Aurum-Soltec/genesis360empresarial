@@ -203,8 +203,8 @@
     {
       "path": "app/demonstracao/page.tsx",
       "beforeSha256": null,
-      "afterSha256": "88bddbed665a1daabffc6683ae48c4d8422e167df77b34dee5b7eb3fd6ae78f0",
-      "reason": "Controlled complete demo flow: fictional evidence, Full diagnostic, executive plan, Council synthesis, and presentation cockpit"
+      "afterSha256": "e90fe8a03d6e769ecc9dd9ae44a6a9b943980423784ce461df7ad7f03629e316",
+      "reason": "Hosted demo idempotency: canonical evidence counting and reusable presentation fixture"
     },
     {
       "path": "app/diagnostico-v1/journey.tsx",
@@ -773,14 +773,14 @@
     {
       "path": "lib/demo-scenario.test.ts",
       "beforeSha256": null,
-      "afterSha256": "d67b80c1a334c6f03c96a76b568eca56feba054090f18915b05514a6352de0cd",
-      "reason": "Controlled complete demo flow: fictional evidence, Full diagnostic, executive plan, Council synthesis, and presentation cockpit"
+      "afterSha256": "bcdf14c93d0d000c8a55504a3f0f0720dc81c015336e682a6c3c92b4284037a3",
+      "reason": "Hosted demo idempotency: canonical evidence counting and reusable presentation fixture"
     },
     {
       "path": "lib/demo-scenario.ts",
       "beforeSha256": null,
-      "afterSha256": "7d888522e32538561cb427883b6fb49d3ddedba467812d97b2d89af95b69c31f",
-      "reason": "Controlled complete demo flow: fictional evidence, Full diagnostic, executive plan, Council synthesis, and presentation cockpit"
+      "afterSha256": "28c25937d416634e40c0a7f26e82fa76cf6472250dd0ff4b4efec404a5478bfc",
+      "reason": "Hosted demo idempotency: canonical evidence counting and reusable presentation fixture"
     },
     {
       "path": "lib/diagnostic-answer-quality.ts",
@@ -1037,8 +1037,8 @@
     {
       "path": "scripts/prepare-demo-scenario.mjs",
       "beforeSha256": null,
-      "afterSha256": "cb3df5adb7269d80ef1b4ff94de81785770238d2a20ad6fd5bd2cf7bf8f828fc",
-      "reason": "Controlled complete demo flow: fictional evidence, Full diagnostic, executive plan, Council synthesis, and presentation cockpit"
+      "afterSha256": "448593ddcb7aa7339c903d81cf64dc5c5cabe9fc14aca952a350c3f2a23403eb",
+      "reason": "Hosted demo idempotency: canonical evidence counting and reusable presentation fixture"
     },
     {
       "path": "scripts/run-backup-restore-drill.ps1",

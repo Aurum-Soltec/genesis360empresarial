@@ -146,26 +146,35 @@ try {
   const evidenceTemplates = [
     {
       evidenceType: "user_declaration",
-      summary: "Prioridades estratégicas declaradas pela liderança no cenário de demonstração",
-      payload: { demo: true, source: "leadership_interview", disclaimer: "Fictional demonstration data" },
-      sourceRef: "DEMO:entrevista-lideranca",
+      summary: "Direcionadores estratégicos declarados pela liderança — cenário fictício",
+      payload: { demo: true, documentType: "strategic_brief", content: "Crescer com previsibilidade, reduzir retrabalho comercial e melhorar a disciplina de caixa.", disclaimer: "Dados integralmente fictícios para demonstração controlada." },
+      sourceRef: "DEMO:direcionadores-estrategicos-v1.txt",
     },
     {
       evidenceType: "metric",
-      summary: "Indicadores operacionais fictícios usados no cenário de demonstração",
-      payload: { demo: true, period: "2026-Q3", disclaimer: "Fictional demonstration data" },
-      sourceRef: "DEMO:indicadores-operacionais",
+      summary: "Indicadores financeiros e operacionais — cenário fictício",
+      payload: { demo: true, documentType: "management_metrics", period: "2026-Q3", metrics: { revenueTrend: "stable", cashVisibilityDays: 30, reworkIndex: "moderate" }, disclaimer: "Dados integralmente fictícios para demonstração controlada." },
+      sourceRef: "DEMO:indicadores-2026-q3.csv",
     },
     {
       evidenceType: "observation",
-      summary: "Observação de processo fictícia para demonstrar rastreabilidade",
-      payload: { demo: true, source: "process_review", disclaimer: "Fictional demonstration data" },
-      sourceRef: "DEMO:revisao-processos",
+      summary: "Mapa de processos e riscos operacionais — cenário fictício",
+      payload: { demo: true, documentType: "process_and_risk_map", observations: ["Handoffs manuais", "Indicadores dispersos", "Ritos gerenciais irregulares"], disclaimer: "Dados integralmente fictícios para demonstração controlada." },
+      sourceRef: "DEMO:mapa-processos-riscos-v1.json",
     },
   ];
 
+  const existingEvidence = await apiJson(page, "GET", `/api/evidence?companyId=${companyId}`);
+  const existingBySourceRef = new Map(
+    (existingEvidence.evidence ?? []).map((item) => [item.source_ref, item.id]),
+  );
   const evidenceIds = [];
   for (const item of evidenceTemplates) {
+    const existingId = existingBySourceRef.get(item.sourceRef);
+    if (existingId) {
+      evidenceIds.push(existingId);
+      continue;
+    }
     const created = await apiJson(page, "POST", "/api/evidence", {
       companyId,
       ...item,
@@ -204,11 +213,22 @@ try {
   const runSlug = safeName(new Date().toISOString());
   const resultScreenshot = path.join(outputDir, `${runSlug}-resultado.png`);
   const documentsScreenshot = path.join(outputDir, `${runSlug}-evidencias.png`);
+  const demoScreenshot = path.join(outputDir, `${runSlug}-roteiro.png`);
+  const councilScreenshot = path.join(outputDir, `${runSlug}-conselho.png`);
   const reportPdf = path.join(outputDir, `${runSlug}-relatorio.pdf`);
   await page.screenshot({ path: resultScreenshot, fullPage: true });
   await page.pdf({ path: reportPdf, format: "A4", printBackground: true });
   await page.goto(`${baseURL}/documentos`, { waitUntil: "networkidle" });
   await page.screenshot({ path: documentsScreenshot, fullPage: true });
+  await page.goto(`${baseURL}/demonstracao`, { waitUntil: "networkidle" });
+  await page.getByRole("heading", { name: "Do documento à decisão, em um único fluxo." }).waitFor();
+  await page.screenshot({ path: demoScreenshot, fullPage: true });
+  await page.goto(`${baseURL}/conselho`, { waitUntil: "networkidle" });
+  const councilText = await page.locator("body").innerText();
+  if (!councilText.includes("Demonstração determinística") || !councilText.includes("Agentic: desligado")) {
+    throw new Error("Council safety boundaries were not rendered");
+  }
+  await page.screenshot({ path: councilScreenshot, fullPage: true });
 
   const report = {
     wave: "DEMO-READINESS",
@@ -220,7 +240,7 @@ try {
     answeredCount,
     evidenceCount: evidenceIds.length,
     evidenceVerification: "unverified_demo_declarations",
-    artifacts: { resultScreenshot, documentsScreenshot, reportPdf },
+    artifacts: { resultScreenshot, documentsScreenshot, demoScreenshot, councilScreenshot, reportPdf },
     boundaries: {
       fictionalData: true,
       realUserUploadEnabled: false,
