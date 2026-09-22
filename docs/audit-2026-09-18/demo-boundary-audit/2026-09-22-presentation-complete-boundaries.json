@@ -1,0 +1,84 @@
+{
+  "executedAt": "2026-09-22T12:36:07.035Z",
+  "baseURL": "https://web-production-76d1b.up.railway.app",
+  "result": "PASS",
+  "checks": [
+    {
+      "name": "anonymous redirect /demonstracao",
+      "pass": true,
+      "observed": "/entrar?next=%2Fdemonstracao"
+    },
+    {
+      "name": "anonymous redirect /demonstracao/solucoes",
+      "pass": true,
+      "observed": "/entrar?next=%2Fdemonstracao%2Fsolucoes"
+    },
+    {
+      "name": "anonymous redirect /demonstracao/administracao",
+      "pass": true,
+      "observed": "/entrar?next=%2Fdemonstracao%2Fadministracao"
+    },
+    {
+      "name": "anonymous qualification network fails closed",
+      "pass": true,
+      "observed": "status=404"
+    },
+    {
+      "name": "qualification network disabled",
+      "pass": true,
+      "observed": "status=404 error=FEATURE_DISABLED"
+    },
+    {
+      "name": "real contact disabled",
+      "pass": true,
+      "observed": "status=404 error=FEATURE_DISABLED"
+    },
+    {
+      "name": "real-user upload disabled",
+      "pass": true,
+      "observed": "status=404 error=FEATURE_DISABLED"
+    },
+    {
+      "name": "no real file picker rendered",
+      "pass": true,
+      "observed": "fileInputs=0"
+    },
+    {
+      "name": "solution disclosure visible",
+      "pass": true,
+      "observed": "fictional/network/contact disclosure"
+    },
+    {
+      "name": "five sensitive flags visibly disabled",
+      "pass": true,
+      "observed": "disabledLabels=5"
+    },
+    {
+      "name": "administration explicitly tenant-scoped",
+      "pass": true,
+      "observed": "tenant-scoped disclosure"
+    },
+    {
+      "name": "agentic execution disabled",
+      "pass": true,
+      "observed": "read-only deterministic council disclosure"
+    },
+    {
+      "name": "correlation header present",
+      "pass": true,
+      "observed": "x-correlation-id present"
+    },
+    {
+      "name": "content sniffing protection present",
+      "pass": true,
+      "observed": "x-content-type-options=nosniff"
+    },
+    {
+      "name": "framing protection present",
+      "pass": true,
+      "observed": "frame protection present"
+    }
+  ],
+  "failures": [],
+  "credentialsPersisted": false
+}

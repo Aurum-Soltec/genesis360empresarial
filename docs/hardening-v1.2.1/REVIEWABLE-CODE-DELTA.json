@@ -1,6 +1,6 @@
 {
-  "version": "1.2.1-rc.2-presentation-route-reaudit",
-  "status": "presentation_complete_route_audit_pass",
+  "version": "1.2.1-rc.2-demo-boundary-audit",
+  "status": "presentation_complete_boundaries_runtime_pass",
   "files": [
     {
       "path": ".env.example",
@@ -603,6 +603,12 @@
       "reason": "RC2 P0 remediation, executable regression, or scope evidence"
     },
     {
+      "path": "docs/canonical/v1/delivery/DEMO_BOUNDARY_AUDIT_2026-09-22.md",
+      "beforeSha256": null,
+      "afterSha256": "3728a278fbdfa854b5ccb52d207312d42f7a8072e3452958f704cab6c50f66b0",
+      "reason": "Hosted negative audit proves Presentation Complete sensitive boundaries remain fail-closed"
+    },
+    {
       "path": "docs/canonical/v1/delivery/DEMO_READINESS_WAVE_2026-09-21.md",
       "beforeSha256": null,
       "afterSha256": "3080a009c6dcf3eab55cb6aa9f7f43404b569e4692959d550d790a1587e345d7",
@@ -1001,8 +1007,8 @@
     {
       "path": "PROJECT-STATE.md",
       "beforeSha256": null,
-      "afterSha256": "d646770f8d36b741f766001c886a302f8c792bce472205619950b16155831cce",
-      "reason": "Presentation Complete hosted route, link, browser and mobile revalidation evidence"
+      "afterSha256": "38ec7bc1ddf909e08f51392d17dcc509feaa3295a49530b56b5e8ebffef3c730",
+      "reason": "Hosted negative audit proves Presentation Complete sensitive boundaries remain fail-closed"
     },
     {
       "path": "proxy.ts",

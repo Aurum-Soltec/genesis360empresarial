@@ -91,6 +91,19 @@ encontrou o único 404 em `/favicon.ico`; o PR `#16` o corrigiu. As evidências 
 os limites de ambas as execuções estão em
 `docs/canonical/v1/delivery/RUNTIME_ROUTE_AUDIT_2026-09-22.md`.
 
+### Auditoria negativa dos limites da demonstração — PASS
+
+O mesmo artefato funcional passou por 15/15 verificações fail-closed. Acesso
+anônimo às três rotas demonstrativas foi redirecionado ao login; Qualification
+Network, Real Contact e upload para usuários reais retornaram
+`FEATURE_DISABLED`; nenhum seletor de arquivo real foi renderizado; as cinco
+flags sensíveis apareceram desligadas; a administração permaneceu restrita ao
+tenant; e o Conselho permaneceu sem tools externas ou escrita autônoma. Headers
+de correlação, anti-sniffing e anti-framing também foram observados no runtime.
+
+Evidência e limites:
+`docs/canonical/v1/delivery/DEMO_BOUNDARY_AUDIT_2026-09-22.md`.
+
 ## Hosted Staging & Pilot Readiness — HSP-0 a HSP-4
 
 O candidato foi publicado no GitHub público da organização Aurum-Soltec, protegido
