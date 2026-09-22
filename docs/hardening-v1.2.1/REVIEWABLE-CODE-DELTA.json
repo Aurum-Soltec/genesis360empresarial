@@ -1,6 +1,6 @@
 {
-  "version": "1.2.1-rc.2-demo-readiness-3",
-  "status": "demo_report_print_candidate",
+  "version": "1.2.1-rc.2-demo-readiness-4",
+  "status": "demo_readiness_hosted_verified",
   "files": [
     {
       "path": ".env.example",
@@ -345,6 +345,24 @@
       "reason": "RC2 P0 remediation, executable regression, or scope evidence"
     },
     {
+      "path": "docs/audit-2026-09-18/demo-readiness/2026-09-22t00-23-59.223z-evidencias.png",
+      "beforeSha256": null,
+      "afterSha256": "16bd787f6eb47e521a648259c462fdc5bfb65ac2eeec42ffb4b4820578b9222a",
+      "reason": "Hosted demo runtime PASS final visual evidence"
+    },
+    {
+      "path": "docs/audit-2026-09-18/demo-readiness/2026-09-22t00-23-59.223z-resultado.png",
+      "beforeSha256": null,
+      "afterSha256": "cd394122d1955d412ee29aacaf6154af37e43a21e563fca54b52ad375b41e2fd",
+      "reason": "Hosted demo runtime PASS final visual evidence"
+    },
+    {
+      "path": "docs/audit-2026-09-18/demo-readiness/2026-09-22t00-23-59.223z-run.json",
+      "beforeSha256": null,
+      "afterSha256": "4b6cdace02504d0664a203689f675b775e55e969b0806524a69f5a8e1cfe8b25",
+      "reason": "Hosted demo runtime PASS and synchronized evidence"
+    },
+    {
       "path": "docs/audit-2026-09-18/ps10-load-percentiles.json",
       "beforeSha256": null,
       "afterSha256": "95628a894f21275c04d4f8a54983836f9f5680ebbfaf4fac9c5c0ac5a47a6bf0",
@@ -527,8 +545,8 @@
     {
       "path": "docs/canonical/v1/delivery/DEMO_READINESS_WAVE_2026-09-21.md",
       "beforeSha256": null,
-      "afterSha256": "aa5c0c3f7098e63b496bde6a7a55bd304d8ea467d22eb88160378bb04511c438",
-      "reason": "Reproducible demo flow: authenticated deterministic scenario, diagnostic-linked evidence, traceable result, screenshots and PDF evidence"
+      "afterSha256": "07135304518cf358661241814563b50de94741b4e14ab33d48a6d71026000961",
+      "reason": "Hosted demo runtime PASS and synchronized evidence"
     },
     {
       "path": "docs/canonical/v1/delivery/EPICS_CATALOG.json",
@@ -869,8 +887,8 @@
     {
       "path": "PROJECT-STATE.md",
       "beforeSha256": null,
-      "afterSha256": "7725efca54907c037c7d6f5cb10e37d75f26154df113fca38a5ef5f02bab0467",
-      "reason": "Reproducible demo flow: authenticated deterministic scenario, diagnostic-linked evidence, traceable result, screenshots and PDF evidence"
+      "afterSha256": "1017d417ead321bddbcbaf6298b707bd4b829187d65c99f517fbd045d787dcaf",
+      "reason": "Hosted demo runtime PASS and synchronized evidence"
     },
     {
       "path": "proxy.ts",

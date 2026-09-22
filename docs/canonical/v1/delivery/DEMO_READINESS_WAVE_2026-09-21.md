@@ -64,8 +64,30 @@ PASS requires all of the following in one authenticated run:
 
 FAIL applies if any request bypasses the normal application boundary, the
 diagnostic cannot submit, provenance does not render, or any required artifact
-is absent. Hosted runtime remains pending until this runner passes against the
-deployed candidate.
+is absent.
+
+## Hosted execution result
+
+**PASS — 2026-09-21.** The deployed artifact was identified by merge commit
+`572b584b8c0fc9b096ed1cd5470fc8fd51e37bec` on Railway. The authenticated run
+completed 42 Essential interactions, linked three fictional evidence records,
+submitted scoring and rendered the traceable result.
+
+Measured result:
+
+- Growth Score: 55/100;
+- coverage: 100%;
+- confidence: 78%;
+- answers with evidence references: 42/42;
+- unique linked sources: 3;
+- verified evidence: 0, correctly fail-closed as `unverified`;
+- final PDF: two A4 pages, 131,412 bytes;
+- final PDF SHA-256: `AB52E3D04F9FEC0D2978456F642370F159160A985E190EAC30079B9C537FC380`.
+
+The first PDF render exposed an accessibility skip link and poor pagination.
+PR `#10` corrected the print-only layout, repeated every remote gate, redeployed
+the candidate and repeated the full hosted scenario. Only the corrected second
+execution receives final demo evidence credit.
 
 ## Meeting flow
 
@@ -99,6 +121,6 @@ No third-party source code was vendored in this cut.
 
 ## Runtime credit
 
-Local code, tests and production build can receive local-runtime credit after the
-quality gate passes. Hosted-runtime credit remains pending deployment and a PASS
-from `pnpm demo:prepare` in staging.
+Local and hosted runtime receive credit for the bounded demonstration path above.
+This does not change the HSP-4 NO-GO for an open pilot or production, and it does
+not prove real-document ingestion because binary upload remains disabled.
