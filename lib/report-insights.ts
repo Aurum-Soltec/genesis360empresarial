@@ -18,7 +18,7 @@ const playbook: Record<string, { label: string; action: string; evidence: string
 export function buildExecutivePlan(scores: ReportScore[]) {
   const ranked = scores
     .filter((item): item is ReportScore & { score: number } => item.score !== null)
-    .sort((a, b) => a.score - b.score);
+    .sort((a, b) => a.score - b.score || a.dimension.localeCompare(b.dimension));
   return ranked.slice(0, 3).map((item, index) => ({
     horizon: ["0–30 dias", "31–60 dias", "61–90 dias"][index],
     dimension: playbook[item.dimension]?.label ?? item.dimension,
