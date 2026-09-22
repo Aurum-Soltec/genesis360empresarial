@@ -1,0 +1,28 @@
+{
+  "wave": "DEMO-READINESS",
+  "executedAt": "2026-09-22T10:50:33.417Z",
+  "baseURL": "https://web-production-76d1b.up.railway.app",
+  "diagnosticId": "477628e1-955a-4bdc-a935-f86cd3db457d",
+  "profile": "FULL",
+  "result": "PASS",
+  "answeredCount": 50,
+  "evidenceCount": 3,
+  "evidenceVerification": "unverified_demo_declarations",
+  "artifacts": {
+    "resultScreenshot": "docs\\audit-2026-09-18\\demo-readiness\\presentation-complete-final-2026-09-22\\2026-09-22t10-53-34.000z-resultado.png",
+    "documentsScreenshot": "docs\\audit-2026-09-18\\demo-readiness\\presentation-complete-final-2026-09-22\\2026-09-22t10-53-34.000z-evidencias.png",
+    "demoScreenshot": "docs\\audit-2026-09-18\\demo-readiness\\presentation-complete-final-2026-09-22\\2026-09-22t10-53-34.000z-roteiro.png",
+    "solutionsScreenshot": "docs\\audit-2026-09-18\\demo-readiness\\presentation-complete-final-2026-09-22\\2026-09-22t10-53-34.000z-solucoes.png",
+    "administrationScreenshot": "docs\\audit-2026-09-18\\demo-readiness\\presentation-complete-final-2026-09-22\\2026-09-22t10-53-34.000z-administracao.png",
+    "councilScreenshot": "docs\\audit-2026-09-18\\demo-readiness\\presentation-complete-final-2026-09-22\\2026-09-22t10-53-34.000z-conselho.png",
+    "reportPdf": "docs\\audit-2026-09-18\\demo-readiness\\presentation-complete-final-2026-09-22\\2026-09-22t10-53-34.000z-relatorio.pdf"
+  },
+  "boundaries": {
+    "fictionalData": true,
+    "realUserUploadEnabled": false,
+    "agenticEnabled": false,
+    "qualificationNetworkEnabled": false,
+    "realContactEnabled": false,
+    "credentialsPersisted": false
+  }
+}
