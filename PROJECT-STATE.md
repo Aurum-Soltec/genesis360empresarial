@@ -78,13 +78,17 @@ acima, no commit `cfdf876e5539f02e6b40d2b491adc80973fbb775`.
 
 ### Auditoria runtime de rotas e links — PASS em 2026-09-22
 
-O staging no commit `8812ccc5fc6b2143e494a3baad68ca80615072bc` passou por
-uma varredura autenticada de 3 rotas públicas, 20 rotas autenticadas, 17 destinos
-de links internos e 6 superfícies críticas em viewport de 320 px. A primeira
-execução encontrou um único 404 em `/favicon.ico`; o PR `#16` restaurou o ícone
-oficial e repetiu todos os gates e toda a varredura. O resultado final teve zero
-falhas de página, link, resposta interna, JavaScript, console, tela vazia ou
-overflow horizontal. A evidência e os limites estão em
+O staging foi revalidado no commit funcional
+`cfdf876e5539f02e6b40d2b491adc80973fbb775`, incluindo as novas áreas de
+soluções simuladas e administração. A varredura autenticada cobriu 3 rotas
+públicas, 22 rotas autenticadas, 20 destinos de links internos e 8 superfícies
+críticas em viewport de 320 px, com zero falhas de página, resposta, link,
+JavaScript, console, tela vazia ou overflow horizontal. Nenhuma correção ou novo
+deploy foi necessário.
+
+A execução histórica no commit `8812ccc5fc6b2143e494a3baad68ca80615072bc`
+encontrou o único 404 em `/favicon.ico`; o PR `#16` o corrigiu. As evidências e
+os limites de ambas as execuções estão em
 `docs/canonical/v1/delivery/RUNTIME_ROUTE_AUDIT_2026-09-22.md`.
 
 ## Hosted Staging & Pilot Readiness — HSP-0 a HSP-4

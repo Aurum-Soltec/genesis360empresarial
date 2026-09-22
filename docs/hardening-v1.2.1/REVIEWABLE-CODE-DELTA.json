@@ -1,6 +1,6 @@
 {
-  "version": "1.2.1-rc.2-presentation-complete-hosted-pass",
-  "status": "presentation_complete_hosted_verified",
+  "version": "1.2.1-rc.2-presentation-route-reaudit",
+  "status": "presentation_complete_route_audit_pass",
   "files": [
     {
       "path": ".env.example",
@@ -659,8 +659,8 @@
     {
       "path": "docs/canonical/v1/delivery/RUNTIME_ROUTE_AUDIT_2026-09-22.md",
       "beforeSha256": null,
-      "afterSha256": "27e5d7dd79dbdfdb66371144951f1a3dc1cc3df6c2bd9a1529a9d92ea4d0210c",
-      "reason": "Hosted runtime audit evidence for public, authenticated, linked and mobile routes"
+      "afterSha256": "4085f41b8ec504ad51f29e1dca4c6a4cd062ab0cf97d3ba907193aa351153125",
+      "reason": "Presentation Complete hosted route, link, browser and mobile revalidation evidence"
     },
     {
       "path": "docs/canonical/v1/delivery/STORIES_CATALOG.csv",
@@ -1001,8 +1001,8 @@
     {
       "path": "PROJECT-STATE.md",
       "beforeSha256": null,
-      "afterSha256": "caf6ce972322f01353767568fd7ace3c86dacddaaf4d00d6feda38218c99fff9",
-      "reason": "Presentation Complete hosted PASS reconciled with final executable evidence"
+      "afterSha256": "d646770f8d36b741f766001c886a302f8c792bce472205619950b16155831cce",
+      "reason": "Presentation Complete hosted route, link, browser and mobile revalidation evidence"
     },
     {
       "path": "proxy.ts",
