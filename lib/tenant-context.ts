@@ -23,23 +23,26 @@ export async function requireTenantContext(operation = "api.default"): Promise<T
     throw new Error("ACTIVE_TENANT_REQUIRED");
   }
 
-  const { data: membership, error } = await supabase
+  const membershipQuery = supabase
     .from("memberships")
     .select("tenant_id, role")
     .eq("tenant_id", tenantId)
     .eq("user_id", authData.user.id)
     .maybeSingle();
+  const quotaQuery = supabase.rpc("consume_tenant_quota", {
+    p_tenant_id: tenantId,
+    p_operation: operation,
+    p_default_max_requests: 600,
+    p_default_window_seconds: 60,
+  });
+  const [membershipResult, quotaResult] = await Promise.all([membershipQuery, quotaQuery]);
+  const { data: membership, error } = membershipResult;
 
   if (error || !membership) {
     throw new Error("TENANT_ACCESS_DENIED");
   }
 
-  const { data: quota, error: quotaError } = await supabase.rpc("consume_tenant_quota", {
-    p_tenant_id: membership.tenant_id,
-    p_operation: operation,
-    p_default_max_requests: 600,
-    p_default_window_seconds: 60,
-  });
+  const { data: quota, error: quotaError } = quotaResult;
   if (quotaError) throw new Error("RATE_LIMIT_CHECK_FAILED");
   if (quota?.[0]?.allowed === false) throw new Error("RATE_LIMIT_EXCEEDED");
 

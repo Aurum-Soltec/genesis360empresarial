@@ -10,6 +10,10 @@ export async function proxy(request: NextRequest) {
   let response = NextResponse.next({ request: { headers: requestHeaders } });
   response.headers.set("x-correlation-id", correlation);
 
+  // Route handlers enforce authentication and tenant authorization themselves.
+  // Avoid a duplicate hosted Auth round trip while preserving correlation IDs.
+  if (request.nextUrl.pathname.startsWith("/api/")) return response;
+
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const anonKey =
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ??
@@ -38,7 +42,7 @@ export async function proxy(request: NextRequest) {
     pathname === "/recuperar-acesso" ||
     pathname === "/nova-senha" ||
     pathname.startsWith("/auth/");
-  if (!data.user && !publicPath && !pathname.startsWith("/api/")) {
+  if (!data.user && !publicPath) {
     const target = request.nextUrl.clone();
     target.pathname = "/entrar";
     target.searchParams.set("next", pathname);

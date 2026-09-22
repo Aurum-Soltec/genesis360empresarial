@@ -26,6 +26,14 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm quality
       - run: pnpm audit --audit-level=high
+      - name: Generate Linux deployment SBOM
+        run: pnpm sbom:generate:runtime
+      - uses: actions/upload-artifact@v4
+        with:
+          name: hsp4-runtime-linux-x64-sbom
+          path: test-results/hsp4-runtime-linux-x64.sbom.spdx.json
+          if-no-files-found: error
+          retention-days: 30
   database:
     runs-on: ubuntu-24.04
     timeout-minutes: 25

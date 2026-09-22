@@ -29,14 +29,14 @@ export async function loadDashboardOverview(): Promise<DashboardOverview | null>
   if (companyError) throw new Error("DASHBOARD_READ_FAILED");
   if (!company) return null;
 
-  const { count: passportFacts, error: passportError } = await db
+  const passportQuery = db
     .from("business_facts")
     .select("id", { count: "exact", head: true })
     .eq("tenant_id", ctx.tenantId)
     .eq("company_id", company.id)
     .is("valid_to", null);
 
-  const { data: diagnostic, error: diagnosticError } = await db
+  const diagnosticQuery = db
     .from("diagnostics")
     .select("id,growth_score,growth_score_status,confidence,confidence_rule_version")
     .eq("status", "scored")
@@ -46,31 +46,7 @@ export async function loadDashboardOverview(): Promise<DashboardOverview | null>
     .limit(1)
     .maybeSingle();
 
-  if (passportError || diagnosticError) throw new Error("DASHBOARD_READ_FAILED");
-  let scores: DashboardOverview["scores"] = [];
-  let pains: DashboardOverview["pains"] = [];
-  if (diagnostic) {
-    const { data: scoreRows, error: scoreError } = await db
-      .from("score_results")
-      .select("dimension,score,coverage,confidence")
-      .eq("tenant_id", ctx.tenantId)
-      .eq("diagnostic_id", diagnostic.id)
-      .order("score");
-    if (scoreError) throw new Error("DASHBOARD_READ_FAILED");
-    scores = (scoreRows ?? []) as DashboardOverview["scores"];
-
-    const { data: painRows, error: painError } = await db
-      .from("pain_findings")
-      .select("id,title,gap_summary,severity,confidence")
-      .eq("tenant_id", ctx.tenantId)
-      .eq("diagnostic_id", diagnostic.id)
-      .order("severity", { ascending: false })
-      .limit(3);
-    if (painError) throw new Error("DASHBOARD_READ_FAILED");
-    pains = (painRows ?? []) as DashboardOverview["pains"];
-  }
-
-  const { data: mission, error: missionError } = await db
+  const missionQuery = db
     .from("missions")
     .select("id,status,due_at")
     .eq("tenant_id", ctx.tenantId)
@@ -80,7 +56,41 @@ export async function loadDashboardOverview(): Promise<DashboardOverview | null>
     .limit(1)
     .maybeSingle();
 
-  if (missionError) throw new Error("DASHBOARD_READ_FAILED");
+  const [passportResult, diagnosticResult, missionResult] = await Promise.all([
+    passportQuery,
+    diagnosticQuery,
+    missionQuery,
+  ]);
+  const { count: passportFacts, error: passportError } = passportResult;
+  const { data: diagnostic, error: diagnosticError } = diagnosticResult;
+  const { data: mission, error: missionError } = missionResult;
+
+  if (passportError || diagnosticError || missionError) throw new Error("DASHBOARD_READ_FAILED");
+  let scores: DashboardOverview["scores"] = [];
+  let pains: DashboardOverview["pains"] = [];
+  if (diagnostic) {
+    const scoreQuery = db
+      .from("score_results")
+      .select("dimension,score,coverage,confidence")
+      .eq("tenant_id", ctx.tenantId)
+      .eq("diagnostic_id", diagnostic.id)
+      .order("score");
+
+    const painQuery = db
+      .from("pain_findings")
+      .select("id,title,gap_summary,severity,confidence")
+      .eq("tenant_id", ctx.tenantId)
+      .eq("diagnostic_id", diagnostic.id)
+      .order("severity", { ascending: false })
+      .limit(3);
+
+    const [scoreResult, painResult] = await Promise.all([scoreQuery, painQuery]);
+    const { data: scoreRows, error: scoreError } = scoreResult;
+    const { data: painRows, error: painError } = painResult;
+    if (scoreError || painError) throw new Error("DASHBOARD_READ_FAILED");
+    scores = (scoreRows ?? []) as DashboardOverview["scores"];
+    pains = (painRows ?? []) as DashboardOverview["pains"];
+  }
   return {
     companyName: company.trade_name,
     passportFacts: passportFacts ?? 0,

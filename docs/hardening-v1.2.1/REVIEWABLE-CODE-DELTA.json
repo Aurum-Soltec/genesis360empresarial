@@ -1,6 +1,6 @@
 {
-  "version": "1.2.1-rc.2-presentation-rehearsal-pass",
-  "status": "presentation_meeting_rehearsal_runtime_pass",
+  "version": "1.2.1-rc.2-hsp4-final-readiness",
+  "status": "hsp4_remediation_candidate",
   "files": [
     {
       "path": ".env.example",
@@ -17,14 +17,20 @@
     {
       "path": ".github/workflows/ci.yml",
       "beforeSha256": "ef1ec2bf9ceb08e562be26ca41cb5760830c6ae82d74d549816a45b68117c90e",
-      "afterSha256": "767733626599df985c88e30dfb2697639b8aa5e9f514c7426024acc9c919d71f",
-      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+      "afterSha256": "cd9b2de408d0feb75cf092d02dd1a1d61a520cceec8d23999020da99faa945f2",
+      "reason": "HSP-4 remediation: reduce hosted round trips, add external operational paging, and generate a complete SPDX dependency inventory"
     },
     {
       "path": ".github/workflows/resolve-lock.yml",
       "beforeSha256": null,
       "afterSha256": "5feb3689ba0a3531bb4cb3fee98112922df567d0b9439df00fcfdf0cc392fe55",
       "reason": "hardening implementation or executable regression/configuration"
+    },
+    {
+      "path": ".github/workflows/staging-monitor.yml",
+      "beforeSha256": null,
+      "afterSha256": "fa7910313c385dd24bf4575e972737d46980ebcdcfc5ee67a363c747e076451d",
+      "reason": "HSP-4 remediation: reduce hosted round trips, add external operational paging, and generate a complete SPDX dependency inventory"
     },
     {
       "path": ".gitignore",
@@ -591,6 +597,12 @@
       "reason": "HSP-0..HSP-4 hosted evidence or canonical reconciliation"
     },
     {
+      "path": "docs/audit-2026-09-22/hsp4-sbom.spdx.json",
+      "beforeSha256": null,
+      "afterSha256": "23d00e10d289ee47cb27cc24fad2c3645c4b7245fb05638a08b4059179bce3a6",
+      "reason": "HSP-4 remediation: reduce hosted round trips, add external operational paging, and generate a complete SPDX dependency inventory"
+    },
+    {
       "path": "docs/canonical/v1/architecture/ADR-022_GENESIS_PRECISION_LIGHT_V2.md",
       "beforeSha256": "a8a065dd6f4a69f478514788b7b66e2b92e8450fce2f584328a0a92570e729fc",
       "afterSha256": "c40c498c3c493d8a57123d0417dabe0ae638c74d28cff8ff134064dc004f095e",
@@ -803,8 +815,8 @@
     {
       "path": "lib/dashboard-overview.ts",
       "beforeSha256": "d943b9228de6efc4dd62160d7d64295c689ab7679bcf56ffa527d2d1f1c90eb5",
-      "afterSha256": "be8d0947b91a398a3b3f3f0459b0ec709da842935b4944cfe4bd9e066cbd2647",
-      "reason": "hardening implementation or executable regression/configuration"
+      "afterSha256": "f840dd9230d63668c6c2db940eb4289368904840d3dbdee9fcfcc64095241474",
+      "reason": "HSP-4 remediation: reduce hosted round trips, add external operational paging, and generate a complete SPDX dependency inventory"
     },
     {
       "path": "lib/demo-scenario.test.ts",
@@ -989,8 +1001,8 @@
     {
       "path": "lib/tenant-context.ts",
       "beforeSha256": "57ff9aa5e7145a764216f9ae6826f7140f0c95ce54caf8c7839b89753357f657",
-      "afterSha256": "18127c1cd9a761dbe8d5f7bcc93e9b22e10e14053bc29df687eeb5ec0a76d471",
-      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+      "afterSha256": "10012a31788390a8d107af5c5dd24dcd583908d75c0a3216479f2c75fd843869",
+      "reason": "HSP-4 remediation: reduce hosted round trips, add external operational paging, and generate a complete SPDX dependency inventory"
     },
     {
       "path": "next.config.ts",
@@ -1001,8 +1013,8 @@
     {
       "path": "package.json",
       "beforeSha256": "70a9059f3482473c543dedaf96edddf781c503fa11f480494a481c04f2f77355",
-      "afterSha256": "21866fa2cd1074f0931005cc1e9761fc20a2ea0afd4eeaf57ac0a3a83fbe202e",
-      "reason": "Reproducible demo flow: authenticated deterministic scenario, diagnostic-linked evidence, traceable result, screenshots and PDF evidence"
+      "afterSha256": "1c3a2d7ae7220663e53ff5bd1663ae7a8c5d5f2c016416ae0f008410c7fef377",
+      "reason": "HSP-4 remediation: reduce hosted round trips, add external operational paging, and generate a complete SPDX dependency inventory"
     },
     {
       "path": "pnpm-lock.yaml",
@@ -1017,10 +1029,16 @@
       "reason": "Executed seven-step hosted meeting rehearsal and safe presenter runbook"
     },
     {
+      "path": "proxy.test.ts",
+      "beforeSha256": null,
+      "afterSha256": "d2ccc89ac3eab5f959c16008c368f39a59fb4034d79c2ce30dbc6a9f52f11e54",
+      "reason": "HSP-4 remediation: reduce hosted round trips, add external operational paging, and generate a complete SPDX dependency inventory"
+    },
+    {
       "path": "proxy.ts",
       "beforeSha256": null,
-      "afterSha256": "5aa4ba3f0d90451b853382a4e5bec23d5416e6cb736dd89da42d86ae04e166bd",
-      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+      "afterSha256": "fc6a133c2bef830023e1b2335d7e172c310a424dd3b4a07cdd8553e2bfa4998c",
+      "reason": "HSP-4 remediation: reduce hosted round trips, add external operational paging, and generate a complete SPDX dependency inventory"
     },
     {
       "path": "public/brand/genesis-360-empresarial.png",
@@ -1081,6 +1099,24 @@
       "beforeSha256": null,
       "afterSha256": "b847ed91f095f0bbb2b7b8b2777c5e020f6adab771da4df7e2a3a3b26c7127d4",
       "reason": "hardening implementation or executable regression/configuration"
+    },
+    {
+      "path": "scripts/generate-sbom.d.mts",
+      "beforeSha256": null,
+      "afterSha256": "7269639d92ba94393e3af8411502d6dcc6a7674510cec26471b3625a41dd9d3b",
+      "reason": "HSP-4 remediation: reduce hosted round trips, add external operational paging, and generate a complete SPDX dependency inventory"
+    },
+    {
+      "path": "scripts/generate-sbom.mjs",
+      "beforeSha256": null,
+      "afterSha256": "1d1eff31464bd578ce8b11867977924be08c6f41a845fc1a2d44a0dbae0be706",
+      "reason": "HSP-4 remediation: reduce hosted round trips, add external operational paging, and generate a complete SPDX dependency inventory"
+    },
+    {
+      "path": "scripts/generate-sbom.test.ts",
+      "beforeSha256": null,
+      "afterSha256": "a37c8fe8cd761723a03ac77df6cdc3d5036dec7ee2c4eddea51d122c676492c4",
+      "reason": "HSP-4 remediation: reduce hosted round trips, add external operational paging, and generate a complete SPDX dependency inventory"
     },
     {
       "path": "scripts/prepare-demo-scenario.mjs",
