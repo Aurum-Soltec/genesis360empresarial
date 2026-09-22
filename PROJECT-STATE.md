@@ -4,6 +4,25 @@ Atualização: **2026-09-21**. Candidato: **V1.2.1 RC2 + Production & Scale Foun
 
 ## Demo Readiness local — 2026-09-21
 
+### Complete presentation flow — local PASS, hosted runtime pending
+
+The current candidate adds an allowlisted `/demonstracao` workspace that exposes
+the real state of five presentation steps: company, fictional documents, Full
+diagnostic, executive report and Conselho Genesis. The Documents surface can
+register a fixed, idempotent package of three synthetic sources. It accepts no
+user-supplied file or content and does not enable binary upload.
+
+The diagnostic UI now offers Essential and Full profiles. Synthetic evidence is
+linked through ordinary answer contracts. The report adds an evidence-quality
+disclosure and a deterministic 30/60/90-day plan derived from the weakest known
+dimensions. The Conselho surface provides three interactive, deterministic,
+read-only syntheses with visible source tables; `FEATURE_AGENTIC` remains false.
+
+Access is fail-closed through both `FEATURE_DEMO_WORKSPACE=true` and an explicit
+`DEMO_TENANT_IDS` allowlist. Local validation passed 61/61 Vitest tests,
+TypeScript, ESLint and the Next.js production build. Runtime credit remains
+pending until the same artifact is deployed and the Full hosted flow is rerun.
+
 O candidato local recebeu a identidade visual oficial Genesis 360 Empresarial e
 um primeiro corte do fluxo demonstrável `diagnóstico -> evidências -> resultado
 rastreável -> relatório executivo`. O resultado passa a apresentar cobertura de

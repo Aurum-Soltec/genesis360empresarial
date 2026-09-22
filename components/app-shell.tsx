@@ -5,7 +5,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   const flags = getFeatureFlags();
 
   return (
-    <AppNavigation showEcosystem={flags.ecosystem}>
+    <AppNavigation showEcosystem={flags.ecosystem} showDemo={flags.demoWorkspace}>
       {children}
     </AppNavigation>
   );

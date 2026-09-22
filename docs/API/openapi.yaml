@@ -219,6 +219,31 @@ paths:
           description: Corpo acima de 64 KiB.
         '500':
           description: Falha interna sem vazamento de mensagens do provedor.
+  /demo/evidence:
+    post:
+      tags:
+      - Evidence
+      operationId: registerControlledDemoEvidence
+      summary: Registra o pacote fixo de evidências fictícias no tenant demonstrativo autorizado
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ControlledDemoEvidenceInput'
+      responses:
+        '201':
+          description: Pacote fictício registrado ou reconciliado de forma idempotente
+        '400':
+          description: Identificadores inválidos
+        '404':
+          description: Workspace demonstrativo desabilitado, tenant fora da allowlist ou recurso ausente
+        '403':
+          description: Origem, tenant ou papel não autorizados
+        '413':
+          description: Corpo acima de 64 KiB
+        '500':
+          description: Falha interna sem vazamento de mensagens do provedor
   /diagnostics:
     post:
       tags:
@@ -705,6 +730,20 @@ components:
           items:
             type: string
       additionalProperties: false
+    ControlledDemoEvidenceInput:
+      type: object
+      additionalProperties: false
+      required:
+      - companyId
+      properties:
+        companyId:
+          type: string
+          format: uuid
+        diagnosticId:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
     DiagnosticAnswerInput:
       type: object
       additionalProperties: false

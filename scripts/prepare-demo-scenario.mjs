@@ -6,6 +6,7 @@ const baseURL = (process.env.DEMO_BASE_URL ?? "http://127.0.0.1:3000").replace(/
 const email = process.env.DEMO_EMAIL;
 const password = process.env.DEMO_PASSWORD;
 const tenantName = process.env.DEMO_TENANT_NAME;
+const profile = process.env.DEMO_PROFILE === "FULL" ? "FULL" : "ESSENTIAL";
 const executablePath = process.env.CHROME_PATH ??
   "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe";
 const outputDir = process.env.DEMO_OUTPUT_DIR ??
@@ -127,6 +128,9 @@ try {
   ]);
 
   await page.goto(`${baseURL}/diagnostico-v1`, { waitUntil: "networkidle" });
+  await page.getByRole("button", {
+    name: profile === "FULL" ? /Diagnóstico completo/ : /Leitura essencial/,
+  }).click();
   const startResponsePromise = page.waitForResponse(
     (response) => response.url() === `${baseURL}/api/diagnostics` &&
       response.request().method() === "POST",
@@ -173,7 +177,7 @@ try {
   }
 
   let answeredCount = 0;
-  for (; answeredCount < 80; answeredCount += 1) {
+  for (; answeredCount < 100; answeredCount += 1) {
     const state = await apiJson(page, "GET", `/api/diagnostics/${diagnosticId}/state`);
     if (!state.nextQuestionId) {
       if (!state.canSubmit) {
@@ -187,7 +191,7 @@ try {
       ...demoAnswer(state.nextQuestionId, evidenceIds, answeredCount),
     });
   }
-  if (answeredCount >= 80) throw new Error("Diagnostic safety limit exceeded");
+  if (answeredCount >= 100) throw new Error("Diagnostic safety limit exceeded");
 
   await apiJson(page, "POST", `/api/diagnostics/${diagnosticId}/submit`);
   await page.goto(`${baseURL}/resultado-v1?diagnostic=${diagnosticId}`, { waitUntil: "networkidle" });
@@ -211,7 +215,7 @@ try {
     executedAt: startedAt,
     baseURL,
     diagnosticId,
-    profile: "ESSENTIAL",
+    profile,
     result: "PASS",
     answeredCount,
     evidenceCount: evidenceIds.length,
