@@ -11,6 +11,8 @@ import {
 import { requireTenantContext } from "@/lib/tenant-context";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { buildExecutivePlan, evidenceQualityMessage } from "@/lib/report-insights";
+import { buildDemoSolutionPreview } from "@/lib/demo-solution-preview";
+import { isDemoTenantAllowed } from "@/lib/feature-flags";
 
 const dimensionLabels: Record<string, string> = {
   EST: "Estratégia",
@@ -143,6 +145,12 @@ export default async function ResultadoV1({
     dimension: score.dimension,
     score: score.score === null ? null : Number(score.score),
   })));
+  const demoSolutionPreview = isDemoTenantAllowed(ctx.tenantId)
+    ? buildDemoSolutionPreview((scores ?? []).map((score) => ({
+        dimension: score.dimension,
+        score: score.score === null ? null : Number(score.score),
+      })))
+    : [];
   const evidenceQuality = provenanceAvailable
     ? evidenceQualityMessage(evidenceIds.length, verifiedEvidence)
     : "A proveniência está indisponível; nenhuma conclusão sobre ausência de evidência foi assumida.";
@@ -309,6 +317,42 @@ export default async function ResultadoV1({
             <div className="precision-empty"><p>Não há dimensões suficientes para formar um plano responsável.</p></div>
           )}
         </section>
+
+        {demoSolutionPreview.length ? (
+          <section className="result-section solution-preview" aria-labelledby="solution-preview-title">
+            <div className="section-heading-row">
+              <div>
+                <span className="section-eyebrow">Soluções compatíveis com as necessidades</span>
+                <h2 id="solution-preview-title">Capacidades que podem apoiar as prioridades</h2>
+              </div>
+              <Link className="text-action report-screen-only" href={`/demonstracao/solucoes?diagnostic=${diagnosticId}`}>
+                Ver análise de aderência
+              </Link>
+            </div>
+            <div className="solution-boundary" role="note">
+              <strong>Simulação demonstrativa.</strong>
+              <span>Empresas 100% fictícias · Qualification Network desligada · contato real desligado</span>
+            </div>
+            <ol className="solution-preview-grid">
+              {demoSolutionPreview.map((solution) => (
+                <li key={solution.dimension}>
+                  <div className="solution-preview-head">
+                    <span>{solution.dimensionLabel} · {Math.round(solution.score)}/100</span>
+                    <strong>Compatibilidade {solution.compatibility.toLowerCase()}</strong>
+                  </div>
+                  <h3>{solution.service}</h3>
+                  <p>{solution.outcome}</p>
+                  <div className="fictional-provider">
+                    <span>Empresa fictícia ilustrativa</span>
+                    <strong>{solution.providerName}</strong>
+                    <small>{solution.providerSpecialty}</small>
+                  </div>
+                  <small className="solution-explanation">{solution.explanation}</small>
+                </li>
+              ))}
+            </ol>
+          </section>
+        ) : null}
 
         <section className="result-section result-dimensions-section">
           <div className="section-heading-row">

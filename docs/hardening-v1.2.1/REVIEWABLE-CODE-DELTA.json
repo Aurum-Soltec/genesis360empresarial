@@ -1,6 +1,6 @@
 {
-  "version": "1.2.1-rc.2-complete-demo-flow-1",
-  "status": "complete_demo_flow_local_verified",
+  "version": "1.2.1-rc.2-presentation-complete-2",
+  "status": "presentation_complete_local_verification_pending",
   "files": [
     {
       "path": ".env.example",
@@ -201,10 +201,22 @@
       "reason": "Controlled complete demo flow: fictional evidence, Full diagnostic, executive plan, Council synthesis, and presentation cockpit"
     },
     {
+      "path": "app/demonstracao/administracao/page.tsx",
+      "beforeSha256": null,
+      "afterSha256": "5eb133686102cc4e23b0a83e6c1d45306a1117fdfa3216b9fb16a695e22b6e0f",
+      "reason": "Presentation-complete demo: explainable solution preview, restricted administration, and executable end-to-end evidence"
+    },
+    {
       "path": "app/demonstracao/page.tsx",
       "beforeSha256": null,
-      "afterSha256": "e90fe8a03d6e769ecc9dd9ae44a6a9b943980423784ce461df7ad7f03629e316",
-      "reason": "Hosted demo idempotency: canonical evidence counting and reusable presentation fixture"
+      "afterSha256": "1cbffcca7c7d41af086271f2ef0b6ae66cd1f1ad2587eadbcfcdd258af57af7b",
+      "reason": "Presentation-complete demo: explainable solution preview, restricted administration, and executable end-to-end evidence"
+    },
+    {
+      "path": "app/demonstracao/solucoes/page.tsx",
+      "beforeSha256": null,
+      "afterSha256": "772ca20b1e4a2028949b16829f0be8725b8f78e75e2b5068db5fe9307c24fe15",
+      "reason": "Presentation-complete demo: explainable solution preview, restricted administration, and executable end-to-end evidence"
     },
     {
       "path": "app/diagnostico-v1/journey.tsx",
@@ -245,8 +257,8 @@
     {
       "path": "app/globals.css",
       "beforeSha256": null,
-      "afterSha256": "ef016b87278287ff18353079c4418c060a146851bd38fb8abb64d2c6d39afc99",
-      "reason": "Controlled complete demo flow: fictional evidence, Full diagnostic, executive plan, Council synthesis, and presentation cockpit"
+      "afterSha256": "ab2722bb58dfa5071d0298a2e2ac05b358f390fa14ea94f18b53282692506fb8",
+      "reason": "Presentation-complete demo: explainable solution preview, restricted administration, and executable end-to-end evidence"
     },
     {
       "path": "app/indicadores/page.tsx",
@@ -293,8 +305,8 @@
     {
       "path": "app/resultado-v1/page.tsx",
       "beforeSha256": "212f2318c3f791059beb1965d499c33aca89ef363cc2e02df03f2298dd700cd7",
-      "afterSha256": "4cfd53cdff64c7c52e4ed2ee7695b31428c1221d69df5f46fe89ad078fe2583e",
-      "reason": "Controlled complete demo flow: fictional evidence, Full diagnostic, executive plan, Council synthesis, and presentation cockpit"
+      "afterSha256": "97c9456e5c1afb138be91040843c88ec50876da8ca4506a3558c980f8c41d728",
+      "reason": "Presentation-complete demo: explainable solution preview, restricted administration, and executable end-to-end evidence"
     },
     {
       "path": "app/selecionar-empresa/page.tsx",
@@ -311,8 +323,8 @@
     {
       "path": "components/app-navigation.tsx",
       "beforeSha256": null,
-      "afterSha256": "e433a8cce4412233fb33943e8969f507dd14a0788d90c2704326ed496aad22c5",
-      "reason": "Controlled complete demo flow: fictional evidence, Full diagnostic, executive plan, Council synthesis, and presentation cockpit"
+      "afterSha256": "2c775c81fd73be2d0791b4a1ed26e1a6ea5254736c0c24067c092470f49a2ddc",
+      "reason": "Presentation-complete demo: explainable solution preview, restricted administration, and executable end-to-end evidence"
     },
     {
       "path": "components/app-shell.tsx",
@@ -795,6 +807,18 @@
       "reason": "Hosted demo presentation: show the canonical three-source package while preserving legacy rows"
     },
     {
+      "path": "lib/demo-solution-preview.test.ts",
+      "beforeSha256": null,
+      "afterSha256": "af65015059ec408521744a02d9fc35eb30daed15d7aa98ebfa54f5ce8e6ce53f",
+      "reason": "Presentation-complete demo: explainable solution preview, restricted administration, and executable end-to-end evidence"
+    },
+    {
+      "path": "lib/demo-solution-preview.ts",
+      "beforeSha256": null,
+      "afterSha256": "4bf77ffae92d280621a0ec0dde27120914242f4550630e2bad142000b21f64ec",
+      "reason": "Presentation-complete demo: explainable solution preview, restricted administration, and executable end-to-end evidence"
+    },
+    {
       "path": "lib/diagnostic-answer-quality.ts",
       "beforeSha256": "3cd2e7f9daaca93f41c6cebc92b94937a653536f31f66e1156a78fe0701319a9",
       "afterSha256": "88460766647d9c52df78d793aa7eeda963e9fba48e33a8743a98da67aff67e10",
@@ -1049,8 +1073,8 @@
     {
       "path": "scripts/prepare-demo-scenario.mjs",
       "beforeSha256": null,
-      "afterSha256": "448593ddcb7aa7339c903d81cf64dc5c5cabe9fc14aca952a350c3f2a23403eb",
-      "reason": "Hosted demo idempotency: canonical evidence counting and reusable presentation fixture"
+      "afterSha256": "dc5ba6b1e4f7bd304d94bc20382555d7074b86d4f3ef181d9015a228337f73db",
+      "reason": "Presentation-complete demo: explainable solution preview, restricted administration, and executable end-to-end evidence"
     },
     {
       "path": "scripts/run-backup-restore-drill.ps1",
