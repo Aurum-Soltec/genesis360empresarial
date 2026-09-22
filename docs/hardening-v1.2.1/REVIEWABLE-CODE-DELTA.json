@@ -645,6 +645,12 @@
       "reason": "RC2 P0 remediation, executable regression, or scope evidence"
     },
     {
+      "path": "docs/canonical/v1/delivery/RUNTIME_ROUTE_AUDIT_2026-09-22.md",
+      "beforeSha256": null,
+      "afterSha256": "27e5d7dd79dbdfdb66371144951f1a3dc1cc3df6c2bd9a1529a9d92ea4d0210c",
+      "reason": "Hosted runtime audit evidence for public, authenticated, linked and mobile routes"
+    },
+    {
       "path": "docs/canonical/v1/delivery/STORIES_CATALOG.csv",
       "beforeSha256": null,
       "afterSha256": "b010fda89d6cc5770564ba73d415ec2d2d5af3a29979c737be59da4eae6e7d27",
@@ -971,8 +977,8 @@
     {
       "path": "PROJECT-STATE.md",
       "beforeSha256": null,
-      "afterSha256": "ae470938489222d149c9c5df027d8011b7e2d9d4451ba60441b283fe96a23741",
-      "reason": "Hosted Full demo runtime evidence and final presentation reconciliation"
+      "afterSha256": "2b21fca3bf9057762afdb949731f228eaf83b35043b644ec258469f241639024",
+      "reason": "Hosted runtime route and link audit reconciliation"
     },
     {
       "path": "proxy.ts",

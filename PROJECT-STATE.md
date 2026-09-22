@@ -55,6 +55,17 @@ cortes ou sobreposições. O cockpit apresentou 5/5 etapas prontas, Full conclu�
 e 3/3 fontes canônicas. Upload binário para usuários reais,
 Agentic, Qualification Network, Real Contact e Ecosystem continuam desligados.
 
+### Auditoria runtime de rotas e links — PASS em 2026-09-22
+
+O staging no commit `8812ccc5fc6b2143e494a3baad68ca80615072bc` passou por
+uma varredura autenticada de 3 rotas públicas, 20 rotas autenticadas, 17 destinos
+de links internos e 6 superfícies críticas em viewport de 320 px. A primeira
+execução encontrou um único 404 em `/favicon.ico`; o PR `#16` restaurou o ícone
+oficial e repetiu todos os gates e toda a varredura. O resultado final teve zero
+falhas de página, link, resposta interna, JavaScript, console, tela vazia ou
+overflow horizontal. A evidência e os limites estão em
+`docs/canonical/v1/delivery/RUNTIME_ROUTE_AUDIT_2026-09-22.md`.
+
 ## Hosted Staging & Pilot Readiness — HSP-0 a HSP-4
 
 O candidato foi publicado no GitHub público da organização Aurum-Soltec, protegido
