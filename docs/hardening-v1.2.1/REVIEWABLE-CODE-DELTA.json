@@ -605,8 +605,8 @@
     {
       "path": "docs/canonical/v1/delivery/DEMO_READINESS_WAVE_2026-09-21.md",
       "beforeSha256": null,
-      "afterSha256": "61c67a4c6926d62905cfdc0db1c37ffc269df8151ad78deea50e3baa7b708842",
-      "reason": "Hosted Full demo runtime evidence and final presentation reconciliation"
+      "afterSha256": "1ebf5ee77eccaccdfebb62630f0fd3bb0e21162bf2a03b05da2fa5c5cd657481",
+      "reason": "Presentation-complete demo plan synchronized with executable candidate and hosted runtime gate"
     },
     {
       "path": "docs/canonical/v1/delivery/EPICS_CATALOG.json",
