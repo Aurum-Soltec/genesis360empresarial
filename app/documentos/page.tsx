@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 import { AppShell } from "@/components/app-shell";
-import { demoEvidenceAlreadyLoaded } from "@/lib/demo-scenario";
+import { demoEvidenceAlreadyLoaded, isCanonicalDemoEvidence } from "@/lib/demo-scenario";
 import { getFeatureFlags, isDemoTenantAllowed } from "@/lib/feature-flags";
 import { requireTenantContext } from "@/lib/tenant-context";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
@@ -65,6 +65,9 @@ export default async function DocumentosPage() {
     rejected: "Rejeitada",
     expired: "Expirada",
   };
+  const displayedEvidence = demoAllowed
+    ? (evidence ?? []).filter((item) => isCanonicalDemoEvidence(item.source_ref))
+    : (evidence ?? []);
 
   return (
     <AppShell>
@@ -128,7 +131,7 @@ export default async function DocumentosPage() {
             <span className="section-eyebrow">Base informacional</span>
             <h2 id="evidence-register-title">Evidências registradas</h2>
           </div>
-          <span className="badge">{evidence?.length ?? 0} registros</span>
+          <span className="badge">{displayedEvidence.length} registros</span>
         </div>
 
         {evidenceError ? (
@@ -136,9 +139,9 @@ export default async function DocumentosPage() {
             <strong>Não foi possível carregar as evidências.</strong>
             <p>A indisponibilidade permanece explícita e não é convertida em ausência de dados.</p>
           </div>
-        ) : evidence?.length ? (
+        ) : displayedEvidence.length ? (
           <ol className="evidence-list">
-            {evidence.map((item) => (
+            {displayedEvidence.map((item) => (
               <li key={item.id}>
                 <div className="evidence-list-main">
                   <div className="evidence-list-meta">

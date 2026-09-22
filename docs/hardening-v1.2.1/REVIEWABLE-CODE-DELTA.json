@@ -227,8 +227,8 @@
     {
       "path": "app/documentos/page.tsx",
       "beforeSha256": "daea76752044b3f14092353540fa4e56d73b057e33de4360edc0f37ea0e3362a",
-      "afterSha256": "f2356a01a7ef9dc3062ff0f6da2018a7307aa2e8ce887fb9292d8ec1830e051a",
-      "reason": "Controlled complete demo flow: fictional evidence, Full diagnostic, executive plan, Council synthesis, and presentation cockpit"
+      "afterSha256": "84b4104ed456dc1c300c1c952661fa454af716bc3ba7758b4274f1d807bdf485",
+      "reason": "Hosted demo presentation: show the canonical three-source package while preserving legacy rows"
     },
     {
       "path": "app/entrar/page.tsx",
@@ -773,14 +773,14 @@
     {
       "path": "lib/demo-scenario.test.ts",
       "beforeSha256": null,
-      "afterSha256": "bcdf14c93d0d000c8a55504a3f0f0720dc81c015336e682a6c3c92b4284037a3",
-      "reason": "Hosted demo idempotency: canonical evidence counting and reusable presentation fixture"
+      "afterSha256": "f989c50a24001b8d13416b684b7e91789e041fc86bafdd2104f5090ead9159d5",
+      "reason": "Hosted demo presentation: show the canonical three-source package while preserving legacy rows"
     },
     {
       "path": "lib/demo-scenario.ts",
       "beforeSha256": null,
-      "afterSha256": "28c25937d416634e40c0a7f26e82fa76cf6472250dd0ff4b4efec404a5478bfc",
-      "reason": "Hosted demo idempotency: canonical evidence counting and reusable presentation fixture"
+      "afterSha256": "62237a23bb9692721230fd3280bb4702a6103901ec7d7a12d9cb853adaa6dc60",
+      "reason": "Hosted demo presentation: show the canonical three-source package while preserving legacy rows"
     },
     {
       "path": "lib/diagnostic-answer-quality.ts",

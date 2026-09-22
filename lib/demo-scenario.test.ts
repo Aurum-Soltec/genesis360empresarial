@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { DemoEvidenceTemplates, demoEvidenceAlreadyLoaded, demoEvidenceLoadedCount } from "./demo-scenario";
+import { DemoEvidenceTemplates, demoEvidenceAlreadyLoaded, demoEvidenceLoadedCount, isCanonicalDemoEvidence } from "./demo-scenario";
 
 describe("controlled demo scenario", () => {
   it("ships only fictional, explicitly marked evidence", () => {
@@ -24,5 +24,7 @@ describe("controlled demo scenario", () => {
       "DEMO:legacy-record",
       null,
     ])).toBe(2);
+    expect(isCanonicalDemoEvidence(DemoEvidenceTemplates[0].sourceRef)).toBe(true);
+    expect(isCanonicalDemoEvidence("DEMO:legacy-record")).toBe(false);
   });
 });
