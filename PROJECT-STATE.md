@@ -22,6 +22,20 @@ Access Boundary, outbox ou worker. A implementação local precisa ser promovida
 revalidada no ambiente hospedado com uma conta dedicada de demonstração antes de
 receber crédito de runtime em staging.
 
+### Demo Readiness hospedada — PASS em 2026-09-21
+
+O corte foi integrado pelos PRs `#9` e `#10` e implantado no Railway pelo commit
+`572b584b8c0fc9b096ed1cd5470fc8fd51e37bec`. Um usuário sintético percorreu o
+fluxo hospedado completo `Auth -> Tenant Context -> diagnóstico Essential -> 42
+respostas -> 3 evidências -> scoring -> resultado -> PDF`, com resultado PASS.
+
+O relatório final apresentou Growth Score 55, cobertura 100% e confiança 78%.
+As três fontes são dados fictícios de demonstração e permanecem corretamente
+marcadas como `unverified`; esta execução não lhes concede valor de documento
+verificado. O PDF A4 foi renderizado em duas páginas e revisado visualmente sem
+cortes, controles interativos ou quebra órfã. Upload binário para usuários reais,
+Agentic, Qualification Network, Real Contact e Ecosystem continuam desligados.
+
 ## Hosted Staging & Pilot Readiness — HSP-0 a HSP-4
 
 O candidato foi publicado no GitHub público da organização Aurum-Soltec, protegido
