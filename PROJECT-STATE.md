@@ -1,10 +1,10 @@
 # PROJECT-STATE — Genesis 360 Empresarial
 
-Atualização: **2026-09-21**. Candidato: **V1.2.1 RC2 + Production & Scale Foundation em staging hospedado**.
+Atualização: **2026-09-22**. Candidato: **V1.2.1 RC2 + Production & Scale Foundation em staging hospedado**.
 
-## Demo Readiness local — 2026-09-21
+## Demo Readiness — 2026-09-22
 
-### Complete presentation flow — local PASS, hosted runtime pending
+### Complete presentation flow — hosted FULL PASS
 
 The current candidate adds an allowlisted `/demonstracao` workspace that exposes
 the real state of five presentation steps: company, fictional documents, Full
@@ -19,9 +19,9 @@ dimensions. The Conselho surface provides three interactive, deterministic,
 read-only syntheses with visible source tables; `FEATURE_AGENTIC` remains false.
 
 Access is fail-closed through both `FEATURE_DEMO_WORKSPACE=true` and an explicit
-`DEMO_TENANT_IDS` allowlist. Local validation passed 61/61 Vitest tests,
-TypeScript, ESLint and the Next.js production build. Runtime credit remains
-pending until the same artifact is deployed and the Full hosted flow is rerun.
+`DEMO_TENANT_IDS` allowlist. Local validation passed 62/62 Vitest tests,
+34/34 native hardening tests, TypeScript, ESLint and the Next.js production
+build. The same flow passed in hosted staging with the Full profile.
 
 O candidato local recebeu a identidade visual oficial Genesis 360 Empresarial e
 um primeiro corte do fluxo demonstrável `diagnóstico -> evidências -> resultado
@@ -34,25 +34,25 @@ diretamente ao diagnóstico. `pnpm demo:prepare` prepara um cenário Essential
 fictício usando somente autenticação e APIs normais, e gera capturas, PDF e um
 registro de execução sem credenciais ou cookies.
 
-A área Documentos lista o ledger de evidências do tenant. O upload binário para
+A área Documentos lista o pacote canônico de três evidências no tenant de demo,
+preservando registros históricos sem exibi-los no roteiro de apresentação. O upload binário para
 usuários reais continua desligado; scanner de conteúdo, retenção e gate jurídico
 permanecem pendentes. Esta tranche não altera tenancy, RLS, scoring, Trusted Data
-Access Boundary, outbox ou worker. A implementação local precisa ser promovida e
-revalidada no ambiente hospedado com uma conta dedicada de demonstração antes de
-receber crédito de runtime em staging.
+Access Boundary, outbox ou worker.
 
-### Demo Readiness hospedada — PASS em 2026-09-21
+### Demo Readiness hospedada — FULL PASS em 2026-09-22
 
-O corte foi integrado pelos PRs `#9` e `#10` e implantado no Railway pelo commit
-`572b584b8c0fc9b096ed1cd5470fc8fd51e37bec`. Um usuário sintético percorreu o
-fluxo hospedado completo `Auth -> Tenant Context -> diagnóstico Essential -> 42
-respostas -> 3 evidências -> scoring -> resultado -> PDF`, com resultado PASS.
+O corte completo foi integrado pelos PRs `#12`, `#13` e `#14` e implantado no
+Railway pelo commit `c4f264163280b60fb47024d907632fc819c63de8`. Um usuário
+sintético percorreu `Auth -> Tenant Context -> diagnóstico Full -> 50 respostas
+adaptativas -> 3 evidências -> scoring -> resultado -> PDF -> Conselho`, com PASS.
 
 O relatório final apresentou Growth Score 55, cobertura 100% e confiança 78%.
 As três fontes são dados fictícios de demonstração e permanecem corretamente
 marcadas como `unverified`; esta execução não lhes concede valor de documento
-verificado. O PDF A4 foi renderizado em duas páginas e revisado visualmente sem
-cortes, controles interativos ou quebra órfã. Upload binário para usuários reais,
+verificado. O PDF A4 foi renderizado em três páginas e revisado visualmente sem
+cortes ou sobreposições. O cockpit apresentou 5/5 etapas prontas, Full concluído
+e 3/3 fontes canônicas. Upload binário para usuários reais,
 Agentic, Qualification Network, Real Contact e Ecosystem continuam desligados.
 
 ## Hosted Staging & Pilot Readiness — HSP-0 a HSP-4
