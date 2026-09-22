@@ -1,0 +1,78 @@
+{
+  "wave": "PRESENTATION-COMPLETE",
+  "result": "PASS",
+  "executedAt": "2026-09-22T10:50:33.417Z",
+  "baseURL": "https://web-production-76d1b.up.railway.app",
+  "mergeCommit": "cfdf876e5539f02e6b40d2b491adc80973fbb775",
+  "pullRequests": [
+    18,
+    19
+  ],
+  "railwayDeployment": "90b1fe43-9ba7-436f-8b0d-1f5a17f9a846",
+  "diagnosticId": "477628e1-955a-4bdc-a935-f86cd3db457d",
+  "profile": "FULL",
+  "answeredCount": 50,
+  "canonicalEvidenceCount": 3,
+  "growthScore": 55,
+  "coveragePercent": 100,
+  "confidencePercent": 78,
+  "presentationSteps": "7/7",
+  "flags": {
+    "agentic": false,
+    "dataUploadRealUsers": false,
+    "qualificationNetwork": false,
+    "realContact": false,
+    "ecosystem": false
+  },
+  "visualReview": {
+    "screenshots": "PASS",
+    "pdf": "PASS",
+    "clipping": false,
+    "overlap": false,
+    "pages": 4
+  },
+  "pdf": {
+    "publicArtifact": false,
+    "reason": "Public-package policy excludes PDF binaries",
+    "sha256": "ef739f6379fed74eab6584b075e143c37a8339b8c832daedae01aad0bf1f9891",
+    "bytes": 157779
+  },
+  "publicArtifacts": [
+    {
+      "file": "2026-09-22t10-53-34.000z-administracao.png",
+      "sha256": "18d88b7b38a61f7d846d00a743e31fdec4848b4dc47d6a078ad3596ff2710dec",
+      "bytes": 103903
+    },
+    {
+      "file": "2026-09-22t10-53-34.000z-conselho.png",
+      "sha256": "a49a9c834ffac6e06f9afd8d03a5cc60c446b88882667ca793ec1419c17b9e94",
+      "bytes": 103395
+    },
+    {
+      "file": "2026-09-22t10-53-34.000z-evidencias.png",
+      "sha256": "e902e8ec23299f0a424d60a0ddf5766cc0f7810cdd919a7246f272a9f5f5c184",
+      "bytes": 125765
+    },
+    {
+      "file": "2026-09-22t10-53-34.000z-resultado.png",
+      "sha256": "c16300db27861296ac8f844f776a31a16cd3eca728f0eac0f2097aa267543260",
+      "bytes": 310957
+    },
+    {
+      "file": "2026-09-22t10-53-34.000z-roteiro.png",
+      "sha256": "334b2af68862d7ac99f8022a34d1052c9b92623603cc83bb8995968d8eeaff56",
+      "bytes": 164873
+    },
+    {
+      "file": "2026-09-22t10-53-34.000z-run.json",
+      "sha256": "4757dfdffe653e2de754659afdf13ef596c1fdca5f5a55e9d63d1a77201d89af",
+      "bytes": 1611
+    },
+    {
+      "file": "2026-09-22t10-53-34.000z-solucoes.png",
+      "sha256": "2f3bbd92b94eeaadf0ebdd32027ab4cbd11b53c2c08bac1ea7d5427636b41a51",
+      "bytes": 129284
+    }
+  ],
+  "credentialsPersisted": false
+}

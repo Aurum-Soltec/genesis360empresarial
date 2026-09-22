@@ -130,7 +130,7 @@ above preserves traceability. No credential, cookie or real-company data is
 present. This PASS proves the bounded fictional presentation flow only; it does
 not change the HSP-4 NO-GO for pilot or open production.
 
-### Presentation-complete candidate — local PASS, hosted runtime pending
+### Presentation Complete — hosted PASS, 2026-09-22
 
 The next bounded candidate expands the meeting flow from five to seven visible
 stages without enabling any sensitive product capability:
@@ -148,10 +148,23 @@ stages without enabling any sensitive product capability:
   the same authenticated Full run;
 - the generated evidence set adds screenshots for solutions and administration.
 
-Local `pnpm quality` passed with 34 native hardening tests, 65 Vitest tests and a
-production build containing both new dynamic routes. Hosted runtime credit
-remains pending until this exact candidate is deployed and the expanded runner
-passes against staging.
+Local `pnpm quality` passed with 34 native hardening tests, 66 Vitest tests and a
+production build containing both new dynamic routes. PRs `#18` and `#19` passed
+quality, database and CodeQL gates. Railway deployment
+`90b1fe43-9ba7-436f-8b0d-1f5a17f9a846` promoted merge commit
+`cfdf876e5539f02e6b40d2b491adc80973fbb775`.
+
+The final authenticated Full run received PASS after 50 adaptive interactions,
+three canonical fictional sources, scoring, report, seven-step cockpit, solution
+simulation, tenant administration and deterministic Conselho. Growth Score was
+55, coverage 100% and confidence 78%. The report, plan and solution preview use
+the same stable tie-break and identify Inovação, Jurídico and Marketing.
+
+The four-page A4 PDF was visually reviewed without clipping or overlap. Its size
+is 157,779 bytes and SHA-256 is
+`EF739F6379FED74EAB6584B075E143C37A8339B8C832DAEDAE01AAD0BF1F9891`.
+The public evidence directory contains the JSON run record and six screenshots;
+the PDF remains local because public-package policy excludes PDF binaries.
 
 ## Meeting flow
 

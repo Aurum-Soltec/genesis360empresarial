@@ -4,24 +4,41 @@ Atualização: **2026-09-22**. Candidato: **V1.2.1 RC2 + Production & Scale Foun
 
 ## Demo Readiness — 2026-09-22
 
-### Complete presentation flow — hosted FULL PASS
+### Presentation Complete — hosted FULL PASS
 
 The current candidate adds an allowlisted `/demonstracao` workspace that exposes
-the real state of five presentation steps: company, fictional documents, Full
-diagnostic, executive report and Conselho Genesis. The Documents surface can
+the real state of seven presentation steps: company, fictional documents, Full
+diagnostic, executive report, simulated compatible solutions, Conselho Genesis
+and a tenant-scoped administrative cockpit. The Documents surface can
 register a fixed, idempotent package of three synthetic sources. It accepts no
 user-supplied file or content and does not enable binary upload.
 
-The diagnostic UI now offers Essential and Full profiles. Synthetic evidence is
+The diagnostic UI offers Essential and Full profiles. Synthetic evidence is
 linked through ordinary answer contracts. The report adds an evidence-quality
 disclosure and a deterministic 30/60/90-day plan derived from the weakest known
-dimensions. The Conselho surface provides three interactive, deterministic,
-read-only syntheses with visible source tables; `FEATURE_AGENTIC` remains false.
+dimensions. The same three dimensions drive an explicitly fictitious service and
+provider preview with open matching rationale. The Conselho surface provides
+three interactive, deterministic, read-only syntheses with visible source tables;
+`FEATURE_AGENTIC` remains false.
+
+`/demonstracao/administracao` is available only to owner/admin in the allowlisted
+demo tenant. It distinguishes the three canonical demo sources from historical
+ledger records and makes all five sensitive flags visible as disabled. It is not
+a global platform backoffice and does not use service-role access.
 
 Access is fail-closed through both `FEATURE_DEMO_WORKSPACE=true` and an explicit
-`DEMO_TENANT_IDS` allowlist. Local validation passed 62/62 Vitest tests,
+`DEMO_TENANT_IDS` allowlist. Local validation passed 66/66 Vitest tests,
 34/34 native hardening tests, TypeScript, ESLint and the Next.js production
-build. The same flow passed in hosted staging with the Full profile.
+build. PRs `#18` and `#19` passed quality, database and CodeQL gates. Railway
+deployed merge commit `cfdf876e5539f02e6b40d2b491adc80973fbb775` as deployment
+`90b1fe43-9ba7-436f-8b0d-1f5a17f9a846`.
+
+The final authenticated hosted run completed 50 Full interactions, exactly three
+canonical fictional sources, scoring, report, seven-step cockpit, solution
+simulation, administration and Conselho. It preserved Growth Score 55, coverage
+100% and confidence 78%. The four-page A4 PDF was visually reviewed without
+clipping or overlap; SHA-256 is
+`EF739F6379FED74EAB6584B075E143C37A8339B8C832DAEDAE01AAD0BF1F9891`.
 
 O candidato local recebeu a identidade visual oficial Genesis 360 Empresarial e
 um primeiro corte do fluxo demonstrável `diagnóstico -> evidências -> resultado
@@ -54,6 +71,10 @@ verificado. O PDF A4 foi renderizado em três páginas e revisado visualmente se
 cortes ou sobreposições. O cockpit apresentou 5/5 etapas prontas, Full concluído
 e 3/3 fontes canônicas. Upload binário para usuários reais,
 Agentic, Qualification Network, Real Contact e Ecosystem continuam desligados.
+
+Esta execução de cinco etapas permanece como histórico. A evidência vigente para
+a apresentação é a execução de sete etapas descrita em `Presentation Complete`
+acima, no commit `cfdf876e5539f02e6b40d2b491adc80973fbb775`.
 
 ### Auditoria runtime de rotas e links — PASS em 2026-09-22
 
