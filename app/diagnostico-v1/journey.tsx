@@ -131,9 +131,11 @@ function StageRail({ currentStage }: { currentStage: number | null }) {
 export default function DiagnosticJourney({
   companyId,
   companyName,
+  demoEvidenceIds,
 }: {
   companyId: string;
   companyName: string;
+  demoEvidenceIds: string[];
 }) {
   const router = useRouter();
   const [diagnosticId, setDiagnosticId] = useState<string | null>(null);
@@ -144,6 +146,7 @@ export default function DiagnosticJourney({
   const [choice, setChoice] = useState("");
   const [details, setDetails] = useState<Record<string, string>>({});
   const [lastSaved, setLastSaved] = useState<string | null>(null);
+  const [profile, setProfile] = useState<"ESSENTIAL" | "FULL">("FULL");
 
   const question = state?.nextQuestionId
     ? questionById.get(state.nextQuestionId)
@@ -168,7 +171,7 @@ export default function DiagnosticJourney({
     try {
       const response = await fetch("/api/diagnostics", {
         method: "POST", headers: { "content-type": "application/json" },
-        body: JSON.stringify({ companyId, profile: "ESSENTIAL" }),
+        body: JSON.stringify({ companyId, profile }),
         signal: AbortSignal.timeout(15000),
       });
       const data = await response.json();
@@ -196,7 +199,7 @@ export default function DiagnosticJourney({
           answerState: input.answerState,
           response: input.response ?? { state: input.answerState },
           maturity: input.maturity ?? null,
-          informationSlots: input.informationSlots ?? {}, evidenceRefs: [],
+          informationSlots: input.informationSlots ?? {}, evidenceRefs: demoEvidenceIds,
         }),
       });
       const data = await response.json();
@@ -429,9 +432,31 @@ export default function DiagnosticJourney({
             somente quando suas respostas indicarem que vale a pena.
           </p>
 
+          <fieldset className="diagnostic-profile-choice">
+            <legend>Escolha a profundidade desta leitura</legend>
+            <button
+              type="button"
+              className={profile === "FULL" ? "is-selected" : ""}
+              aria-pressed={profile === "FULL"}
+              onClick={() => setProfile("FULL")}
+            >
+              <strong>Diagnóstico completo</strong>
+              <span>31 âncoras e aprofundamentos adaptativos, com até 60 interações típicas.</span>
+            </button>
+            <button
+              type="button"
+              className={profile === "ESSENTIAL" ? "is-selected" : ""}
+              aria-pressed={profile === "ESSENTIAL"}
+              onClick={() => setProfile("ESSENTIAL")}
+            >
+              <strong>Leitura essencial</strong>
+              <span>Visão executiva mais curta, com 31–42 interações típicas.</span>
+            </button>
+          </fieldset>
+
           <div className="diagnostic-intro-facts">
             <div>
-              <strong>31–42</strong>
+              <strong>{profile === "FULL" ? "31–60" : "31–42"}</strong>
               <span>interações típicas</span>
             </div>
             <div>
@@ -446,7 +471,7 @@ export default function DiagnosticJourney({
 
           <div className="action-row">
             <button className="button button-primary" disabled={saving} onClick={start}>
-              Iniciar ou continuar
+              Iniciar ou continuar diagnóstico {profile === "FULL" ? "completo" : "essencial"}
             </button>
             <span className="diagnostic-intro-note">
               Autosave e retomada fazem parte da jornada.
@@ -458,7 +483,12 @@ export default function DiagnosticJourney({
                 onClick={() => fetchState(diagnosticId).catch(() => setError("Não foi possível atualizar o estado."))}>
                 Atualizar estado sem reenviar resposta
               </button> : null}</div> : null}
-        </main>
+          </main>
+          {demoEvidenceIds.length ? (
+            <p className="diagnostic-evidence-note">
+              {demoEvidenceIds.length} fonte(s) fictícia(s) serão vinculadas às respostas para demonstrar rastreabilidade.
+            </p>
+          ) : null}
       </div>
     );
   }
@@ -504,7 +534,7 @@ export default function DiagnosticJourney({
 
           {!question || !metadata ? (
             <section className="precision-question-surface finish">
-              <div className="section-eyebrow">Etapa essencial percorrida</div>
+              <div className="section-eyebrow">Caminho diagnóstico percorrido</div>
               <h1>{state.canSubmit ? "Seu caminho está pronto para análise." : "Revise as informações essenciais ainda pendentes."}</h1>
               <p>
                 {state.unresolvedCount

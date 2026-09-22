@@ -10,6 +10,7 @@ import {
 } from "@/lib/report-provenance";
 import { requireTenantContext } from "@/lib/tenant-context";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { buildExecutivePlan, evidenceQualityMessage } from "@/lib/report-insights";
 
 const dimensionLabels: Record<string, string> = {
   EST: "Estratégia",
@@ -138,6 +139,13 @@ export default async function ResultadoV1({
     ? Math.round(Number(diagnosticRow.confidence)) : null;
 
   const primaryPain = pains?.[0] ?? null;
+  const executivePlan = buildExecutivePlan((scores ?? []).map((score) => ({
+    dimension: score.dimension,
+    score: score.score === null ? null : Number(score.score),
+  })));
+  const evidenceQuality = provenanceAvailable
+    ? evidenceQualityMessage(evidenceIds.length, verifiedEvidence)
+    : "A proveniência está indisponível; nenhuma conclusão sobre ausência de evidência foi assumida.";
 
   return (
     <AppShell>
@@ -221,6 +229,25 @@ export default async function ResultadoV1({
           </div>
         </section>
 
+        <section className="result-section executive-brief" aria-labelledby="executive-brief-title">
+          <div className="section-heading-row">
+            <div>
+              <span className="section-eyebrow">Síntese executiva</span>
+              <h2 id="executive-brief-title">Leitura, limite e direção recomendada</h2>
+            </div>
+          </div>
+          <div className="executive-brief-grid">
+            <article>
+              <span>Leitura principal</span>
+              <p>{primaryPain?.gap_summary ?? "A base ainda não sustenta uma prioridade única. Complete as informações críticas antes de decidir."}</p>
+            </article>
+            <article>
+              <span>Qualidade da evidência</span>
+              <p>{evidenceQuality}</p>
+            </article>
+          </div>
+        </section>
+
         <section className="result-section">
           <div className="section-heading-row">
             <div>
@@ -258,6 +285,28 @@ export default async function ResultadoV1({
                 Isso é preferível a preencher a tela com conclusões sem base.
               </p>
             </div>
+          )}
+        </section>
+
+        <section className="result-section ninety-day-plan" aria-labelledby="ninety-day-title">
+          <div className="section-heading-row">
+            <div>
+              <span className="section-eyebrow">Plano executivo</span>
+              <h2 id="ninety-day-title">Próximos 90 dias</h2>
+            </div>
+          </div>
+          {executivePlan.length ? (
+            <ol>
+              {executivePlan.map((item) => (
+                <li key={item.horizon}>
+                  <div><span>{item.horizon}</span><strong>{item.dimension} · leitura {Math.round(item.score)}/100</strong></div>
+                  <p>{item.action}</p>
+                  <small>Evidência de conclusão: {item.evidence}</small>
+                </li>
+              ))}
+            </ol>
+          ) : (
+            <div className="precision-empty"><p>Não há dimensões suficientes para formar um plano responsável.</p></div>
           )}
         </section>
 

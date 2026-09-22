@@ -24,6 +24,25 @@ a truthful flow from company information to a traceable executive report.
 - explicit unavailable and no-evidence states so missing provenance is never
   represented as proof.
 
+## Complete presentation tranche
+
+The next candidate extends the bounded demo without changing the frozen core:
+
+- `/demonstracao` is the presenter cockpit and shows readiness for company,
+  documents, diagnostic, report and Conselho;
+- Documents can register only a fixed package of three system-owned fictional
+  sources. The endpoint accepts identifiers only and never accepts file bytes or
+  arbitrary document text;
+- Full and Essential diagnostic profiles are selectable in the focused journey;
+- the executive report includes a deterministic evidence-quality statement and
+  a 30/60/90-day plan based on the three weakest known dimension scores;
+- Conselho Genesis offers interactive deterministic syntheses with visible data
+  sources. It is read-only and does not activate the agentic runtime;
+- the demo is available only when `FEATURE_DEMO_WORKSPACE=true` and the active
+  tenant UUID is present in `DEMO_TENANT_IDS`.
+
+This tranche requires a new hosted run before receiving runtime credit.
+
 ## Reproducible demo preparation
 
 The runner requires a dedicated demo user with an active tenant and company. It
@@ -36,6 +55,7 @@ $env:DEMO_BASE_URL = "https://staging.example"
 $env:DEMO_EMAIL = "dedicated-demo-user@example.com"
 $env:DEMO_PASSWORD = "<provided-at-runtime>"
 $env:DEMO_TENANT_NAME = "<optional-tenant-name>"
+$env:DEMO_PROFILE = "FULL"
 pnpm demo:prepare
 ```
 
@@ -99,6 +119,12 @@ execution receives final demo evidence credit.
 5. Save or show the branded PDF.
 6. State explicitly that the scenario is fictional and that real client uploads
    remain disabled during the controlled stage.
+
+For the complete presentation tranche, start at `/demonstracao`, register the
+fixed fictional package, choose Full, show the executive plan and finish with
+the three Conselho questions. The 144 questions remain a governed library; the
+Full adaptive journey uses the canonical 31 anchors and up to 60 typical
+interactions rather than forcing every library item into one form.
 
 ## OSS reconciliation
 

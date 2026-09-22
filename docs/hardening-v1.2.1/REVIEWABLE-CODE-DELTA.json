@@ -1,12 +1,12 @@
 {
-  "version": "1.2.1-rc.2-demo-readiness-4",
-  "status": "demo_readiness_hosted_verified",
+  "version": "1.2.1-rc.2-complete-demo-flow-1",
+  "status": "complete_demo_flow_local_verified",
   "files": [
     {
       "path": ".env.example",
       "beforeSha256": null,
-      "afterSha256": "65af3648e675bfe0abf6530c144d51d8bac785434a78b8b6cbd718df34f450da",
-      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+      "afterSha256": "defe158e72e8cb7c07fec577da392178d9b91baa81285ce1898667d38f3d1cb1",
+      "reason": "Controlled complete demo flow: fictional evidence, Full diagnostic, executive plan, Council synthesis, and presentation cockpit"
     },
     {
       "path": ".github/dependabot.yml",
@@ -85,6 +85,12 @@
       "beforeSha256": "2efbc9f0d5db8889ba1b8a592565aad6a2b9531f97ce14b32062d2525986d08c",
       "afterSha256": "fb6fe5d4d7b124d72349e6b30ea3b5330cde89b2694ebea77af2b5fa609bc3f1",
       "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "app/api/demo/evidence/route.ts",
+      "beforeSha256": null,
+      "afterSha256": "058bf77e01336b1f7c8db6251de689feeb28c1a4bd768a1388b0119175b018f5",
+      "reason": "Controlled complete demo flow: fictional evidence, Full diagnostic, executive plan, Council synthesis, and presentation cockpit"
     },
     {
       "path": "app/api/diagnostics/[id]/answers/route.ts",
@@ -183,16 +189,46 @@
       "reason": "RC2 P0 remediation, executable regression, or scope evidence"
     },
     {
+      "path": "app/conselho/demo-council.tsx",
+      "beforeSha256": null,
+      "afterSha256": "286d7f81fd94a5f47862c9782cdfe2d5741738fd5aa23c59be45223b2ceb7652",
+      "reason": "Controlled complete demo flow: fictional evidence, Full diagnostic, executive plan, Council synthesis, and presentation cockpit"
+    },
+    {
+      "path": "app/conselho/page.tsx",
+      "beforeSha256": null,
+      "afterSha256": "df48a3af8df0a35077ba0166ee28a8d06e983d16e24a83abd9e417950991dcf4",
+      "reason": "Controlled complete demo flow: fictional evidence, Full diagnostic, executive plan, Council synthesis, and presentation cockpit"
+    },
+    {
+      "path": "app/demonstracao/page.tsx",
+      "beforeSha256": null,
+      "afterSha256": "88bddbed665a1daabffc6683ae48c4d8422e167df77b34dee5b7eb3fd6ae78f0",
+      "reason": "Controlled complete demo flow: fictional evidence, Full diagnostic, executive plan, Council synthesis, and presentation cockpit"
+    },
+    {
       "path": "app/diagnostico-v1/journey.tsx",
       "beforeSha256": "8eb09aafe48c5960cabfd7b6045a9a9c64863aba309c38985089647f07429102",
-      "afterSha256": "93d051a77fd03b4152bf97d67182aad5657a103451883cea1736eca86ba6578d",
-      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+      "afterSha256": "5b6f522e2f28448daa581b29d4afc8e3edcd3958de08feeff7e64b7ee1cf23a6",
+      "reason": "Controlled complete demo flow: fictional evidence, Full diagnostic, executive plan, Council synthesis, and presentation cockpit"
+    },
+    {
+      "path": "app/diagnostico-v1/page.tsx",
+      "beforeSha256": null,
+      "afterSha256": "f04110ae54f7df87cb842467cf962288d9001a74a9a90eb2b5acf4e7a41fcbf8",
+      "reason": "Controlled complete demo flow: fictional evidence, Full diagnostic, executive plan, Council synthesis, and presentation cockpit"
+    },
+    {
+      "path": "app/documentos/demo-package.tsx",
+      "beforeSha256": null,
+      "afterSha256": "e69a866fc54d0e8c3b802c5b1070bf7a06fed2edecaf3f678a2890d4f54fd821",
+      "reason": "Controlled complete demo flow: fictional evidence, Full diagnostic, executive plan, Council synthesis, and presentation cockpit"
     },
     {
       "path": "app/documentos/page.tsx",
       "beforeSha256": "daea76752044b3f14092353540fa4e56d73b057e33de4360edc0f37ea0e3362a",
-      "afterSha256": "ed7989b95192cedf5f10dd757b59af7f171c3a231f0e2ae6bbb63bff8b670cde",
-      "reason": "Demo readiness: tenant evidence inventory, report provenance, print/PDF layout, tests, and synchronized state"
+      "afterSha256": "f2356a01a7ef9dc3062ff0f6da2018a7307aa2e8ce887fb9292d8ec1830e051a",
+      "reason": "Controlled complete demo flow: fictional evidence, Full diagnostic, executive plan, Council synthesis, and presentation cockpit"
     },
     {
       "path": "app/entrar/page.tsx",
@@ -203,8 +239,8 @@
     {
       "path": "app/globals.css",
       "beforeSha256": null,
-      "afterSha256": "0b1cf411ec94a282d7874cb4d75f02b2acffd2b208ef41c5ea4684f1f8784039",
-      "reason": "Demo PDF visual QA: hide interactive skip/action controls, preserve section headings, and compact A4 pagination"
+      "afterSha256": "ef016b87278287ff18353079c4418c060a146851bd38fb8abb64d2c6d39afc99",
+      "reason": "Controlled complete demo flow: fictional evidence, Full diagnostic, executive plan, Council synthesis, and presentation cockpit"
     },
     {
       "path": "app/indicadores/page.tsx",
@@ -251,8 +287,8 @@
     {
       "path": "app/resultado-v1/page.tsx",
       "beforeSha256": "212f2318c3f791059beb1965d499c33aca89ef363cc2e02df03f2298dd700cd7",
-      "afterSha256": "0ccb97c221eba9b974caab9734bb7b94719a33722742df2c16a7d285bfa8fe95",
-      "reason": "Demo PDF visual QA: hide interactive skip/action controls, preserve section headings, and compact A4 pagination"
+      "afterSha256": "4cfd53cdff64c7c52e4ed2ee7695b31428c1221d69df5f46fe89ad078fe2583e",
+      "reason": "Controlled complete demo flow: fictional evidence, Full diagnostic, executive plan, Council synthesis, and presentation cockpit"
     },
     {
       "path": "app/selecionar-empresa/page.tsx",
@@ -269,8 +305,14 @@
     {
       "path": "components/app-navigation.tsx",
       "beforeSha256": null,
-      "afterSha256": "546c350bb162b13d62e3c520610920cbc2d7ce608c5486a2de949e41c1a5e46f",
-      "reason": "Owner-approved Genesis 360 branding alignment; canonical Precision Light tokens, official logo asset, and UI integration"
+      "afterSha256": "e433a8cce4412233fb33943e8969f507dd14a0788d90c2704326ed496aad22c5",
+      "reason": "Controlled complete demo flow: fictional evidence, Full diagnostic, executive plan, Council synthesis, and presentation cockpit"
+    },
+    {
+      "path": "components/app-shell.tsx",
+      "beforeSha256": null,
+      "afterSha256": "b1faa475bf22e3c7f24edfa79413f53032cd0df5f79faa67eb126af46921ec5d",
+      "reason": "Controlled complete demo flow: fictional evidence, Full diagnostic, executive plan, Council synthesis, and presentation cockpit"
     },
     {
       "path": "components/brand-mark.tsx",
@@ -335,8 +377,8 @@
     {
       "path": "docs/API/openapi.yaml",
       "beforeSha256": "5abb945f3110d6fcf36f61e0619bdf154be4c3fbde04ad2834d3e9f14e0931ea",
-      "afterSha256": "fc3adcf65dbf961757f716395ddfcc7e5da5c7dec779f3a892059c57041a5a69",
-      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+      "afterSha256": "f6f1a8b043218c2b32bebaaf29d748745a608a3cd869ab4fa7298de4bee0cc6c",
+      "reason": "Controlled complete demo flow: fictional evidence, Full diagnostic, executive plan, Council synthesis, and presentation cockpit"
     },
     {
       "path": "docs/audit-2026-09-18/adversarial.test.cjs",
@@ -545,8 +587,8 @@
     {
       "path": "docs/canonical/v1/delivery/DEMO_READINESS_WAVE_2026-09-21.md",
       "beforeSha256": null,
-      "afterSha256": "07135304518cf358661241814563b50de94741b4e14ab33d48a6d71026000961",
-      "reason": "Hosted demo runtime PASS and synchronized evidence"
+      "afterSha256": "39f896556353d3a07db3ae22c8447605999a805cf598ae9d1c5751cfd94b9eb6",
+      "reason": "Controlled complete demo flow: fictional evidence, Full diagnostic, executive plan, Council synthesis, and presentation cockpit"
     },
     {
       "path": "docs/canonical/v1/delivery/EPICS_CATALOG.json",
@@ -711,10 +753,34 @@
       "reason": "RC2 P0 remediation, executable regression, or scope evidence"
     },
     {
+      "path": "lib/council-insights.test.ts",
+      "beforeSha256": null,
+      "afterSha256": "84bb12a033f3b5827b0608e6c11747a4d627f00cb096a625bd53406f2659c3af",
+      "reason": "Controlled complete demo flow: fictional evidence, Full diagnostic, executive plan, Council synthesis, and presentation cockpit"
+    },
+    {
+      "path": "lib/council-insights.ts",
+      "beforeSha256": null,
+      "afterSha256": "c6475ade9cc630a0eb24b194d1d38b211683e3bfe9e7195c6c3ec1b4e07b05b9",
+      "reason": "Controlled complete demo flow: fictional evidence, Full diagnostic, executive plan, Council synthesis, and presentation cockpit"
+    },
+    {
       "path": "lib/dashboard-overview.ts",
       "beforeSha256": "d943b9228de6efc4dd62160d7d64295c689ab7679bcf56ffa527d2d1f1c90eb5",
       "afterSha256": "be8d0947b91a398a3b3f3f0459b0ec709da842935b4944cfe4bd9e066cbd2647",
       "reason": "hardening implementation or executable regression/configuration"
+    },
+    {
+      "path": "lib/demo-scenario.test.ts",
+      "beforeSha256": null,
+      "afterSha256": "d67b80c1a334c6f03c96a76b568eca56feba054090f18915b05514a6352de0cd",
+      "reason": "Controlled complete demo flow: fictional evidence, Full diagnostic, executive plan, Council synthesis, and presentation cockpit"
+    },
+    {
+      "path": "lib/demo-scenario.ts",
+      "beforeSha256": null,
+      "afterSha256": "7d888522e32538561cb427883b6fb49d3ddedba467812d97b2d89af95b69c31f",
+      "reason": "Controlled complete demo flow: fictional evidence, Full diagnostic, executive plan, Council synthesis, and presentation cockpit"
     },
     {
       "path": "lib/diagnostic-answer-quality.ts",
@@ -767,14 +833,14 @@
     {
       "path": "lib/feature-flags.test.ts",
       "beforeSha256": null,
-      "afterSha256": "288d923ca6232f44a0562e9b24006b172096fa8962dba60dab94ede7c938812d",
-      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+      "afterSha256": "189f27b2e4729cbcb24cb7b3524f8fc3faa47986a7e437556c6ebe42d39b07f8",
+      "reason": "Controlled complete demo flow: fictional evidence, Full diagnostic, executive plan, Council synthesis, and presentation cockpit"
     },
     {
       "path": "lib/feature-flags.ts",
       "beforeSha256": null,
-      "afterSha256": "65f7bd1a129ddd87db487a3a4a36ea4d8565c7fff4d5b33cd350dc28da81c4ad",
-      "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+      "afterSha256": "05a24e056aaa44ff3353cfc0be4fb57e6946acd6c658d96d6a2a41e59dd1ef39",
+      "reason": "Controlled complete demo flow: fictional evidence, Full diagnostic, executive plan, Council synthesis, and presentation cockpit"
     },
     {
       "path": "lib/http-security.ts",
@@ -805,6 +871,18 @@
       "beforeSha256": null,
       "afterSha256": "86dee002c395c5ffea5ea0dd177f734a33df44f3c4dc1e5b39ef6c491da51c25",
       "reason": "RC2 P0 remediation, executable regression, or scope evidence"
+    },
+    {
+      "path": "lib/report-insights.test.ts",
+      "beforeSha256": null,
+      "afterSha256": "6184f1f803d0a9d7b2df111a04a173e655366b3dee7a0ddbe929cca782051a26",
+      "reason": "Controlled complete demo flow: fictional evidence, Full diagnostic, executive plan, Council synthesis, and presentation cockpit"
+    },
+    {
+      "path": "lib/report-insights.ts",
+      "beforeSha256": null,
+      "afterSha256": "120c31604efe2260ddf3ed9330edc5ec785d30d0862783f4d09c01fb5ba1a9b2",
+      "reason": "Controlled complete demo flow: fictional evidence, Full diagnostic, executive plan, Council synthesis, and presentation cockpit"
     },
     {
       "path": "lib/report-provenance.test.ts",
@@ -887,8 +965,8 @@
     {
       "path": "PROJECT-STATE.md",
       "beforeSha256": null,
-      "afterSha256": "1017d417ead321bddbcbaf6298b707bd4b829187d65c99f517fbd045d787dcaf",
-      "reason": "Hosted demo runtime PASS and synchronized evidence"
+      "afterSha256": "3b7f531278c88dfc7c84549566f06ccdde2bb0a44c69f4508c96a0a0598c40f5",
+      "reason": "Controlled complete demo flow: fictional evidence, Full diagnostic, executive plan, Council synthesis, and presentation cockpit"
     },
     {
       "path": "proxy.ts",
@@ -959,8 +1037,8 @@
     {
       "path": "scripts/prepare-demo-scenario.mjs",
       "beforeSha256": null,
-      "afterSha256": "77219dfb3a72bb0ceaa12d1d60ab74602773f7805afed58a74bc315815ca824e",
-      "reason": "Reproducible demo flow: authenticated deterministic scenario, diagnostic-linked evidence, traceable result, screenshots and PDF evidence"
+      "afterSha256": "cb3df5adb7269d80ef1b4ff94de81785770238d2a20ad6fd5bd2cf7bf8f828fc",
+      "reason": "Controlled complete demo flow: fictional evidence, Full diagnostic, executive plan, Council synthesis, and presentation cockpit"
     },
     {
       "path": "scripts/run-backup-restore-drill.ps1",

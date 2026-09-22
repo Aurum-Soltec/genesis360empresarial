@@ -1,14 +1,17 @@
 import { redirect } from "next/navigation";
 import { AppShell } from "@/components/app-shell";
-import { getFeatureFlags } from "@/lib/feature-flags";
+import { demoEvidenceAlreadyLoaded } from "@/lib/demo-scenario";
+import { getFeatureFlags, isDemoTenantAllowed } from "@/lib/feature-flags";
 import { requireTenantContext } from "@/lib/tenant-context";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { DemoPackage } from "./demo-package";
 
 export default async function DocumentosPage() {
   let ctx;
   try { ctx = await requireTenantContext(); } catch { redirect("/"); }
 
   const flags = getFeatureFlags();
+  const demoAllowed = isDemoTenantAllowed(ctx.tenantId);
   const db = await createSupabaseServerClient();
   const { data: company } = await db
     .from("companies")
@@ -33,6 +36,18 @@ export default async function DocumentosPage() {
         .order("captured_at", { ascending: false })
         .limit(50)
     : { data: [], error: null };
+
+  const { data: latestDiagnostic } = company && demoAllowed
+    ? await db
+        .from("diagnostics")
+        .select("id")
+        .eq("tenant_id", ctx.tenantId)
+        .eq("company_id", company.id)
+        .in("status", ["draft", "scored"])
+        .order("created_at", { ascending: false })
+        .limit(1)
+        .maybeSingle()
+    : { data: null };
 
   const evidenceTypeLabel: Record<string, string> = {
     user_declaration: "Declaração",
@@ -64,6 +79,14 @@ export default async function DocumentosPage() {
           </p>
         </div>
       </header>
+
+      {company && demoAllowed ? (
+        <DemoPackage
+          companyId={company.id}
+          diagnosticId={latestDiagnostic?.id ?? null}
+          loaded={demoEvidenceAlreadyLoaded((evidence ?? []).map((item) => item.source_ref))}
+        />
+      ) : null}
 
       {!version ? (
         <section className="card empty-state">

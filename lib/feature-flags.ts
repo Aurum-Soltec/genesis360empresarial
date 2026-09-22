@@ -9,6 +9,7 @@ const FeatureFlagSchema = z.object({
   tax: booleanFlag.default(true),
   realContact: booleanFlag.default(false),
   dataUpload: booleanFlag.default(false),
+  demoWorkspace: booleanFlag.default(false),
 });
 
 export type FeatureFlags = z.infer<typeof FeatureFlagSchema>;
@@ -23,5 +24,18 @@ export function getFeatureFlags(
     tax: env.FEATURE_TAX ?? "true",
     realContact: env.FEATURE_REAL_CONTACT ?? "false",
     dataUpload: env.FEATURE_DATA_UPLOAD ?? "false",
+    demoWorkspace: env.FEATURE_DEMO_WORKSPACE ?? "false",
   });
+}
+
+export function isDemoTenantAllowed(
+  tenantId: string,
+  env: Readonly<Record<string, string | undefined>> = process.env,
+): boolean {
+  if (!getFeatureFlags(env).demoWorkspace) return false;
+  return (env.DEMO_TENANT_IDS ?? "")
+    .split(",")
+    .map((value) => value.trim())
+    .filter(Boolean)
+    .includes(tenantId);
 }

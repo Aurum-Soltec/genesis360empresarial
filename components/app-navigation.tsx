@@ -12,7 +12,7 @@ type NavItem = {
 };
 
 type Module = {
-  code: "today" | "diagnostic" | "evolution" | "solutions" | "council" | "ecosystem";
+  code: "today" | "diagnostic" | "evolution" | "solutions" | "council" | "ecosystem" | "demo";
   label: string;
   href: string;
   match: (pathname: string) => boolean;
@@ -26,6 +26,13 @@ const utilities: NavItem[] = [
 ];
 
 const modules: Module[] = [
+  {
+    code: "demo",
+    label: "Demonstração",
+    href: "/demonstracao",
+    match: (pathname) => pathname.startsWith("/demonstracao"),
+    items: [{ label: "Roteiro completo", href: "/demonstracao" }],
+  },
   {
     code: "today",
     label: "Hoje",
@@ -156,9 +163,11 @@ function ContextLinks({
 export function AppNavigation({
   children,
   showEcosystem = false,
+  showDemo = false,
 }: {
   children: React.ReactNode;
   showEcosystem?: boolean;
+  showDemo?: boolean;
 }) {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -166,8 +175,10 @@ export function AppNavigation({
   const drawerRef = useRef<HTMLElement>(null);
 
   const availableModules = useMemo(
-    () => modules.filter((module) => module.code !== "ecosystem" || showEcosystem),
-    [showEcosystem],
+    () => modules.filter((module) =>
+      (module.code !== "ecosystem" || showEcosystem) &&
+      (module.code !== "demo" || showDemo)),
+    [showDemo, showEcosystem],
   );
 
   const activeModule =
