@@ -1,0 +1,90 @@
+name: Staging operational monitor
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+    inputs:
+      simulate_failure:
+        description: Exercise the alert and acknowledgement path
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: staging-operational-monitor
+  cancel-in-progress: true
+
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      BASE_URL: https://web-production-76d1b.up.railway.app
+      ALERT_TITLE: "[HSP-4] Staging operational alert"
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Probe public surface and security boundary
+        id: probe
+        shell: bash
+        run: |
+          set +e
+          login_headers="$(mktemp)"
+          demo_headers="$(mktemp)"
+          login_status="$(curl --silent --show-error --max-time 20 --dump-header "$login_headers" --output /dev/null --write-out '%{http_code}' "$BASE_URL/entrar")"
+          demo_status="$(curl --silent --show-error --max-time 20 --dump-header "$demo_headers" --output /dev/null --write-out '%{http_code}' "$BASE_URL/demonstracao")"
+          login_csp="$(grep -i '^content-security-policy:' "$login_headers" | tr -d '\r')"
+          login_hsts="$(grep -i '^strict-transport-security:' "$login_headers" | tr -d '\r')"
+          demo_location="$(grep -i '^location:' "$demo_headers" | tr -d '\r')"
+          healthy=true
+          reasons=()
+          [[ "$login_status" == "200" ]] || { healthy=false; reasons+=("login_status=$login_status"); }
+          [[ "$demo_status" =~ ^30[1278]$ ]] || { healthy=false; reasons+=("anonymous_demo_status=$demo_status"); }
+          [[ "$login_csp" == *"frame-ancestors 'none'"* ]] || { healthy=false; reasons+=("csp_missing"); }
+          [[ "$login_hsts" == *"max-age="* ]] || { healthy=false; reasons+=("hsts_missing"); }
+          [[ "$demo_location" == *"/entrar"* ]] || { healthy=false; reasons+=("demo_fail_closed_redirect_missing"); }
+          if [[ "${{ inputs.simulate_failure || 'false' }}" == "true" ]]; then
+            healthy=false
+            reasons+=("manual_alert_drill")
+          fi
+          echo "healthy=$healthy" >> "$GITHUB_OUTPUT"
+          printf 'reason=%s\n' "${reasons[*]:-all_probes_passed}" >> "$GITHUB_OUTPUT"
+          printf 'login_status=%s\ndemo_status=%s\n' "$login_status" "$demo_status" >> "$GITHUB_OUTPUT"
+          [[ "$healthy" == "true" ]]
+
+      - name: Open or update operational alert
+        if: failure() && steps.probe.outcome == 'failure'
+        shell: bash
+        run: |
+          existing="$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "$ALERT_TITLE in:title" --json number --jq '.[0].number // empty')"
+          body=$(cat <<EOF
+          O monitor externo do staging falhou.
+
+          - Motivo: `${{ steps.probe.outputs.reason }}`
+          - Login HTTP: `${{ steps.probe.outputs.login_status }}`
+          - Limite anônimo da demonstração HTTP: `${{ steps.probe.outputs.demo_status }}`
+          - Execução: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
+          - Artefato observado: `${GITHUB_SHA}`
+
+          Nenhuma credencial ou resposta de cliente foi registrada.
+          EOF
+          )
+          if [[ -n "$existing" ]]; then
+            gh issue comment "$existing" --repo "$GITHUB_REPOSITORY" --body "$body"
+          else
+            gh issue create --repo "$GITHUB_REPOSITORY" --title "$ALERT_TITLE" --body "$body" --assignee hudsonlcustodio
+          fi
+
+      - name: Acknowledge recovery and close active alert
+        if: success()
+        shell: bash
+        run: |
+          existing="$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "$ALERT_TITLE in:title" --json number --jq '.[0].number // empty')"
+          if [[ -n "$existing" ]]; then
+            gh issue comment "$existing" --repo "$GITHUB_REPOSITORY" --body "Staging recuperado e probes externos aprovados. Execução: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+            gh issue close "$existing" --repo "$GITHUB_REPOSITORY" --reason completed
+          fi
