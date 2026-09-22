@@ -237,6 +237,12 @@
       "reason": "Owner-approved Genesis 360 branding alignment; canonical Precision Light tokens, official logo asset, and UI integration"
     },
     {
+      "path": "app/favicon.ico",
+      "beforeSha256": null,
+      "afterSha256": "2f78ec008e86d688c3db65c7eac99341756584881d9f129716b3a925aeb685b3",
+      "reason": "Runtime link audit: restore the missing branded favicon and remove the login-page 404"
+    },
+    {
       "path": "app/globals.css",
       "beforeSha256": null,
       "afterSha256": "ef016b87278287ff18353079c4418c060a146851bd38fb8abb64d2c6d39afc99",
