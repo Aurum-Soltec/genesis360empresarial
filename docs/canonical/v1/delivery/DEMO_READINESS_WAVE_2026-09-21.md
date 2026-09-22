@@ -130,6 +130,29 @@ above preserves traceability. No credential, cookie or real-company data is
 present. This PASS proves the bounded fictional presentation flow only; it does
 not change the HSP-4 NO-GO for pilot or open production.
 
+### Presentation-complete candidate — local PASS, hosted runtime pending
+
+The next bounded candidate expands the meeting flow from five to seven visible
+stages without enabling any sensitive product capability:
+
+- the executive report translates the three weakest known dimension scores into
+  deterministic service categories, expected outcomes and an open explanation;
+- fictional illustrative providers make the future solution journey visible,
+  always marked as fictional and never presented as qualified or recommended;
+- `/demonstracao/solucoes` shows the complete simulated-adherence view and keeps
+  Qualification Network and Real Contact visibly disabled;
+- `/demonstracao/administracao` provides an owner/admin-only, tenant-scoped
+  readiness cockpit. It is explicitly not a global platform backoffice;
+- the executable demo runner now requires the report, seven-step cockpit,
+  simulated-solution safety boundary and restricted administration to render in
+  the same authenticated Full run;
+- the generated evidence set adds screenshots for solutions and administration.
+
+Local `pnpm quality` passed with 34 native hardening tests, 65 Vitest tests and a
+production build containing both new dynamic routes. Hosted runtime credit
+remains pending until this exact candidate is deployed and the expanded runner
+passes against staging.
+
 ## Meeting flow
 
 1. Open the authenticated home and identify the active company.
@@ -138,8 +161,11 @@ not change the HSP-4 NO-GO for pilot or open production.
 4. Open the completed result: interpretation, priorities, dimensions,
    confidence and provenance.
 5. Save or show the branded PDF.
-6. State explicitly that the scenario is fictional and that real client uploads
-   remain disabled during the controlled stage.
+6. Show the solution simulation and explain why each capability appears.
+7. Open the tenant-scoped administrative cockpit and verify the five sensitive
+   flags remain disabled.
+8. State explicitly that the scenario is fictional and that real client uploads,
+   provider qualification and contact remain disabled during the controlled stage.
 
 For the complete presentation tranche, start at `/demonstracao`, register the
 fixed fictional package, choose Full, show the executive plan and finish with

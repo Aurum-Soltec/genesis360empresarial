@@ -209,12 +209,17 @@ try {
   if (!resultText.includes("Fontes vinculadas") || !resultText.includes("Regra de score")) {
     throw new Error("Traceable result content was not rendered");
   }
+  if (!resultText.includes("Soluções compatíveis com as necessidades") || !resultText.includes("Empresas 100% fictícias")) {
+    throw new Error("Controlled solution preview was not rendered in the report");
+  }
 
   const runSlug = safeName(new Date().toISOString());
   const resultScreenshot = path.join(outputDir, `${runSlug}-resultado.png`);
   const documentsScreenshot = path.join(outputDir, `${runSlug}-evidencias.png`);
   const demoScreenshot = path.join(outputDir, `${runSlug}-roteiro.png`);
   const councilScreenshot = path.join(outputDir, `${runSlug}-conselho.png`);
+  const solutionsScreenshot = path.join(outputDir, `${runSlug}-solucoes.png`);
+  const administrationScreenshot = path.join(outputDir, `${runSlug}-administracao.png`);
   const reportPdf = path.join(outputDir, `${runSlug}-relatorio.pdf`);
   await page.screenshot({ path: resultScreenshot, fullPage: true });
   await page.pdf({ path: reportPdf, format: "A4", printBackground: true });
@@ -222,7 +227,23 @@ try {
   await page.screenshot({ path: documentsScreenshot, fullPage: true });
   await page.goto(`${baseURL}/demonstracao`, { waitUntil: "networkidle" });
   await page.getByRole("heading", { name: "Do documento à decisão, em um único fluxo." }).waitFor();
+  const demoText = await page.locator("body").innerText();
+  if (!demoText.includes("7/7") || !demoText.includes("Central administrativa")) {
+    throw new Error("Presentation cockpit is not complete");
+  }
   await page.screenshot({ path: demoScreenshot, fullPage: true });
+  await page.goto(`${baseURL}/demonstracao/solucoes?diagnostic=${diagnosticId}`, { waitUntil: "networkidle" });
+  const solutionsText = await page.locator("body").innerText();
+  if (!solutionsText.includes("Dados e empresas 100% fictícios") || !solutionsText.includes("Qualification Network: desligada") || !solutionsText.includes("Contato real: desligado")) {
+    throw new Error("Solution simulation boundaries were not rendered");
+  }
+  await page.screenshot({ path: solutionsScreenshot, fullPage: true });
+  await page.goto(`${baseURL}/demonstracao/administracao`, { waitUntil: "networkidle" });
+  const administrationText = await page.locator("body").innerText();
+  if (!administrationText.includes("Central administrativa demonstrativa") || !administrationText.includes("Qualification Network") || !administrationText.includes("DESLIGADA")) {
+    throw new Error("Administration boundaries were not rendered");
+  }
+  await page.screenshot({ path: administrationScreenshot, fullPage: true });
   await page.goto(`${baseURL}/conselho`, { waitUntil: "networkidle" });
   const councilText = await page.locator("body").innerText();
   if (!councilText.includes("Demonstração determinística") || !councilText.includes("Agentic: desligado")) {
@@ -240,11 +261,13 @@ try {
     answeredCount,
     evidenceCount: evidenceIds.length,
     evidenceVerification: "unverified_demo_declarations",
-    artifacts: { resultScreenshot, documentsScreenshot, demoScreenshot, councilScreenshot, reportPdf },
+    artifacts: { resultScreenshot, documentsScreenshot, demoScreenshot, solutionsScreenshot, administrationScreenshot, councilScreenshot, reportPdf },
     boundaries: {
       fictionalData: true,
       realUserUploadEnabled: false,
       agenticEnabled: false,
+      qualificationNetworkEnabled: false,
+      realContactEnabled: false,
       credentialsPersisted: false,
     },
   };

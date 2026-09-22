@@ -31,7 +31,11 @@ const modules: Module[] = [
     label: "Demonstração",
     href: "/demonstracao",
     match: (pathname) => pathname.startsWith("/demonstracao"),
-    items: [{ label: "Roteiro completo", href: "/demonstracao" }],
+    items: [
+      { label: "Roteiro completo", href: "/demonstracao", exact: true },
+      { label: "Soluções simuladas", href: "/demonstracao/solucoes" },
+      { label: "Central administrativa", href: "/demonstracao/administracao" },
+    ],
   },
   {
     code: "today",
