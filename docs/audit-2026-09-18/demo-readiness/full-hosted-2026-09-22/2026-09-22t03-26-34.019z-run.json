@@ -1,0 +1,24 @@
+{
+  "wave": "DEMO-READINESS",
+  "executedAt": "2026-09-22T03:23:15.244Z",
+  "baseURL": "https://web-production-76d1b.up.railway.app",
+  "diagnosticId": "963e2de4-4fa6-40d8-b0ad-97997ba51981",
+  "profile": "FULL",
+  "result": "PASS",
+  "answeredCount": 50,
+  "evidenceCount": 3,
+  "evidenceVerification": "unverified_demo_declarations",
+  "artifacts": {
+    "resultScreenshot": "docs\\audit-2026-09-18\\demo-readiness\\full-hosted-2026-09-22\\2026-09-22t03-26-34.019z-resultado.png",
+    "documentsScreenshot": "docs\\audit-2026-09-18\\demo-readiness\\full-hosted-2026-09-22\\2026-09-22t03-26-34.019z-evidencias.png",
+    "demoScreenshot": "docs\\audit-2026-09-18\\demo-readiness\\full-hosted-2026-09-22\\2026-09-22t03-26-34.019z-roteiro.png",
+    "councilScreenshot": "docs\\audit-2026-09-18\\demo-readiness\\full-hosted-2026-09-22\\2026-09-22t03-26-34.019z-conselho.png",
+    "reportPdf": "docs\\audit-2026-09-18\\demo-readiness\\full-hosted-2026-09-22\\2026-09-22t03-26-34.019z-relatorio.pdf"
+  },
+  "boundaries": {
+    "fictionalData": true,
+    "realUserUploadEnabled": false,
+    "agenticEnabled": false,
+    "credentialsPersisted": false
+  }
+}

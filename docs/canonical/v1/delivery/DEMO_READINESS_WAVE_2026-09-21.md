@@ -109,6 +109,27 @@ PR `#10` corrected the print-only layout, repeated every remote gate, redeployed
 the candidate and repeated the full hosted scenario. Only the corrected second
 execution receives final demo evidence credit.
 
+### Complete Full presentation rerun — PASS, 2026-09-22
+
+PRs `#12`, `#13` and `#14` delivered the presentation cockpit, Full profile,
+30/60/90-day executive plan, deterministic Council and idempotent canonical
+evidence package. Railway deployed merge commit
+`c4f264163280b60fb47024d907632fc819c63de8` successfully.
+
+The hosted run completed 50 adaptive Full interactions, linked exactly three
+canonical fictional sources, submitted scoring, rendered the report and exposed
+all five presentation steps as ready. The result remained Growth Score 55,
+coverage 100% and confidence 78%. The three-page A4 PDF was rendered and visually
+reviewed without clipping or overlap; SHA-256 is
+`D6D3739D9E1C7835398D32E4FDC4F0B8214F2FDB6D71B9E7988AD3442C2E9B24`.
+
+Runtime screenshots and the JSON execution record are stored in
+`docs/audit-2026-09-18/demo-readiness/full-hosted-2026-09-22/`. The reviewed PDF
+remains local because the public-package policy blocks PDF binaries; its SHA-256
+above preserves traceability. No credential, cookie or real-company data is
+present. This PASS proves the bounded fictional presentation flow only; it does
+not change the HSP-4 NO-GO for pilot or open production.
+
 ## Meeting flow
 
 1. Open the authenticated home and identify the active company.

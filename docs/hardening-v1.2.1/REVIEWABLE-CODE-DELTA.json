@@ -587,8 +587,8 @@
     {
       "path": "docs/canonical/v1/delivery/DEMO_READINESS_WAVE_2026-09-21.md",
       "beforeSha256": null,
-      "afterSha256": "39f896556353d3a07db3ae22c8447605999a805cf598ae9d1c5751cfd94b9eb6",
-      "reason": "Controlled complete demo flow: fictional evidence, Full diagnostic, executive plan, Council synthesis, and presentation cockpit"
+      "afterSha256": "61c67a4c6926d62905cfdc0db1c37ffc269df8151ad78deea50e3baa7b708842",
+      "reason": "Hosted Full demo runtime evidence and final presentation reconciliation"
     },
     {
       "path": "docs/canonical/v1/delivery/EPICS_CATALOG.json",
@@ -965,8 +965,8 @@
     {
       "path": "PROJECT-STATE.md",
       "beforeSha256": null,
-      "afterSha256": "3b7f531278c88dfc7c84549566f06ccdde2bb0a44c69f4508c96a0a0598c40f5",
-      "reason": "Controlled complete demo flow: fictional evidence, Full diagnostic, executive plan, Council synthesis, and presentation cockpit"
+      "afterSha256": "ae470938489222d149c9c5df027d8011b7e2d9d4451ba60441b283fe96a23741",
+      "reason": "Hosted Full demo runtime evidence and final presentation reconciliation"
     },
     {
       "path": "proxy.ts",
