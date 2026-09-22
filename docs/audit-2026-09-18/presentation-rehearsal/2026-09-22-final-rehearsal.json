@@ -1,0 +1,103 @@
+{
+  "executedAt": "2026-09-22T13:36:21.606Z",
+  "baseURL": "https://web-production-76d1b.up.railway.app",
+  "result": "PASS",
+  "profile": "FULL_PREPARED",
+  "steps": [
+    {
+      "number": "01",
+      "action": "Ver empresa",
+      "path": "/passaporte",
+      "href": "/passaporte",
+      "finalPath": "/passaporte",
+      "h1": "Empresa A",
+      "elapsedMs": 1504,
+      "pass": true
+    },
+    {
+      "number": "02",
+      "action": "Enviar pacote",
+      "path": "/documentos",
+      "href": "/documentos",
+      "finalPath": "/documentos",
+      "h1": "Envio governado",
+      "elapsedMs": 2185,
+      "pass": true
+    },
+    {
+      "number": "03",
+      "action": "Abrir diagnóstico",
+      "path": "/diagnostico-v1",
+      "href": "/diagnostico-v1",
+      "finalPath": "/diagnostico-v1",
+      "h1": "Uma leitura empresarial profunda, sem formulário inflado.",
+      "elapsedMs": 1424,
+      "pass": true
+    },
+    {
+      "number": "04",
+      "action": "Abrir relatório",
+      "path": "/resultado-v1",
+      "href": "/resultado-v1?diagnostic=477628e1-955a-4bdc-a935-f86cd3db457d",
+      "finalPath": "/resultado-v1",
+      "h1": "Empresa A",
+      "elapsedMs": 3347,
+      "pass": true
+    },
+    {
+      "number": "05",
+      "action": "Ver soluções",
+      "path": "/demonstracao/solucoes",
+      "href": "/demonstracao/solucoes?diagnostic=477628e1-955a-4bdc-a935-f86cd3db457d",
+      "finalPath": "/demonstracao/solucoes",
+      "h1": "Soluções compatíveis",
+      "elapsedMs": 1639,
+      "pass": true
+    },
+    {
+      "number": "06",
+      "action": "Interagir",
+      "path": "/conselho",
+      "href": "/conselho",
+      "finalPath": "/conselho",
+      "h1": "Conselho Genesis",
+      "elapsedMs": 1791,
+      "pass": true
+    },
+    {
+      "number": "07",
+      "action": "Abrir central",
+      "path": "/demonstracao/administracao",
+      "href": "/demonstracao/administracao",
+      "finalPath": "/demonstracao/administracao",
+      "h1": "Central Genesis",
+      "elapsedMs": 1610,
+      "pass": true
+    }
+  ],
+  "councilInteractions": [
+    {
+      "label": "O que atacar nos próximos 90 dias?",
+      "title": "O que atacar nos próximos 90 dias?",
+      "responseLength": 251,
+      "citationCount": 2,
+      "pass": true
+    },
+    {
+      "label": "O que falta para elevar a confiança?",
+      "title": "O que falta para elevar a confiança?",
+      "responseLength": 314,
+      "citationCount": 2,
+      "pass": true
+    },
+    {
+      "label": "Como explicar este resultado aos líderes?",
+      "title": "Como explicar este resultado aos líderes?",
+      "responseLength": 362,
+      "citationCount": 3,
+      "pass": true
+    }
+  ],
+  "failures": [],
+  "credentialsPersisted": false
+}
