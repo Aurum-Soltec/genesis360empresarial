@@ -1919,6 +1919,10 @@ button:disabled {
 .admin-flag-list strong.is-on { color: var(--g-danger); }
 .admin-demo-note { margin: 18px 0 0; color: var(--g-muted); font-size: 11px; line-height: 1.55; }
 .admin-demo-actions { margin-top: 24px; }
+.passport-essential-list { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--g-line); }
+.passport-essential-list li { display: flex; align-items: center; justify-content: space-between; gap: 18px; min-height: 58px; padding: 12px 4px; border-bottom: 1px solid var(--g-line); }
+.passport-essential-list li span { color: var(--g-ink); font-size: 14px; }
+.passport-essential-list li strong { color: var(--g-muted); font-size: 12px; font-weight: 650; text-align: right; }
 
 @media (max-width: 768px) {
   .demo-hero, .demo-flow li, .council-console { grid-template-columns: 1fr; }
@@ -1929,6 +1933,8 @@ button:disabled {
   .solution-analysis-summary > div + div, .admin-demo-metrics > article + article { border-top: 1px solid var(--g-line); border-left: 0; }
   .solution-analysis-list > li { grid-template-columns: 1fr; gap: 12px; }
   .council-prompts { border-right: 0; border-bottom: 1px solid var(--g-line); }
+  .passport-essential-list li { align-items: flex-start; flex-direction: column; gap: 4px; }
+  .passport-essential-list li strong { text-align: left; }
 }
 
 @media print {

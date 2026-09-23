@@ -16,6 +16,9 @@ administrativa, soluções fictícias, prioridades, indicadores, histórico,
 missões, Passport, Documentos, Privacidade e capacidades agora distinguem
 falha de consulta de ausência real de dados. Na tela de Documentos, o botão
 do pacote fictício não é exibido quando o ledger está indisponível.
+O Business Passport passa a usar o shell canônico e mostra os sete campos
+essenciais com status de verificação; sua completude indica presença cadastral,
+não qualidade ou validação independente.
 
 Evidência local: build Next.js de produção, TypeScript, lint dos arquivos
 alterados, 81/81 testes Vitest, 34/34 testes nativos e contratos de desenho,

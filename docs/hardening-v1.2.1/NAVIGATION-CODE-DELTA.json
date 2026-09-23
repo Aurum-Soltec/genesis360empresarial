@@ -83,7 +83,7 @@
     {
       "path": "app/passaporte/page.tsx",
       "beforeSha256": null,
-      "afterSha256": "fd0b275308406d2a49cf097ab3611d06a126b1d30cda00b71d83da0ccc4bb059",
+      "afterSha256": "d0f55a4afb11f59f2fff18f0550adf7111c2a48d32c88ddaff0d52ef8938102c",
       "reason": "Navigation and explicit read-failure states for presentation-critical pages"
     },
     {
@@ -197,8 +197,14 @@
     {
       "path": "PROJECT-STATE.md",
       "beforeSha256": "d872785f2e9e30f89ffc11d5a7e13962907c06372e92168c7f2216f9ee92ac3d",
-      "afterSha256": "84f15ac941c5740f2fb1a3043b366d37d216edd7febc49e23f4a2ed2b29e74e7",
+      "afterSha256": "05096a9e64d5c1332337c653befae6d5e37822b93492e5563069bb3ab4310bac",
       "reason": "Document local navigation and read-failure hardening candidate"
+    },
+    {
+      "path": "app/globals.css",
+      "beforeSha256": "ab2722bb58dfa5071d0298a2e2ac05b358f390fa14ea94f18b53282692506fb8",
+      "afterSha256": "f07cc859087aa776536c22cbb574419c5a37faf96bd28697d6ef17cfcc89cb64",
+      "reason": "Business Passport uses contextual shell and explicit verification states"
     }
   ]
 }
