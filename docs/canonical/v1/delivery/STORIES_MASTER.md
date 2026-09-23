@@ -1374,6 +1374,20 @@ Estados `implemented*` indicam implementação existente; não significam prova 
 
 ## EPIC-17 Production Readiness & Repository
 
+**Rechecagem HSP-4 em 2026-09-23:** os estados `completed-*` abaixo que
+descrevem a revisão de 20/09 são históricos e limitados ao artefato daquele
+ensaio. O candidato atual `fe0e5b4583d98bf9985bf247c5976a367fc3b3e9`
+passou CI quality/database/CodeQL e teve web/worker hospedados com deploy
+`SUCCESS`. Convite no SHA final passou HTTP 201, criação Auth, membership
+`member` somente no Tenant A, audit e recebimento em caixa controlada; o link
+abriu a raiz com fragmento implícito, sem sessão app ou tela de senha. O
+callback permanece **BLOCKED**. A nova carga de 100 tenants/60 min não rodou:
+a fixture privada foi reconstituída e 10/10 contas e 100/100 vínculos passaram
+pré-checagem read-only; login real e soak no SHA novo seguem pendentes. A
+rechecagem permanece **NO-GO** até callback,
+backup/RPO, entrega e ACK de alerta, licença LGPL e SLO de 100 tenants
+receberem prova.
+
 ### V1-ST-104 — Bootstrap do novo repositório GitHub
 - **Status:** `completed-remote-repository`
 - **Prioridade:** `P0`
@@ -1389,7 +1403,9 @@ Estados `implemented*` indicam implementação existente; não significam prova 
 - **Rollback:** obrigatório quando houver migration, configuração, segurança ou mudança de fluxo crítico.
 
 ### V1-ST-105 — Bootstrap limpo das migrations 0001→0023
-- **Status:** `completed-hosted-runtime`
+- **Status:** `completed-hosted-runtime-limited`
+- **Limite da rechecagem:** o bootstrap limpo `0001`–`0023` é histórico; `0024`
+  foi aplicada append-only no banco hospedado, sem novo bootstrap destrutivo.
 - **Prioridade:** `P0`
 - **Source:** `docs/canonical/v1/delivery/STORIES_MASTER.md`
 - **Critérios de aceite:**
@@ -1401,7 +1417,11 @@ Estados `implemented*` indicam implementação existente; não significam prova 
 - **Rollback:** obrigatório quando houver migration, configuração, segurança ou mudança de fluxo crítico.
 
 ### V1-ST-106 — Executar pgTAP tenancy/RBAC/governance completo
-- **Status:** `completed-hosted-runtime`
+- **Status:** `completed-hosted-runtime-limited`
+- **Limite da rechecagem:** os 95/95 pgTAP hospedados precedem `0024`. A nova
+  política foi testada no staging com 12/12 assertions SQL sob papéis
+  `authenticated` de membro, gestor, proprietário e outro tenant, em transação
+  revertida. Não chamar essa execução de pgTAP hospedado.
 - **Prioridade:** `P0`
 - **Source:** `docs/canonical/v1/delivery/STORIES_MASTER.md`
 - **Critérios de aceite:**
@@ -1427,7 +1447,12 @@ Estados `implemented*` indicam implementação existente; não significam prova 
 - **Rollback:** obrigatório quando houver migration, configuração, segurança ou mudança de fluxo crítico.
 
 ### V1-ST-108 — E2E browser do happy path empresarial
-- **Status:** `completed-hosted-runtime`
+- **Status:** `completed-hosted-runtime-limited`
+- **Rechecagem:** novo FULL na UI hospedada do SHA anterior `5e6e836`:
+  55 respostas, score 48, cobertura 100% e confiança 78%. O relatório novo
+  não tem fonte vinculada ou verificada; isso comprova questionário→relatório
+  naquele SHA, não conclusão sustentada por documento. O cockpit alterado no
+  SHA final exige repetição do gate afetado.
 - **Prioridade:** `P0`
 - **Source:** `docs/canonical/v1/delivery/STORIES_MASTER.md`
 - **Critérios de aceite:**
@@ -1441,7 +1466,10 @@ Estados `implemented*` indicam implementação existente; não significam prova 
 - **Rollback:** obrigatório quando houver migration, configuração, segurança ou mudança de fluxo crítico.
 
 ### V1-ST-109 — E2E adversarial cross-tenant e permissions
-- **Status:** `completed-hosted-runtime`
+- **Status:** `completed-hosted-runtime-limited`
+- **Rechecagem:** 12/12 assertions de RLS no banco hospedado após `0024`
+  preservaram a separação de membro, gestor e outro tenant; sessões HTTP
+  distintas desses três papéis não foram reexecutadas nesta prova.
 - **Prioridade:** `P0`
 - **Source:** `docs/canonical/v1/delivery/STORIES_MASTER.md`
 - **Critérios de aceite:**
@@ -1457,7 +1485,10 @@ Estados `implemented*` indicam implementação existente; não significam prova 
 - **Rollback:** obrigatório quando houver migration, configuração, segurança ou mudança de fluxo crítico.
 
 ### V1-ST-110 — Backup/restore/rollback drill
-- **Status:** `partial-hosted-logical-pass-managed-backup-pending`
+- **Status:** `partial-hosted-logical-pass-managed-backup-rpo-pending`
+- **Rechecagem:** o restore lógico histórico de dataset pequeno não comprova
+  backup automático/retido, ponto recuperável, RPO real ou RTO operacional em
+  volume representativo. Esses itens continuam BLOCKED.
 - **Prioridade:** `P0`
 - **Source:** `docs/canonical/v1/delivery/STORIES_MASTER.md`
 - **Critérios de aceite:**
@@ -1471,7 +1502,10 @@ Estados `implemented*` indicam implementação existente; não significam prova 
 - **Rollback:** obrigatório quando houver migration, configuração, segurança ou mudança de fluxo crítico.
 
 ### V1-ST-111 — SBOM + license + dependency + secret/security scans
-- **Status:** `partial-scans-and-license-inventory-pass-sbom-legal-pending`
+- **Status:** `partial-ci-sbom-pass-lgpl-disposition-blocked`
+- **Rechecagem:** o SBOM Linux do CI do SHA final lista 455 entradas, incluindo
+  `@img/sharp-libvips-linux-x64` sob `LGPL-3.0-or-later`. O inventário não é
+  aceite jurídico, NOTICE completo ou inspeção byte a byte do bundle Railway.
 - **Prioridade:** `P0`
 - **Source:** `docs/canonical/v1/delivery/STORIES_MASTER.md`
 - **Critérios de aceite:**
@@ -1485,7 +1519,10 @@ Estados `implemented*` indicam implementação existente; não significam prova 
 - **Rollback:** obrigatório quando houver migration, configuração, segurança ou mudança de fluxo crítico.
 
 ### V1-ST-112 — Observabilidade e correlation IDs ponta a ponta
-- **Status:** `partial-hosted-observability-external-paging-pending`
+- **Status:** `partial-monitor-drill-technical-pass-delivery-ack-blocked`
+- **Rechecagem:** issue #27 registrou falha simulada e recuperação técnica.
+  O operador abriu a issue manualmente e informou não ter recebido aviso;
+  entrega de notificação e ACK humano permanecem BLOCKED.
 - **Prioridade:** `P0`
 - **Source:** `docs/canonical/v1/delivery/STORIES_MASTER.md`
 - **Critérios de aceite:**
@@ -1498,6 +1535,10 @@ Estados `implemented*` indicam implementação existente; não significam prova 
 
 ### V1-ST-113 — Configurar dev/staging/prod e promoção controlada
 - **Status:** `completed-hosted-staging-and-remote-ci`
+- **Rechecagem:** CI quality/database/CodeQL PASS e web/worker Railway
+  `SUCCESS` no mesmo SHA `fe0e5b4583d98bf9985bf247c5976a367fc3b3e9`.
+  O ambiente Railway chamado `production` é o projeto dedicado de staging;
+  isso não é promoção à produção aberta.
 - **Prioridade:** `P0`
 - **Source:** `docs/canonical/v1/delivery/STORIES_MASTER.md`
 - **Critérios de aceite:**
@@ -1623,7 +1664,9 @@ Estados `implemented*` indicam implementação existente; não significam prova 
 ## EPIC-17 Production Readiness & Repository
 
 ### V1-ST-122 — Production Readiness Review e release candidate
-- **Status:** `completed-hsp4-no-go`
+- **Status:** `hsp4-recheck-in-progress-no-go`
+- **Histórico:** a revisão de 20/09 concluiu NO-GO. A revisão nova ainda
+  aguarda os gates operacionais e relatório A–T; não há GO para piloto.
 - **Prioridade:** `P0`
 - **Source:** `docs/canonical/v1/delivery/STORIES_MASTER.md`
 - **Critérios de aceite:**

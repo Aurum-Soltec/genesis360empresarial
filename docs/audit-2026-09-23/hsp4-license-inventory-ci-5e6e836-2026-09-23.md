@@ -33,6 +33,7 @@ Os 424 pacotes MIT/Apache/BSD entram nas quatro famílias preferenciais do [ADR-
 3. SBOM do CI: `next@16.3.3` declara MIT; `sharp@0.35.4` e `@img/sharp-linux-x64@0.35.4` declaram Apache-2.0; **`@img/sharp-libvips-linux-x64@1.3.3` declara LGPL-3.0-or-later**.
 4. `components/brand-mark.tsx` usa `next/image` para o logotipo. A documentação instalada de Next.js 16.3.3 (`node_modules/next/dist/docs/01-app/02-guides/deploying-to-platforms.md`) afirma que `sharp` é requerido para otimização de imagens self-hosted, e o [guia do Sharp](https://sharp.pixelplumbing.com/install/) descreve os binários pré-compilados de `sharp` e `libvips`.
 5. O [repositório oficial de sharp-libvips, tag v1.3.3](https://github.com/lovell/sharp-libvips/blob/v1.3.3/THIRD-PARTY-NOTICES.md), lista bibliotecas embutidas e respectivas licenças; `fribidi`, `glib`, `libexif`, `libheif`, `librsvg`, `libvips`, `pango` e `proxy-libintl` aparecem como LGPLv3. O README do projeto distingue a licença Apache-2.0 dos **scripts de empacotamento** das licenças das bibliotecas distribuídas: https://github.com/lovell/sharp-libvips/blob/v1.3.3/README.md.
+6. O [`package.json` oficial da variante Linux x64 na tag v1.3.3](https://github.com/lovell/sharp-libvips/blob/v1.3.3/npm/linux-x64/package.json) confirma `license: LGPL-3.0-or-later` e descreve o pacote como bibliotecas `libvips` pré-compiladas para Linux glibc x64.
 
 Portanto, a frase da rechecagem local de 23/09 que dizia “nenhum pacote Linux declarou GPL/LGPL/AGPL” é **contrariada pelo artefato CI Linux do mesmo SHA**. O CI ter passado demonstra que hoje não há bloqueio automático para essa licença; não demonstra aceite do ADR.
 
@@ -42,8 +43,23 @@ Outras expressões fora das quatro preferenciais: `MPL-2.0` (`axe-core`, duas ve
 
 - `scripts/generate-sbom.mjs` varre `node_modules/.pnpm` **instalado**, não os arquivos finais do web/worker implantados. Seu nome `runtime` descreve o alvo de plataforma, não uma inspeção do contêiner de produção. `downloadLocation` e `copyrightText` são `NOASSERTION`; notices não estão anexados ao SPDX.
 - O Next serve imagem otimizada sob demanda; a cadeia no lock e o uso de `next/image` justificam investigar `libvips` como componente material. Não foi obtido manifesto/inspeção de arquivos do contêiner Railway, nem feito julgamento sobre distribuição versus uso apenas como serviço.
+- Rechecagem read-only às `2026-09-23T22:44:19Z`: `GET https://web-production-76d1b.up.railway.app/_next/image?url=%2Fbrand%2Fgenesis-360-empresarial.png&w=256&q=75` respondeu `200`, `Content-Type: image/png`, `x-nextjs-cache: MISS` e `Content-Length: 6495`. Isso demonstra que o endpoint de otimização de imagem do staging funciona, mas **não identifica qual biblioteca binária gerou a imagem** nem prova o conteúdo do artefato implantado.
+- Tentativa read-only de listar apenas os nomes de arquivos em `/app` do serviço web implantado por `railway service files ... list /app --json` retornou `No SSH keys found`. Não foram criadas chaves, nem acessados dados de clientes. Assim, a verificação byte a byte do bundle Railway continua pendente de um meio de inspeção autorizado ou de manifesto do artefato final produzido no build.
 - **Responsável técnico**: mapear o conteúdo real do artefato Railway e preparar NOTICE/atribuições para as versões efetivamente incorporadas; manter o SBOM e o bloqueio de licença sincronizados com o lock/deploy.
 - **Jurídico/proprietário**: decidir e registrar a admissibilidade de LGPL-3.0-or-later, MPL-2.0 e demais licenças fora da allowlist, incluindo condições de uso/distribuição e notices; se não aceitas, aprovar alternativa técnica antes da nova promoção. O ADR-015 requer essa revisão; este inventário não a substitui.
 - Uma alternativa técnica a avaliar, **sem aplicar agora**, é deixar de otimizar o logotipo via `next/image` e verificar se o bundle final consegue excluir `sharp/libvips`. Isso exige medição do impacto de imagem/desempenho e novo SBOM do artefato real. Desabilitar otimização por si só não prova que o binário saiu da implantação.
 
 **Gate HSP-4 de licença: BLOCKED por disposição técnica/jurídica e comprovação do bundle.** Nenhuma licença foi aprovada automaticamente neste registro.
+
+## Rechecagem do candidato `fe0e5b4` — 2026-09-23
+
+O CI do commit `fe0e5b4583d98bf9985bf247c5976a367fc3b3e9` passou quality,
+database e CodeQL no PR #25. O run de CI `35929894916` publicou o artefato
+`hsp4-runtime-linux-x64-sbom` (ID `10781265125`, digest do ZIP
+`sha256:5f395f9febe7287dd6a35102a3455776ddcd8e613046bd7b5bad10b2de774106`).
+O JSON extraído, mantido fora do commit em `tmp/hsp4-ci-sbom-fe0e5b4/`, tem
+SHA-256 `82E035F9C99FA644F058458CA8EA387AC61320C8C8902910C19696ACC82A4230`,
+455 entradas e exatamente uma declaração LGPL:
+`@img/sharp-libvips-linux-x64@1.3.3`, `LGPL-3.0-or-later`. Não há
+`licenseDeclared=NOASSERTION`. O inventário do SHA final confirma o achado
+anterior; ainda não prova os bytes do contêiner nem aprova o uso jurídico.

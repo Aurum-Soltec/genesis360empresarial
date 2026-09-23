@@ -65,7 +65,7 @@ jobs:
           DEMO_STATUS: ${{ steps.probe.outputs.demo_status }}
         run: |
           existing="$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "$ALERT_TITLE in:title" --json number --jq '.[0].number // empty')"
-          body="$(printf 'O monitor externo do staging falhou.\n\n- Motivo: %s\n- Login HTTP: %s\n- Limite anônimo da demonstração HTTP: %s\n- Execução: %s/%s/actions/runs/%s\n- Código do monitor: %s\n\nNenhuma credencial ou resposta de cliente foi registrada. O operador deve confirmar recebimento com um comentário antes do fechamento.\n' \
+          body="$(printf 'O monitor externo do staging falhou.\n\n@hudsonlcustodio: confirme o recebimento e registre ACK nesta issue.\n\n- Motivo: %s\n- Login HTTP: %s\n- Limite anônimo da demonstração HTTP: %s\n- Execução: %s/%s/actions/runs/%s\n- Código do monitor: %s\n\nNenhuma credencial ou resposta de cliente foi registrada. O operador deve confirmar recebimento com um comentário antes do fechamento.\n' \
             "$PROBE_REASON" "$LOGIN_STATUS" "$DEMO_STATUS" "$GITHUB_SERVER_URL" "$GITHUB_REPOSITORY" "$GITHUB_RUN_ID" "$GITHUB_SHA")"
           if [[ -n "$existing" ]]; then
             gh issue comment "$existing" --repo "$GITHUB_REPOSITORY" --body "$body"

@@ -14,7 +14,11 @@ export async function requireTenantContext(operation = "api.default"): Promise<T
   const { data: authData, error: authError } = await supabase.auth.getUser();
 
   if (authError) {
-    if (authError.status === 401 || authError.status === 403) throw new Error("AUTH_REQUIRED");
+    // Supabase reports a missing browser session as status 400, while an
+    // expired/denied session may return 401 or 403. All are unauthenticated;
+    // unrelated provider failures must still surface as availability errors.
+    if (authError.name === "AuthSessionMissingError" || authError.code === "session_not_found" ||
+        authError.status === 401 || authError.status === 403) throw new Error("AUTH_REQUIRED");
     throw new Error("AUTH_PROVIDER_READ_FAILED");
   }
   if (!authData.user) {

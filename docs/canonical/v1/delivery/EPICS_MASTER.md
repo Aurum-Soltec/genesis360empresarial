@@ -199,18 +199,29 @@
 **Objetivo:** Transformar a fundação implementada por contrato em release candidate comprovada.
 **Exit gate:** Repo bootstrap, runtime gates, restore, security, E2E e PRR aprovados.
 **Stories:** 12
+**Estado da rechecagem HSP-4 (2026-09-23):** **ABERTO / NO-GO**. CI e
+web/worker do SHA `fe0e5b4583d98bf9985bf247c5976a367fc3b3e9`
+passaram; migração `0024` e RLS hospedada 12/12 foram comprovadas. O FULL de
+55 respostas foi no SHA anterior `5e6e836`; o fluxo afetado pelo novo cockpit
+precisa de rechecagem no SHA final. Convite HTTP 201, usuário Auth, membership
+somente no Tenant A, audit e e-mail recebido passaram; o callback falhou porque
+o link abriu a raiz com fragmento implícito, sem sessão app. Backup/RPO,
+entrega/ACK de alerta e disposição LGPL seguem bloqueados. O novo soak de 100
+tenants não rodou: a fixture temporária foi reconstituída e 10/10 contas,
+100/100 tenants e vínculos passaram pré-checagem, mas login e carga no novo SHA
+estão pendentes. `PILOT-1` não começou.
 
 - `V1-ST-104` — Bootstrap do novo repositório GitHub — **completed-remote-repository** — P0
-- `V1-ST-105` — Bootstrap limpo das migrations 0001→0023 — **completed-hosted-runtime** — P0
-- `V1-ST-106` — Executar pgTAP tenancy/RBAC/governance completo — **completed-hosted-runtime** — P0
+- `V1-ST-105` — Bootstrap limpo histórico 0001→0023; `0024` aplicada append-only hospedada — **completed-hosted-runtime-limited** — P0
+- `V1-ST-106` — pgTAP histórico; `0024` RLS SQL hospedada 12/12 com rollback — **completed-hosted-runtime-limited** — P0
 - `V1-ST-107` — Full lint + TypeScript 6 + Vitest + Next build — **completed-remote-ci** — P0
-- `V1-ST-108` — E2E browser do happy path empresarial — **completed-hosted-runtime** — P0
-- `V1-ST-109` — E2E adversarial cross-tenant e permissions — **completed-hosted-runtime** — P0
-- `V1-ST-110` — Backup/restore/rollback drill — **partial-hosted-logical-pass-managed-backup-pending** — P0
-- `V1-ST-111` — SBOM + license + dependency + secret/security scans — **partial-scans-and-license-inventory-pass-sbom-legal-pending** — P0
-- `V1-ST-112` — Observabilidade e correlation IDs ponta a ponta — **partial-hosted-observability-external-paging-pending** — P0
+- `V1-ST-108` — E2E browser e novo FULL 55 respostas, sem vínculo documental — **completed-hosted-runtime-limited** — P0
+- `V1-ST-109` — Cross-tenant histórico e 12/12 RLS SQL; sessões HTTP multi-role não repetidas — **completed-hosted-runtime-limited** — P0
+- `V1-ST-110` — Backup/restore/rollback drill — **partial-hosted-logical-pass-managed-backup-rpo-pending** — P0
+- `V1-ST-111` — SBOM + license + dependency + secret/security scans — **partial-ci-sbom-pass-lgpl-disposition-blocked** — P0
+- `V1-ST-112` — Observabilidade e correlation IDs ponta a ponta — **partial-monitor-drill-technical-pass-delivery-ack-blocked** — P0
 - `V1-ST-113` — Configurar dev/staging/prod e promoção controlada — **completed-hosted-staging-and-remote-ci** — P0
-- `V1-ST-122` — Production Readiness Review e release candidate — **completed-hsp4-no-go** — P0
+- `V1-ST-122` — Production Readiness Review e release candidate — **hsp4-recheck-in-progress-no-go** — P0
 - `V1-ST-123` — Piloto controlado com rollout/rollback — **planned-not-started** — P0
 
 ## EPIC-18 Activation Decisions

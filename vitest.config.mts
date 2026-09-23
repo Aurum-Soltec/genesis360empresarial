@@ -5,6 +5,7 @@ export default defineConfig({
   test: {
     environment: "jsdom",
     globals: true,
+    maxWorkers: 2,
     include: ["**/*.test.ts", "**/*.test.tsx"],
     exclude: [...configDefaults.exclude, "**/.audit-work/**"],
     coverage: {

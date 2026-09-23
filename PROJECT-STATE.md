@@ -1,11 +1,61 @@
 # PROJECT-STATE — Genesis 360 Empresarial
 
-Atualização: **2026-09-23**. Candidato hospedado: **V1.2.1 RC2 + Production & Scale Foundation**; as correções locais abaixo ainda não foram promovidas.
+Atualização: **2026-09-23, rechecagem HSP-4 em andamento**. A revisão de
+20/09 terminou em **NO-GO**; até a decisão A–T nova, **100 TENANTS READY: NÃO,
+PILOTO CONTROLADO: NO-GO e PRODUÇÃO ABERTA: NO-GO**. As Waves após HSP-4 não
+foram iniciadas.
+
+## Estado canônico da rechecagem HSP-4 — 2026-09-23
+
+O candidato exato `fe0e5b4583d98bf9985bf247c5976a367fc3b3e9` passou CI
+quality/database/CodeQL. No projeto Railway dedicado de staging, web
+`0205de1b-e123-407d-b6c5-d048ee8888aa` e worker
+`6110522e-c59e-4830-b1c3-457abbbf1714` chegaram a `SUCCESS` no mesmo SHA.
+O nome `production` do ambiente Railway não significa produção aberta.
+
+O banco hospedado tem as migrations `0001`–`0024`; a `0024` foi aplicada
+append-only. Prova SQL hospedada sob papéis `authenticated` distintos de
+membro, gestor, proprietário e outro tenant passou **12/12**, com transação
+revertida e nenhum dado sintético residual. Os 95/95 pgTAP hospedados citados
+abaixo antecedem `0024` e não são esta prova. Um novo diagnóstico FULL na UI
+hospedada do **SHA anterior `5e6e836`** percorreu **55 respostas**, com score 48, cobertura 100% e confiança
+78%, gerando plano de 90 dias e soluções fictícias. O relatório novo contém
+**zero fontes vinculadas e zero verificadas** apesar de três fontes fictícias
+cadastradas na empresa: há comprovação de questionário→relatório naquele SHA,
+não de conclusão sustentada por documentos. A correção do cockpit que separa
+fontes registradas de fontes vinculadas está no SHA atual; o fluxo afetado e a
+tela no novo deploy ainda precisam de rechecagem hospedada.
+
+O monitor registrou falha simulada e recuperação na issue #27, mas o operador
+abriu a issue manualmente e informou não receber notificação. Entrega de alerta
+e ACK humano continuam **BLOCKED**. O SBOM Linux do CI do SHA final lista
+**455 entradas, com um `LGPL-3.0-or-later` (`libvips`)**: composição exata do
+bundle, NOTICE e decisão técnica/jurídica ainda não receberam aceite. Backup
+automático retido, restore representativo e RPO/RTO reais seguem BLOCKED; o
+restore lógico histórico não os substitui. No SHA final, o convite retornou
+HTTP 201: usuário Auth criado, associação `member` exclusivamente ao Tenant A,
+audit `membership.invited` e e-mail recebido em caixa controlada. O link levou
+à raiz com fragmento implícito; o callback PKCE da aplicação não estabeleceu
+sessão nem abriu a tela de senha. **Convite E2E: BLOCKED**, apesar das etapas
+anteriores comprovadas. Para a nova prova fim a fim de 100 tenants por 60
+minutos existem 100 tenants sintéticos e 10 usuários × 10. O adaptador privado
+reconstituiu a fixture temporária sem publicar credenciais; a pré-checagem
+somente leitura confirmou 10/10 contas e 100/100 vínculos. Login real e nova
+carga ainda **não foram executados**. O ensaio histórico
+falhou no SLO p95 ≤750 ms.
+
+As cinco flags sensíveis permanecem congeladas: Agentic, Data Upload real,
+Qualification Network, Real Contact e Ecosystem. Não habilitar esses caminhos
+nem iniciar `PILOT-1` sem fechamento objetivo da HSP-4 e nova decisão do
+proprietário. Evidências novas estão em `docs/audit-2026-09-23/`; o relatório
+A–T de rechecagem é rascunho até os fatos operacionais finais serem anexados.
+
+## Registro histórico do candidato local anterior — 2026-09-23
 
 ## Candidato local consolidado — correções funcionais e de segurança de 2026-09-23
 
-A branch `codex/navigation-pages-fix` recebeu uma nova leva **local, não
-publicada**. Ela separa e torna operacionais as telas de Passport e Histórico,
+A branch `codex/navigation-pages-fix` recebeu naquela etapa uma nova leva
+**local, ainda não publicada naquele momento**. Ela separou e tornou operacionais as telas de Passport e Histórico,
 incluindo edição governada dos sete campos essenciais, versões declaradas e
 Timeline legível. Home, Indicadores, Prioridades, Missões, Documentos,
 Diagnóstico, Conselho e cockpit da demo deixam de escolher a primeira empresa
@@ -26,7 +76,7 @@ eventos comuns continuam acessíveis ao membro do tenant. A análise estrutural
 e o rollback estão em
 `docs/audit-2026-09-23/BUSINESS_FACT_TIMELINE_READ_BOUNDARY_2026-09-23.md`.
 
-Evidência local do candidato: `pnpm quality` **PASS**, incluindo **127/127
+Evidência local daquele candidato: `pnpm quality` **PASS**, incluindo **127/127
 Vitest**, **34/34 testes nativos**, TypeScript, ESLint, lock, contratos,
 integridade, 24 migrations, checagens estáticas de segurança e build Next.js.
 `supabase test db` passou **106/106 pgTAP** em 14 arquivos após aplicação local
@@ -36,7 +86,7 @@ PASS ao staging ou ao HSP-4. O relatório operacional vigente é
 **NO-GO** para piloto e produção aberta. As cinco flags sensíveis seguem
 desligadas. `PILOT-1` e Waves posteriores não foram iniciadas.
 
-Permanecem pendentes: promoção e regressão hospedada do artefato exato;
+Naquela etapa, permaneciam pendentes: promoção e regressão hospedada do artefato exato;
 convite fim a fim; backup gerenciado/RPO e drill de alerta com reconhecimento;
 SLO p95 de 100 tenants; aceite do inventário de licenças; seletor explícito de
 empresa para tenants com várias empresas reais; análise de arquivos reais;
@@ -44,7 +94,7 @@ causalidade documental por conclusão; aplicação de benefícios por plano; e
 as Waves funcionais posteriores previstas no roadmap. A demo continua um
 cenário **sintético**, sem promessa de precisão documental certificada.
 
-## Auditoria do dossiê comercial e correções locais — 2026-09-23
+## Auditoria do dossiê comercial e correções locais — registro histórico de 2026-09-23
 
 O dossiê comercial de 03/09 foi reconciliado com as 26 promessas, o código e a
 sequência aprovada em `docs/audit-2026-09-23/RECONCILIACAO_DOSSIE_COMERCIAL_2026-09-23.md`.
@@ -66,11 +116,11 @@ Evidência local deste candidato: `pnpm quality` passou com 34/34 testes nativos
 82/82 Vitest, TypeScript, lint, contratos, integridade, baseline e build.
 Após a inclusão de quatro testes para as rotas legadas, a suíte Vitest completa
 passou com **86/86**, além de TypeScript, lint e `pnpm work:check` novamente.
-Falta publicar o artefato exato mediante autorização e repetir os gates de
+Naquela etapa, faltava publicar o artefato exato mediante autorização e repetir os gates de
 runtime hospedado. A execução histórica de 50 respostas
 permanece no staging com referências antigas e não foi reescrita.
 
-## Candidato local de UX e leitura — 2026-09-23, ainda não promovido
+## Candidato local de UX e leitura — registro histórico pré-promoção de 2026-09-23
 
 A branch `codex/navigation-pages-fix` separa a Home executiva das páginas de
 Prioridades, Indicadores e Histórico e preserva o destino escolhido após login
@@ -206,7 +256,7 @@ observada foi 3,347 s no staging gratuito. O roteiro executável de 12–15 minu
 disclosures e recuperação segura estão em
 `docs/canonical/v1/delivery/DEMO_MEETING_RUNBOOK_2026-09-22.md`.
 
-## Hosted Staging & Pilot Readiness — HSP-0 a HSP-4
+## Revisão histórica Hosted Staging & Pilot Readiness — 2026-09-20
 
 O candidato foi publicado no GitHub público da organização Aurum-Soltec, protegido
 por pull request e CI obrigatório, e implantado em staging isolado no Railway com

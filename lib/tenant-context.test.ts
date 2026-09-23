@@ -14,7 +14,7 @@ function client({
   membership = { data: { tenant_id: tenantId, role: "owner" }, error: null },
   quota = { data: [{ allowed: true }], error: null },
 }: {
-  auth?: { data: { user: { id: string } | null }; error: { status?: number } | null };
+  auth?: { data: { user: { id: string } | null }; error: { status?: number; name?: string; code?: string } | null };
   membership?: { data: { tenant_id: string; role: string } | null; error: object | null };
   quota?: { data: Array<{ allowed: boolean }> | null; error: object | null };
 } = {}) {
@@ -33,6 +33,18 @@ beforeEach(() => {
 });
 
 describe("tenant context read failures", () => {
+  it("maps a missing Supabase browser session to 401 without hiding provider failures", async () => {
+    vi.mocked(createSupabaseServerClient).mockResolvedValue(client({
+      auth: { data: { user: null }, error: { status: 400, name: "AuthSessionMissingError" } },
+    }) as never);
+    await expect(requireTenantContext()).rejects.toThrow("AUTH_REQUIRED");
+
+    vi.mocked(createSupabaseServerClient).mockResolvedValue(client({
+      auth: { data: { user: null }, error: { status: 400, code: "validation_failed" } },
+    }) as never);
+    await expect(requireTenantContext()).rejects.toThrow("AUTH_PROVIDER_READ_FAILED");
+  });
+
   it("keeps an expired session as an authentication failure", async () => {
     vi.mocked(createSupabaseServerClient).mockResolvedValue(client({
       auth: { data: { user: null }, error: { status: 401 } },

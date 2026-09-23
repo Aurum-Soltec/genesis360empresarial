@@ -21,7 +21,8 @@
       "PEND-011 sector taxonomy calibration",
       "PEND-012 confidence calibration",
       "PEND-013 legal attestation copy activation",
-      "PEND-014 upload storage/scanning policy"
+      "PEND-014 upload storage/scanning policy",
+      "question-level documentary relevance and verification before claiming a document-grounded conclusion"
     ],
     "implemented": [
       "Passport/Diagnostic/GDS foundation",
@@ -38,23 +39,26 @@
     ]
   },
   "GATE-ARCH": {
-    "state": "hosted-functional-pass-latency-fail",
+    "state": "hsp4-recheck-in-progress-latency-fail",
     "evidence": [
-      "23 hosted migrations",
-      "95/95 hosted pgTAP",
-      "hosted authenticated E2E",
-      "100-tenant end-to-end soak"
+      "24 hosted migrations; 0024 applied append-only",
+      "0024 hosted authenticated-role SQL RLS probe: 12/12 PASS, fixture rollback verified",
+      "historical 95/95 hosted pgTAP and authenticated browser E2E",
+      "historical 100-tenant end-to-end soak with no functional errors and latency FAIL",
+      "private temporary fixture reconstructed; read-only precheck confirmed 10/10 users and 100/100 tenants, companies and memberships; login and final-artifact soak pending",
+      "final candidate fe0e5b4583d98bf9985bf247c5976a367fc3b3e9 web/worker SUCCESS and CI quality/database/CodeQL PASS"
     ],
     "pending": [
-      "remediate hosted p95 above 750ms SLO and repeat affected gate"
+      "verify real login, then run new 100-tenant 60-minute end-to-end soak on final artifact with p50/p95/p99, error rate, isolation, worker, pool and cost evidence; p95 must be <=750ms"
     ]
   },
   "GATE-CONTRACT": {
-    "state": "blocked-hosted-invitation",
+    "state": "blocked-hosted-invitation-callback",
     "pending": [
-      "hosted invitation email delivery and callback with controlled inbox"
+      "correct hosted invitation redirect/callback PKCE and prove app session and password screen; prior link landed at root with implicit fragment and callback failed"
     ],
     "implemented": [
+      "hosted invitation HTTP 201 on final SHA; Auth user created, member linked only to Tenant A, membership.invited audited, controlled email received",
       "tenant/company composite integrity",
       "trusted write RPCs",
       "mission lifecycle contracts",
@@ -69,9 +73,9 @@
   "GATE-SEC": {
     "state": "blocked-operational-controls",
     "pending": [
-      "complete SBOM and legal disposition for identified license combination",
-      "external alert receiver/paging",
-      "managed backup retention and restore drill",
+      "final CI Linux SBOM has 455 entries including one LGPL-3.0-or-later libvips package; exact bundle inspection, NOTICE and legal/technical disposition pending",
+      "external alert delivery and human ACK: issue #27 was created and recovered, but notification was not received",
+      "managed automatic backup retention and representative restore with measured RPO/RTO",
       "legal/privacy review of attestation copy",
       "binary upload malware/content scanning"
     ],
@@ -86,7 +90,8 @@
       "versioned attestation audit model",
       "upload-session fail-closed attestation gate",
       "explicit user/tenant/company/purpose binding",
-      "95/95 pgTAP on isolated PostgreSQL/Supabase runtime",
+      "historical 95/95 pgTAP on isolated PostgreSQL/Supabase runtime",
+      "0024 hosted SQL RLS 12/12 for member, manager, owner and other tenant with rollback",
       "31/31 process-level adversarial tests",
       "dependency audit with zero known advisories",
       "authenticated Chrome cross-tenant denial",
@@ -96,7 +101,8 @@
       "GitHub secret scanning and push protection",
       "Dependabot alerts and security updates with zero open alerts",
       "CodeQL default setup passing with zero open alerts",
-      "433-package license inventory from frozen lockfile"
+      "historical frozen-lockfile inventory; final CI Linux SBOM has 455 entries and an unresolved LGPL package",
+      "monitor failure and recovery simulated in issue #27; delivery/ACK not proven"
     ]
   },
   "GATE-UX": {
@@ -138,11 +144,11 @@
   "GATE-PROD": {
     "state": "blocked-hsp4-no-go",
     "pending": [
-      "hosted p95 remediation",
-      "external alert receiver/paging",
-      "managed backup and automatic retention",
-      "controlled invitation email E2E",
-      "complete SBOM and legal license disposition",
+      "new 100-tenant 60-minute hosted p95 <=750ms proof on final artifact",
+      "external alert receiver delivery and human ACK",
+      "managed backup retention, representative restore and measured RPO/RTO",
+      "controlled invitation callback, app session and password completion E2E; HTTP 201, Auth, membership, audit and email delivery already proved",
+      "final bundle SBOM/NOTICE and legal LGPL license disposition",
       "legal/privacy and upload activation gates"
     ]
   },
@@ -150,18 +156,21 @@
     "state": "hosted-runtime-pass-with-operational-gaps",
     "implemented": [
       "canonical baseline preserved",
-      "23 hosted migrations",
-      "95/95 hosted pgTAP",
+      "24 hosted migrations after append-only 0024",
+      "0024 hosted SQL RLS probe 12/12 with synthetic authenticated roles and rollback",
+      "historical 95/95 hosted pgTAP",
       "remote protected CI",
-      "hosted web and continuous worker",
-      "authenticated browser E2E 10/10",
+      "final SHA fe0e5b4583d98bf9985bf247c5976a367fc3b3e9 web and worker Railway SUCCESS; CI quality/database/CodeQL PASS",
+      "fresh hosted FULL on prior SHA 5e6e836: 55 answers, score 48, confidence 78%; zero linked sources disclosed; affected demo gate pending retest on final SHA",
+      "historical authenticated browser E2E 10/10",
       "isolated logical restore",
-      "100-tenant end-to-end soak"
+      "historical 100-tenant end-to-end soak with functional pass and performance fail",
+      "final SHA controlled invite HTTP 201, Auth user, Tenant A-only membership, audit and email received; callback failed"
     ],
     "pending": [
-      "managed recovery",
-      "external paging",
-      "hosted latency remediation"
+      "managed backup/recovery and measured RPO/RTO",
+      "external alert delivery and human ACK",
+      "new 100-tenant latency SLO proof pending after private fixture reconstruction and read-only precheck"
     ]
   },
   "GATE-REPO": {
@@ -179,13 +188,15 @@
     ]
   },
   "GATE-RELEASE-CANDIDATE": {
-    "state": "hsp4-complete-no-go",
+    "state": "hsp4-recheck-in-progress-no-go",
     "implemented": [
-      "HSP-0 through HSP-4 executed",
-      "hosted evidence and objective NO-GO recorded"
+      "historical HSP-0 through HSP-4 review completed with objective NO-GO on 2026-09-20",
+      "current exact SHA CI and staging deployments verified",
+      "fresh FULL and hosted 0024 RLS evidence recorded"
     ],
     "pending": [
-      "correct HSP-4 blockers and repeat affected gates",
+      "close HSP-4 invitation callback, managed recovery, alert delivery/ACK, license and 100-tenant SLO blockers and repeat affected gates; private load fixture prechecked, real login and soak pending",
+      "final A-T recheck decision after runtime evidence",
       "new owner authorization before PILOT-1"
     ]
   }

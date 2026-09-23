@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { BrandMark } from "@/components/brand-mark";
 import { createClient } from "@/lib/supabase/client";
 import { safeInternalPath } from "@/lib/safe-navigation";
@@ -11,6 +11,54 @@ export default function SignInPage() {
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+
+  useEffect(() => {
+    const fragment = window.location.hash;
+    if (!fragment) return;
+
+    // Supabase's default invitation email returns an implicit Auth fragment.
+    // Remove it before initializing the browser client or changing routes.
+    window.history.replaceState(window.history.state, "", window.location.pathname + window.location.search);
+    const values = new URLSearchParams(fragment.slice(1));
+    if (values.get("type") !== "invite") return;
+
+    const accessToken = values.get("access_token");
+    const refreshToken = values.get("refresh_token");
+    void (async () => {
+      await Promise.resolve();
+      if (!accessToken || !refreshToken) {
+        setError("Este convite não pôde ser confirmado. Solicite um novo convite ao administrador.");
+        return;
+      }
+
+      setBusy(true);
+      let auth: ReturnType<typeof createClient>["auth"] | null = null;
+      let sessionInstalled = false;
+      try {
+        auth = createClient().auth;
+        const { error: sessionError } = await auth.setSession({
+          access_token: accessToken,
+          refresh_token: refreshToken,
+        });
+        if (sessionError) throw sessionError;
+        sessionInstalled = true;
+        const { data, error: userError } = await auth.getUser();
+        if (userError || !data.user) throw userError ?? new Error("Invite session unavailable");
+        router.replace("/nova-senha");
+        router.refresh();
+      } catch {
+        if (sessionInstalled) {
+          try {
+            await auth?.signOut({ scope: "local" });
+          } catch {
+            // Keep the public error generic even if local cleanup fails.
+          }
+        }
+        setError("Este convite não pôde ser confirmado. Solicite um novo convite ao administrador.");
+        setBusy(false);
+      }
+    })();
+  }, [router]);
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
