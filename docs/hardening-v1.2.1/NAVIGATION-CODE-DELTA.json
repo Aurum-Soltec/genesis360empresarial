@@ -179,7 +179,7 @@
     {
       "path": "scripts/check-hardening-integrity.mjs",
       "beforeSha256": "1ed4b6d6ffb7edd4c19ff3b95da8017dae0d4a5c963f02374a24161b26f21722",
-      "afterSha256": "b5fc5c5718f1f5b0f59c0798be75b67145249fc2dd265b75af9510f013d3f389",
+      "afterSha256": "60e6618913a00600263f2c789ddcb87f8c2fa0932f2a8776879a5ae36273f3bc",
       "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
     }
   ]
