@@ -1,7 +1,13 @@
 {
-  "version": "navigation-commercial-readiness-2026-09-23-batch2",
+  "version": "hsp4-operational-recheck-2026-09-23",
   "baselineCommit": "3c76926df3b8ca705f0f54f52146373164bd7037",
   "files": [
+    {
+      "path": ".github/workflows/staging-monitor.yml",
+      "beforeSha256": "fa7910313c385dd24bf4575e972737d46980ebcdcfc5ee67a363c747e076451d",
+      "afterSha256": "a562c3cdb590d7a4765de30f9f8aa5b458f68813d78b87fd697fa66ce289ed04",
+      "reason": "HSP-4 remediation with executable regression and hosted recheck required"
+    },
     {
       "path": "app/api/decisions/[id]/missions/route.ts",
       "beforeSha256": "fb6fe5d4d7b124d72349e6b30ea3b5330cde89b2694ebea77af2b5fa609bc3f1",
@@ -77,14 +83,14 @@
     {
       "path": "app/demonstracao/administracao/page.tsx",
       "beforeSha256": "141c46da8cb15ff5c5a359eaea5b667ffa7079c63f8abb73278844c28c54fbff",
-      "afterSha256": "bd5ddc1f05e555827165644d2992f718a76695f852186594f10eb278e6be64b9",
-      "reason": "Navigation and explicit read-failure states for presentation-critical pages; 2026-09-23: reviewed local correction"
+      "afterSha256": "e4d75145473e348e714120b4c288cd6dee3d734e05706cf36845fba9538ba344",
+      "reason": "HSP-4 remediation with executable regression and hosted recheck required"
     },
     {
       "path": "app/demonstracao/page.tsx",
       "beforeSha256": "1cbffcca7c7d41af086271f2ef0b6ae66cd1f1ad2587eadbcfcdd258af57af7b",
-      "afterSha256": "f53ee83f310d81003d160a9df099c009172ab9da5f2b6731fbfa120ac95a02a5",
-      "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects; 2026-09-23: reviewed local correction"
+      "afterSha256": "6b21b62c5183648e2a42082d867d5cac256a96d5efa1bece916ddf125b63fbcb",
+      "reason": "HSP-4 remediation with executable regression and hosted recheck required"
     },
     {
       "path": "app/demonstracao/solucoes/page.tsx",
@@ -213,6 +219,18 @@
       "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
     },
     {
+      "path": "docs/canonical/v1/delivery/DEMO_READINESS_WAVE_2026-09-21.md",
+      "beforeSha256": "3080a009c6dcf3eab55cb6aa9f7f43404b569e4692959d550d790a1587e345d7",
+      "afterSha256": "162764960b30eb3651e99822dae73ee7c9b31c726f82376bb3c5826c2b0196c3",
+      "reason": "Describe fail-closed tenant selection, server-owned fictional evidence and required conflict reconciliation"
+    },
+    {
+      "path": "lib/api-errors.ts",
+      "beforeSha256": "3b6d3a3d4bbc7b9f705b9492a54968c47831f9c7c28c3478978cc8962df78822",
+      "afterSha256": "dcba3060bc87dacce0ec9f4e8dbfdc6f24ea8f5d59ddc6ef2b7e1fa1203e39a6",
+      "reason": "HSP-4 remediation with executable regression and hosted recheck required"
+    },
+    {
       "path": "lib/dashboard-overview.ts",
       "beforeSha256": "f840dd9230d63668c6c2db940eb4289368904840d3dbdee9fcfcc64095241474",
       "afterSha256": "d74c05017ff78c71e6f3b4ec9692fda2bf6e59d30b3f444b271be85b8ef6abb2",
@@ -269,8 +287,8 @@
     {
       "path": "lib/server/trusted-data-access.ts",
       "beforeSha256": "5cd6a5c4b8ae3af07cfb90eb1f7416cefc1a1d6699d4560715533e232cd09d2c",
-      "afterSha256": "5a05318bfdc017a4a0f53bda1b9c1f3a1d5c96eaeabe77d09d3fe5ddda2ec836",
-      "reason": "2026-09-23: fail-closed company, evidence, invitation or read-boundary correction"
+      "afterSha256": "26d4e0cb17d639c51daad3c404978b5f7860e9c64aa5710ecfca190dd00b8ff5",
+      "reason": "HSP-4 remediation with executable regression and hosted recheck required"
     },
     {
       "path": "lib/tenant-context.ts",
@@ -281,8 +299,8 @@
     {
       "path": "package.json",
       "beforeSha256": "1c3a2d7ae7220663e53ff5bd1663ae7a8c5d5f2c016416ae0f008410c7fef377",
-      "afterSha256": "d922d7f9f389924d7390015e35c14970ec43e32ef747bd981d0e9b6731f6e7cf",
-      "reason": "Include production baseline and database checks in quality gate"
+      "afterSha256": "77855de3fefe4d5a2a2a47d70ce82fe9918c6eb2d90b6effb58ab47e3b825f89",
+      "reason": "HSP-4 remediation with executable regression and hosted recheck required"
     },
     {
       "path": "PROJECT-STATE.md",
@@ -291,10 +309,16 @@
       "reason": "Document local navigation and read-failure hardening candidate; 2026-09-23: reviewed local correction; CI: hash uses Git LF blob rather than mixed Windows working-tree newlines"
     },
     {
+      "path": "proxy.test.ts",
+      "beforeSha256": "d2ccc89ac3eab5f959c16008c368f39a59fb4034d79c2ce30dbc6a9f52f11e54",
+      "afterSha256": "bb3442cdb57f58d040184c4b78b2281a9149ca0181025f5204fec7494f7e1b71",
+      "reason": "HSP-4 remediation with executable regression and hosted recheck required"
+    },
+    {
       "path": "proxy.ts",
       "beforeSha256": "fc6a133c2bef830023e1b2335d7e172c310a424dd3b4a07cdd8553e2bfa4998c",
-      "afterSha256": "feddfb0a045cf2badf597a1af628b0c59e4b4c1cae34042a20ff61c3535bc777",
-      "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
+      "afterSha256": "e3d5f1cb82a74f9b3379b8ac36488af3bc7a90f24283e6d1ca5f99e1d840b21e",
+      "reason": "HSP-4 remediation with executable regression and hosted recheck required"
     },
     {
       "path": "scripts/check-design-system.mjs",
@@ -321,10 +345,10 @@
       "reason": "Use the controlled server-owned evidence package and fail closed on ambiguous tenant or conflicting fictional source"
     },
     {
-      "path": "docs/canonical/v1/delivery/DEMO_READINESS_WAVE_2026-09-21.md",
-      "beforeSha256": "3080a009c6dcf3eab55cb6aa9f7f43404b569e4692959d550d790a1587e345d7",
-      "afterSha256": "162764960b30eb3651e99822dae73ee7c9b31c726f82376bb3c5826c2b0196c3",
-      "reason": "Describe fail-closed tenant selection, server-owned fictional evidence and required conflict reconciliation"
+      "path": "scripts/run-backup-restore-drill.ps1",
+      "beforeSha256": "909eb04c50654363a694129617a0b6f515e940fb80a96fae606e6ec804474e8f",
+      "afterSha256": "4b03c2126c79a52210dada71cab091a3e9268ad5613fd0d91792a12cedd202ac",
+      "reason": "HSP-4 remediation with executable regression and hosted recheck required"
     }
   ]
 }

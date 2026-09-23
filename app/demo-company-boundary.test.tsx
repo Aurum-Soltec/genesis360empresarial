@@ -6,6 +6,7 @@ import DemoSolutionsPage from "./demonstracao/solucoes/page";
 import CouncilPage from "./conselho/page";
 import DiagnosticoV1Page from "./diagnostico-v1/page";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { DemoEvidenceTemplates } from "@/lib/demo-scenario";
 
 vi.mock("@/components/app-shell", () => ({ AppShell: ({ children }: { children: ReactNode }) => <main>{children}</main> }));
 vi.mock("next/link", () => ({ default: ({ href, children }: { href: string; children: ReactNode }) => <a href={href}>{children}</a> }));
@@ -88,5 +89,60 @@ describe("controlled demo company boundary", () => {
     expect(diagnosticFilters).toContainEqual(["company_id", "demo-one"]);
     expect(diagnosticFilters).toContainEqual(["id", "real-report"]);
     expect(from).not.toHaveBeenCalledWith("score_results");
+  });
+
+  it("does not mark document-to-report flow ready when registered sources are absent from the latest report", async () => {
+    const companyDb = companiesOnlyDb([
+      { id: "demo-one", fictional: true, trade_name: "Empresa Exemplo", sector: null },
+    ]);
+    const evidence = DemoEvidenceTemplates.map((template, index) => ({
+      id: `source-${index + 1}`,
+      source_ref: template.sourceRef,
+      evidence_type: template.evidenceType,
+      summary: template.summary,
+      payload: template.payload,
+      sensitivity: template.sensitivity,
+      purpose_codes: ["DEMO_CONTROLLED"],
+      verification_status: "unverified",
+    }));
+    const observedFilters: Record<string, Array<[string, unknown]>> = {};
+    function mockDb(linked: boolean) {
+      const rows: Record<string, unknown[]> = {
+        diagnostics: [{ id: "latest-report", status: "scored", profile_code: "FULL", growth_score: 48, confidence: 78 }],
+        evidence_items: evidence,
+        answers: [{ evidence_refs: [] }],
+        evidence_links: linked ? [{ evidence_id: "source-1" }] : [],
+      };
+      const from = vi.fn((table: string) => {
+        if (table === "companies") return companyDb.from(table);
+        if (!(table in rows)) throw new Error(`unexpected read of ${table}`);
+        const filters: Array<[string, unknown]> = [];
+        observedFilters[table] = filters;
+        const result = { data: rows[table], error: null };
+        const query = {
+          select: vi.fn(() => query),
+          eq: vi.fn((key: string, value: unknown) => { filters.push([key, value]); return query; }),
+          order: vi.fn(() => query),
+          limit: vi.fn(async () => result),
+          like: vi.fn(async () => result),
+          then: (resolve: (value: typeof result) => void) => Promise.resolve(result).then(resolve),
+        };
+        return query;
+      });
+      return { from };
+    }
+
+    vi.mocked(createSupabaseServerClient).mockResolvedValue(mockDb(false) as never);
+    const withoutLink = renderToStaticMarkup(await DemonstracaoPage());
+    expect(withoutLink).toContain("6/7");
+    expect(withoutLink).toContain("3 de 3 fontes fictícias registradas · 0 fontes fictícias vinculadas à leitura");
+    expect(withoutLink).toContain("/resultado-v1?diagnostic=latest-report");
+    expect(observedFilters.answers).toContainEqual(["diagnostic_id", "latest-report"]);
+    expect(observedFilters.evidence_links).toContainEqual(["subject_id", "latest-report"]);
+
+    vi.mocked(createSupabaseServerClient).mockResolvedValue(mockDb(true) as never);
+    const withLink = renderToStaticMarkup(await DemonstracaoPage());
+    expect(withLink).toContain("7/7");
+    expect(withLink).toContain("3 de 3 fontes fictícias registradas · 1 fonte fictícia vinculada à leitura");
   });
 });

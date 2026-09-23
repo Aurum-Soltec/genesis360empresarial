@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { AppShell } from "@/components/app-shell";
-import { canonicalDemoEvidenceCount } from "@/lib/demo-scenario";
+import { canonicalDemoEvidenceCount, isCanonicalDemoEvidenceRecord } from "@/lib/demo-scenario";
 import { canAccessDemoAdministration } from "@/lib/demo-solution-preview";
 import { isDemoTenantAllowed } from "@/lib/feature-flags";
+import { evidenceIdsFromAnswers } from "@/lib/report-provenance";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { requirePageTenantContext } from "@/lib/page-tenant-context";
 import { selectUniqueTenantCompany } from "@/lib/server/company-selection";
@@ -42,11 +43,31 @@ export default async function DemonstracaoPage() {
   if (evidenceError) throw new Error("DEMO_EVIDENCE_READ_FAILED");
   const scored = diagnostics?.find((item) => item.status === "scored");
   const draft = diagnostics?.find((item) => item.status === "draft");
+  const [{ data: answerEvidenceRows, error: answerEvidenceError }, { data: diagnosticEvidenceLinks, error: diagnosticEvidenceLinksError }] = scored
+    ? await Promise.all([
+        db.from("answers").select("evidence_refs")
+          .eq("tenant_id", ctx.tenantId).eq("diagnostic_id", scored.id),
+        db.from("evidence_links").select("evidence_id")
+          .eq("tenant_id", ctx.tenantId).eq("company_id", company.id)
+          .eq("subject_type", "diagnostic").eq("subject_id", scored.id),
+      ])
+    : [{ data: [], error: null }, { data: [], error: null }];
+  if (answerEvidenceError || diagnosticEvidenceLinksError) throw new Error("DEMO_DIAGNOSTIC_EVIDENCE_READ_FAILED");
   const evidenceCount = canonicalDemoEvidenceCount(evidence ?? []);
+  const linkedEvidenceIds = new Set([
+    ...evidenceIdsFromAnswers(answerEvidenceRows),
+    ...(diagnosticEvidenceLinks ?? []).map((link) => link.evidence_id.toLowerCase()),
+  ]);
+  const linkedCanonicalCount = new Set((evidence ?? []).filter((item) =>
+    isCanonicalDemoEvidenceRecord(item) && linkedEvidenceIds.has(item.id.toLowerCase()),
+  ).map((item) => item.source_ref)).size;
   const canViewAdministration = canAccessDemoAdministration(ctx.role);
   const steps = [
     { number: "01", title: "Empresa fictícia", detail: company ? `${company.trade_name}${company.sector ? ` · ${company.sector}` : ""}` : "Empresa ainda não cadastrada", ready: Boolean(company), href: "/passaporte", action: "Ver empresa" },
-    { number: "02", title: "Documentação", detail: `${evidenceCount} de 3 fontes fictícias registradas`, ready: evidenceCount >= 3, href: "/documentos", action: "Enviar pacote" },
+    { number: "02", title: "Documentação", detail: scored
+      ? `${evidenceCount} de 3 fontes fictícias registradas · ${linkedCanonicalCount} ${linkedCanonicalCount === 1 ? "fonte fictícia vinculada" : "fontes fictícias vinculadas"} à leitura (sem verificação documental)`
+      : `${evidenceCount} de 3 fontes fictícias registradas · vínculo ao relatório ainda pendente`,
+      ready: evidenceCount >= 3 && (!scored || linkedCanonicalCount > 0), href: "/documentos", action: "Revisar fontes" },
     { number: "03", title: "Diagnóstico completo", detail: draft ? `${draft.profile_code} em andamento` : scored ? `${scored.profile_code} concluído` : "Pronto para iniciar", ready: Boolean(scored), href: "/diagnostico-v1", action: draft ? "Continuar" : "Abrir diagnóstico" },
     { number: "04", title: "Relatório executivo", detail: scored ? `Growth Score ${scored.growth_score ?? "—"} · confiança ${Math.round(Number(scored.confidence ?? 0))}%` : "Gerado após a conclusão", ready: Boolean(scored), href: scored ? `/resultado-v1?diagnostic=${scored.id}` : "/diagnostico-v1", action: "Abrir relatório" },
     { number: "05", title: "Soluções compatíveis", detail: scored ? "Serviços e empresas fictícias explicados pela menor maturidade" : "Disponíveis após o relatório", ready: Boolean(scored), href: scored ? `/demonstracao/solucoes?diagnostic=${scored.id}` : "/diagnostico-v1", action: "Ver soluções" },

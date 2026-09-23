@@ -311,13 +311,23 @@ export async function inviteTenantMember(
   if (inviteResult.error || !invitedUser) return fail("auth");
   let membershipFailed: boolean;
   try {
-    const { error } = await admin.from("memberships").upsert({
+    // An invitation must never change an existing membership's role. In
+    // particular, inviting an existing owner as a member must not demote the
+    // tenant's last owner. The database uniqueness constraint also closes the
+    // race between simultaneous invitations for the same user.
+    const { error } = await admin.from("memberships").insert({
       tenant_id: ctx.tenantId,
       user_id: invitedUser.id,
       role: input.role,
-    }, { onConflict: "tenant_id,user_id" });
+    });
+    if (error?.code === "23505") throw new Error("MEMBER_ALREADY_EXISTS");
     membershipFailed = !!error;
-  } catch { return fail("membership"); }
+  } catch (error) {
+    if (error instanceof Error && error.message === "MEMBER_ALREADY_EXISTS") {
+      throw error;
+    }
+    return fail("membership");
+  }
   if (membershipFailed) return fail("membership");
   let auditFailed: boolean;
   try {

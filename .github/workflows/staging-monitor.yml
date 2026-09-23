@@ -59,32 +59,28 @@ jobs:
       - name: Open or update operational alert
         if: failure() && steps.probe.outcome == 'failure'
         shell: bash
+        env:
+          PROBE_REASON: ${{ steps.probe.outputs.reason }}
+          LOGIN_STATUS: ${{ steps.probe.outputs.login_status }}
+          DEMO_STATUS: ${{ steps.probe.outputs.demo_status }}
         run: |
           existing="$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "$ALERT_TITLE in:title" --json number --jq '.[0].number // empty')"
-          body=$(cat <<EOF
-          O monitor externo do staging falhou.
-
-          - Motivo: `${{ steps.probe.outputs.reason }}`
-          - Login HTTP: `${{ steps.probe.outputs.login_status }}`
-          - Limite anônimo da demonstração HTTP: `${{ steps.probe.outputs.demo_status }}`
-          - Execução: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
-          - Artefato observado: `${GITHUB_SHA}`
-
-          Nenhuma credencial ou resposta de cliente foi registrada.
-          EOF
-          )
+          body="$(printf 'O monitor externo do staging falhou.\n\n- Motivo: %s\n- Login HTTP: %s\n- Limite anônimo da demonstração HTTP: %s\n- Execução: %s/%s/actions/runs/%s\n- Código do monitor: %s\n\nNenhuma credencial ou resposta de cliente foi registrada. O operador deve confirmar recebimento com um comentário antes do fechamento.\n' \
+            "$PROBE_REASON" "$LOGIN_STATUS" "$DEMO_STATUS" "$GITHUB_SERVER_URL" "$GITHUB_REPOSITORY" "$GITHUB_RUN_ID" "$GITHUB_SHA")"
           if [[ -n "$existing" ]]; then
             gh issue comment "$existing" --repo "$GITHUB_REPOSITORY" --body "$body"
           else
             gh issue create --repo "$GITHUB_REPOSITORY" --title "$ALERT_TITLE" --body "$body" --assignee hudsonlcustodio
           fi
 
-      - name: Acknowledge recovery and close active alert
+      - name: Record recovery without assuming human acknowledgement
         if: success()
         shell: bash
         run: |
           existing="$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "$ALERT_TITLE in:title" --json number --jq '.[0].number // empty')"
           if [[ -n "$existing" ]]; then
-            gh issue comment "$existing" --repo "$GITHUB_REPOSITORY" --body "Staging recuperado e probes externos aprovados. Execução: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
-            gh issue close "$existing" --repo "$GITHUB_REPOSITORY" --reason completed
+            last_comment="$(gh issue view "$existing" --repo "$GITHUB_REPOSITORY" --json comments --jq '.comments[-1].body // ""')"
+            if [[ "$last_comment" != *"Probes externos novamente saudáveis"* ]]; then
+              gh issue comment "$existing" --repo "$GITHUB_REPOSITORY" --body "Probes externos novamente saudáveis. Execução: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID. Alerta permanece aberto até confirmação de recebimento e reconhecimento humano pelo operador."
+            fi
           fi

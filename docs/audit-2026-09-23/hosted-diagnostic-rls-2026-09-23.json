@@ -1,0 +1,82 @@
+{
+  "executedAtUtc": "2026-09-23T22:25:21.3892555Z",
+  "project": "genesis360-staging",
+  "migration": "0024_sensitive_passport_timeline_reads.sql",
+  "method": "supabase db query --linked; synthetic authenticated roles; single transaction ROLLBACK",
+  "result": "PASS",
+  "assertionCount": 12,
+  "cases": [
+    {
+      "case_name": "manager_all_own_tenant_facts",
+      "expected": 4,
+      "observed": 4,
+      "passed": true
+    },
+    {
+      "case_name": "manager_four_facts_and_mission",
+      "expected": 5,
+      "observed": 5,
+      "passed": true
+    },
+    {
+      "case_name": "manager_no_wrong_company_reference",
+      "expected": 0,
+      "observed": 0,
+      "passed": true
+    },
+    {
+      "case_name": "manager_sensitive_sources",
+      "expected": 3,
+      "observed": 3,
+      "passed": true
+    },
+    {
+      "case_name": "member_internal_fact_only",
+      "expected": 1,
+      "observed": 1,
+      "passed": true
+    },
+    {
+      "case_name": "member_no_sensitive_fact_payload",
+      "expected": 0,
+      "observed": 0,
+      "passed": true
+    },
+    {
+      "case_name": "member_no_sensitive_source_ref",
+      "expected": 0,
+      "observed": 0,
+      "passed": true
+    },
+    {
+      "case_name": "member_timeline_internal_and_mission",
+      "expected": 2,
+      "observed": 2,
+      "passed": true
+    },
+    {
+      "case_name": "other_tenant_no_first_tenant_events",
+      "expected": 0,
+      "observed": 0,
+      "passed": true
+    },
+    {
+      "case_name": "other_tenant_no_first_tenant_facts",
+      "expected": 0,
+      "observed": 0,
+      "passed": true
+    },
+    {
+      "case_name": "other_tenant_own_event",
+      "expected": 1,
+      "observed": 1,
+      "passed": true
+    },
+    {
+      "case_name": "owner_no_malformed_reference",
+      "expected": 5,
+      "observed": 5,
+      "passed": true
+    }
+  ]
+}

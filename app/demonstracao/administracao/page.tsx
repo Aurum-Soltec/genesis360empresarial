@@ -8,6 +8,7 @@ import { getFeatureFlags, isDemoTenantAllowed } from "@/lib/feature-flags";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { requirePageTenantContext } from "@/lib/page-tenant-context";
 import { selectUniqueTenantCompany } from "@/lib/server/company-selection";
+import { InviteMemberForm } from "./invite-member-form";
 
 export default async function DemoAdministrationPage() {
   const ctx = await requirePageTenantContext("/demonstracao/administracao");
@@ -122,6 +123,12 @@ export default async function DemoAdministrationPage() {
           <p className="admin-demo-note">A simulação de soluções é local ao tenant demonstrativo. Ela não liga a rede comercial, não publica ranking real e não libera contato.</p>
         </section>
       </div>
+
+      <section className="admin-demo-panel" aria-labelledby="demo-member-invite-heading" style={{ marginTop: 18 }}>
+        <div className="section-heading-row"><div><span className="section-eyebrow">Acesso da empresa</span><h2 id="demo-member-invite-heading">Convidar membro</h2></div></div>
+        <p className="admin-demo-note">Use uma caixa postal controlada para testar o recebimento, a ativação e o vínculo com esta empresa fictícia.</p>
+        <InviteMemberForm />
+      </section>
 
       {checks.companyReady && scored ? (
         <div className="action-row admin-demo-actions">

@@ -20,6 +20,7 @@
     "deps:bootstrap": "node scripts/bootstrap-dependencies.mjs",
     "lock:check": "node scripts/check-lockfile.mjs",
     "test:hardening": "node --test tests/hardening-native/core.test.cjs",
+    "test:hsp3-harness": "node --test tests/hsp3-load-core.test.mjs",
     "syntax:check": "node scripts/check-typescript-syntax.cjs",
     "public:check": "node scripts/check-public-package.mjs",
     "integrity:check": "node scripts/check-hardening-integrity.mjs",

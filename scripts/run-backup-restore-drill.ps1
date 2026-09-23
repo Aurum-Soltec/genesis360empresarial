@@ -17,6 +17,7 @@ if ($LASTEXITCODE -ne 0) { throw "Backup failed" }
 $backupWatch.Stop()
 docker cp "${Container}:/tmp/genesis_ps8.dump" $backup
 if ($LASTEXITCODE -ne 0) { throw "Backup copy failed" }
+$snapshotAt = (Get-Date).ToUniversalTime()
 $restoreWatch = [Diagnostics.Stopwatch]::StartNew()
 docker exec $Container dropdb -U postgres --if-exists $RestoreDatabase
 docker exec $Container createdb -U postgres -T template0 $RestoreDatabase
@@ -25,6 +26,7 @@ docker exec $Container pg_restore -U postgres -d $RestoreDatabase --no-owner --n
   --exit-on-error /tmp/genesis_ps8.dump
 if ($LASTEXITCODE -ne 0) { throw "Restore failed" }
 $restoreWatch.Stop()
+$restoredAt = (Get-Date).ToUniversalTime()
 $query = "select json_build_object('tenants',(select count(*) from public.tenants),'memberships',(select count(*) from public.memberships),'diagnostics',(select count(*) from public.diagnostics),'outbox',(select count(*) from public.event_outbox),'migrations',(select count(*) from supabase_migrations.schema_migrations),'public_policies',(select count(*) from pg_policies where schemaname='public'))::text;"
 $source = (docker exec $Container psql -U postgres -d postgres -At -c $query).Trim()
 $restored = (docker exec $Container psql -U postgres -d $RestoreDatabase -At -c $query).Trim()
@@ -32,7 +34,11 @@ $result = [ordered]@{
   wave = "PS-8"; executed_at = $started.ToString("o")
   backup_duration_seconds = [math]::Round($backupWatch.Elapsed.TotalSeconds, 3)
   restore_duration_seconds = [math]::Round($restoreWatch.Elapsed.TotalSeconds, 3)
-  rpo_observed_seconds = [math]::Round(((Get-Date).ToUniversalTime() - $started).TotalSeconds, 3)
+  snapshot_at_utc = $snapshotAt.ToString("o")
+  restored_at_utc = $restoredAt.ToString("o")
+  drill_elapsed_seconds = [math]::Round(($restoredAt - $started).TotalSeconds, 3)
+  rpo_status = "not_measured_without_durable_prior_backup_and_simulated_incident"
+  rto_scope = "isolated_database_restore_only"
   backup_sha256 = (Get-FileHash $backup -Algorithm SHA256).Hash.ToLower()
   source_counts = ($source | ConvertFrom-Json); restored_counts = ($restored | ConvertFrom-Json)
   integrity_pass = ($source -eq $restored)
