@@ -1,8 +1,9 @@
 import { AppShell } from "@/components/app-shell";
-import { getFeatureFlags } from "@/lib/feature-flags";
+import { getFeatureFlags, isDemoTenantAllowed } from "@/lib/feature-flags";
 import { loadQualifiedSolutionsForPain } from "@/lib/server/qualified-solutions";
 import { requirePageTenantContext } from "@/lib/page-tenant-context";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { selectUniqueTenantCompany } from "@/lib/server/company-selection";
 import { ContactButton } from "./contact-button";
 
 export default async function SolucoesPage({
@@ -15,6 +16,13 @@ export default async function SolucoesPage({
   const flags = getFeatureFlags();
   const params = await searchParams;
   const db = await createSupabaseServerClient();
+  const demoTenant = isDemoTenantAllowed(ctx.tenantId);
+  const networkEnabled = flags.qualificationNetwork && !demoTenant;
+  const selection = networkEnabled
+    ? await selectUniqueTenantCompany(db, ctx.tenantId)
+    : null;
+  const company = selection?.status === "ready" && !selection.company.fictional
+    ? selection.company : null;
 
   let painId = params.pain ?? null;
   let pain:
@@ -26,42 +34,47 @@ export default async function SolucoesPage({
       }
     | null = null;
 
-  if (painId) {
-    const { data } = await db
+  if (painId && company) {
+    const { data, error } = await db
       .from("pain_findings")
       .select("id,title,pain_code,gap_summary")
       .eq("tenant_id", ctx.tenantId)
+      .eq("company_id", company.id)
       .eq("id", painId)
       .maybeSingle();
+    if (error) throw new Error("SOLUTIONS_PAIN_READ_FAILED");
     pain = data ?? null;
-  } else {
-    const { data: diagnostic } = await db
+  } else if (company) {
+    const { data: diagnostic, error: diagnosticError } = await db
       .from("diagnostics")
       .select("id")
       .eq("tenant_id", ctx.tenantId)
+      .eq("company_id", company.id)
       .eq("status", "scored")
       .order("created_at", { ascending: false })
       .limit(1)
       .maybeSingle();
+    if (diagnosticError) throw new Error("SOLUTIONS_DIAGNOSTIC_READ_FAILED");
 
     if (diagnostic) {
-      const { data } = await db
+      const { data, error } = await db
         .from("pain_findings")
         .select("id,title,pain_code,gap_summary")
         .eq("tenant_id", ctx.tenantId)
+        .eq("company_id", company.id)
         .eq("diagnostic_id", diagnostic.id)
         .order("severity", { ascending: false })
         .limit(1)
         .maybeSingle();
+      if (error) throw new Error("SOLUTIONS_PAIN_READ_FAILED");
       pain = data ?? null;
       painId = pain?.id ?? null;
     }
   }
 
-  const search =
-    flags.qualificationNetwork && painId
-      ? await loadQualifiedSolutionsForPain(ctx, painId)
-      : null;
+  const search = networkEnabled && company && pain
+    ? await loadQualifiedSolutionsForPain(ctx, pain.id)
+    : null;
 
   return (
     <AppShell>
@@ -77,14 +90,17 @@ export default async function SolucoesPage({
         </div>
       </header>
 
-      {!flags.qualificationNetwork ? (
+      {!networkEnabled ? (
         <section className="card empty-state">
-          <h3>Qualification Network está protegida por feature flag.</h3>
+          <h3>{demoTenant ? "Rede real indisponível na demonstração." : "Qualification Network está protegida por feature flag."}</h3>
           <p>
-            A fundação está implementada, porém a rede permanece desligada por
-            padrão até política, thresholds e elegibilidade comercial serem
-            aprovados e testados.
+            {demoTenant ? "Empresas fictícias aparecem apenas na prévia controlada; nenhum fornecedor real é recomendado neste tenant." : "A fundação está implementada, porém a rede permanece desligada por padrão até política, thresholds e elegibilidade comercial serem aprovados e testados."}
           </p>
+        </section>
+      ) : !company ? (
+        <section className="card empty-state">
+          <h3>Empresa real não selecionada.</h3>
+          <p>Esta consulta exige uma única empresa real neste tenant. Nenhuma dor de outra empresa será usada para buscar fornecedores.</p>
         </section>
       ) : !pain ? (
         <section className="card empty-state">

@@ -1,23 +1,29 @@
 import { AppShell } from "@/components/app-shell";
-import { demoEvidenceAlreadyLoaded, isCanonicalDemoEvidence } from "@/lib/demo-scenario";
+import { DemoEvidenceTemplates, canonicalDemoEvidenceCount, isCanonicalDemoEvidenceRecord } from "@/lib/demo-scenario";
 import { getFeatureFlags, isDemoTenantAllowed } from "@/lib/feature-flags";
 import { requirePageTenantContext } from "@/lib/page-tenant-context";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { DemoPackage } from "./demo-package";
+import { selectUniqueTenantCompany } from "@/lib/server/company-selection";
 
 export default async function DocumentosPage() {
   const ctx = await requirePageTenantContext("/documentos");
 
   const flags = getFeatureFlags();
-  const demoAllowed = isDemoTenantAllowed(ctx.tenantId);
+  const demoTenant = isDemoTenantAllowed(ctx.tenantId);
   const db = await createSupabaseServerClient();
-  const { data: company, error: companyError } = await db
-    .from("companies")
-    .select("id,trade_name")
-    .eq("tenant_id", ctx.tenantId)
-    .limit(1)
-    .maybeSingle();
-  if (companyError) throw new Error("DOCUMENTS_COMPANY_READ_FAILED");
+  const selection = await selectUniqueTenantCompany(db, ctx.tenantId, demoTenant);
+  if (selection.status === "ambiguous") return (
+    <AppShell>
+      <section className="card empty-state" aria-labelledby="documents-company-ambiguous">
+        <p className="kicker">Evidências e documentos</p>
+        <h1 id="documents-company-ambiguous">Seleção da empresa necessária</h1>
+        <p>Há mais de uma empresa elegível neste tenant. O registro de evidências não escolhe uma empresa arbitrariamente e o pacote fictício permanece indisponível.</p>
+      </section>
+    </AppShell>
+  );
+  const company = selection.company;
+  const demoAllowed = demoTenant && Boolean(company?.fictional);
 
   const { data: version, error: versionError } = await db
     .from("data_submission_attestation_versions")
@@ -27,15 +33,18 @@ export default async function DocumentosPage() {
     .maybeSingle();
   if (versionError) throw new Error("DOCUMENTS_ATTESTATION_READ_FAILED");
 
-  const { data: evidence, error: evidenceError } = company
-    ? await db
-        .from("evidence_items")
-        .select("id,evidence_type,source_ref,summary,captured_at,verification_status,sensitivity")
-        .eq("tenant_id", ctx.tenantId)
-        .eq("company_id", company.id)
-        .order("captured_at", { ascending: false })
-        .limit(50)
-    : { data: [], error: null };
+  const evidenceFields = "id,evidence_type,source_ref,summary,captured_at,verification_status,sensitivity,payload,purpose_codes" as const;
+  const evidenceResult = !company
+    ? { data: [], error: null }
+    : demoAllowed
+      ? await db.from("evidence_items").select(evidenceFields)
+          .eq("tenant_id", ctx.tenantId).eq("company_id", company.id)
+          .in("source_ref", DemoEvidenceTemplates.map((item) => item.sourceRef))
+          .order("captured_at", { ascending: false })
+      : await db.from("evidence_items").select(evidenceFields)
+          .eq("tenant_id", ctx.tenantId).eq("company_id", company.id)
+          .order("captured_at", { ascending: false }).limit(50);
+  const { data: evidence, error: evidenceError } = evidenceResult;
 
   const { data: latestDiagnostic, error: latestDiagnosticError } = company && demoAllowed
     ? await db
@@ -67,7 +76,7 @@ export default async function DocumentosPage() {
     expired: "Expirada",
   };
   const displayedEvidence = demoAllowed
-    ? (evidence ?? []).filter((item) => isCanonicalDemoEvidence(item.source_ref))
+    ? (evidence ?? []).filter(isCanonicalDemoEvidenceRecord)
     : (evidence ?? []);
 
   return (
@@ -88,7 +97,7 @@ export default async function DocumentosPage() {
         <DemoPackage
           companyId={company.id}
           diagnosticId={latestDiagnostic?.id ?? null}
-          loaded={demoEvidenceAlreadyLoaded((evidence ?? []).map((item) => item.source_ref))}
+          loaded={canonicalDemoEvidenceCount(evidence) === DemoEvidenceTemplates.length}
         />
       ) : null}
 

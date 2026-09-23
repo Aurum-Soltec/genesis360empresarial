@@ -38,12 +38,14 @@ export async function POST(
     }
 
     const userDb = await createSupabaseServerClient();
-    const { data: mission } = await userDb
+    const { data: mission, error: missionError } = await userDb
       .from("missions")
       .select("id,status")
       .eq("id", id)
       .eq("tenant_id", ctx.tenantId)
       .maybeSingle();
+
+    if (missionError) throw new Error("MISSION_READ_FAILED");
 
     if (!mission) {
       return NextResponse.json({ error: "MISSION_NOT_FOUND" }, { status: 404 });

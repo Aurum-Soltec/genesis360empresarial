@@ -13,7 +13,11 @@ export async function requireTenantContext(operation = "api.default"): Promise<T
   const supabase = await createSupabaseServerClient();
   const { data: authData, error: authError } = await supabase.auth.getUser();
 
-  if (authError || !authData.user) {
+  if (authError) {
+    if (authError.status === 401 || authError.status === 403) throw new Error("AUTH_REQUIRED");
+    throw new Error("AUTH_PROVIDER_READ_FAILED");
+  }
+  if (!authData.user) {
     throw new Error("AUTH_REQUIRED");
   }
 
@@ -38,7 +42,8 @@ export async function requireTenantContext(operation = "api.default"): Promise<T
   const [membershipResult, quotaResult] = await Promise.all([membershipQuery, quotaQuery]);
   const { data: membership, error } = membershipResult;
 
-  if (error || !membership) {
+  if (error) throw new Error("MEMBERSHIP_READ_FAILED");
+  if (!membership) {
     throw new Error("TENANT_ACCESS_DENIED");
   }
 

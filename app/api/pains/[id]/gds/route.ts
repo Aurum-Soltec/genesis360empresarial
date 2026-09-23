@@ -18,14 +18,16 @@ export async function POST(
     const { id } = await params;
     const db = await createSupabaseServerClient();
 
-    const { data: pain } = await db
+    const { data: pain, error: painError } = await db
       .from("pain_findings")
       .select(
         "id,company_id,diagnostic_id,dimension,title,severity,confidence,gap_summary",
       )
       .eq("id", id)
       .eq("tenant_id", ctx.tenantId)
-      .single();
+      .maybeSingle();
+
+    if (painError) throw new Error("PAIN_READ_FAILED");
 
     if (!pain) {
       return NextResponse.json({ error: "PAIN_NOT_FOUND" }, { status: 404 });

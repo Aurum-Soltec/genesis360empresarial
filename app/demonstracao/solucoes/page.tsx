@@ -4,6 +4,7 @@ import { buildDemoSolutionPreview } from "@/lib/demo-solution-preview";
 import { isDemoTenantAllowed } from "@/lib/feature-flags";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { requirePageTenantContext } from "@/lib/page-tenant-context";
+import { selectUniqueTenantCompany } from "@/lib/server/company-selection";
 
 export default async function DemoSolutionsPage({
   searchParams,
@@ -23,10 +24,22 @@ export default async function DemoSolutionsPage({
   );
 
   const db = await createSupabaseServerClient();
+  const selection = await selectUniqueTenantCompany(db, ctx.tenantId, true);
+  if (selection.status !== "ready") return (
+    <AppShell>
+      <section className="card empty-state" aria-labelledby="demo-solutions-company-unavailable">
+        <p className="kicker">Soluções compatíveis</p>
+        <h1 id="demo-solutions-company-unavailable">Empresa fictícia indisponível</h1>
+        <p>A simulação requer exatamente uma empresa fictícia neste tenant. Nenhum dado de empresa real será usado.</p>
+        <Link className="button button-secondary" href="/demonstracao">Voltar ao roteiro</Link>
+      </section>
+    </AppShell>
+  );
+  const demoCompany = selection.company;
   const params = await searchParams;
   let diagnosticId = params.diagnostic ?? null;
   if (!diagnosticId) {
-    const { data: latest, error: latestError } = await db.from("diagnostics").select("id").eq("tenant_id", ctx.tenantId).eq("status", "scored").order("created_at", { ascending: false }).limit(1).maybeSingle();
+    const { data: latest, error: latestError } = await db.from("diagnostics").select("id").eq("tenant_id", ctx.tenantId).eq("company_id", demoCompany.id).eq("status", "scored").order("created_at", { ascending: false }).limit(1).maybeSingle();
     if (latestError) throw new Error("DEMO_SOLUTIONS_DIAGNOSTIC_READ_FAILED");
     diagnosticId = latest?.id ?? null;
   }
@@ -41,7 +54,7 @@ export default async function DemoSolutionsPage({
     </AppShell>
   );
 
-  const { data: diagnostic, error: diagnosticError } = await db.from("diagnostics").select("id,company_id,growth_score,confidence").eq("tenant_id", ctx.tenantId).eq("id", diagnosticId).eq("status", "scored").maybeSingle();
+  const { data: diagnostic, error: diagnosticError } = await db.from("diagnostics").select("id,company_id,growth_score,confidence").eq("tenant_id", ctx.tenantId).eq("company_id", demoCompany.id).eq("id", diagnosticId).eq("status", "scored").maybeSingle();
   if (diagnosticError) throw new Error("DEMO_SOLUTIONS_DIAGNOSTIC_READ_FAILED");
   if (!diagnostic) return (
     <AppShell>
@@ -53,11 +66,8 @@ export default async function DemoSolutionsPage({
       </section>
     </AppShell>
   );
-  const [{ data: company, error: companyError }, { data: scores, error: scoresError }] = await Promise.all([
-    db.from("companies").select("trade_name").eq("tenant_id", ctx.tenantId).eq("id", diagnostic.company_id).maybeSingle(),
-    db.from("score_results").select("dimension,score").eq("tenant_id", ctx.tenantId).eq("diagnostic_id", diagnostic.id),
-  ]);
-  if (companyError || scoresError) throw new Error("DEMO_SOLUTIONS_BASIS_READ_FAILED");
+  const { data: scores, error: scoresError } = await db.from("score_results").select("dimension,score").eq("tenant_id", ctx.tenantId).eq("diagnostic_id", diagnostic.id);
+  if (scoresError) throw new Error("DEMO_SOLUTIONS_BASIS_READ_FAILED");
   const solutions = buildDemoSolutionPreview((scores ?? []).map((item) => ({ dimension: item.dimension, score: item.score === null ? null : Number(item.score) })));
 
   return (
@@ -66,7 +76,7 @@ export default async function DemoSolutionsPage({
         <div>
           <div className="kicker">Demonstração controlada</div>
           <h1 className="page-title">Soluções compatíveis</h1>
-          <p className="page-subtitle">Uma tradução das menores leituras de {company?.trade_name ?? "empresa fictícia"} em capacidades de apoio, com a lógica de aderência aberta.</p>
+          <p className="page-subtitle">Uma tradução das menores leituras de {demoCompany.trade_name} em capacidades de apoio, com a lógica de aderência aberta.</p>
         </div>
         <Link className="button button-secondary" href={`/resultado-v1?diagnostic=${diagnostic.id}`}>Voltar ao relatório</Link>
       </header>

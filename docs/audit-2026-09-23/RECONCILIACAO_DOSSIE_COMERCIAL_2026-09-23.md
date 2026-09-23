@@ -72,3 +72,17 @@ Depois da reconciliação, a ordem de correção imediata da auditoria anterior 
 ## Correções locais iniciadas após o snapshot
 
 As primeiras quatro frentes da ordem acima foram implementadas no workspace em 23/09, sem publicar: rotas legadas/CTA, proveniência/erros de leitura, contraste/mobile/semântica e baseline de 23 rotas. O relatório de auditoria e a matriz acima descrevem o estado **antes** dessas correções; a execução antiga do staging também não muda por causa delas. `PROJECT-STATE.md` registra os testes locais e as provas hospedadas ainda pendentes. Não se credita PASS de runtime às alterações locais.
+
+### Adendo do candidato local posterior à matriz
+
+O lote `LOCAL_CORRECTION_BATCH_2026-09-23.md` acrescentou edição declarativa
+dos sete campos essenciais do Passport e apresentação legível da Timeline;
+portanto, as descrições das linhas 02 e 03 acima são um **snapshot anterior**,
+não a UX local mais recente. A nova interface ainda não prova freshness por
+domínio nem fechamento completo da história V1-ST-009. A demo, Home,
+Indicadores, Prioridades e Missões agora falham fechado se a empresa não for
+inequívoca. Fontes fictícias são validadas por conteúdo antes de contabilização,
+e uma migration local adicional restringe a leitura de eventos de fatos
+sensíveis. `pnpm quality` e 106/106 pgTAP passaram localmente; o staging não foi
+atualizado. As linhas 15, 21–25 e a conclusão de HSP-4 conservam os limites
+anteriores, inclusive upload real e Agentic desligados.

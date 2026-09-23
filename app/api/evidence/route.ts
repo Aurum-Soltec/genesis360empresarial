@@ -47,6 +47,9 @@ export async function POST(request: Request) {
     }
 
     const input = parsed.data;
+    if (input.sourceRef?.startsWith("DEMO:")) {
+      return NextResponse.json({ error: "RESERVED_DEMO_SOURCE_REF" }, { status: 422 });
+    }
     const { data: evidenceId, error } = await trustedTenantRpc(ctx, "record_evidence", {
       p_company_id: input.companyId,
       p_evidence_type: input.evidenceType,

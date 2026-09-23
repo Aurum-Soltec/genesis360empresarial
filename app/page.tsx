@@ -5,7 +5,21 @@ import { requirePageTenantContext } from "@/lib/page-tenant-context";
 
 export default async function DashboardPage() {
   const context = await requirePageTenantContext("/");
-  const data = await loadDashboardOverview(context);
+  let data;
+  try {
+    data = await loadDashboardOverview(context);
+  } catch (error) {
+    if (!(error instanceof Error) || error.message !== "COMPANY_SELECTION_REQUIRED") throw error;
+    return (
+      <AppShell>
+        <section className="card empty-state" aria-labelledby="company-selection-required">
+          <p className="section-eyebrow">Empresa ativa</p>
+          <h1 id="company-selection-required">É preciso escolher uma empresa.</h1>
+          <p>Há mais de uma empresa neste contexto. O Genesis não mostrará score, prioridades ou missões de uma empresa arbitrária. Peça ao administrador para definir a empresa ativa; essa seleção ainda não está disponível nesta versão.</p>
+        </section>
+      </AppShell>
+    );
+  }
 
   if (!data) return (
     <AppShell>

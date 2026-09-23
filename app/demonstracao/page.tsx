@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { AppShell } from "@/components/app-shell";
-import { demoEvidenceLoadedCount } from "@/lib/demo-scenario";
+import { canonicalDemoEvidenceCount } from "@/lib/demo-scenario";
 import { canAccessDemoAdministration } from "@/lib/demo-solution-preview";
 import { isDemoTenantAllowed } from "@/lib/feature-flags";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { requirePageTenantContext } from "@/lib/page-tenant-context";
+import { selectUniqueTenantCompany } from "@/lib/server/company-selection";
 
 export default async function DemonstracaoPage() {
   const ctx = await requirePageTenantContext("/demonstracao");
@@ -19,19 +20,29 @@ export default async function DemonstracaoPage() {
     </AppShell>
   );
   const db = await createSupabaseServerClient();
-  const { data: company, error: companyError } = await db.from("companies").select("id,trade_name,sector").eq("tenant_id", ctx.tenantId).limit(1).maybeSingle();
-  if (companyError) throw new Error("DEMO_COMPANY_READ_FAILED");
+  const selection = await selectUniqueTenantCompany(db, ctx.tenantId, true);
+  if (selection.status !== "ready") return (
+    <AppShell>
+      <section className="card empty-state" aria-labelledby="demo-company-unavailable">
+        <p className="kicker">Demonstração controlada</p>
+        <h1 id="demo-company-unavailable">{selection.status === "ambiguous" ? "Há mais de uma empresa fictícia neste tenant." : "Nenhuma empresa fictícia está vinculada a este tenant."}</h1>
+        <p>O roteiro precisa de uma única empresa fictícia identificável. Nenhum dado de uma empresa real será usado para completar esta demonstração.</p>
+        <Link className="button button-secondary" href="/">Voltar à visão executiva</Link>
+      </section>
+    </AppShell>
+  );
+  const company = selection.company;
   const { data: diagnostics, error: diagnosticsError } = company
     ? await db.from("diagnostics").select("id,status,profile_code,growth_score,confidence").eq("tenant_id", ctx.tenantId).eq("company_id", company.id).order("created_at", { ascending: false }).limit(10)
     : { data: [], error: null };
   if (diagnosticsError) throw new Error("DEMO_DIAGNOSTICS_READ_FAILED");
   const { data: evidence, error: evidenceError } = company
-    ? await db.from("evidence_items").select("id,source_ref").eq("tenant_id", ctx.tenantId).eq("company_id", company.id).like("source_ref", "DEMO:%")
+    ? await db.from("evidence_items").select("id,source_ref,evidence_type,summary,payload,sensitivity,purpose_codes,verification_status").eq("tenant_id", ctx.tenantId).eq("company_id", company.id).like("source_ref", "DEMO:%")
     : { data: [], error: null };
   if (evidenceError) throw new Error("DEMO_EVIDENCE_READ_FAILED");
   const scored = diagnostics?.find((item) => item.status === "scored");
   const draft = diagnostics?.find((item) => item.status === "draft");
-  const evidenceCount = demoEvidenceLoadedCount((evidence ?? []).map((item) => item.source_ref));
+  const evidenceCount = canonicalDemoEvidenceCount(evidence ?? []);
   const canViewAdministration = canAccessDemoAdministration(ctx.role);
   const steps = [
     { number: "01", title: "Empresa fictícia", detail: company ? `${company.trade_name}${company.sector ? ` · ${company.sector}` : ""}` : "Empresa ainda não cadastrada", ready: Boolean(company), href: "/passaporte", action: "Ver empresa" },

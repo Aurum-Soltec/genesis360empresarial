@@ -16,17 +16,22 @@ export async function POST(request: Request) {
   }
 
   const supabase = await createSupabaseServerClient();
-  const { data: authData } = await supabase.auth.getUser();
+  const { data: authData, error: authError } = await supabase.auth.getUser();
+  if (authError) {
+    if (authError.status === 401 || authError.status === 403) throw new Error("AUTH_REQUIRED");
+    throw new Error("AUTH_PROVIDER_READ_FAILED");
+  }
   if (!authData.user) {
     return NextResponse.json({ error: "AUTH_REQUIRED" }, { status: 401 });
   }
 
-  const { data: membership } = await supabase
+  const { data: membership, error: membershipError } = await supabase
     .from("memberships")
     .select("tenant_id")
     .eq("tenant_id", parsed.data.tenantId)
     .eq("user_id", authData.user.id)
     .maybeSingle();
+  if (membershipError) throw new Error("MEMBERSHIP_READ_FAILED");
 
   if (!membership) {
     return NextResponse.json({ error: "TENANT_ACCESS_DENIED" }, { status: 403 });

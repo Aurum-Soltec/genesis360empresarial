@@ -26,12 +26,14 @@ export async function POST(
     }
 
     const userDb = await createSupabaseServerClient();
-    const { data: decision } = await userDb
+    const { data: decision, error: decisionError } = await userDb
       .from("decision_records")
       .select("id,company_id")
       .eq("id", id)
       .eq("tenant_id", ctx.tenantId)
       .maybeSingle();
+
+    if (decisionError) throw new Error("DECISION_READ_FAILED");
 
     if (!decision) {
       return NextResponse.json({ error: "DECISION_NOT_FOUND" }, { status: 404 });

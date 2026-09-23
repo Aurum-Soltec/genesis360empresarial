@@ -1,5 +1,6 @@
 import type { GdsRecord } from "@/lib/gds";
 import type { TenantContext } from "@/lib/tenant-context";
+import { operationalLog } from "@/lib/observability";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
@@ -288,23 +289,47 @@ export async function inviteTenantMember(
   input: { email: string; role: Exclude<MembershipRole, "owner">; redirectTo: string },
 ) {
   const admin = await managementAdmin(ctx);
-  const { data: invited, error: inviteError } = await admin.auth.admin.inviteUserByEmail(
-    input.email,
-    { redirectTo: input.redirectTo, data: { invited_tenant_id: ctx.tenantId } },
-  );
-  if (inviteError || !invited.user) throw new Error("INVITATION_FAILED");
-  const { error } = await admin.from("memberships").upsert({
-    tenant_id: ctx.tenantId,
-    user_id: invited.user.id,
-    role: input.role,
-  }, { onConflict: "tenant_id,user_id" });
-  if (error) throw new Error("INVITATION_FAILED");
-  await admin.from("audit_events").insert({
-    tenant_id: ctx.tenantId, actor_id: ctx.userId, action: "membership.invited",
-    resource_type: "membership", resource_id: invited.user.id,
-    metadata: { role: input.role },
-  });
-  return { userId: invited.user.id, email: input.email, role: input.role };
+  const inviteAttemptId = crypto.randomUUID();
+  const fail = (stage: "auth" | "membership" | "audit"): never => {
+    // Provider errors can contain addresses or request details. Log only a fixed
+    // stage and an opaque attempt ID; the public API keeps one generic response.
+    console.error(operationalLog("error", "membership.invite_failed", {
+      invite_attempt_id: inviteAttemptId,
+      stage,
+      auth_api_accepted: stage !== "auth",
+    }));
+    throw new Error("INVITATION_FAILED");
+  };
+  let inviteResult: Awaited<ReturnType<typeof admin.auth.admin.inviteUserByEmail>>;
+  try {
+    inviteResult = await admin.auth.admin.inviteUserByEmail(
+      input.email,
+      { redirectTo: input.redirectTo, data: { invited_tenant_id: ctx.tenantId } },
+    );
+  } catch { return fail("auth"); }
+  const invitedUser = inviteResult.data?.user;
+  if (inviteResult.error || !invitedUser) return fail("auth");
+  let membershipFailed: boolean;
+  try {
+    const { error } = await admin.from("memberships").upsert({
+      tenant_id: ctx.tenantId,
+      user_id: invitedUser.id,
+      role: input.role,
+    }, { onConflict: "tenant_id,user_id" });
+    membershipFailed = !!error;
+  } catch { return fail("membership"); }
+  if (membershipFailed) return fail("membership");
+  let auditFailed: boolean;
+  try {
+    const { error } = await admin.from("audit_events").insert({
+      tenant_id: ctx.tenantId, actor_id: ctx.userId, action: "membership.invited",
+      resource_type: "membership", resource_id: invitedUser.id,
+      metadata: { role: input.role },
+    });
+    auditFailed = !!error;
+  } catch { return fail("audit"); }
+  if (auditFailed) return fail("audit");
+  return { userId: invitedUser.id, email: input.email, role: input.role };
 }
 
 export async function updateTenantMemberRole(

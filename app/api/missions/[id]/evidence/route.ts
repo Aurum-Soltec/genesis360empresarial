@@ -27,14 +27,19 @@ export async function POST(
     if (!parsed.success) {
       return NextResponse.json({ error: "INVALID_EVIDENCE" }, { status: 400 });
     }
+    if (parsed.data.sourceRef?.startsWith("DEMO:")) {
+      return NextResponse.json({ error: "RESERVED_DEMO_SOURCE_REF" }, { status: 422 });
+    }
 
     const userDb = await createSupabaseServerClient();
-    const { data: mission } = await userDb
+    const { data: mission, error: missionError } = await userDb
       .from("missions")
       .select("id,status")
       .eq("id", id)
       .eq("tenant_id", ctx.tenantId)
       .maybeSingle();
+
+    if (missionError) throw new Error("MISSION_READ_FAILED");
 
     if (!mission) {
       return NextResponse.json({ error: "MISSION_NOT_FOUND" }, { status: 404 });

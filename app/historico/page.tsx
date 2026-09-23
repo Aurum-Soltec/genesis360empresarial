@@ -1,32 +1,43 @@
+import Link from "next/link";
 import { AppShell } from "@/components/app-shell";
+import { isDemoTenantAllowed } from "@/lib/feature-flags";
 import { requirePageTenantContext } from "@/lib/page-tenant-context";
+import { passportDateLabel, timelineEventPresentation, timelinePageNumber } from "@/lib/passport-presentation";
+import { selectUniqueTenantCompany } from "@/lib/server/company-selection";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
+import styles from "../passaporte/passport.module.css";
 
-export default async function HistoricoPage() {
+const PAGE_SIZE = 100;
+
+export default async function HistoricoPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ page?: string | string[] }>;
+}) {
   const ctx = await requirePageTenantContext("/historico");
+  const page = timelinePageNumber((await searchParams).page);
+  const offset = (page - 1) * PAGE_SIZE;
 
   const db = await createSupabaseServerClient();
-  const { data: company, error: companyError } = await db
-    .from("companies")
-    .select("id,trade_name")
-    .eq("tenant_id", ctx.tenantId)
-    .limit(1)
-    .maybeSingle();
-  if (companyError) throw new Error("TIMELINE_COMPANY_READ_FAILED");
+  const demoTenant = isDemoTenantAllowed(ctx.tenantId);
+  const selection = await selectUniqueTenantCompany(db, ctx.tenantId, demoTenant);
+  const company = selection.company;
 
   const eventsResult = company
     ? await db
           .from("business_timeline_events")
-          .select(
-            "id,event_type,occurred_at,actor_type,subject_type,subject_id,payload,source_ref",
-          )
+          .select("id,event_type,occurred_at,payload")
           .eq("tenant_id", ctx.tenantId)
           .eq("company_id", company.id)
           .order("occurred_at", { ascending: false })
-          .limit(100)
+          .order("id", { ascending: false })
+          .range(offset, offset + PAGE_SIZE)
     : { data: [], error: null };
   if (eventsResult.error) throw new Error("TIMELINE_EVENTS_READ_FAILED");
-  const events = eventsResult.data ?? [];
+  const pageEvents = eventsResult.data ?? [];
+  const beyondNavigationLimit = page === 1000 && pageEvents.length > PAGE_SIZE;
+  const hasMore = page < 1000 && pageEvents.length > PAGE_SIZE;
+  const events = pageEvents.slice(0, PAGE_SIZE);
 
   return (
     <AppShell>
@@ -41,33 +52,47 @@ export default async function HistoricoPage() {
         </div>
       </header>
 
-      {!events.length ? (
+      {selection.status !== "ready" ? (
         <section className="card empty-state">
-          <h3>A Timeline ainda está vazia.</h3>
-          <p>
-            Atualizações do Passport, missões e outcomes começarão a construir
-            o histórico empresarial.
-          </p>
+          <h2>{selection.status === "ambiguous" ? "É preciso escolher uma empresa." : "Empresa ainda não vinculada."}</h2>
+          <p>{selection.status === "ambiguous"
+            ? "Há mais de uma empresa possível neste contexto. O Genesis não exibirá o histórico de uma empresa arbitrária."
+            : demoTenant
+              ? "A demonstração requer uma empresa fictícia identificável; nenhum histórico real será usado neste roteiro."
+              : "Solicite ao administrador o cadastro da empresa para iniciar o histórico empresarial."}</p>
+        </section>
+      ) : !events.length ? (
+        <section className="card empty-state">
+          <h3>{page > 1 ? "Não há registros nesta página." : "A Timeline ainda está vazia."}</h3>
+          <p>{page > 1 ? "Volte à página anterior para continuar a leitura." : "Eventos podem ainda não existir ou estar restritos ao seu perfil. Atualizações do Passport, missões e resultados construirão o histórico visível."}</p>
+          <Link className="text-action" href={page > 1 ? `/historico?page=${page - 1}` : "/passaporte"}>{page > 1 ? "Página anterior ←" : "Abrir Business Passport →"}</Link>
         </section>
       ) : (
-        <section className="priority-list">
-          {events.map((event) => (
-            <article className="card card-pad" key={event.id}>
-              <div className="brief-meta">
-                <span>{event.event_type}</span>
-                <span>{event.actor_type}</span>
-                <span>
-                  {new Date(event.occurred_at).toLocaleString("pt-BR")}
-                </span>
-              </div>
-              <h2 className="section-title" style={{ marginTop: 10 }}>
-                {event.subject_type}
-              </h2>
-              <p className="metric-note">
-                Referência: {event.subject_id ?? "—"}
-              </p>
-            </article>
-          ))}
+        <section className="section" aria-label={`Histórico de ${company?.trade_name ?? "empresa selecionada"}`}>
+          <p className={styles.timelineIntro}>Eventos de {company?.trade_name ?? "empresa selecionada"}, do mais recente ao mais antigo. Página {page}, até {PAGE_SIZE} registros por página.</p>
+          <ol className={styles.timeline}>
+            {events.map((event) => {
+              const presentation = timelineEventPresentation(event.event_type, event.payload);
+              return (
+                <li key={event.id}>
+                  <article className={styles.timelineEvent}>
+                    <time dateTime={event.occurred_at}>{passportDateLabel(event.occurred_at)}</time>
+                    <h2>{presentation.title}</h2>
+                    <p>{presentation.detail}</p>
+                    {presentation.href ? <Link className="text-action" href={presentation.href}>Ver contexto →</Link> : null}
+                  </article>
+                </li>
+              );
+            })}
+          </ol>
+          {page > 1 || hasMore ? (
+            <nav className={styles.timelinePages} aria-label="Páginas do histórico">
+              {page > 1 ? <Link className="button button-secondary" href={`/historico?page=${page - 1}`}>Mais recentes</Link> : null}
+              {hasMore ? <Link className="button button-secondary" href={`/historico?page=${page + 1}`}>Mais antigos</Link> : null}
+            </nav>
+          ) : null}
+          {beyondNavigationLimit ? <p className={styles.disclosure}>Há registros mais antigos além do limite de navegação desta tela. A consulta histórica completa ainda precisa de um mecanismo de busca ou exportação.</p> : null}
+          <p className={styles.disclosure}>A Timeline mostra eventos permitidos ao seu perfil. Um registro não representa verificação independente dos dados declarados.</p>
         </section>
       )}
     </AppShell>

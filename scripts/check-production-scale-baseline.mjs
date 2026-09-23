@@ -24,8 +24,6 @@ function collectRoutes(directory) {
 }
 collectRoutes("app/api");
 
-if (migrations.length !== 23) fail(`expected 23 migrations, found ${migrations.length}`);
-if (dbTests.length !== 13) fail(`expected 13 database test files, found ${dbTests.length}`);
 if (apiRoutes.length !== 23) fail(`expected 23 API routes, found ${apiRoutes.length}`);
 if (!apiRoutes.some((route) => route.replaceAll("\\", "/") === "app/api/demo/evidence/route.ts")) {
   fail("controlled demo evidence API route is missing from the reconciled baseline");
@@ -62,10 +60,23 @@ for (const variable of [
 const validation = JSON.parse(
   fs.readFileSync("docs/audit-2026-09-18/RC2_VALIDATION_RESULTS.json", "utf8"),
 );
-if (validation.gates.migrations !== migrations.length) fail("validation migration count drift");
+// RC2 evidence is immutable. Later append-only fixes extend the candidate,
+// rather than rewriting the historical 23-migration/13-test result.
+if (validation.gates.migrations !== 23) fail("historical RC2 migration count drift");
+if (validation.gates.pgtap.filesPassed !== 13) fail("historical RC2 database test count drift");
+const appendedMigrations = ["0024_sensitive_passport_timeline_reads.sql"];
+const appendedDbTests = ["012_sensitive_fact_timeline.test.sql"];
+if (migrations.length !== validation.gates.migrations + appendedMigrations.length ||
+    appendedMigrations.some((name, index) => migrations[validation.gates.migrations + index] !== name)) {
+  fail("candidate migrations must extend the historical RC2 baseline in the reviewed order");
+}
+if (dbTests.length !== validation.gates.pgtap.filesPassed + appendedDbTests.length ||
+    appendedDbTests.some((name, index) => dbTests[validation.gates.pgtap.filesPassed + index] !== name)) {
+  fail("candidate database tests must extend the historical RC2 baseline in the reviewed order");
+}
 if (validation.gates.pgtap.passed !== 95) fail("expected 95 passing pgTAP assertions");
 if (validation.gates.adversarial.passed !== 31) fail("expected 31 adversarial passes");
 
 console.log(
-  `PASS - production/scale HSP-4 baseline reconciled: ${migrations.length} migrations, ${dbTests.length} DB test files, ${apiRoutes.length} API routes.`,
+  `PASS - historical RC2 baseline preserved; candidate has ${migrations.length} append-only migrations, ${dbTests.length} DB test files, ${apiRoutes.length} API routes.`,
 );

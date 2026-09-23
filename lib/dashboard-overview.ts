@@ -1,5 +1,7 @@
-import { requireTenantContext, type TenantContext } from "@/lib/tenant-context";
+import type { TenantContext } from "@/lib/tenant-context";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { isDemoTenantAllowed } from "@/lib/feature-flags";
+import { selectUniqueTenantCompany } from "@/lib/server/company-selection";
 
 export type DashboardOverview = {
   companyName: string;
@@ -13,25 +15,18 @@ export type DashboardOverview = {
   mission: { id: string; status: string; due_at: string | null } | null;
 };
 
-export async function loadDashboardOverview(
-  context?: TenantContext,
-): Promise<DashboardOverview | null> {
-  let ctx = context;
-  if (!ctx) {
-    try { ctx = await requireTenantContext(); } catch { return null; }
-  }
-
+export async function loadDashboardOverview(ctx: TenantContext): Promise<DashboardOverview | null> {
   const db = await createSupabaseServerClient();
-  const { data: company, error: companyError } = await db
-    .from("companies")
-    .select("id,trade_name")
-    .eq("tenant_id", ctx.tenantId)
-    .order("created_at", { ascending: true })
-    .limit(1)
-    .maybeSingle();
-
-  if (companyError) throw new Error("DASHBOARD_READ_FAILED");
-  if (!company) return null;
+  const selection = await selectUniqueTenantCompany(
+    db,
+    ctx.tenantId,
+    isDemoTenantAllowed(ctx.tenantId),
+  );
+  if (selection.status !== "ready") {
+    if (selection.status === "ambiguous") throw new Error("COMPANY_SELECTION_REQUIRED");
+    return null;
+  }
+  const { company } = selection;
 
   const passportQuery = db
     .from("business_facts")

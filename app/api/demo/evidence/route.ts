@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { apiErrorDetails } from "@/lib/api-errors";
 import { assertTenantPermission } from "@/lib/authz";
-import { DemoEvidenceTemplates } from "@/lib/demo-scenario";
+import { DemoEvidenceTemplates, isCanonicalDemoEvidenceRecord } from "@/lib/demo-scenario";
 import { isDemoTenantAllowed } from "@/lib/feature-flags";
 import { assertSameOrigin, readJsonBody } from "@/lib/http-security";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
@@ -29,23 +29,28 @@ export async function POST(request: Request) {
     }
 
     const db = await createSupabaseServerClient();
-    const { data: company } = await db
+    const { data: company, error: companyError } = await db
       .from("companies")
-      .select("id")
+      .select("id,fictional")
       .eq("tenant_id", ctx.tenantId)
       .eq("id", parsed.data.companyId)
       .maybeSingle();
+    if (companyError) throw new Error("DEMO_COMPANY_READ_FAILED");
     if (!company) return NextResponse.json({ error: "COMPANY_NOT_FOUND" }, { status: 404 });
+    if (!company.fictional) {
+      return NextResponse.json({ error: "FICTIONAL_COMPANY_REQUIRED" }, { status: 409 });
+    }
 
     let diagnosticId: string | null = null;
     if (parsed.data.diagnosticId) {
-      const { data: diagnostic } = await db
+      const { data: diagnostic, error: diagnosticError } = await db
         .from("diagnostics")
         .select("id")
         .eq("tenant_id", ctx.tenantId)
         .eq("company_id", company.id)
         .eq("id", parsed.data.diagnosticId)
         .maybeSingle();
+      if (diagnosticError) throw new Error("DEMO_DIAGNOSTIC_READ_FAILED");
       if (!diagnostic) {
         return NextResponse.json({ error: "DIAGNOSTIC_NOT_FOUND" }, { status: 404 });
       }
@@ -55,11 +60,14 @@ export async function POST(request: Request) {
     const refs = DemoEvidenceTemplates.map((item) => item.sourceRef);
     const { data: existing, error: existingError } = await db
       .from("evidence_items")
-      .select("id,source_ref")
+      .select("id,source_ref,evidence_type,summary,payload,sensitivity,purpose_codes,verification_status")
       .eq("tenant_id", ctx.tenantId)
       .eq("company_id", company.id)
       .in("source_ref", refs);
     if (existingError) throw new Error("EVIDENCE_READ_FAILED");
+    if ((existing ?? []).some((item) => !isCanonicalDemoEvidenceRecord(item))) {
+      return NextResponse.json({ error: "DEMO_SOURCE_CONFLICT" }, { status: 409 });
+    }
 
     const byRef = new Map((existing ?? []).map((item) => [item.source_ref, item.id]));
     const ids: string[] = [];

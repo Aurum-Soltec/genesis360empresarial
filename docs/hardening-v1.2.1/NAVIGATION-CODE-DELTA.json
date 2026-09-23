@@ -1,7 +1,61 @@
 {
-  "version": "navigation-commercial-readiness-2026-09-23",
+  "version": "navigation-commercial-readiness-2026-09-23-batch2",
   "baselineCommit": "3c76926df3b8ca705f0f54f52146373164bd7037",
   "files": [
+    {
+      "path": "app/api/decisions/[id]/missions/route.ts",
+      "beforeSha256": "fb6fe5d4d7b124d72349e6b30ea3b5330cde89b2694ebea77af2b5fa609bc3f1",
+      "afterSha256": "f09a20bf71f2ba06655ba312d924480d319e24e1a4c459b87b37cc3be08fa48e",
+      "reason": "2026-09-23: fail-closed company, evidence, invitation or read-boundary correction"
+    },
+    {
+      "path": "app/api/demo/evidence/route.ts",
+      "beforeSha256": "058bf77e01336b1f7c8db6251de689feeb28c1a4bd768a1388b0119175b018f5",
+      "afterSha256": "d489d6530abd1383b97cf509ef74a7850ec9c159c807b6314edbd141f12ac79e",
+      "reason": "2026-09-23: fail-closed company, evidence, invitation or read-boundary correction"
+    },
+    {
+      "path": "app/api/evidence/route.ts",
+      "beforeSha256": "906305411b4584a4a88f6041bdeda511f2ed713e474b06f757295170b66e43f4",
+      "afterSha256": "f89b1c6539f093585ef3a3db3c375439cf9237863383278eacfbd55096d8cb09",
+      "reason": "2026-09-23: fail-closed company, evidence, invitation or read-boundary correction"
+    },
+    {
+      "path": "app/api/missions/[id]/evidence/route.ts",
+      "beforeSha256": "78602b32ef3b91761d347b8162fe2ccb5393a5f342f86c90cb84a35c2f4c0f53",
+      "afterSha256": "d43e9213678a8b3821e7990af744522d7d5b33f3b756ba50b26a8571cd0566e4",
+      "reason": "2026-09-23: fail-closed company, evidence, invitation or read-boundary correction"
+    },
+    {
+      "path": "app/api/missions/[id]/outcome/route.ts",
+      "beforeSha256": "588c247b09c86a395ade37f62687fba4b32abe543cb38c86514f3ee6d660054b",
+      "afterSha256": "5ef781af725299e32fb2ccbd3f05ba78fcb113425fd013a6f26c2a9d97b472ae",
+      "reason": "2026-09-23: fail-closed company, evidence, invitation or read-boundary correction"
+    },
+    {
+      "path": "app/api/pains/[id]/gds/route.ts",
+      "beforeSha256": "6f8e839c6bcd4f5a9ba59d065a76f4f824048e624c02d3555debad434d9487e6",
+      "afterSha256": "eed029694c7b1729d451a4eddbb92587a751b181ae762a6f0374c782f983817d",
+      "reason": "2026-09-23: fail-closed company, evidence, invitation or read-boundary correction"
+    },
+    {
+      "path": "app/api/solutions/contact/route.ts",
+      "beforeSha256": "cc0a8000df84657ba09041c1d3f5e4ba7ade150df469d303935cc677a741c403",
+      "afterSha256": "0af38dbaf3317f9b366266102f3409c281fa8c437ea229f53ba9bed72cfd23dd",
+      "reason": "2026-09-23: fail-closed company, evidence, invitation or read-boundary correction"
+    },
+    {
+      "path": "app/api/tenant/active/route.ts",
+      "beforeSha256": "5ecb31bc9d3b2a4ffb322462052beae9efe821eaa2c546b4003fefb707129849",
+      "afterSha256": "8be69d4c7820209c5f454c9b12578d8cf9561a266a91ad3630ed1b1ae3ca39be",
+      "reason": "2026-09-23: fail-closed company, evidence, invitation or read-boundary correction"
+    },
+    {
+      "path": "app/api/tenant/members/route.ts",
+      "beforeSha256": "991a98cd2ef6a83b95937da571e75ca79f3f0cef5fdcc962775483f640041ac9",
+      "afterSha256": "cb54c3c6efa63a4288efa359f143314aead00f66887a02a2f40e1224c0b616c8",
+      "reason": "2026-09-23: fail-closed company, evidence, invitation or read-boundary correction"
+    },
     {
       "path": "app/auth/callback/route.ts",
       "beforeSha256": "82f7201eb700c986fd1840caac7ad36f83e55670b0c9f3a83ea643a7287b1b57",
@@ -11,44 +65,50 @@
     {
       "path": "app/capacidades/page.tsx",
       "beforeSha256": null,
-      "afterSha256": "e03d6712a42c493f57d968a0d5746d18b4f3e9f4f464457a9caac5b62e829f50",
-      "reason": "Navigation and explicit read-failure states for presentation-critical pages"
+      "afterSha256": "671539a38564cdb91491b268571a93bc800182367018455a838cafc71662199f",
+      "reason": "Navigation and explicit read-failure states for presentation-critical pages; 2026-09-23: reviewed local correction"
     },
     {
       "path": "app/conselho/page.tsx",
       "beforeSha256": "df48a3af8df0a35077ba0166ee28a8d06e983d16e24a83abd9e417950991dcf4",
-      "afterSha256": "8b3515f063ec6574e48982bf701a4a123fa6a3d2bc5bd75fa9c30fc4a2a572ee",
-      "reason": "Navigation and explicit read-failure states for presentation-critical pages"
+      "afterSha256": "deb493f2f7bb60b93cdbd61641e5fc7267e70775fb9b6e6d80e724514f257a54",
+      "reason": "Navigation and explicit read-failure states for presentation-critical pages; 2026-09-23: reviewed local correction"
     },
     {
       "path": "app/demonstracao/administracao/page.tsx",
       "beforeSha256": "141c46da8cb15ff5c5a359eaea5b667ffa7079c63f8abb73278844c28c54fbff",
-      "afterSha256": "8ac87fe414f8779ae7268de5525d7b7dfa7f718dd93afc0641f029cc2bc24ab3",
-      "reason": "Navigation and explicit read-failure states for presentation-critical pages"
+      "afterSha256": "bd5ddc1f05e555827165644d2992f718a76695f852186594f10eb278e6be64b9",
+      "reason": "Navigation and explicit read-failure states for presentation-critical pages; 2026-09-23: reviewed local correction"
     },
     {
       "path": "app/demonstracao/page.tsx",
       "beforeSha256": "1cbffcca7c7d41af086271f2ef0b6ae66cd1f1ad2587eadbcfcdd258af57af7b",
-      "afterSha256": "d91c68e7c862c59fa1bf024a96d536e54c70d0666f0d4f3ed91fa7ed3f305c64",
-      "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
+      "afterSha256": "f53ee83f310d81003d160a9df099c009172ab9da5f2b6731fbfa120ac95a02a5",
+      "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects; 2026-09-23: reviewed local correction"
     },
     {
       "path": "app/demonstracao/solucoes/page.tsx",
       "beforeSha256": "772ca20b1e4a2028949b16829f0be8725b8f78e75e2b5068db5fe9307c24fe15",
-      "afterSha256": "6366f364504732398ca87960dacc19ef1eac89e6a8323aa973201372040509d9",
-      "reason": "Navigation and explicit read-failure states for presentation-critical pages"
+      "afterSha256": "b71b8f21ed80dff03e8165614a9d0f446d31ef3365a5bc809e8c84af3a8c4283",
+      "reason": "Navigation and explicit read-failure states for presentation-critical pages; 2026-09-23: reviewed local correction"
+    },
+    {
+      "path": "app/diagnostico-v1/journey.tsx",
+      "beforeSha256": "5b6f522e2f28448daa581b29d4afc8e3edcd3958de08feeff7e64b7ee1cf23a6",
+      "afterSha256": "3700fadc3ea4c653c731e55a5a8a61ef61bd01005c3800e2c0a6f19b12f2da7e",
+      "reason": "Prevent automatic attribution of demo sources to every questionnaire answer"
     },
     {
       "path": "app/diagnostico-v1/page.tsx",
       "beforeSha256": "f04110ae54f7df87cb842467cf962288d9001a74a9a90eb2b5acf4e7a41fcbf8",
-      "afterSha256": "274844d12146afb5a674bebd32322e4088de1b69ae1aee8b7b67ef70eaff0541",
-      "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
+      "afterSha256": "bc063c79ddaeb627a277feaef7c154410c4ca1989f4cd89140d3a4e43ecb1853",
+      "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects; 2026-09-23: reviewed local correction"
     },
     {
       "path": "app/documentos/page.tsx",
       "beforeSha256": "84b4104ed456dc1c300c1c952661fa454af716bc3ba7758b4274f1d807bdf485",
-      "afterSha256": "ed1feff2e0f046566ccb2798b07e93ca79639b34b8c6034e4c9985ee87c00306",
-      "reason": "Navigation and explicit read-failure states for presentation-critical pages"
+      "afterSha256": "042a3ea6e0ad47ed7055a931c807c1fd569b1556ec1a1960fcb7bd706444b79c",
+      "reason": "Navigation and explicit read-failure states for presentation-critical pages; 2026-09-23: reviewed local correction"
     },
     {
       "path": "app/entrar/page.tsx",
@@ -57,40 +117,58 @@
       "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
     },
     {
+      "path": "app/error.tsx",
+      "beforeSha256": null,
+      "afterSha256": "89f682c5f2f3c11163acf3c4d17f9f2f2b4eab21785560ea2b9401c915b917e5",
+      "reason": "Explicit loading and recovery state for presentation-critical pages"
+    },
+    {
+      "path": "app/globals.css",
+      "beforeSha256": "ab2722bb58dfa5071d0298a2e2ac05b358f390fa14ea94f18b53282692506fb8",
+      "afterSha256": "bdb0e5e346cf9110a3aaab73cd21ae2b99d31ef0bb46eef2a292949b9a5da172",
+      "reason": "Business Passport uses contextual shell and explicit verification states"
+    },
+    {
       "path": "app/historico/page.tsx",
       "beforeSha256": null,
-      "afterSha256": "31c4293c41e43088a96b9c065fed74c8fcf250b5f6eedc0e839a907908117de6",
-      "reason": "Navigation and explicit read-failure states for presentation-critical pages"
+      "afterSha256": "ee1bc133a7dc6b1152103ab43437f2722def5c6be7a6faa8df84a13a430b3834",
+      "reason": "Navigation and explicit read-failure states for presentation-critical pages; 2026-09-23: reviewed local correction"
     },
     {
       "path": "app/indicadores/page.tsx",
       "beforeSha256": "19b3b2bbccb79da8f977059a3235ddb70aeac4663115e6f760629f49fca256fb",
-      "afterSha256": "4d03386134116ddaa355f475b42413b91da0c7a032b3cb0c8f85e899fba9b3b8",
-      "reason": "Navigation and explicit read-failure states for presentation-critical pages"
+      "afterSha256": "0e918f64b1e896343b10efbfc6fbf05866d1cca7c0946a37761828ee96cb2d65",
+      "reason": "Navigation and explicit read-failure states for presentation-critical pages; 2026-09-23: reviewed local correction"
+    },
+    {
+      "path": "app/loading.tsx",
+      "beforeSha256": null,
+      "afterSha256": "f786ec80eb63bbccc54b854b9a8e2344d140ae958daa7ce951358dd5deb3e366",
+      "reason": "Explicit loading and recovery state for presentation-critical pages"
     },
     {
       "path": "app/missoes/page.tsx",
       "beforeSha256": null,
-      "afterSha256": "9079ef669571807592fd6b4160df61f77338be19f07f6856057fd4e61aaa1ce6",
-      "reason": "Navigation and explicit read-failure states for presentation-critical pages"
+      "afterSha256": "2f273a415188890ce8a01c953e2d2d7376bbbad92e7bd53ac847f3ea77ba2087",
+      "reason": "Navigation and explicit read-failure states for presentation-critical pages; 2026-09-23: reviewed local correction"
     },
     {
       "path": "app/page.tsx",
       "beforeSha256": "4dd8dfe30b1e78a3561437b521f168317bb2faff6ebbfe32ca257a47386b844d",
-      "afterSha256": "68a6eb9bf946701850c74689b2a46d9d7ca586767dce21a738ef86abecdd9fef",
-      "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
+      "afterSha256": "3efd8bcaa7764c712be1b7a0f1c0be04bf5b9cad294fb7bd4c3cd96a0fee7231",
+      "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects; 2026-09-23: reviewed local correction"
     },
     {
       "path": "app/passaporte/page.tsx",
       "beforeSha256": null,
-      "afterSha256": "d0f55a4afb11f59f2fff18f0550adf7111c2a48d32c88ddaff0d52ef8938102c",
-      "reason": "Navigation and explicit read-failure states for presentation-critical pages"
+      "afterSha256": "742d1539b59968a5273e5378821c85fcc27b9f3ba61eea5ab1967c93eaf357c1",
+      "reason": "Navigation and explicit read-failure states for presentation-critical pages; 2026-09-23: reviewed local correction"
     },
     {
       "path": "app/prioridades/page.tsx",
       "beforeSha256": null,
-      "afterSha256": "6d893cb485f59df4eb7a5e564aa159b83067a082d09115f46f3408374c5a1a0f",
-      "reason": "Navigation and explicit read-failure states for presentation-critical pages"
+      "afterSha256": "2026b6ad9171b5a379cd495c153dcfdfe32a5846a603ac393ed1cb35e92efe65",
+      "reason": "Navigation and explicit read-failure states for presentation-critical pages; 2026-09-23: reviewed local correction"
     },
     {
       "path": "app/privacidade/page.tsx",
@@ -101,8 +179,8 @@
     {
       "path": "app/resultado-v1/page.tsx",
       "beforeSha256": "97c9456e5c1afb138be91040843c88ec50876da8ca4506a3558c980f8c41d728",
-      "afterSha256": "763720d90e9431c14daf0edcb38c9d6335a86a8b7270a9f06f41157eb50a485f",
-      "reason": "Navigation and explicit read-failure states for presentation-critical pages"
+      "afterSha256": "727474df921fcbdec1afcd5a99843fdc8760e4e708f38075a19952a2dbceacd2",
+      "reason": "Navigation and explicit read-failure states for presentation-critical pages; 2026-09-23: reviewed local correction"
     },
     {
       "path": "app/selecionar-empresa/page.tsx",
@@ -119,8 +197,8 @@
     {
       "path": "app/solucoes/page.tsx",
       "beforeSha256": null,
-      "afterSha256": "4bb07cf7b7bea224801ac59939f626dfccaf694a6233be65d86969431f583afe",
-      "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
+      "afterSha256": "d54675bc579769bd4b7941f114962097e40970251c57ea1a1b1fb0c50f46d0bd",
+      "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects; 2026-09-23: reviewed local correction"
     },
     {
       "path": "components/app-navigation.tsx",
@@ -137,8 +215,20 @@
     {
       "path": "lib/dashboard-overview.ts",
       "beforeSha256": "f840dd9230d63668c6c2db940eb4289368904840d3dbdee9fcfcc64095241474",
-      "afterSha256": "186b8ee405b6fd8be2d023918179c0b2e9138a932f4160060ae6b1907e3ea99c",
-      "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
+      "afterSha256": "d74c05017ff78c71e6f3b4ec9692fda2bf6e59d30b3f444b271be85b8ef6abb2",
+      "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects; 2026-09-23: reviewed local correction"
+    },
+    {
+      "path": "lib/demo-scenario.test.ts",
+      "beforeSha256": "f989c50a24001b8d13416b684b7e91789e041fc86bafdd2104f5090ead9159d5",
+      "afterSha256": "bd66e25d02b1f7e390d399119ccb41543fe332a85e2888a9faab3893187af2ed",
+      "reason": "Reject noncanonical demo source references; 2026-09-23: reviewed local correction"
+    },
+    {
+      "path": "lib/demo-scenario.ts",
+      "beforeSha256": "62237a23bb9692721230fd3280bb4702a6103901ec7d7a12d9cb853adaa6dc60",
+      "afterSha256": "283d14c418cc7181cb5c64304335ec8c1a26f258bfb06a11f646a5de76ef406c",
+      "reason": "2026-09-23: fail-closed company, evidence, invitation or read-boundary correction"
     },
     {
       "path": "lib/page-tenant-context.test.ts",
@@ -153,6 +243,18 @@
       "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
     },
     {
+      "path": "lib/report-provenance.test.ts",
+      "beforeSha256": "82137c923737efc8db67099cebb7ae890f8c20b9471aaf3f5e879ca2303cfe3e",
+      "afterSha256": "3092f54428c52a560d659cb0c9b85dd4b9db285e39f634f5b9476fabe3fe505c",
+      "reason": "2026-09-23: fail-closed company, evidence, invitation or read-boundary correction"
+    },
+    {
+      "path": "lib/report-provenance.ts",
+      "beforeSha256": "85dc22998f3b9580e09c07e377df60963434f16b9ff8639d9e8957389c9fdfd8",
+      "afterSha256": "e4642a98cfc6449b3bcc5ca1432d49a8617d78988fcf39a356b2fb5ad0b84610",
+      "reason": "2026-09-23: fail-closed company, evidence, invitation or read-boundary correction"
+    },
+    {
       "path": "lib/safe-navigation.test.ts",
       "beforeSha256": null,
       "afterSha256": "20d530167f48174128c537c4ff8ee8e8f47fe8307fbed66fa82c88c577906b99",
@@ -163,6 +265,30 @@
       "beforeSha256": null,
       "afterSha256": "8f3fdd5ebd55d60b7d39ba188ba0b81153f2be953c8ec903d6d596e119938f35",
       "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
+    },
+    {
+      "path": "lib/server/trusted-data-access.ts",
+      "beforeSha256": "5cd6a5c4b8ae3af07cfb90eb1f7416cefc1a1d6699d4560715533e232cd09d2c",
+      "afterSha256": "5a05318bfdc017a4a0f53bda1b9c1f3a1d5c96eaeabe77d09d3fe5ddda2ec836",
+      "reason": "2026-09-23: fail-closed company, evidence, invitation or read-boundary correction"
+    },
+    {
+      "path": "lib/tenant-context.ts",
+      "beforeSha256": "10012a31788390a8d107af5c5dd24dcd583908d75c0a3216479f2c75fd843869",
+      "afterSha256": "1660e9fbe51335df50819ba62219ac7d53e60fa0b4b5e1fbbc2f00b245807fea",
+      "reason": "2026-09-23: fail-closed company, evidence, invitation or read-boundary correction"
+    },
+    {
+      "path": "package.json",
+      "beforeSha256": "1c3a2d7ae7220663e53ff5bd1663ae7a8c5d5f2c016416ae0f008410c7fef377",
+      "afterSha256": "d922d7f9f389924d7390015e35c14970ec43e32ef747bd981d0e9b6731f6e7cf",
+      "reason": "Include production baseline and database checks in quality gate"
+    },
+    {
+      "path": "PROJECT-STATE.md",
+      "beforeSha256": "d872785f2e9e30f89ffc11d5a7e13962907c06372e92168c7f2216f9ee92ac3d",
+      "afterSha256": "ef9d8204d58633ded9bbd4ced66c240207e45a4699682ad8a335e7b95c68d4bc",
+      "reason": "Document local navigation and read-failure hardening candidate; 2026-09-23: reviewed local correction"
     },
     {
       "path": "proxy.ts",
@@ -183,52 +309,10 @@
       "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
     },
     {
-      "path": "app/error.tsx",
-      "beforeSha256": null,
-      "afterSha256": "89f682c5f2f3c11163acf3c4d17f9f2f2b4eab21785560ea2b9401c915b917e5",
-      "reason": "Explicit loading and recovery state for presentation-critical pages"
-    },
-    {
-      "path": "app/loading.tsx",
-      "beforeSha256": null,
-      "afterSha256": "f786ec80eb63bbccc54b854b9a8e2344d140ae958daa7ce951358dd5deb3e366",
-      "reason": "Explicit loading and recovery state for presentation-critical pages"
-    },
-    {
-      "path": "PROJECT-STATE.md",
-      "beforeSha256": "d872785f2e9e30f89ffc11d5a7e13962907c06372e92168c7f2216f9ee92ac3d",
-      "afterSha256": "a243c02ae8ee556ab8c980283935cfe19412a3a455729718d7b042ee3d289d34",
-      "reason": "Document local navigation and read-failure hardening candidate"
-    },
-    {
-      "path": "app/globals.css",
-      "beforeSha256": "ab2722bb58dfa5071d0298a2e2ac05b358f390fa14ea94f18b53282692506fb8",
-      "afterSha256": "bdb0e5e346cf9110a3aaab73cd21ae2b99d31ef0bb46eef2a292949b9a5da172",
-      "reason": "Business Passport uses contextual shell and explicit verification states"
-    },
-    {
-      "path": "app/diagnostico-v1/journey.tsx",
-      "beforeSha256": "5b6f522e2f28448daa581b29d4afc8e3edcd3958de08feeff7e64b7ee1cf23a6",
-      "afterSha256": "3700fadc3ea4c653c731e55a5a8a61ef61bd01005c3800e2c0a6f19b12f2da7e",
-      "reason": "Prevent automatic attribution of demo sources to every questionnaire answer"
-    },
-    {
-      "path": "lib/demo-scenario.test.ts",
-      "beforeSha256": "f989c50a24001b8d13416b684b7e91789e041fc86bafdd2104f5090ead9159d5",
-      "afterSha256": "27aeb63f6f22f5da9fb691338b89d7ed8e4a454554694d6ebe7d0c1b0e756585",
-      "reason": "Reject noncanonical demo source references"
-    },
-    {
-      "path": "package.json",
-      "beforeSha256": "1c3a2d7ae7220663e53ff5bd1663ae7a8c5d5f2c016416ae0f008410c7fef377",
-      "afterSha256": "d922d7f9f389924d7390015e35c14970ec43e32ef747bd981d0e9b6731f6e7cf",
-      "reason": "Include production baseline and database checks in quality gate"
-    },
-    {
       "path": "scripts/check-production-scale-baseline.mjs",
       "beforeSha256": "d3757a69ffbe4e2b1506b1b1c52d00887978eff2bc1d3cd447862df347277107",
-      "afterSha256": "35a64499a40157b0e247fed5143f4cd8c8e4b0b281c4fb4926c76535f2a689e3",
-      "reason": "Account for the controlled demo evidence API in the route baseline"
+      "afterSha256": "c0efdcb7af5ecb6fc06659a0849307fcf3cb8f79e97879c6e9a96520dec50d2a",
+      "reason": "Account for the controlled demo evidence API in the route baseline; 2026-09-23: reviewed local correction"
     }
   ]
 }

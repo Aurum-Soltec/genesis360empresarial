@@ -6,6 +6,7 @@ import { PrintReportButton } from "@/components/print-report-button";
 import {
   answersWithEvidence,
   evidenceIdsFromAnswers,
+  evidenceSetComplete,
   verifiedEvidenceCount,
 } from "@/lib/report-provenance";
 import { requirePageTenantContext } from "@/lib/page-tenant-context";
@@ -13,6 +14,7 @@ import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { buildExecutivePlan, evidenceQualityMessage } from "@/lib/report-insights";
 import { buildDemoSolutionPreview } from "@/lib/demo-solution-preview";
 import { isDemoTenantAllowed } from "@/lib/feature-flags";
+import { selectUniqueTenantCompany } from "@/lib/server/company-selection";
 
 const dimensionLabels: Record<string, string> = {
   EST: "Estratégia",
@@ -79,11 +81,15 @@ export default async function ResultadoV1({
 
   const { data: company, error: companyError } = await db
     .from("companies")
-    .select("trade_name")
+    .select("trade_name,fictional")
     .eq("tenant_id", ctx.tenantId)
     .eq("id", diagnosticRow.company_id)
     .maybeSingle();
   if (companyError) throw new Error("REPORT_COMPANY_READ_FAILED");
+  const demoSelection = company?.fictional && isDemoTenantAllowed(ctx.tenantId)
+    ? await selectUniqueTenantCompany(db, ctx.tenantId, true)
+    : null;
+  const isCurrentDemoCompany = demoSelection?.status === "ready" && demoSelection.company.id === diagnosticRow.company_id;
 
   const { data: scores, error: scoresError } = await db
     .from("score_results")
@@ -132,7 +138,8 @@ export default async function ResultadoV1({
     : { data: [], error: null };
 
   const provenanceAvailable =
-    !answerEvidenceError && !diagnosticEvidenceLinksError && !evidenceError;
+    !answerEvidenceError && !diagnosticEvidenceLinksError && !evidenceError &&
+    evidenceSetComplete(evidenceIds, evidenceRows);
   const evidencedAnswers = answersWithEvidence(answerEvidenceRows);
   const verifiedEvidence = verifiedEvidenceCount(evidenceRows);
   const ruleVersions = [...new Set((scores ?? []).map((score) => score.rule_version).filter(Boolean))];
@@ -150,14 +157,14 @@ export default async function ResultadoV1({
     dimension: score.dimension,
     score: score.score === null ? null : Number(score.score),
   })));
-  const demoSolutionPreview = isDemoTenantAllowed(ctx.tenantId)
+  const demoSolutionPreview = isCurrentDemoCompany
     ? buildDemoSolutionPreview((scores ?? []).map((score) => ({
         dimension: score.dimension,
         score: score.score === null ? null : Number(score.score),
       })))
     : [];
   const evidenceQuality = provenanceAvailable
-    ? evidenceQualityMessage(evidenceIds.length, verifiedEvidence)
+    ? evidenceQualityMessage(evidenceRows?.length ?? 0, verifiedEvidence)
     : "A proveniência está indisponível; nenhuma conclusão sobre ausência de evidência foi assumida.";
 
   return (
@@ -421,7 +428,7 @@ export default async function ResultadoV1({
             </div>
             <div>
               <span>Fontes registradas no diagnóstico</span>
-              <strong>{provenanceAvailable ? evidenceIds.length : "Indisponível"}</strong>
+              <strong>{provenanceAvailable ? evidenceRows?.length ?? 0 : "Indisponível"}</strong>
             </div>
             <div>
               <span>Fontes verificadas</span>
@@ -433,7 +440,7 @@ export default async function ResultadoV1({
             Referência declarada não comprova que a fonte sustenta a resposta. A
             pertinência e a verificação devem ser confirmadas antes de usar esta
             leitura como fato documental.
-            {isDemoTenantAllowed(ctx.tenantId) ? " Neste cenário, as fontes são fictícias." : ""}
+            {isCurrentDemoCompany ? " Neste cenário, as fontes são fictícias." : ""}
           </p>
 
           {!provenanceAvailable ? (

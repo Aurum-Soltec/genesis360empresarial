@@ -1,16 +1,31 @@
 import { AppShell } from "@/components/app-shell";
 import { requirePageTenantContext } from "@/lib/page-tenant-context";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { isDemoTenantAllowed } from "@/lib/feature-flags";
+import { selectUniqueTenantCompany } from "@/lib/server/company-selection";
 import { PriorityActions } from "./priority-actions";
 
 export default async function PrioridadesPage() {
   const ctx = await requirePageTenantContext("/prioridades");
 
   const db = await createSupabaseServerClient();
+  const demoTenant = isDemoTenantAllowed(ctx.tenantId);
+  const selection = await selectUniqueTenantCompany(db, ctx.tenantId, demoTenant);
+  if (selection.status !== "ready") return (
+    <AppShell>
+      <section className="card empty-state" aria-labelledby="priorities-company-required">
+        <p className="kicker">Prioridades</p>
+        <h1 id="priorities-company-required">{selection.status === "ambiguous" ? "Seleção da empresa necessária" : "A empresa ainda não está vinculada."}</h1>
+        <p>{selection.status === "ambiguous" ? "Há mais de uma empresa elegível neste tenant. As prioridades não podem ser atribuídas a uma delas sem seleção explícita." : demoTenant ? "O roteiro demonstrativo requer uma empresa fictícia vinculada ao tenant." : "Peça ao administrador para provisionar uma empresa antes de consultar prioridades."}</p>
+      </section>
+    </AppShell>
+  );
+  const companyId = selection.company.id;
   const { data: diagnostic, error: diagnosticError } = await db
     .from("diagnostics")
     .select("id,company_id")
     .eq("tenant_id", ctx.tenantId)
+    .eq("company_id", companyId)
     .eq("status", "scored")
     .order("created_at", { ascending: false })
     .limit(1)
@@ -22,6 +37,7 @@ export default async function PrioridadesPage() {
           .from("pain_findings")
           .select("id,title,dimension,severity,confidence,gap_summary")
           .eq("tenant_id", ctx.tenantId)
+          .eq("company_id", companyId)
           .eq("diagnostic_id", diagnostic.id)
           .order("severity", { ascending: false })
           .limit(3)
@@ -35,6 +51,7 @@ export default async function PrioridadesPage() {
           .from("decision_records")
           .select("id,pain_finding_id,problem,confidence,recommendation,validation_plan")
           .eq("tenant_id", ctx.tenantId)
+          .eq("company_id", companyId)
           .in("pain_finding_id", painIds)
           .order("created_at", { ascending: false })
     : { data: [], error: null };
@@ -57,6 +74,7 @@ export default async function PrioridadesPage() {
           .from("missions")
           .select("id,decision_record_id,status")
           .eq("tenant_id", ctx.tenantId)
+          .eq("company_id", companyId)
           .in("decision_record_id", decisionIds)
           .order("created_at", { ascending: false })
     : { data: [], error: null };

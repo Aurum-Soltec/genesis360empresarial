@@ -2,6 +2,48 @@
 
 Atualização: **2026-09-23**. Candidato hospedado: **V1.2.1 RC2 + Production & Scale Foundation**; as correções locais abaixo ainda não foram promovidas.
 
+## Candidato local consolidado — correções funcionais e de segurança de 2026-09-23
+
+A branch `codex/navigation-pages-fix` recebeu uma nova leva **local, não
+publicada**. Ela separa e torna operacionais as telas de Passport e Histórico,
+incluindo edição governada dos sete campos essenciais, versões declaradas e
+Timeline legível. Home, Indicadores, Prioridades, Missões, Documentos,
+Diagnóstico, Conselho e cockpit da demo deixam de escolher a primeira empresa
+arbitrariamente: no tenant demonstrativo usam somente a única empresa fictícia;
+em contexto ambíguo falham fechado. Relatório e prévia de soluções fictícias
+ficam vinculados ao diagnóstico dessa empresa. Nenhum dado real ganha rótulo
+ou pacote fictício automaticamente.
+
+A API reserva as referências `DEMO:` para o pacote controlado e confere seu
+conteúdo, finalidade e estado antes de reutilizar ou contar fontes. O relatório
+deixa de apresentar proveniência completa quando referências não foram
+carregadas. Falhas de Auth, membership e consultas de missão/decisão deixam de
+ser confundidas com ausência de registro. O convite administrado ganhou etapas
+de log sanitizadas, ainda sem identificação da causa do 502 hospedado. A
+Timeline recebeu a migration append-only `0024`: eventos de fatos pessoais,
+financeiros ou restritos agora exigem a mesma fronteira de leitura do fato;
+eventos comuns continuam acessíveis ao membro do tenant. A análise estrutural
+e o rollback estão em
+`docs/audit-2026-09-23/BUSINESS_FACT_TIMELINE_READ_BOUNDARY_2026-09-23.md`.
+
+Evidência local do candidato: `pnpm quality` **PASS**, incluindo **127/127
+Vitest**, **34/34 testes nativos**, TypeScript, ESLint, lock, contratos,
+integridade, 24 migrations, checagens estáticas de segurança e build Next.js.
+`supabase test db` passou **106/106 pgTAP** em 14 arquivos após aplicação local
+de `0024`. Nenhum resultado local concede
+PASS ao staging ou ao HSP-4. O relatório operacional vigente é
+`docs/audit-2026-09-23/HSP4_OPERATIONAL_RECHECK_2026-09-23.md`:
+**NO-GO** para piloto e produção aberta. As cinco flags sensíveis seguem
+desligadas. `PILOT-1` e Waves posteriores não foram iniciadas.
+
+Permanecem pendentes: promoção e regressão hospedada do artefato exato;
+convite fim a fim; backup gerenciado/RPO e drill de alerta com reconhecimento;
+SLO p95 de 100 tenants; aceite do inventário de licenças; seletor explícito de
+empresa para tenants com várias empresas reais; análise de arquivos reais;
+causalidade documental por conclusão; aplicação de benefícios por plano; e
+as Waves funcionais posteriores previstas no roadmap. A demo continua um
+cenário **sintético**, sem promessa de precisão documental certificada.
+
 ## Auditoria do dossiê comercial e correções locais — 2026-09-23
 
 O dossiê comercial de 03/09 foi reconciliado com as 26 promessas, o código e a
