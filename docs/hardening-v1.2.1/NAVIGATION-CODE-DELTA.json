@@ -1,5 +1,5 @@
 {
-  "version": "navigation-read-failure-2026-09-23",
+  "version": "navigation-commercial-readiness-2026-09-23",
   "baselineCommit": "3c76926df3b8ca705f0f54f52146373164bd7037",
   "files": [
     {
@@ -29,7 +29,7 @@
     {
       "path": "app/demonstracao/page.tsx",
       "beforeSha256": "1cbffcca7c7d41af086271f2ef0b6ae66cd1f1ad2587eadbcfcdd258af57af7b",
-      "afterSha256": "2ba3fcb16ec31420dc2649b6d2043cbdbb6d3d2f9677202bcf2049ded3cc6645",
+      "afterSha256": "d91c68e7c862c59fa1bf024a96d536e54c70d0666f0d4f3ed91fa7ed3f305c64",
       "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
     },
     {
@@ -41,7 +41,7 @@
     {
       "path": "app/diagnostico-v1/page.tsx",
       "beforeSha256": "f04110ae54f7df87cb842467cf962288d9001a74a9a90eb2b5acf4e7a41fcbf8",
-      "afterSha256": "c3b74d999bef4de28f837827262b886ba1af4b0bf6988c226d5ee1b09eb95b66",
+      "afterSha256": "274844d12146afb5a674bebd32322e4088de1b69ae1aee8b7b67ef70eaff0541",
       "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
     },
     {
@@ -77,7 +77,7 @@
     {
       "path": "app/page.tsx",
       "beforeSha256": "4dd8dfe30b1e78a3561437b521f168317bb2faff6ebbfe32ca257a47386b844d",
-      "afterSha256": "32078f075dd6d6f13fd387f910a5f3933deddc633b3edcdf109aa0ae3370cdfb",
+      "afterSha256": "68a6eb9bf946701850c74689b2a46d9d7ca586767dce21a738ef86abecdd9fef",
       "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
     },
     {
@@ -101,7 +101,7 @@
     {
       "path": "app/resultado-v1/page.tsx",
       "beforeSha256": "97c9456e5c1afb138be91040843c88ec50876da8ca4506a3558c980f8c41d728",
-      "afterSha256": "103186504da6fd4e2f582b482439fc0b00c96835867106c884e5307b98a68394",
+      "afterSha256": "763720d90e9431c14daf0edcb38c9d6335a86a8b7270a9f06f41157eb50a485f",
       "reason": "Navigation and explicit read-failure states for presentation-critical pages"
     },
     {
@@ -173,7 +173,7 @@
     {
       "path": "scripts/check-design-system.mjs",
       "beforeSha256": "b7859cf6451a01f039b3c6f084f70e51627ea240cbf1e085156684808e840007",
-      "afterSha256": "9aeb645d28c7cc93ff7454cf306529a2a7dbee46176898f731ee53dcfac1846d",
+      "afterSha256": "7e2d3799c19d83505d2ed38225fe4c6591d59b8b9a4efa1a0106e16b8234332e",
       "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
     },
     {
@@ -197,14 +197,38 @@
     {
       "path": "PROJECT-STATE.md",
       "beforeSha256": "d872785f2e9e30f89ffc11d5a7e13962907c06372e92168c7f2216f9ee92ac3d",
-      "afterSha256": "05096a9e64d5c1332337c653befae6d5e37822b93492e5563069bb3ab4310bac",
+      "afterSha256": "a243c02ae8ee556ab8c980283935cfe19412a3a455729718d7b042ee3d289d34",
       "reason": "Document local navigation and read-failure hardening candidate"
     },
     {
       "path": "app/globals.css",
       "beforeSha256": "ab2722bb58dfa5071d0298a2e2ac05b358f390fa14ea94f18b53282692506fb8",
-      "afterSha256": "f07cc859087aa776536c22cbb574419c5a37faf96bd28697d6ef17cfcc89cb64",
+      "afterSha256": "bdb0e5e346cf9110a3aaab73cd21ae2b99d31ef0bb46eef2a292949b9a5da172",
       "reason": "Business Passport uses contextual shell and explicit verification states"
+    },
+    {
+      "path": "app/diagnostico-v1/journey.tsx",
+      "beforeSha256": "5b6f522e2f28448daa581b29d4afc8e3edcd3958de08feeff7e64b7ee1cf23a6",
+      "afterSha256": "3700fadc3ea4c653c731e55a5a8a61ef61bd01005c3800e2c0a6f19b12f2da7e",
+      "reason": "Prevent automatic attribution of demo sources to every questionnaire answer"
+    },
+    {
+      "path": "lib/demo-scenario.test.ts",
+      "beforeSha256": "f989c50a24001b8d13416b684b7e91789e041fc86bafdd2104f5090ead9159d5",
+      "afterSha256": "27aeb63f6f22f5da9fb691338b89d7ed8e4a454554694d6ebe7d0c1b0e756585",
+      "reason": "Reject noncanonical demo source references"
+    },
+    {
+      "path": "package.json",
+      "beforeSha256": "1c3a2d7ae7220663e53ff5bd1663ae7a8c5d5f2c016416ae0f008410c7fef377",
+      "afterSha256": "d922d7f9f389924d7390015e35c14970ec43e32ef747bd981d0e9b6731f6e7cf",
+      "reason": "Include production baseline and database checks in quality gate"
+    },
+    {
+      "path": "scripts/check-production-scale-baseline.mjs",
+      "beforeSha256": "d3757a69ffbe4e2b1506b1b1c52d00887978eff2bc1d3cd447862df347277107",
+      "afterSha256": "35a64499a40157b0e247fed5143f4cd8c8e4b0b281c4fb4926c76535f2a689e3",
+      "reason": "Account for the controlled demo evidence API in the route baseline"
     }
   ]
 }

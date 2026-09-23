@@ -123,6 +123,26 @@ const contrastPairs = [
   ["ink / lime", "#082B29", "#7ED321", 7],
 ];
 
+function cssColor(variable) {
+  const match = css.match(new RegExp(`\\-\\-${variable}:\\s*(#[0-9a-fA-F]{6})\\s*;`));
+  if (!match) {
+    console.error(`DESIGN COLOR TOKEN MISSING: --${variable}`);
+    process.exit(1);
+  }
+  return match[1];
+}
+
+const faint = cssColor("g-faint");
+for (const surface of ["g-surface", "g-canvas", "g-surface-soft", "g-surface-strong", "g-green-soft"]) {
+  contrastPairs.push([`faint text / ${surface}`, faint, cssColor(surface), 4.5]);
+}
+contrastPairs.push(["focus indicator / white", cssColor("g-focus"), cssColor("g-surface"), 3]);
+
+if (!css.includes("outline: 3px solid var(--g-focus)")) {
+  console.error("FOCUS CONTRACT MISSING: visible 3px focus indicator");
+  process.exit(1);
+}
+
 for (const [label, fg, bg, minimum] of contrastPairs) {
   const ratio = contrast(fg, bg);
   if (ratio < minimum) {

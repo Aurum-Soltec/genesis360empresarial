@@ -26,7 +26,10 @@ collectRoutes("app/api");
 
 if (migrations.length !== 23) fail(`expected 23 migrations, found ${migrations.length}`);
 if (dbTests.length !== 13) fail(`expected 13 database test files, found ${dbTests.length}`);
-if (apiRoutes.length !== 22) fail(`expected 22 API routes, found ${apiRoutes.length}`);
+if (apiRoutes.length !== 23) fail(`expected 23 API routes, found ${apiRoutes.length}`);
+if (!apiRoutes.some((route) => route.replaceAll("\\", "/") === "app/api/demo/evidence/route.ts")) {
+  fail("controlled demo evidence API route is missing from the reconciled baseline");
+}
 
 const stories = fs.readFileSync(
   "docs/canonical/v1/delivery/STORIES_CATALOG.csv",

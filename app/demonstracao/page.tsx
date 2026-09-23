@@ -19,16 +19,20 @@ export default async function DemonstracaoPage() {
     </AppShell>
   );
   const db = await createSupabaseServerClient();
-  const { data: company } = await db.from("companies").select("id,trade_name,sector").eq("tenant_id", ctx.tenantId).limit(1).maybeSingle();
-  const { data: diagnostics } = company
+  const { data: company, error: companyError } = await db.from("companies").select("id,trade_name,sector").eq("tenant_id", ctx.tenantId).limit(1).maybeSingle();
+  if (companyError) throw new Error("DEMO_COMPANY_READ_FAILED");
+  const { data: diagnostics, error: diagnosticsError } = company
     ? await db.from("diagnostics").select("id,status,profile_code,growth_score,confidence").eq("tenant_id", ctx.tenantId).eq("company_id", company.id).order("created_at", { ascending: false }).limit(10)
-    : { data: [] };
-  const { data: evidence } = company
+    : { data: [], error: null };
+  if (diagnosticsError) throw new Error("DEMO_DIAGNOSTICS_READ_FAILED");
+  const { data: evidence, error: evidenceError } = company
     ? await db.from("evidence_items").select("id,source_ref").eq("tenant_id", ctx.tenantId).eq("company_id", company.id).like("source_ref", "DEMO:%")
-    : { data: [] };
+    : { data: [], error: null };
+  if (evidenceError) throw new Error("DEMO_EVIDENCE_READ_FAILED");
   const scored = diagnostics?.find((item) => item.status === "scored");
   const draft = diagnostics?.find((item) => item.status === "draft");
   const evidenceCount = demoEvidenceLoadedCount((evidence ?? []).map((item) => item.source_ref));
+  const canViewAdministration = canAccessDemoAdministration(ctx.role);
   const steps = [
     { number: "01", title: "Empresa fictícia", detail: company ? `${company.trade_name}${company.sector ? ` · ${company.sector}` : ""}` : "Empresa ainda não cadastrada", ready: Boolean(company), href: "/passaporte", action: "Ver empresa" },
     { number: "02", title: "Documentação", detail: `${evidenceCount} de 3 fontes fictícias registradas`, ready: evidenceCount >= 3, href: "/documentos", action: "Enviar pacote" },
@@ -36,7 +40,7 @@ export default async function DemonstracaoPage() {
     { number: "04", title: "Relatório executivo", detail: scored ? `Growth Score ${scored.growth_score ?? "—"} · confiança ${Math.round(Number(scored.confidence ?? 0))}%` : "Gerado após a conclusão", ready: Boolean(scored), href: scored ? `/resultado-v1?diagnostic=${scored.id}` : "/diagnostico-v1", action: "Abrir relatório" },
     { number: "05", title: "Soluções compatíveis", detail: scored ? "Serviços e empresas fictícias explicados pela menor maturidade" : "Disponíveis após o relatório", ready: Boolean(scored), href: scored ? `/demonstracao/solucoes?diagnostic=${scored.id}` : "/diagnostico-v1", action: "Ver soluções" },
     { number: "06", title: "Conselho Genesis", detail: scored ? "Sínteses rastreáveis disponíveis" : "Disponível após o relatório", ready: Boolean(scored), href: "/conselho", action: "Interagir" },
-    { number: "07", title: "Central administrativa", detail: canAccessDemoAdministration(ctx.role) ? `Controle do tenant disponível para ${ctx.role}` : "Exige perfil owner ou admin", ready: canAccessDemoAdministration(ctx.role), href: "/demonstracao/administracao", action: "Abrir central" },
+    { number: "07", title: "Central administrativa", detail: canViewAdministration ? `Controle do tenant disponível para ${ctx.role}` : "Exige perfil owner ou admin", ready: canViewAdministration, href: canViewAdministration ? "/demonstracao/administracao" : null, action: "Abrir central" },
   ];
 
   return (
@@ -60,8 +64,8 @@ export default async function DemonstracaoPage() {
         {steps.map((step) => (
           <li key={step.number} className={step.ready ? "is-ready" : ""}>
             <span className="demo-step-number">{step.number}</span>
-            <div><span className="demo-step-status">{step.ready ? "Pronto" : "Próximo passo"}</span><h2>{step.title}</h2><p>{step.detail}</p></div>
-            <Link className={step.ready ? "button button-secondary" : "button button-primary"} href={step.href}>{step.action}</Link>
+            <div><span className="demo-step-status">{step.ready ? "Pronto" : step.href ? "Próximo passo" : "Acesso restrito"}</span><h2>{step.title}</h2><p>{step.detail}</p></div>
+            {step.href ? <Link className={step.ready ? "button button-secondary" : "button button-primary"} href={step.href}>{step.action}</Link> : null}
           </li>
         ))}
       </ol>

@@ -1,6 +1,32 @@
 # PROJECT-STATE — Genesis 360 Empresarial
 
-Atualização: **2026-09-22**. Candidato: **V1.2.1 RC2 + Production & Scale Foundation em staging hospedado**.
+Atualização: **2026-09-23**. Candidato hospedado: **V1.2.1 RC2 + Production & Scale Foundation**; as correções locais abaixo ainda não foram promovidas.
+
+## Auditoria do dossiê comercial e correções locais — 2026-09-23
+
+O dossiê comercial de 03/09 foi reconciliado com as 26 promessas, o código e a
+sequência aprovada em `docs/audit-2026-09-23/RECONCILIACAO_DOSSIE_COMERCIAL_2026-09-23.md`.
+A visão é compatível com a fundação modular, mas benchmark, inteligência para
+ecossistemas, progressão dos seis níveis, backoffice global, benefícios por plano
+e análise de documentos reais não têm entrega operacional integral comprovada.
+Agentic e memória empresarial estão após V1-GA; as cinco flags sensíveis seguem
+desligadas. HSP-4 continua **NO-GO**.
+
+Uma primeira correção **somente local** remove cinco superfícies legadas com
+conteúdo fixo ou exposição fora de flag; condiciona o CTA da administração ao
+papel correto; mostra falha de leitura em vez de ausência de dados; deixa de
+atribuir as três fontes fictícias automaticamente a cada resposta; esclarece no
+relatório a diferença entre referência declarada e fonte verificada; e ajusta
+contraste, foco, escala móvel e semântica de confiança ausente. O gate de
+baseline agora inventaria as 23 rotas API e faz parte de `pnpm quality`.
+
+Evidência local deste candidato: `pnpm quality` passou com 34/34 testes nativos,
+82/82 Vitest, TypeScript, lint, contratos, integridade, baseline e build.
+Após a inclusão de quatro testes para as rotas legadas, a suíte Vitest completa
+passou com **86/86**, além de TypeScript, lint e `pnpm work:check` novamente.
+Falta publicar o artefato exato mediante autorização e repetir os gates de
+runtime hospedado. A execução histórica de 50 respostas
+permanece no staging com referências antigas e não foi reescrita.
 
 ## Candidato local de UX e leitura — 2026-09-23, ainda não promovido
 

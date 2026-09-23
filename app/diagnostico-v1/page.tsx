@@ -3,12 +3,15 @@ import { AppShell } from "@/components/app-shell";
 import { requirePageTenantContext } from "@/lib/page-tenant-context";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { isDemoTenantAllowed } from "@/lib/feature-flags";
+import { DemoEvidenceTemplates, demoEvidenceLoadedCount } from "@/lib/demo-scenario";
 import DiagnosticJourney from "./journey";
 
 export default async function DiagnosticoV1Page() {
   const ctx = await requirePageTenantContext("/diagnostico-v1");
   const db=await createSupabaseServerClient();
-  const {data:company}=await db.from("companies").select("id,trade_name").eq("tenant_id",ctx.tenantId).limit(1).maybeSingle();
+  const { data: company, error: companyError } = await db.from("companies")
+    .select("id,trade_name").eq("tenant_id",ctx.tenantId).limit(1).maybeSingle();
+  if (companyError) throw new Error("DIAGNOSTIC_COMPANY_READ_FAILED");
   if (!company) return (
     <AppShell>
       <section className="card empty-state" aria-labelledby="diagnostic-company-required">
@@ -20,18 +23,18 @@ export default async function DiagnosticoV1Page() {
     </AppShell>
   );
   const demoAllowed = isDemoTenantAllowed(ctx.tenantId);
-  const { data: demoEvidence } = demoAllowed
+  const { data: demoEvidence, error: demoEvidenceError } = demoAllowed
     ? await db
         .from("evidence_items")
-        .select("id")
+        .select("source_ref")
         .eq("tenant_id", ctx.tenantId)
         .eq("company_id", company.id)
-        .like("source_ref", "DEMO:%")
-        .limit(3)
-    : { data: [] };
+        .in("source_ref", DemoEvidenceTemplates.map((item) => item.sourceRef))
+    : { data: [], error: null };
+  if (demoEvidenceError) throw new Error("DIAGNOSTIC_DEMO_EVIDENCE_READ_FAILED");
   return <DiagnosticJourney
     companyId={company.id}
     companyName={company.trade_name}
-    demoEvidenceIds={(demoEvidence ?? []).map((item) => item.id)}
+    demoSourceCount={demoEvidenceLoadedCount((demoEvidence ?? []).map((item) => item.source_ref))}
   />;
 }

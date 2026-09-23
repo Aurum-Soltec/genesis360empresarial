@@ -22,9 +22,11 @@ describe("controlled demo scenario", () => {
       DemoEvidenceTemplates[0].sourceRef,
       DemoEvidenceTemplates[1].sourceRef,
       "DEMO:legacy-record",
+      `${DemoEvidenceTemplates[0].sourceRef}-extra`,
       null,
     ])).toBe(2);
     expect(isCanonicalDemoEvidence(DemoEvidenceTemplates[0].sourceRef)).toBe(true);
     expect(isCanonicalDemoEvidence("DEMO:legacy-record")).toBe(false);
+    expect(isCanonicalDemoEvidence(`${DemoEvidenceTemplates[0].sourceRef}-extra`)).toBe(false);
   });
 });

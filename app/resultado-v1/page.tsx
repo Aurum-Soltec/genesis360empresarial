@@ -210,7 +210,8 @@ export default async function ResultadoV1({
               aria-label="Confiabilidade da análise"
               aria-valuemin={0}
               aria-valuemax={100}
-              aria-valuenow={confidence ?? 0}
+              aria-valuenow={confidence ?? undefined}
+              aria-valuetext={confidence === null ? "Sem leitura" : undefined}
             >
               <span style={{ width: `${confidence ?? 0}%` }} />
             </div>
@@ -402,7 +403,7 @@ export default async function ResultadoV1({
           <div className="section-heading-row">
             <div>
               <span className="section-eyebrow">Rastreabilidade</span>
-              <h2 id="report-provenance-title">Como esta leitura foi sustentada</h2>
+              <h2 id="report-provenance-title">Origem e limites da leitura</h2>
             </div>
             <Link className="text-action report-screen-only" href="/documentos">
               Revisar evidências
@@ -415,18 +416,25 @@ export default async function ResultadoV1({
               <strong>{answerEvidenceRows?.length ?? "Indisponível"}</strong>
             </div>
             <div>
-              <span>Respostas com evidência</span>
+              <span>Respostas com referência declarada</span>
               <strong>{provenanceAvailable ? evidencedAnswers : "Indisponível"}</strong>
             </div>
             <div>
-              <span>Fontes vinculadas</span>
+              <span>Fontes registradas no diagnóstico</span>
               <strong>{provenanceAvailable ? evidenceIds.length : "Indisponível"}</strong>
             </div>
             <div>
-              <span>Evidências verificadas</span>
+              <span>Fontes verificadas</span>
               <strong>{provenanceAvailable ? verifiedEvidence : "Indisponível"}</strong>
             </div>
           </div>
+
+          <p className="report-provenance-note">
+            Referência declarada não comprova que a fonte sustenta a resposta. A
+            pertinência e a verificação devem ser confirmadas antes de usar esta
+            leitura como fato documental.
+            {isDemoTenantAllowed(ctx.tenantId) ? " Neste cenário, as fontes são fictícias." : ""}
+          </p>
 
           {!provenanceAvailable ? (
             <div className="precision-empty compact">

@@ -129,7 +129,8 @@ export default async function DashboardPage() {
                 aria-label="Confiabilidade média da leitura"
                 aria-valuemin={0}
                 aria-valuemax={100}
-                aria-valuenow={averageConfidence ?? 0}
+                aria-valuenow={averageConfidence ?? undefined}
+                aria-valuetext={averageConfidence === null ? "Sem leitura" : undefined}
               >
                 <span style={{ width: `${averageConfidence ?? 0}%` }} />
               </div>
