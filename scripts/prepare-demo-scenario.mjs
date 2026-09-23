@@ -1,11 +1,12 @@
 import fs from "node:fs";
 import path from "node:path";
 import { chromium } from "playwright-core";
+import { requestDemoEvidencePackage } from "./demo-package-client.mjs";
 
 const baseURL = (process.env.DEMO_BASE_URL ?? "http://127.0.0.1:3000").replace(/\/$/, "");
 const email = process.env.DEMO_EMAIL;
 const password = process.env.DEMO_PASSWORD;
-const tenantName = process.env.DEMO_TENANT_NAME;
+const tenantName = process.env.DEMO_TENANT_NAME?.trim();
 const profile = process.env.DEMO_PROFILE === "FULL" ? "FULL" : "ESSENTIAL";
 const executablePath = process.env.CHROME_PATH ??
   "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe";
@@ -118,10 +119,18 @@ try {
   ]);
 
   const tenantButtons = page.locator("button.tenant-choice");
-  if (await tenantButtons.count() === 0) throw new Error("No active tenant is available for the demo user");
-  const tenantButton = tenantName
-    ? page.getByRole("button", { name: new RegExp(tenantName, "i") }).first()
-    : tenantButtons.first();
+  if (await tenantButtons.count() === 0) {
+    throw new Error("No active tenant is available for the demo user");
+  }
+  const matchingTenants = tenantName
+    ? tenantButtons.filter({ has: page.getByText(tenantName, { exact: true }) })
+    : tenantButtons;
+  if (await matchingTenants.count() !== 1) {
+    throw new Error(tenantName
+      ? "The named demo tenant must match exactly one active tenant"
+      : "DEMO_TENANT_NAME is required when the demo user has multiple active tenants");
+  }
+  const tenantButton = matchingTenants.first();
   await Promise.all([
     page.waitForURL(`${baseURL}/`),
     tenantButton.click(),
@@ -143,47 +152,12 @@ try {
   const diagnosticId = startBody.diagnostic.id;
   const companyId = startRequest.companyId;
 
-  const evidenceTemplates = [
-    {
-      evidenceType: "user_declaration",
-      summary: "Direcionadores estratégicos declarados pela liderança — cenário fictício",
-      payload: { demo: true, documentType: "strategic_brief", content: "Crescer com previsibilidade, reduzir retrabalho comercial e melhorar a disciplina de caixa.", disclaimer: "Dados integralmente fictícios para demonstração controlada." },
-      sourceRef: "DEMO:direcionadores-estrategicos-v1.txt",
-    },
-    {
-      evidenceType: "metric",
-      summary: "Indicadores financeiros e operacionais — cenário fictício",
-      payload: { demo: true, documentType: "management_metrics", period: "2026-Q3", metrics: { revenueTrend: "stable", cashVisibilityDays: 30, reworkIndex: "moderate" }, disclaimer: "Dados integralmente fictícios para demonstração controlada." },
-      sourceRef: "DEMO:indicadores-2026-q3.csv",
-    },
-    {
-      evidenceType: "observation",
-      summary: "Mapa de processos e riscos operacionais — cenário fictício",
-      payload: { demo: true, documentType: "process_and_risk_map", observations: ["Handoffs manuais", "Indicadores dispersos", "Ritos gerenciais irregulares"], disclaimer: "Dados integralmente fictícios para demonstração controlada." },
-      sourceRef: "DEMO:mapa-processos-riscos-v1.json",
-    },
-  ];
-
-  const existingEvidence = await apiJson(page, "GET", `/api/evidence?companyId=${companyId}`);
-  const existingBySourceRef = new Map(
-    (existingEvidence.evidence ?? []).map((item) => [item.source_ref, item.id]),
+  const evidenceIds = await requestDemoEvidencePackage(
+    apiJson,
+    page,
+    companyId,
+    diagnosticId,
   );
-  const evidenceIds = [];
-  for (const item of evidenceTemplates) {
-    const existingId = existingBySourceRef.get(item.sourceRef);
-    if (existingId) {
-      evidenceIds.push(existingId);
-      continue;
-    }
-    const created = await apiJson(page, "POST", "/api/evidence", {
-      companyId,
-      ...item,
-      sensitivity: "internal",
-      purposeCodes: ["DEMO_CONTROLLED"],
-      link: { subjectType: "diagnostic", subjectId: diagnosticId, relation: "supports" },
-    });
-    evidenceIds.push(created.evidence.id);
-  }
 
   let answeredCount = 0;
   for (; answeredCount < 100; answeredCount += 1) {

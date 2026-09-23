@@ -287,8 +287,8 @@
     {
       "path": "PROJECT-STATE.md",
       "beforeSha256": "d872785f2e9e30f89ffc11d5a7e13962907c06372e92168c7f2216f9ee92ac3d",
-      "afterSha256": "ef9d8204d58633ded9bbd4ced66c240207e45a4699682ad8a335e7b95c68d4bc",
-      "reason": "Document local navigation and read-failure hardening candidate; 2026-09-23: reviewed local correction"
+      "afterSha256": "225cf7ddeb50955b6027e12ae26b60895aa81aaee82d2564a008c8a2ec6eed52",
+      "reason": "Document local navigation and read-failure hardening candidate; 2026-09-23: reviewed local correction; CI: hash uses Git LF blob rather than mixed Windows working-tree newlines"
     },
     {
       "path": "proxy.ts",
@@ -311,8 +311,20 @@
     {
       "path": "scripts/check-production-scale-baseline.mjs",
       "beforeSha256": "d3757a69ffbe4e2b1506b1b1c52d00887978eff2bc1d3cd447862df347277107",
-      "afterSha256": "c0efdcb7af5ecb6fc06659a0849307fcf3cb8f79e97879c6e9a96520dec50d2a",
-      "reason": "Account for the controlled demo evidence API in the route baseline; 2026-09-23: reviewed local correction"
+      "afterSha256": "59237e255be55a4371b3ae3c2dacda0f4bcfea8a45ef8e5ad79121988ef7a9e6",
+      "reason": "Account for the controlled demo evidence API in the route baseline; 2026-09-23: reviewed local correction; CI: hash uses Git LF blob rather than mixed Windows working-tree newlines"
+    },
+    {
+      "path": "scripts/prepare-demo-scenario.mjs",
+      "beforeSha256": "dc5ba6b1e4f7bd304d94bc20382555d7074b86d4f3ef181d9015a228337f73db",
+      "afterSha256": "96fcc4a561859cd023c026513f66bd656e6886ac48e0b4aeb7c4f86363cddb5e",
+      "reason": "Use the controlled server-owned evidence package and fail closed on ambiguous tenant or conflicting fictional source"
+    },
+    {
+      "path": "docs/canonical/v1/delivery/DEMO_READINESS_WAVE_2026-09-21.md",
+      "beforeSha256": "3080a009c6dcf3eab55cb6aa9f7f43404b569e4692959d550d790a1587e345d7",
+      "afterSha256": "162764960b30eb3651e99822dae73ee7c9b31c726f82376bb3c5826c2b0196c3",
+      "reason": "Describe fail-closed tenant selection, server-owned fictional evidence and required conflict reconciliation"
     }
   ]
 }
