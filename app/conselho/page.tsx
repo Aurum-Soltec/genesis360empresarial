@@ -11,7 +11,7 @@ export default async function Page() {
   const db = await createSupabaseServerClient();
   const flags = getFeatureFlags();
   const demoAllowed = isDemoTenantAllowed(ctx.tenantId);
-  const { data: diagnostic } = await db
+  const { data: diagnostic, error: diagnosticError } = await db
     .from("diagnostics")
     .select("id,company_id,growth_score,confidence")
     .eq("tenant_id", ctx.tenantId)
@@ -19,6 +19,7 @@ export default async function Page() {
     .order("created_at", { ascending: false })
     .limit(1)
     .maybeSingle();
+  if (diagnosticError) throw new Error("COUNCIL_DIAGNOSTIC_READ_FAILED");
 
   if (!diagnostic || !demoAllowed) {
     return (
@@ -33,20 +34,24 @@ export default async function Page() {
     );
   }
 
-  const [{ data: company }, { data: scores }, { data: pains }, { data: answerEvidence }, { data: directEvidence }] = await Promise.all([
+  const [{ data: company, error: companyError }, { data: scores, error: scoresError }, { data: pains, error: painsError }, { data: answerEvidence, error: answersError }, { data: directEvidence, error: linksError }] = await Promise.all([
     db.from("companies").select("trade_name").eq("tenant_id", ctx.tenantId).eq("id", diagnostic.company_id).maybeSingle(),
     db.from("score_results").select("dimension,score,confidence").eq("tenant_id", ctx.tenantId).eq("diagnostic_id", diagnostic.id),
     db.from("pain_findings").select("title,gap_summary").eq("tenant_id", ctx.tenantId).eq("diagnostic_id", diagnostic.id).order("severity", { ascending: false }).limit(3),
     db.from("answers").select("evidence_refs").eq("tenant_id", ctx.tenantId).eq("diagnostic_id", diagnostic.id),
     db.from("evidence_links").select("evidence_id").eq("tenant_id", ctx.tenantId).eq("company_id", diagnostic.company_id).eq("subject_type", "diagnostic").eq("subject_id", diagnostic.id),
   ]);
+  if (companyError || scoresError || painsError || answersError || linksError) {
+    throw new Error("COUNCIL_BASIS_READ_FAILED");
+  }
   const evidenceIds = [...new Set([
     ...(answerEvidence ?? []).flatMap((answer) => answer.evidence_refs ?? []),
     ...(directEvidence ?? []).map((link) => link.evidence_id),
   ])];
-  const { data: evidence } = evidenceIds.length
+  const { data: evidence, error: evidenceError } = evidenceIds.length
     ? await db.from("evidence_items").select("verification_status").eq("tenant_id", ctx.tenantId).eq("company_id", diagnostic.company_id).in("id", evidenceIds)
-    : { data: [] };
+    : { data: [], error: null };
+  if (evidenceError) throw new Error("COUNCIL_EVIDENCE_READ_FAILED");
   const prompts = buildCouncilBrief({
     companyName: company?.trade_name ?? "empresa analisada",
     growthScore: diagnostic.growth_score === null ? null : Number(diagnostic.growth_score),

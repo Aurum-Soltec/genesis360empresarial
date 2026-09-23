@@ -1,5 +1,5 @@
 {
-  "version": "navigation-pages-fix-2026-09-23",
+  "version": "navigation-read-failure-2026-09-23",
   "baselineCommit": "3c76926df3b8ca705f0f54f52146373164bd7037",
   "files": [
     {
@@ -11,20 +11,20 @@
     {
       "path": "app/capacidades/page.tsx",
       "beforeSha256": null,
-      "afterSha256": "be25313f1f73549a7a2947ed79672f97a3526be2afd785288f373bd04d5ff8d5",
-      "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
+      "afterSha256": "e03d6712a42c493f57d968a0d5746d18b4f3e9f4f464457a9caac5b62e829f50",
+      "reason": "Navigation and explicit read-failure states for presentation-critical pages"
     },
     {
       "path": "app/conselho/page.tsx",
       "beforeSha256": "df48a3af8df0a35077ba0166ee28a8d06e983d16e24a83abd9e417950991dcf4",
-      "afterSha256": "5264e5f185fee41ba83825d12c18893784e30305be7af190065086e39689f4eb",
-      "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
+      "afterSha256": "8b3515f063ec6574e48982bf701a4a123fa6a3d2bc5bd75fa9c30fc4a2a572ee",
+      "reason": "Navigation and explicit read-failure states for presentation-critical pages"
     },
     {
       "path": "app/demonstracao/administracao/page.tsx",
       "beforeSha256": "141c46da8cb15ff5c5a359eaea5b667ffa7079c63f8abb73278844c28c54fbff",
-      "afterSha256": "c0f182781883d7de439b5090bc8795783814b156de39ca1ee4ad92b1c96b580b",
-      "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
+      "afterSha256": "8ac87fe414f8779ae7268de5525d7b7dfa7f718dd93afc0641f029cc2bc24ab3",
+      "reason": "Navigation and explicit read-failure states for presentation-critical pages"
     },
     {
       "path": "app/demonstracao/page.tsx",
@@ -35,8 +35,8 @@
     {
       "path": "app/demonstracao/solucoes/page.tsx",
       "beforeSha256": "772ca20b1e4a2028949b16829f0be8725b8f78e75e2b5068db5fe9307c24fe15",
-      "afterSha256": "0f44116070ac1a0d003ce1e8f50e789f86f080e0ef8301b32269aa3a5ac99ff8",
-      "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
+      "afterSha256": "6366f364504732398ca87960dacc19ef1eac89e6a8323aa973201372040509d9",
+      "reason": "Navigation and explicit read-failure states for presentation-critical pages"
     },
     {
       "path": "app/diagnostico-v1/page.tsx",
@@ -47,8 +47,8 @@
     {
       "path": "app/documentos/page.tsx",
       "beforeSha256": "84b4104ed456dc1c300c1c952661fa454af716bc3ba7758b4274f1d807bdf485",
-      "afterSha256": "6acd145d55cc7844bbfd25316929425463152ecf96092230be2a80550fa52674",
-      "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
+      "afterSha256": "ed1feff2e0f046566ccb2798b07e93ca79639b34b8c6034e4c9985ee87c00306",
+      "reason": "Navigation and explicit read-failure states for presentation-critical pages"
     },
     {
       "path": "app/entrar/page.tsx",
@@ -59,20 +59,20 @@
     {
       "path": "app/historico/page.tsx",
       "beforeSha256": null,
-      "afterSha256": "62360e27a45156d7b425a34c3ede73c4f063f7fba66f69afb7c5f6c12f56f532",
-      "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
+      "afterSha256": "31c4293c41e43088a96b9c065fed74c8fcf250b5f6eedc0e839a907908117de6",
+      "reason": "Navigation and explicit read-failure states for presentation-critical pages"
     },
     {
       "path": "app/indicadores/page.tsx",
       "beforeSha256": "19b3b2bbccb79da8f977059a3235ddb70aeac4663115e6f760629f49fca256fb",
-      "afterSha256": "e902d7a09fc888181013ee68fe775088dc7ab0c691cf3199e3e88657e993ef22",
-      "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
+      "afterSha256": "4d03386134116ddaa355f475b42413b91da0c7a032b3cb0c8f85e899fba9b3b8",
+      "reason": "Navigation and explicit read-failure states for presentation-critical pages"
     },
     {
       "path": "app/missoes/page.tsx",
       "beforeSha256": null,
-      "afterSha256": "11a8f7d606e0b348bc360fc4a31c2c721dd84a4986e77909a7d6feb0294f3a57",
-      "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
+      "afterSha256": "9079ef669571807592fd6b4160df61f77338be19f07f6856057fd4e61aaa1ce6",
+      "reason": "Navigation and explicit read-failure states for presentation-critical pages"
     },
     {
       "path": "app/page.tsx",
@@ -83,26 +83,26 @@
     {
       "path": "app/passaporte/page.tsx",
       "beforeSha256": null,
-      "afterSha256": "01b65eb34d217d96f2186cbd8ed41bf0e60060f683c76272d505941e024d7fb5",
-      "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
+      "afterSha256": "fd0b275308406d2a49cf097ab3611d06a126b1d30cda00b71d83da0ccc4bb059",
+      "reason": "Navigation and explicit read-failure states for presentation-critical pages"
     },
     {
       "path": "app/prioridades/page.tsx",
       "beforeSha256": null,
-      "afterSha256": "ba1a418496fff4babe3db4a0d450c74a6a54b4adbc428302a2f6160146e14684",
-      "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
+      "afterSha256": "6d893cb485f59df4eb7a5e564aa159b83067a082d09115f46f3408374c5a1a0f",
+      "reason": "Navigation and explicit read-failure states for presentation-critical pages"
     },
     {
       "path": "app/privacidade/page.tsx",
       "beforeSha256": "41327e515d58ef0cee0cb779b8a854d2120f06c662a533c371f6a6419351585f",
-      "afterSha256": "9cdbf1c46c8ac51db35a425fb5c16519180f34c83b25891ad990cdd8cdcf33fb",
-      "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
+      "afterSha256": "f55649dfb7119de4ed96d46d9f48f3b626267c9605c3f7d38ecd525c234a2e52",
+      "reason": "Navigation and explicit read-failure states for presentation-critical pages"
     },
     {
       "path": "app/resultado-v1/page.tsx",
       "beforeSha256": "97c9456e5c1afb138be91040843c88ec50876da8ca4506a3558c980f8c41d728",
-      "afterSha256": "ce959d373304a3c165d2513de5708ed4d3d3d398cc3dec03da9f41a6585acd2d",
-      "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
+      "afterSha256": "103186504da6fd4e2f582b482439fc0b00c96835867106c884e5307b98a68394",
+      "reason": "Navigation and explicit read-failure states for presentation-critical pages"
     },
     {
       "path": "app/selecionar-empresa/page.tsx",
@@ -181,6 +181,24 @@
       "beforeSha256": "1ed4b6d6ffb7edd4c19ff3b95da8017dae0d4a5c963f02374a24161b26f21722",
       "afterSha256": "60e6618913a00600263f2c789ddcb87f8c2fa0932f2a8776879a5ae36273f3bc",
       "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
+    },
+    {
+      "path": "app/error.tsx",
+      "beforeSha256": null,
+      "afterSha256": "89f682c5f2f3c11163acf3c4d17f9f2f2b4eab21785560ea2b9401c915b917e5",
+      "reason": "Explicit loading and recovery state for presentation-critical pages"
+    },
+    {
+      "path": "app/loading.tsx",
+      "beforeSha256": null,
+      "afterSha256": "f786ec80eb63bbccc54b854b9a8e2344d140ae958daa7ce951358dd5deb3e366",
+      "reason": "Explicit loading and recovery state for presentation-critical pages"
+    },
+    {
+      "path": "PROJECT-STATE.md",
+      "beforeSha256": "d872785f2e9e30f89ffc11d5a7e13962907c06372e92168c7f2216f9ee92ac3d",
+      "afterSha256": "84f15ac941c5740f2fb1a3043b366d37d216edd7febc49e23f4a2ed2b29e74e7",
+      "reason": "Document local navigation and read-failure hardening candidate"
     }
   ]
 }

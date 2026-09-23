@@ -7,15 +7,17 @@ export default async function PassaportePage() {
   const context = await requirePageTenantContext("/passaporte");
   const supabase = await createSupabaseServerClient();
 
-  const { data: company } = await supabase
+  const { data: company, error: companyError } = await supabase
     .from("companies").select("id,trade_name").eq("tenant_id", context.tenantId).limit(1).maybeSingle();
+  if (companyError) throw new Error("PASSPORT_COMPANY_READ_FAILED");
 
   if (!company) return <main className="p-6"><GlassCard><h1>Business Passport</h1><p>Cadastre uma empresa para iniciar seu Passport.</p></GlassCard></main>;
 
-  const { data: facts } = await supabase
+  const { data: facts, error: factsError } = await supabase
     .from("business_facts")
     .select("fact_key,source,captured_at,verification_status")
     .eq("tenant_id", context.tenantId).eq("company_id", company.id).is("valid_to", null);
+  if (factsError) throw new Error("PASSPORT_FACTS_READ_FAILED");
 
   const keys = (facts ?? []).map((f) => f.fact_key);
   const completeness = Math.round(passportCompleteness(keys, [...PASSPORT_ESSENTIAL_KEYS]) * 100);

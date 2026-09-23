@@ -13,19 +13,22 @@ export default async function DemoAdministrationPage() {
 
   const db = await createSupabaseServerClient();
   const flags = getFeatureFlags();
-  const [{ data: tenant }, { data: company }, { data: memberships }] = await Promise.all([
+  const [{ data: tenant, error: tenantError }, { data: company, error: companyError }, { data: memberships, error: membershipsError }] = await Promise.all([
     db.from("tenants").select("name,status").eq("id", ctx.tenantId).maybeSingle(),
     db.from("companies").select("id,trade_name,sector,fictional").eq("tenant_id", ctx.tenantId).limit(1).maybeSingle(),
     db.from("memberships").select("id,role").eq("tenant_id", ctx.tenantId),
   ]);
-  const { data: diagnostics } = company
+  if (tenantError || companyError || membershipsError) throw new Error("DEMO_ADMIN_CONTEXT_READ_FAILED");
+  const { data: diagnostics, error: diagnosticsError } = company
     ? await db.from("diagnostics").select("id,status,profile_code,growth_score,confidence,coverage,submitted_at").eq("tenant_id", ctx.tenantId).eq("company_id", company.id).order("created_at", { ascending: false }).limit(10)
-    : { data: [] };
+    : { data: [], error: null };
+  if (diagnosticsError) throw new Error("DEMO_ADMIN_DIAGNOSTICS_READ_FAILED");
   const latest = diagnostics?.[0] ?? null;
   const scored = diagnostics?.find((item) => item.status === "scored") ?? null;
-  const { data: evidence } = company
+  const { data: evidence, error: evidenceError } = company
     ? await db.from("evidence_items").select("id,verification_status,source_ref").eq("tenant_id", ctx.tenantId).eq("company_id", company.id)
-    : { data: [] };
+    : { data: [], error: null };
+  if (evidenceError) throw new Error("DEMO_ADMIN_EVIDENCE_READ_FAILED");
   const verifiedEvidence = (evidence ?? []).filter((item) => item.verification_status === "verified").length;
   const canonicalEvidence = demoEvidenceLoadedCount((evidence ?? []).map((item) => item.source_ref));
   const flagRows = [

@@ -7,7 +7,7 @@ export default async function MissoesPage() {
   const ctx = await requirePageTenantContext("/missoes");
 
   const db = await createSupabaseServerClient();
-  const { data: missions } = await db
+  const { data: missions, error: missionsError } = await db
     .from("missions")
     .select(
       "id,template_id,decision_record_id,status,personalized_payload,due_at,accepted_at,completed_at,created_at",
@@ -15,29 +15,32 @@ export default async function MissoesPage() {
     .eq("tenant_id", ctx.tenantId)
     .order("created_at", { ascending: false })
     .limit(50);
+  if (missionsError) throw new Error("MISSIONS_READ_FAILED");
 
   const templateIds = [
     ...new Set((missions ?? []).map((mission) => mission.template_id)),
   ];
-  const { data: templates } = templateIds.length
+  const { data: templates, error: templatesError } = templateIds.length
     ? await db
         .from("mission_templates")
         .select("id,code,title,objective,steps,evidence_requirements,expected_metric")
         .in("id", templateIds)
-    : { data: [] as Array<Record<string, unknown>> };
+    : { data: [] as Array<Record<string, unknown>>, error: null };
+  if (templatesError) throw new Error("MISSION_TEMPLATES_READ_FAILED");
 
   const templateById = new Map(
     (templates ?? []).map((template) => [String(template.id), template]),
   );
 
   const missionIds = (missions ?? []).map((mission) => mission.id);
-  const { data: evidence } = missionIds.length
+  const { data: evidence, error: evidenceError } = missionIds.length
     ? await db
         .from("mission_evidence")
         .select("mission_id,verification_status")
         .eq("tenant_id", ctx.tenantId)
         .in("mission_id", missionIds)
-    : { data: [] as Array<{ mission_id: string; verification_status: string }> };
+    : { data: [] as Array<{ mission_id: string; verification_status: string }>, error: null };
+  if (evidenceError) throw new Error("MISSION_EVIDENCE_READ_FAILED");
 
   const evidenceCount = new Map<string, number>();
   for (const item of evidence ?? []) {

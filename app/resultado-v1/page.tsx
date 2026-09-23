@@ -53,7 +53,7 @@ export default async function ResultadoV1({
   let diagnosticId = params.diagnostic ?? null;
 
   if (!diagnosticId) {
-    const { data: latest } = await db
+    const { data: latest, error: latestError } = await db
       .from("diagnostics")
       .select("id")
       .eq("tenant_id", ctx.tenantId)
@@ -61,41 +61,45 @@ export default async function ResultadoV1({
       .order("created_at", { ascending: false })
       .limit(1)
       .maybeSingle();
+    if (latestError) throw new Error("REPORT_DIAGNOSTIC_READ_FAILED");
     diagnosticId = latest?.id ?? null;
   }
 
   if (!diagnosticId) redirect("/diagnostico-v1");
 
-  const { data: diagnosticRow } = await db
+  const { data: diagnosticRow, error: diagnosticError } = await db
     .from("diagnostics")
     .select("id,company_id,status,coverage,confidence,confidence_level,submitted_at,growth_score,growth_score_status,confidence_rule_version")
     .eq("tenant_id", ctx.tenantId)
     .eq("id", diagnosticId)
     .maybeSingle();
+  if (diagnosticError) throw new Error("REPORT_DIAGNOSTIC_READ_FAILED");
 
   if (!diagnosticRow || diagnosticRow.status !== "scored") redirect("/diagnostico-v1");
 
-  const { data: company } = await db
+  const { data: company, error: companyError } = await db
     .from("companies")
     .select("trade_name")
     .eq("tenant_id", ctx.tenantId)
     .eq("id", diagnosticRow.company_id)
     .maybeSingle();
+  if (companyError) throw new Error("REPORT_COMPANY_READ_FAILED");
 
-  const { data: scores } = await db
+  const { data: scores, error: scoresError } = await db
     .from("score_results")
     .select("dimension,score,coverage,confidence,rule_version")
     .eq("tenant_id", ctx.tenantId)
     .eq("diagnostic_id", diagnosticId)
     .order("score");
 
-  const { data: pains } = await db
+  const { data: pains, error: painsError } = await db
     .from("pain_findings")
     .select("id,title,dimension,severity,confidence,gap_summary")
     .eq("tenant_id", ctx.tenantId)
     .eq("diagnostic_id", diagnosticId)
     .order("severity", { ascending: false })
     .limit(3);
+  if (scoresError || painsError) throw new Error("REPORT_ANALYSIS_READ_FAILED");
 
   const { data: answerEvidenceRows, error: answerEvidenceError } = await db
     .from("answers")

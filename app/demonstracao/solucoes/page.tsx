@@ -26,7 +26,8 @@ export default async function DemoSolutionsPage({
   const params = await searchParams;
   let diagnosticId = params.diagnostic ?? null;
   if (!diagnosticId) {
-    const { data: latest } = await db.from("diagnostics").select("id").eq("tenant_id", ctx.tenantId).eq("status", "scored").order("created_at", { ascending: false }).limit(1).maybeSingle();
+    const { data: latest, error: latestError } = await db.from("diagnostics").select("id").eq("tenant_id", ctx.tenantId).eq("status", "scored").order("created_at", { ascending: false }).limit(1).maybeSingle();
+    if (latestError) throw new Error("DEMO_SOLUTIONS_DIAGNOSTIC_READ_FAILED");
     diagnosticId = latest?.id ?? null;
   }
   if (!diagnosticId) return (
@@ -40,7 +41,8 @@ export default async function DemoSolutionsPage({
     </AppShell>
   );
 
-  const { data: diagnostic } = await db.from("diagnostics").select("id,company_id,growth_score,confidence").eq("tenant_id", ctx.tenantId).eq("id", diagnosticId).eq("status", "scored").maybeSingle();
+  const { data: diagnostic, error: diagnosticError } = await db.from("diagnostics").select("id,company_id,growth_score,confidence").eq("tenant_id", ctx.tenantId).eq("id", diagnosticId).eq("status", "scored").maybeSingle();
+  if (diagnosticError) throw new Error("DEMO_SOLUTIONS_DIAGNOSTIC_READ_FAILED");
   if (!diagnostic) return (
     <AppShell>
       <section className="card empty-state" aria-labelledby="demo-solutions-report-missing">
@@ -51,10 +53,11 @@ export default async function DemoSolutionsPage({
       </section>
     </AppShell>
   );
-  const [{ data: company }, { data: scores }] = await Promise.all([
+  const [{ data: company, error: companyError }, { data: scores, error: scoresError }] = await Promise.all([
     db.from("companies").select("trade_name").eq("tenant_id", ctx.tenantId).eq("id", diagnostic.company_id).maybeSingle(),
     db.from("score_results").select("dimension,score").eq("tenant_id", ctx.tenantId).eq("diagnostic_id", diagnostic.id),
   ]);
+  if (companyError || scoresError) throw new Error("DEMO_SOLUTIONS_BASIS_READ_FAILED");
   const solutions = buildDemoSolutionPreview((scores ?? []).map((item) => ({ dimension: item.dimension, score: item.score === null ? null : Number(item.score) })));
 
   return (

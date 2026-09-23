@@ -2,6 +2,27 @@
 
 Atualização: **2026-09-22**. Candidato: **V1.2.1 RC2 + Production & Scale Foundation em staging hospedado**.
 
+## Candidato local de UX e leitura — 2026-09-23, ainda não promovido
+
+A branch `codex/navigation-pages-fix` separa a Home executiva das páginas de
+Prioridades, Indicadores e Histórico e preserva o destino escolhido após login
+e seleção explícita do tenant. O PR #25 contém o primeiro commit, mas a
+verificação de qualidade remota falhou por um hash de quebra de linha no
+manifesto de integridade; a correção está apenas no commit local seguinte.
+
+Uma leva local adicional acrescenta estado imediato de carregamento e
+recuperação de erro. Leituras críticas do relatório, Conselho, demo
+administrativa, soluções fictícias, prioridades, indicadores, histórico,
+missões, Passport, Documentos, Privacidade e capacidades agora distinguem
+falha de consulta de ausência real de dados. Na tela de Documentos, o botão
+do pacote fictício não é exibido quando o ledger está indisponível.
+
+Evidência local: build Next.js de produção, TypeScript, lint dos arquivos
+alterados, 81/81 testes Vitest, 34/34 testes nativos e contratos de desenho,
+segurança, trust boundary e integridade passaram. Nenhum crédito de runtime
+hospedado é atribuído a essa leva. As cinco flags sensíveis seguem desligadas;
+tenancy, RLS, scoring, outbox e arquitetura permanecem inalterados.
+
 ## Demo Readiness — 2026-09-22
 
 ### Presentation Complete — hosted FULL PASS

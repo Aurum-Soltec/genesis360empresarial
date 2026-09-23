@@ -6,7 +6,7 @@ export default async function IndicadoresPage() {
   const ctx = await requirePageTenantContext("/indicadores");
 
   const db = await createSupabaseServerClient();
-  const { data: diagnostic } = await db
+  const { data: diagnostic, error: diagnosticError } = await db
     .from("diagnostics")
     .select("id,coverage,confidence,submitted_at,growth_score,growth_score_status")
     .eq("tenant_id", ctx.tenantId)
@@ -14,17 +14,18 @@ export default async function IndicadoresPage() {
     .order("created_at", { ascending: false })
     .limit(1)
     .maybeSingle();
+  if (diagnosticError) throw new Error("INDICATORS_DIAGNOSTIC_READ_FAILED");
 
-  const scores = diagnostic
-    ? (
-        await db
+  const scoresResult = diagnostic
+    ? await db
           .from("score_results")
           .select("dimension,score,coverage,confidence,rule_version")
           .eq("tenant_id", ctx.tenantId)
           .eq("diagnostic_id", diagnostic.id)
           .order("score")
-      ).data ?? []
-    : [];
+    : { data: [], error: null };
+  if (scoresResult.error) throw new Error("INDICATORS_SCORES_READ_FAILED");
+  const scores = scoresResult.data ?? [];
 
   const overall = diagnostic?.growth_score ?? null;
 

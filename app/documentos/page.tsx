@@ -11,19 +11,21 @@ export default async function DocumentosPage() {
   const flags = getFeatureFlags();
   const demoAllowed = isDemoTenantAllowed(ctx.tenantId);
   const db = await createSupabaseServerClient();
-  const { data: company } = await db
+  const { data: company, error: companyError } = await db
     .from("companies")
     .select("id,trade_name")
     .eq("tenant_id", ctx.tenantId)
     .limit(1)
     .maybeSingle();
+  if (companyError) throw new Error("DOCUMENTS_COMPANY_READ_FAILED");
 
-  const { data: version } = await db
+  const { data: version, error: versionError } = await db
     .from("data_submission_attestation_versions")
     .select("id,version,title,declaration_text,warning_text,genesis_responsibility_text")
     .eq("code", "DIAGNOSTIC_EVIDENCE_UPLOAD")
     .eq("status", "active")
     .maybeSingle();
+  if (versionError) throw new Error("DOCUMENTS_ATTESTATION_READ_FAILED");
 
   const { data: evidence, error: evidenceError } = company
     ? await db
@@ -35,7 +37,7 @@ export default async function DocumentosPage() {
         .limit(50)
     : { data: [], error: null };
 
-  const { data: latestDiagnostic } = company && demoAllowed
+  const { data: latestDiagnostic, error: latestDiagnosticError } = company && demoAllowed
     ? await db
         .from("diagnostics")
         .select("id")
@@ -45,7 +47,8 @@ export default async function DocumentosPage() {
         .order("created_at", { ascending: false })
         .limit(1)
         .maybeSingle()
-    : { data: null };
+    : { data: null, error: null };
+  if (latestDiagnosticError) throw new Error("DOCUMENTS_DIAGNOSTIC_READ_FAILED");
 
   const evidenceTypeLabel: Record<string, string> = {
     user_declaration: "Declaração",
@@ -81,7 +84,7 @@ export default async function DocumentosPage() {
         </div>
       </header>
 
-      {company && demoAllowed ? (
+      {company && demoAllowed && !evidenceError ? (
         <DemoPackage
           companyId={company.id}
           diagnosticId={latestDiagnostic?.id ?? null}

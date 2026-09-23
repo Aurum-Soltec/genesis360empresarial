@@ -6,30 +6,33 @@ export default async function CapacidadesPage() {
   const ctx = await requirePageTenantContext("/capacidades");
 
   const db = await createSupabaseServerClient();
-  const { data: company } = await db
+  const { data: company, error: companyError } = await db
     .from("companies")
     .select("id,trade_name")
     .eq("tenant_id", ctx.tenantId)
     .limit(1)
     .maybeSingle();
+  if (companyError) throw new Error("CAPABILITIES_COMPANY_READ_FAILED");
 
-  const { data: subscriptions } = await db
+  const { data: subscriptions, error: subscriptionsError } = await db
     .from("tenant_subscriptions")
     .select("plan_id,status")
     .eq("tenant_id", ctx.tenantId)
     .in("status", ["trialing", "active"])
     .limit(1);
+  if (subscriptionsError) throw new Error("CAPABILITIES_SUBSCRIPTIONS_READ_FAILED");
 
   const planId = subscriptions?.[0]?.plan_id ?? null;
-  const { data: plan } = planId
+  const { data: plan, error: planError } = planId
     ? await db
         .from("plan_catalog")
         .select("name,provider_network_eligible")
         .eq("id", planId)
         .maybeSingle()
-    : { data: null };
+    : { data: null, error: null };
+  if (planError) throw new Error("CAPABILITIES_PLAN_READ_FAILED");
 
-  const { data: rows } = company
+  const { data: rows, error: rowsError } = company
     ? await db
         .from("provider_capabilities")
         .select(
@@ -38,15 +41,17 @@ export default async function CapacidadesPage() {
         .eq("tenant_id", ctx.tenantId)
         .eq("company_id", company.id)
         .order("updated_at", { ascending: false })
-    : { data: [] as Array<Record<string, unknown>> };
+    : { data: [] as Array<Record<string, unknown>>, error: null };
+  if (rowsError) throw new Error("CAPABILITIES_ROWS_READ_FAILED");
 
   const capabilityIds = [...new Set((rows ?? []).map((row) => String(row.capability_id)))];
-  const { data: capabilities } = capabilityIds.length
+  const { data: capabilities, error: capabilitiesError } = capabilityIds.length
     ? await db
         .from("capabilities")
         .select("id,code,title,domain")
         .in("id", capabilityIds)
-    : { data: [] as Array<Record<string, unknown>> };
+    : { data: [] as Array<Record<string, unknown>>, error: null };
+  if (capabilitiesError) throw new Error("CAPABILITIES_CATALOG_READ_FAILED");
   const capabilityById = new Map(
     (capabilities ?? []).map((item) => [String(item.id), item]),
   );

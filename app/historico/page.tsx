@@ -6,16 +6,16 @@ export default async function HistoricoPage() {
   const ctx = await requirePageTenantContext("/historico");
 
   const db = await createSupabaseServerClient();
-  const { data: company } = await db
+  const { data: company, error: companyError } = await db
     .from("companies")
     .select("id,trade_name")
     .eq("tenant_id", ctx.tenantId)
     .limit(1)
     .maybeSingle();
+  if (companyError) throw new Error("TIMELINE_COMPANY_READ_FAILED");
 
-  const events = company
-    ? (
-        await db
+  const eventsResult = company
+    ? await db
           .from("business_timeline_events")
           .select(
             "id,event_type,occurred_at,actor_type,subject_type,subject_id,payload,source_ref",
@@ -24,8 +24,9 @@ export default async function HistoricoPage() {
           .eq("company_id", company.id)
           .order("occurred_at", { ascending: false })
           .limit(100)
-      ).data ?? []
-    : [];
+    : { data: [], error: null };
+  if (eventsResult.error) throw new Error("TIMELINE_EVENTS_READ_FAILED");
+  const events = eventsResult.data ?? [];
 
   return (
     <AppShell>

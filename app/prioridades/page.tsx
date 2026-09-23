@@ -7,7 +7,7 @@ export default async function PrioridadesPage() {
   const ctx = await requirePageTenantContext("/prioridades");
 
   const db = await createSupabaseServerClient();
-  const { data: diagnostic } = await db
+  const { data: diagnostic, error: diagnosticError } = await db
     .from("diagnostics")
     .select("id,company_id")
     .eq("tenant_id", ctx.tenantId)
@@ -15,30 +15,31 @@ export default async function PrioridadesPage() {
     .order("created_at", { ascending: false })
     .limit(1)
     .maybeSingle();
+  if (diagnosticError) throw new Error("PRIORITIES_DIAGNOSTIC_READ_FAILED");
 
-  const pains = diagnostic
-    ? (
-        await db
+  const painsResult = diagnostic
+    ? await db
           .from("pain_findings")
           .select("id,title,dimension,severity,confidence,gap_summary")
           .eq("tenant_id", ctx.tenantId)
           .eq("diagnostic_id", diagnostic.id)
           .order("severity", { ascending: false })
           .limit(3)
-      ).data ?? []
-    : [];
+    : { data: [], error: null };
+  if (painsResult.error) throw new Error("PRIORITIES_FINDINGS_READ_FAILED");
+  const pains = painsResult.data ?? [];
 
   const painIds = pains.map((pain) => pain.id);
-  const decisions = painIds.length
-    ? (
-        await db
+  const decisionsResult = painIds.length
+    ? await db
           .from("decision_records")
           .select("id,pain_finding_id,problem,confidence,recommendation,validation_plan")
           .eq("tenant_id", ctx.tenantId)
           .in("pain_finding_id", painIds)
           .order("created_at", { ascending: false })
-      ).data ?? []
-    : [];
+    : { data: [], error: null };
+  if (decisionsResult.error) throw new Error("PRIORITIES_DECISIONS_READ_FAILED");
+  const decisions = decisionsResult.data ?? [];
 
   const decisionByPain = new Map<string, (typeof decisions)[number]>();
   for (const decision of decisions) {
@@ -51,16 +52,16 @@ export default async function PrioridadesPage() {
   }
 
   const decisionIds = [...decisionByPain.values()].map((decision) => decision.id);
-  const missions = decisionIds.length
-    ? (
-        await db
+  const missionsResult = decisionIds.length
+    ? await db
           .from("missions")
           .select("id,decision_record_id,status")
           .eq("tenant_id", ctx.tenantId)
           .in("decision_record_id", decisionIds)
           .order("created_at", { ascending: false })
-      ).data ?? []
-    : [];
+    : { data: [], error: null };
+  if (missionsResult.error) throw new Error("PRIORITIES_MISSIONS_READ_FAILED");
+  const missions = missionsResult.data ?? [];
 
   const missionByDecision = new Map<string, (typeof missions)[number]>();
   for (const mission of missions) {
