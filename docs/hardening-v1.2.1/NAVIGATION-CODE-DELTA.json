@@ -233,31 +233,31 @@
     {
       "path": "docs/canonical/v1/delivery/EPICS_MASTER.md",
       "beforeSha256": "6c8cd57c3ba860428f3d1649f0d4a90f23c6f735faca8b65648b38d62917b3c7",
-      "afterSha256": "8c3e1004ac2d12a0674566ba6188c486bf95deabfa3c38ae6276f6877ccb32c6",
+      "afterSha256": "c227571826c0aec0f20534bdcce6bd2e093601071a6278ea19ab3c3b19d74f1c",
       "reason": "HSP-4 remediation with executable regression and hosted recheck required"
     },
     {
       "path": "docs/canonical/v1/delivery/PRODUCTION_WAVES_MASTER.md",
       "beforeSha256": "14af8551a84daf473cb9ec2c78818b789d3bc6500fbd92ee1cbfe5718735d62e",
-      "afterSha256": "f4590c8c177face1eb71cdc0f2cd55b306c162dc26d6c060822ef214187f4515",
+      "afterSha256": "3b3df8b58baf64b414f141d961b757b05bd4f6e061d24d2547b66b305539f870",
       "reason": "HSP-4 remediation with executable regression and hosted recheck required"
     },
     {
       "path": "docs/canonical/v1/delivery/STORIES_MASTER.md",
       "beforeSha256": "a3f3ad9426753d3eaabe96609d514f4b17b586e1ff8a280476bfc14b8af87673",
-      "afterSha256": "f4370ce3113555982d3f5d813e88705d372f8467b628ce5299d4931604f54e50",
+      "afterSha256": "4e16865d2b0a9544f1974e658b35b66d4bcd2a64a327bb2f6033e47e638e8759",
       "reason": "HSP-4 remediation with executable regression and hosted recheck required"
     },
     {
       "path": "docs/canonical/v1/gates/GATES.json",
       "beforeSha256": "cd81e6aefa9228fe362befa930d0407f806a9a691429d5e395db446f8f615ca3",
-      "afterSha256": "96000c2aefb74b15146374a9468649ee5b2041804826266b0a03621d11bed1ef",
+      "afterSha256": "95dcea2ea624051650f37073e1d223f5b1dca07de3eee9206c7d477b0aa92726",
       "reason": "HSP-4 remediation with executable regression and hosted recheck required"
     },
     {
       "path": "GATES.json",
       "beforeSha256": "0bbead31fbc1457d082cdeae406d1a080fe23ed904b9ee3f47268d517d9077f5",
-      "afterSha256": "5e06fa4ffd43fe3ed082dc89d106240bb6dfc226d1d01f6589eaafae95af55a6",
+      "afterSha256": "f6ea92646bb10552ff894310cf4225c24b3110fb7306978754c99f559f75a869",
       "reason": "HSP-4 remediation with executable regression and hosted recheck required"
     },
     {
@@ -341,7 +341,7 @@
     {
       "path": "PROJECT-STATE.md",
       "beforeSha256": "d872785f2e9e30f89ffc11d5a7e13962907c06372e92168c7f2216f9ee92ac3d",
-      "afterSha256": "3ceec84531eff33cda50c7f4ec7724e03a1c1db1f57992c927cd57f1c2552b5e",
+      "afterSha256": "d6e2b814745a0b6b56c2120ae967882b33b752de688f4c64ad3e1eac55748fa8",
       "reason": "HSP-4 remediation with executable regression and hosted recheck required"
     },
     {
