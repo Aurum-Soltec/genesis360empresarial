@@ -1,15 +1,13 @@
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import { AppShell } from "@/components/app-shell";
 import { buildCouncilBrief } from "@/lib/council-insights";
 import { getFeatureFlags, isDemoTenantAllowed } from "@/lib/feature-flags";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
-import { requireTenantContext } from "@/lib/tenant-context";
+import { requirePageTenantContext } from "@/lib/page-tenant-context";
 import { DemoCouncil } from "./demo-council";
 
 export default async function Page() {
-  const ctx = await requireTenantContext().catch(() => null);
-  if (!ctx) redirect("/");
+  const ctx = await requirePageTenantContext("/conselho");
   const db = await createSupabaseServerClient();
   const flags = getFeatureFlags();
   const demoAllowed = isDemoTenantAllowed(ctx.tenantId);

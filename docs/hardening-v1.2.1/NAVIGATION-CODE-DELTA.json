@@ -1,0 +1,186 @@
+{
+  "version": "navigation-pages-fix-2026-09-23",
+  "baselineCommit": "3c76926df3b8ca705f0f54f52146373164bd7037",
+  "files": [
+    {
+      "path": "app/auth/callback/route.ts",
+      "beforeSha256": "82f7201eb700c986fd1840caac7ad36f83e55670b0c9f3a83ea643a7287b1b57",
+      "afterSha256": "254609f5f8c60da71f3bc2493672d5457e86995f00e8952d1f0261b2c2b2a44c",
+      "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
+    },
+    {
+      "path": "app/capacidades/page.tsx",
+      "beforeSha256": null,
+      "afterSha256": "be25313f1f73549a7a2947ed79672f97a3526be2afd785288f373bd04d5ff8d5",
+      "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
+    },
+    {
+      "path": "app/conselho/page.tsx",
+      "beforeSha256": "df48a3af8df0a35077ba0166ee28a8d06e983d16e24a83abd9e417950991dcf4",
+      "afterSha256": "5264e5f185fee41ba83825d12c18893784e30305be7af190065086e39689f4eb",
+      "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
+    },
+    {
+      "path": "app/demonstracao/administracao/page.tsx",
+      "beforeSha256": "141c46da8cb15ff5c5a359eaea5b667ffa7079c63f8abb73278844c28c54fbff",
+      "afterSha256": "c0f182781883d7de439b5090bc8795783814b156de39ca1ee4ad92b1c96b580b",
+      "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
+    },
+    {
+      "path": "app/demonstracao/page.tsx",
+      "beforeSha256": "1cbffcca7c7d41af086271f2ef0b6ae66cd1f1ad2587eadbcfcdd258af57af7b",
+      "afterSha256": "2ba3fcb16ec31420dc2649b6d2043cbdbb6d3d2f9677202bcf2049ded3cc6645",
+      "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
+    },
+    {
+      "path": "app/demonstracao/solucoes/page.tsx",
+      "beforeSha256": "772ca20b1e4a2028949b16829f0be8725b8f78e75e2b5068db5fe9307c24fe15",
+      "afterSha256": "0f44116070ac1a0d003ce1e8f50e789f86f080e0ef8301b32269aa3a5ac99ff8",
+      "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
+    },
+    {
+      "path": "app/diagnostico-v1/page.tsx",
+      "beforeSha256": "f04110ae54f7df87cb842467cf962288d9001a74a9a90eb2b5acf4e7a41fcbf8",
+      "afterSha256": "c3b74d999bef4de28f837827262b886ba1af4b0bf6988c226d5ee1b09eb95b66",
+      "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
+    },
+    {
+      "path": "app/documentos/page.tsx",
+      "beforeSha256": "84b4104ed456dc1c300c1c952661fa454af716bc3ba7758b4274f1d807bdf485",
+      "afterSha256": "6acd145d55cc7844bbfd25316929425463152ecf96092230be2a80550fa52674",
+      "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
+    },
+    {
+      "path": "app/entrar/page.tsx",
+      "beforeSha256": "bb62d98bac670ccc2ad7cf077caef3015d0cb58826814ef74bb49c96794829fb",
+      "afterSha256": "bdf2df8758c66257a7a5bd4a7eab89588928b313aa6765c330229ad5049bfd69",
+      "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
+    },
+    {
+      "path": "app/historico/page.tsx",
+      "beforeSha256": null,
+      "afterSha256": "62360e27a45156d7b425a34c3ede73c4f063f7fba66f69afb7c5f6c12f56f532",
+      "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
+    },
+    {
+      "path": "app/indicadores/page.tsx",
+      "beforeSha256": "19b3b2bbccb79da8f977059a3235ddb70aeac4663115e6f760629f49fca256fb",
+      "afterSha256": "e902d7a09fc888181013ee68fe775088dc7ab0c691cf3199e3e88657e993ef22",
+      "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
+    },
+    {
+      "path": "app/missoes/page.tsx",
+      "beforeSha256": null,
+      "afterSha256": "11a8f7d606e0b348bc360fc4a31c2c721dd84a4986e77909a7d6feb0294f3a57",
+      "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
+    },
+    {
+      "path": "app/page.tsx",
+      "beforeSha256": "4dd8dfe30b1e78a3561437b521f168317bb2faff6ebbfe32ca257a47386b844d",
+      "afterSha256": "32078f075dd6d6f13fd387f910a5f3933deddc633b3edcdf109aa0ae3370cdfb",
+      "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
+    },
+    {
+      "path": "app/passaporte/page.tsx",
+      "beforeSha256": null,
+      "afterSha256": "01b65eb34d217d96f2186cbd8ed41bf0e60060f683c76272d505941e024d7fb5",
+      "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
+    },
+    {
+      "path": "app/prioridades/page.tsx",
+      "beforeSha256": null,
+      "afterSha256": "ba1a418496fff4babe3db4a0d450c74a6a54b4adbc428302a2f6160146e14684",
+      "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
+    },
+    {
+      "path": "app/privacidade/page.tsx",
+      "beforeSha256": "41327e515d58ef0cee0cb779b8a854d2120f06c662a533c371f6a6419351585f",
+      "afterSha256": "9cdbf1c46c8ac51db35a425fb5c16519180f34c83b25891ad990cdd8cdcf33fb",
+      "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
+    },
+    {
+      "path": "app/resultado-v1/page.tsx",
+      "beforeSha256": "97c9456e5c1afb138be91040843c88ec50876da8ca4506a3558c980f8c41d728",
+      "afterSha256": "ce959d373304a3c165d2513de5708ed4d3d3d398cc3dec03da9f41a6585acd2d",
+      "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
+    },
+    {
+      "path": "app/selecionar-empresa/page.tsx",
+      "beforeSha256": "e1875a1fe6f32d242a97d6f1895cbfd79baf253cd5ef2ed6f418e5d29519ae80",
+      "afterSha256": "07a56f7b5d4197ee03851dad2a558ceea658ea979c1bca902024bd3af52d4650",
+      "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
+    },
+    {
+      "path": "app/selecionar-empresa/tenant-chooser.tsx",
+      "beforeSha256": "6c42195bcc085932518b114caebf96f9a38f0218f861a38baebb9e088082391d",
+      "afterSha256": "830cc2ebca7a2b2220564a4772fdc267df93d0707d0694b7922fe513c1cdcc46",
+      "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
+    },
+    {
+      "path": "app/solucoes/page.tsx",
+      "beforeSha256": null,
+      "afterSha256": "4bb07cf7b7bea224801ac59939f626dfccaf694a6233be65d86969431f583afe",
+      "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
+    },
+    {
+      "path": "components/app-navigation.tsx",
+      "beforeSha256": "2c775c81fd73be2d0791b4a1ed26e1a6ea5254736c0c24067c092470f49a2ddc",
+      "afterSha256": "2168910d847c5e8c37a9492bd1ee79e3ac5abd170c44ad2c412a077bd82ed716",
+      "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
+    },
+    {
+      "path": "design-system/genesis-precision-light/NAVIGATION.md",
+      "beforeSha256": null,
+      "afterSha256": "838ae33e58d0ae6f2defc344fc2cf8064b82c459604ecad1a8bc672e9cad5aca",
+      "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
+    },
+    {
+      "path": "lib/dashboard-overview.ts",
+      "beforeSha256": "f840dd9230d63668c6c2db940eb4289368904840d3dbdee9fcfcc64095241474",
+      "afterSha256": "186b8ee405b6fd8be2d023918179c0b2e9138a932f4160060ae6b1907e3ea99c",
+      "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
+    },
+    {
+      "path": "lib/page-tenant-context.test.ts",
+      "beforeSha256": null,
+      "afterSha256": "edc0fdd40c8ccf7fab1681407238bfefe2302f27683940ae8d0539a271c31e60",
+      "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
+    },
+    {
+      "path": "lib/page-tenant-context.ts",
+      "beforeSha256": null,
+      "afterSha256": "f03b06f43a836af8345a1eb90fc3ea23f65d3c94d30dcfc51fb28e4b58208dad",
+      "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
+    },
+    {
+      "path": "lib/safe-navigation.test.ts",
+      "beforeSha256": null,
+      "afterSha256": "20d530167f48174128c537c4ff8ee8e8f47fe8307fbed66fa82c88c577906b99",
+      "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
+    },
+    {
+      "path": "lib/safe-navigation.ts",
+      "beforeSha256": null,
+      "afterSha256": "8f3fdd5ebd55d60b7d39ba188ba0b81153f2be953c8ec903d6d596e119938f35",
+      "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
+    },
+    {
+      "path": "proxy.ts",
+      "beforeSha256": "fc6a133c2bef830023e1b2335d7e172c310a424dd3b4a07cdd8553e2bfa4998c",
+      "afterSha256": "feddfb0a045cf2badf597a1af628b0c59e4b4c1cae34042a20ff61c3535bc777",
+      "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
+    },
+    {
+      "path": "scripts/check-design-system.mjs",
+      "beforeSha256": "b7859cf6451a01f039b3c6f084f70e51627ea240cbf1e085156684808e840007",
+      "afterSha256": "9aeb645d28c7cc93ff7454cf306529a2a7dbee46176898f731ee53dcfac1846d",
+      "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
+    },
+    {
+      "path": "scripts/check-hardening-integrity.mjs",
+      "beforeSha256": "1ed4b6d6ffb7edd4c19ff3b95da8017dae0d4a5c963f02374a24161b26f21722",
+      "afterSha256": "b5fc5c5718f1f5b0f59c0798be75b67145249fc2dd265b75af9510f013d3f389",
+      "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
+    }
+  ]
+}

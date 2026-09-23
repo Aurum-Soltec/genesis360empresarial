@@ -1,15 +1,9 @@
-import { redirect } from "next/navigation";
 import { AppShell } from "@/components/app-shell";
-import { requireTenantContext } from "@/lib/tenant-context";
+import { requirePageTenantContext } from "@/lib/page-tenant-context";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
 export default async function PrivacidadePage() {
-  let ctx;
-  try {
-    ctx = await requireTenantContext();
-  } catch {
-    redirect("/");
-  }
+  const ctx = await requirePageTenantContext("/privacidade");
 
   const db = await createSupabaseServerClient();
   const { data: purposes } = await db

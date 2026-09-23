@@ -1,4 +1,4 @@
-import { requireTenantContext } from "@/lib/tenant-context";
+import { requireTenantContext, type TenantContext } from "@/lib/tenant-context";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
 export type DashboardOverview = {
@@ -13,9 +13,13 @@ export type DashboardOverview = {
   mission: { id: string; status: string; due_at: string | null } | null;
 };
 
-export async function loadDashboardOverview(): Promise<DashboardOverview | null> {
-  let ctx;
-  try { ctx = await requireTenantContext(); } catch { return null; }
+export async function loadDashboardOverview(
+  context?: TenantContext,
+): Promise<DashboardOverview | null> {
+  let ctx = context;
+  if (!ctx) {
+    try { ctx = await requireTenantContext(); } catch { return null; }
+  }
 
   const db = await createSupabaseServerClient();
   const { data: company, error: companyError } = await db

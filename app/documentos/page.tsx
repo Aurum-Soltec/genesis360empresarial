@@ -1,14 +1,12 @@
-import { redirect } from "next/navigation";
 import { AppShell } from "@/components/app-shell";
 import { demoEvidenceAlreadyLoaded, isCanonicalDemoEvidence } from "@/lib/demo-scenario";
 import { getFeatureFlags, isDemoTenantAllowed } from "@/lib/feature-flags";
-import { requireTenantContext } from "@/lib/tenant-context";
+import { requirePageTenantContext } from "@/lib/page-tenant-context";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { DemoPackage } from "./demo-package";
 
 export default async function DocumentosPage() {
-  let ctx;
-  try { ctx = await requireTenantContext(); } catch { redirect("/"); }
+  const ctx = await requirePageTenantContext("/documentos");
 
   const flags = getFeatureFlags();
   const demoAllowed = isDemoTenantAllowed(ctx.tenantId);

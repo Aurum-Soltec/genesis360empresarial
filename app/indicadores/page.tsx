@@ -1,15 +1,9 @@
-import { redirect } from "next/navigation";
 import { AppShell } from "@/components/app-shell";
-import { requireTenantContext } from "@/lib/tenant-context";
+import { requirePageTenantContext } from "@/lib/page-tenant-context";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
 export default async function IndicadoresPage() {
-  let ctx;
-  try {
-    ctx = await requireTenantContext();
-  } catch {
-    redirect("/");
-  }
+  const ctx = await requirePageTenantContext("/indicadores");
 
   const db = await createSupabaseServerClient();
   const { data: diagnostic } = await db

@@ -8,7 +8,7 @@ import {
   evidenceIdsFromAnswers,
   verifiedEvidenceCount,
 } from "@/lib/report-provenance";
-import { requireTenantContext } from "@/lib/tenant-context";
+import { requirePageTenantContext } from "@/lib/page-tenant-context";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { buildExecutivePlan, evidenceQualityMessage } from "@/lib/report-insights";
 import { buildDemoSolutionPreview } from "@/lib/demo-solution-preview";
@@ -43,10 +43,11 @@ export default async function ResultadoV1({
 }: {
   searchParams: Promise<{ diagnostic?: string }>;
 }) {
-  const ctx = await requireTenantContext().catch(() => null);
-  if (!ctx) redirect("/");
-
   const params = await searchParams;
+  const destination = params.diagnostic
+    ? `/resultado-v1?diagnostic=${encodeURIComponent(params.diagnostic)}`
+    : "/resultado-v1";
+  const ctx = await requirePageTenantContext(destination);
   const db = await createSupabaseServerClient();
 
   let diagnosticId = params.diagnostic ?? null;

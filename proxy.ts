@@ -45,7 +45,7 @@ export async function proxy(request: NextRequest) {
   if (!data.user && !publicPath) {
     const target = request.nextUrl.clone();
     target.pathname = "/entrar";
-    target.searchParams.set("next", pathname);
+    target.searchParams.set("next", `${pathname}${request.nextUrl.search}`);
     const redirect = NextResponse.redirect(target);
     redirect.headers.set("x-correlation-id", correlation);
     return redirect;

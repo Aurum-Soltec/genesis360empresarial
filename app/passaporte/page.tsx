@@ -1,12 +1,10 @@
-import { redirect } from "next/navigation";
 import { GlassCard } from "@/components/glass-card";
 import { PASSPORT_ESSENTIAL_KEYS, passportCompleteness } from "@/lib/business-passport";
-import { requireTenantContext } from "@/lib/tenant-context";
+import { requirePageTenantContext } from "@/lib/page-tenant-context";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
 export default async function PassaportePage() {
-  let context;
-  try { context = await requireTenantContext(); } catch { redirect("/"); }
+  const context = await requirePageTenantContext("/passaporte");
   const supabase = await createSupabaseServerClient();
 
   const { data: company } = await supabase

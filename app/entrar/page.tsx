@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 import { BrandMark } from "@/components/brand-mark";
 import { createClient } from "@/lib/supabase/client";
+import { safeInternalPath } from "@/lib/safe-navigation";
 
 export default function SignInPage() {
   const router = useRouter();
@@ -24,8 +25,8 @@ export default function SignInPage() {
       setBusy(false);
       return;
     }
-    const next = new URLSearchParams(window.location.search).get("next");
-    router.push(next?.startsWith("/") ? next : "/selecionar-empresa");
+    const next = safeInternalPath(new URLSearchParams(window.location.search).get("next"));
+    router.push(next);
     router.refresh();
   }
 

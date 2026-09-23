@@ -1,16 +1,10 @@
-import { redirect } from "next/navigation";
 import { AppShell } from "@/components/app-shell";
-import { requireTenantContext } from "@/lib/tenant-context";
+import { requirePageTenantContext } from "@/lib/page-tenant-context";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { PriorityActions } from "./priority-actions";
 
 export default async function PrioridadesPage() {
-  let ctx;
-  try {
-    ctx = await requireTenantContext();
-  } catch {
-    redirect("/");
-  }
+  const ctx = await requirePageTenantContext("/prioridades");
 
   const db = await createSupabaseServerClient();
   const { data: diagnostic } = await db

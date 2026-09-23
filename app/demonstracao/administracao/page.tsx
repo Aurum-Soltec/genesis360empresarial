@@ -1,15 +1,14 @@
 import Link from "next/link";
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 import { AppShell } from "@/components/app-shell";
 import { demoEvidenceLoadedCount } from "@/lib/demo-scenario";
 import { canAccessDemoAdministration } from "@/lib/demo-solution-preview";
 import { getFeatureFlags, isDemoTenantAllowed } from "@/lib/feature-flags";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
-import { requireTenantContext } from "@/lib/tenant-context";
+import { requirePageTenantContext } from "@/lib/page-tenant-context";
 
 export default async function DemoAdministrationPage() {
-  const ctx = await requireTenantContext().catch(() => null);
-  if (!ctx) redirect("/");
+  const ctx = await requirePageTenantContext("/demonstracao/administracao");
   if (!isDemoTenantAllowed(ctx.tenantId) || !canAccessDemoAdministration(ctx.role)) notFound();
 
   const db = await createSupabaseServerClient();

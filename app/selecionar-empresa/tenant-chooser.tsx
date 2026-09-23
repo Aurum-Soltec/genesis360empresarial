@@ -2,13 +2,16 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { safeInternalPath } from "@/lib/safe-navigation";
 
 export default function TenantChooser({
   email,
   memberships,
+  nextPath,
 }: {
   email: string;
   memberships: Array<{ id: string; name: string; role: string }>;
+  nextPath: string;
 }) {
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
@@ -20,7 +23,7 @@ export default function TenantChooser({
       body: JSON.stringify({ tenantId }),
     });
     if (!response.ok) return setError("Não foi possível selecionar esta empresa.");
-    router.push("/");
+    router.push(safeInternalPath(nextPath, "/"));
     router.refresh();
   }
   async function signOut() {

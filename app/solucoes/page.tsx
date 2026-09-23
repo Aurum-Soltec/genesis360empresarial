@@ -1,8 +1,7 @@
-import { redirect } from "next/navigation";
 import { AppShell } from "@/components/app-shell";
 import { getFeatureFlags } from "@/lib/feature-flags";
 import { loadQualifiedSolutionsForPain } from "@/lib/server/qualified-solutions";
-import { requireTenantContext } from "@/lib/tenant-context";
+import { requirePageTenantContext } from "@/lib/page-tenant-context";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { ContactButton } from "./contact-button";
 
@@ -11,12 +10,7 @@ export default async function SolucoesPage({
 }: {
   searchParams: Promise<{ pain?: string }>;
 }) {
-  let ctx;
-  try {
-    ctx = await requireTenantContext();
-  } catch {
-    redirect("/");
-  }
+  const ctx = await requirePageTenantContext("/solucoes");
 
   const flags = getFeatureFlags();
   const params = await searchParams;

@@ -1,16 +1,10 @@
-import { redirect } from "next/navigation";
 import { AppShell } from "@/components/app-shell";
-import { requireTenantContext } from "@/lib/tenant-context";
+import { requirePageTenantContext } from "@/lib/page-tenant-context";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { MissionActions } from "./mission-actions";
 
 export default async function MissoesPage() {
-  let ctx;
-  try {
-    ctx = await requireTenantContext();
-  } catch {
-    redirect("/");
-  }
+  const ctx = await requirePageTenantContext("/missoes");
 
   const db = await createSupabaseServerClient();
   const { data: missions } = await db

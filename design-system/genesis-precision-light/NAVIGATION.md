@@ -16,6 +16,8 @@ Ecossistema → conditional institutional surface
 - Indicadores
 - Histórico
 
+Visão executiva contém apenas a síntese, a confiança da leitura e o próximo movimento. Prioridades, Indicadores e Histórico abrem páginas próprias com seus detalhes; não são seções repetidas na Home.
+
 ### Diagnóstico
 - Visão geral
 - Continuar diagnóstico

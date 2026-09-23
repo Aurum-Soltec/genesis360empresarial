@@ -1,16 +1,23 @@
 import Link from "next/link";
-import { notFound, redirect } from "next/navigation";
 import { AppShell } from "@/components/app-shell";
 import { demoEvidenceLoadedCount } from "@/lib/demo-scenario";
 import { canAccessDemoAdministration } from "@/lib/demo-solution-preview";
 import { isDemoTenantAllowed } from "@/lib/feature-flags";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
-import { requireTenantContext } from "@/lib/tenant-context";
+import { requirePageTenantContext } from "@/lib/page-tenant-context";
 
 export default async function DemonstracaoPage() {
-  const ctx = await requireTenantContext().catch(() => null);
-  if (!ctx) redirect("/");
-  if (!isDemoTenantAllowed(ctx.tenantId)) notFound();
+  const ctx = await requirePageTenantContext("/demonstracao");
+  if (!isDemoTenantAllowed(ctx.tenantId)) return (
+    <AppShell>
+      <section className="card empty-state" aria-labelledby="demo-workspace-unavailable">
+        <p className="kicker">Demonstração controlada</p>
+        <h1 id="demo-workspace-unavailable">Esta empresa não está habilitada para o roteiro demonstrativo.</h1>
+        <p>O roteiro usa dados sintéticos em tenants explicitamente autorizados. Seu contexto atual não foi alterado e nenhum dado de demonstração foi carregado.</p>
+        <Link className="button button-secondary" href="/">Voltar à visão executiva</Link>
+      </section>
+    </AppShell>
+  );
   const db = await createSupabaseServerClient();
   const { data: company } = await db.from("companies").select("id,trade_name,sector").eq("tenant_id", ctx.tenantId).limit(1).maybeSingle();
   const { data: diagnostics } = company
