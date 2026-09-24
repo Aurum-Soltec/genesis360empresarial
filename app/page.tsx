@@ -9,6 +9,8 @@ import type { TenantContextTimingPhase } from "@/lib/tenant-context";
 type HomeTimingPhase = TenantContextTimingPhase | DashboardTimingPhase;
 
 async function logHomeTiming(started: number, phases: Partial<Record<HomeTimingPhase, number>>) {
+  // Next may invoke the page during build without a request or data read.
+  if (Object.keys(phases).length === 0) return;
   let safeCorrelation: string | null = null;
   try {
     const correlation = (await headers()).get("x-correlation-id");
@@ -16,11 +18,13 @@ async function logHomeTiming(started: number, phases: Partial<Record<HomeTimingP
       ? correlation : null;
   } catch { /* The correlation header is optional; keep numeric telemetry. */ }
   try {
-    console.log(operationalLog("info", "home_latency", {
+    // Server Component console output can be captured by the renderer. Write
+    // this numeric-only staging probe directly to the Node deployment stream.
+    process.stdout.write(`${operationalLog("info", "home_latency", {
       ...(safeCorrelation ? { correlation_id: safeCorrelation } : {}),
       duration_ms: Math.round((performance.now() - started) * 100) / 100,
       phases_ms: phases,
-    }));
+    })}\n`);
   } catch { /* Telemetry must never change page rendering or authorization. */ }
 }
 

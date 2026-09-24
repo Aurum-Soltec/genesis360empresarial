@@ -197,8 +197,8 @@
     {
       "path": "app/page.tsx",
       "beforeSha256": "4dd8dfe30b1e78a3561437b521f168317bb2faff6ebbfe32ca257a47386b844d",
-      "afterSha256": "6feaf03fc331d4fc016b556697769da87a2aac69f6ce02c7406957015aeb4297",
-      "reason": "Separate contextual navigation pages; HSP-4 numeric Home latency is standard operational telemetry and survives an unavailable correlation header"
+      "afterSha256": "f0ddf54508c962d26c3dd1e915189ff67378fd22688c519cd2a820a004035375",
+      "reason": "HSP-4 numeric Home telemetry writes directly to Node stdout and excludes build invocations with no measured phase"
     },
     {
       "path": "app/passaporte/page.tsx",
@@ -335,8 +335,8 @@
     {
       "path": "lib/dashboard-overview.test.tsx",
       "beforeSha256": null,
-      "afterSha256": "3a5512e027ad1741e48d03719aa8ad26f235fd4621d4e68a6c8db1c23ff9e9e8",
-      "reason": "HSP-4 always-on numeric latency telemetry regression including optional header failure without business or tenant data in logs"
+      "afterSha256": "ea7723c5495ce7e03f1cafa3aad9f1c9f8eb0bf7abc39c599f8b32b0a09b186e",
+      "reason": "HSP-4 stdout telemetry regression including optional header failure without business or tenant data in logs"
     },
     {
       "path": "lib/dashboard-overview.ts",
