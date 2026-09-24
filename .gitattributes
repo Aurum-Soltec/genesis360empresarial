@@ -1,0 +1,2 @@
+# Preserve the exact upstream LICENSE/NOTICE bytes archived for HSP-4 review.
+docs/audit-2026-09-24/HSP4_OSS_NOTICE_REVIEW_31df6086/CI_PACKAGE_LICENSE_TEXTS/** -text -diff

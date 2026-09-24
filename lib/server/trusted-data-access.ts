@@ -1,5 +1,7 @@
 import type { GdsRecord } from "@/lib/gds";
 import type { TenantContext } from "@/lib/tenant-context";
+import { assertTenantPermission } from "@/lib/authz";
+import { canonicalDemoEvidenceCount } from "@/lib/demo-scenario";
 import { operationalLog } from "@/lib/observability";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 
@@ -64,6 +66,58 @@ export async function trustedTenantRpc(
   const scoped = { ...parameters, [identity.tenant]: ctx.tenantId };
   if (identity.actor) scoped[identity.actor] = ctx.userId;
   return admin.rpc(name, scoped);
+}
+
+// A demo document can describe the diagnostic context without validating an
+// individual answer. Keep this write inside the trusted boundary and only
+// allow the exact, unverified canonical fictional package.
+export async function linkCanonicalDemoEvidenceContext(
+  ctx: TenantContext,
+  input: { companyId: string; diagnosticId: string; evidenceIds: string[] },
+) {
+  assertTenantPermission(ctx.role, "evidence:write");
+  if (
+    !UUID.test(input.companyId) || !UUID.test(input.diagnosticId) ||
+    input.evidenceIds.length !== 3 ||
+    new Set(input.evidenceIds).size !== 3 ||
+    input.evidenceIds.some((id) => !UUID.test(id))
+  ) throw new Error("DEMO_CONTEXT_INVALID");
+
+  const admin = await trustedAdmin(ctx);
+  const [
+    { data: company, error: companyError },
+    { data: diagnostic, error: diagnosticError },
+    { data: evidence, error: evidenceError },
+  ] =
+    await Promise.all([
+      admin.from("companies").select("id,fictional")
+        .eq("tenant_id", ctx.tenantId).eq("id", input.companyId).maybeSingle(),
+      admin.from("diagnostics").select("id")
+        .eq("tenant_id", ctx.tenantId).eq("company_id", input.companyId)
+        .eq("id", input.diagnosticId).maybeSingle(),
+      admin.from("evidence_items")
+        .select("id,source_ref,evidence_type,summary,payload,sensitivity,purpose_codes,verification_status")
+        .eq("tenant_id", ctx.tenantId).eq("company_id", input.companyId)
+        .in("id", input.evidenceIds),
+    ]);
+  if (companyError || !company?.fictional) throw new Error("DEMO_COMPANY_NOT_FOUND");
+  if (diagnosticError || !diagnostic) throw new Error("DEMO_DIAGNOSTIC_NOT_FOUND");
+  if (evidenceError || evidence?.length !== 3 || canonicalDemoEvidenceCount(evidence) !== 3) {
+    throw new Error("DEMO_CONTEXT_SOURCE_MISMATCH");
+  }
+
+  const { error: linkError } = await admin.from("evidence_links").upsert(
+    evidence.map((item) => ({
+      tenant_id: ctx.tenantId,
+      company_id: input.companyId,
+      evidence_id: item.id,
+      subject_type: "diagnostic",
+      subject_id: input.diagnosticId,
+      relation: "context_for",
+    })),
+    { onConflict: "evidence_id,subject_type,subject_id,relation", ignoreDuplicates: true },
+  );
+  if (linkError) throw new Error("DEMO_CONTEXT_LINK_FAILED");
 }
 
 export async function insertConsentDecision(

@@ -199,7 +199,13 @@
 **Objetivo:** Transformar a fundação implementada por contrato em release candidate comprovada.
 **Exit gate:** Repo bootstrap, runtime gates, restore, security, E2E e PRR aprovados.
 **Stories:** 12
-**Estado HSP-4 após promoção (2026-09-24 UTC): NO-GO.** O PR #25 foi integrado em `31df6086cb612886dc5db4a45b946ea80dde2cf1`; CI final quality/database/CodeQL/Analyze e web/worker Railway no mesmo SHA passaram. O smoke hospedado observou negativas anônimas, Tenant A autenticado, administração/Passport/Documentos/demo/relatório existentes e quatro destinos superiores. A demo marcou 6/7 etapas porque três fontes fictícias estavam registradas mas zero vinculadas/verificadas. O login convidado passou. FULL corrigido, 0024 SQL/HTTP multi-role e 100 empresas/60 min não foram repetidos no novo SHA; a carga integral anterior falhou p95 ≤750 ms. Backup v2 manual e restore lógico são subprovas, sem backup automático, restore de serviço, equivalência ACL/owner, RPO/RTO, retenção ou chave independente. Licença do contêiner/NOTICE e disposição LGPL/CC-BY pendentes. O runner sintético anterior autenticou duas contas sem escolher tenant, enquanto a UI posterior encontrou Tenant A para uma delas; causa não provada. `V1-ST-110`, `V1-ST-111` e `V1-ST-122` permanecem abertos; `V1-ST-123` não começou. Detalhe: `docs/audit-2026-09-24/HSP4_CORRECTIVE_GO_NO_GO_2026-09-24.md`.
+**Estado HSP-4 após promoção (2026-09-24 UTC): NO-GO.** O PR #25 foi integrado em `31df6086cb612886dc5db4a45b946ea80dde2cf1`; CI final quality/database/CodeQL/Analyze e web/worker Railway no mesmo SHA passaram. O smoke hospedado observou negativas anônimas, Tenant A autenticado, administração/Passport/Documentos/demo/relatório existentes e quatro destinos superiores. A demo marcou 6/7 etapas porque três fontes fictícias estavam registradas mas zero vinculadas/verificadas. O login convidado passou. FULL corrigido, 0024 SQL/HTTP multi-role e 100 empresas/60 min não foram repetidos no novo SHA; a carga integral anterior falhou p95 ≤750 ms. Backup v2 manual e restore lógico são subprovas, sem backup automático, restore de serviço, equivalência ACL/owner, RPO/RTO, retenção ou chave independente. A comparação read-only de 30/30 pacotes em web/worker com o CI Linux do mesmo SHA passou tecnicamente; NOTICE e disposição LGPL/CC-BY/MPL pendentes. Correção de vínculo contextual da demo e instrumentação adicional da Home são somente locais. O runner sintético anterior autenticou duas contas sem escolher tenant, enquanto a UI posterior encontrou Tenant A para uma delas; causa não provada. `V1-ST-110`, `V1-ST-111` e `V1-ST-122` permanecem abertos; `V1-ST-123` não começou. Detalhe: `docs/audit-2026-09-24/HSP4_CORRECTIVE_GO_NO_GO_2026-09-24.md`.
+
+**Subprova posterior em EPIC-17:** PR privada #11/run `36020411581` passou
+boot/saúde de stack sintética vazia em Ubuntu, com identidade de serviços,
+binds em loopback e cleanup. Não restaurou dados, não mediu RPO/RTO e não
+altera `V1-ST-110` ou a decisão NO-GO. Evidência:
+`docs/audit-2026-09-24/HSP4_PRIVATE_SYNTHETIC_STACK_BOOT_2026-09-24.md`.
 
 **Registro da rechecagem anterior HSP-4 (histórico, 2026-09-24 UTC): NO-GO.** O SHA funcional
 bb290bc7bc35f77b4ca01aecdbf19b748c386270 passou CI e web/worker
@@ -227,7 +233,7 @@ foi comprovado, sem contribuição causal quantificada. PILOT-1 não começou.
 - `V1-ST-108` — E2E browser e novo FULL 55 respostas no bb290bc, sem vínculo documental — **completed-hosted-runtime-limited** — P0
 - `V1-ST-109` — Cross-tenant 12/12 RLS SQL e 12/12 HTTP multi-role no bb290bc — **completed-hosted-runtime-limited** — P0
 - `V1-ST-110` — Backup/restore/rollback drill — **partial-private-v2-manual-logical-pass-service-rpo-rto-pending** — P0
-- `V1-ST-111` — SBOM + license + dependency + secret/security scans — **partial-remote-ci-classification-railway-and-legal-disposition-blocked** — P0
+- `V1-ST-111` — SBOM + license + dependency + secret/security scans — **partial-deployed-package-bytes-pass-notice-legal-blocked** — P0
 - `V1-ST-112` — Observabilidade e correlation IDs ponta a ponta — **partial-monitor-drill-alert-delivery-ack-pass-continuous-observation-pending** — P0
 - `V1-ST-113` — Configurar dev/staging/prod e promoção controlada — **completed-hosted-staging-and-remote-ci** — P0
 - `V1-ST-122` — Production Readiness Review e release candidate — **hsp4-prr-closed-no-go-objective-fixes** — P0

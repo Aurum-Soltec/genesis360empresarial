@@ -103,14 +103,14 @@ V1-ST-101,EPIC-16 Genesis Precision Light,Browser visual/accessibility validatio
 V1-ST-102,EPIC-16 Genesis Precision Light,Visual regression baseline,P1,partial-local-baseline-full-suite-pending,docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md
 V1-ST-103,EPIC-16 Genesis Precision Light,Remaining surface migration,P1,p1-after-canonical-approval,docs/canonical/v1/delivery/MASTER_BACKLOG_V1.md
 V1-ST-104,EPIC-17 Production Readiness & Repository,Bootstrap do novo repositório GitHub,P0,completed-remote-repository,docs/canonical/v1/delivery/STORIES_MASTER.md
-V1-ST-105,EPIC-17 Production Readiness & Repository,Bootstrap limpo das migrations 0001→0023,P0,completed-hosted-runtime,docs/canonical/v1/delivery/STORIES_MASTER.md
-V1-ST-106,EPIC-17 Production Readiness & Repository,Executar pgTAP tenancy/RBAC/governance completo,P0,completed-hosted-runtime,docs/canonical/v1/delivery/STORIES_MASTER.md
+V1-ST-105,EPIC-17 Production Readiness & Repository,Bootstrap limpo das migrations 0001→0023,P0,completed-hosted-runtime-limited,docs/canonical/v1/delivery/STORIES_MASTER.md
+V1-ST-106,EPIC-17 Production Readiness & Repository,Executar pgTAP tenancy/RBAC/governance completo,P0,completed-hosted-runtime-limited,docs/canonical/v1/delivery/STORIES_MASTER.md
 V1-ST-107,EPIC-17 Production Readiness & Repository,Full lint + TypeScript 6 + Vitest + Next build,P0,completed-remote-ci,docs/canonical/v1/delivery/STORIES_MASTER.md
-V1-ST-108,EPIC-17 Production Readiness & Repository,E2E browser do happy path empresarial,P0,completed-hosted-runtime,docs/canonical/v1/delivery/STORIES_MASTER.md
-V1-ST-109,EPIC-17 Production Readiness & Repository,E2E adversarial cross-tenant e permissions,P0,completed-hosted-runtime,docs/canonical/v1/delivery/STORIES_MASTER.md
-V1-ST-110,EPIC-17 Production Readiness & Repository,Backup/restore/rollback drill,P0,partial-hosted-logical-pass-managed-backup-pending,docs/canonical/v1/delivery/STORIES_MASTER.md
-V1-ST-111,EPIC-17 Production Readiness & Repository,SBOM + license + dependency + secret/security scans,P0,partial-scans-and-license-inventory-pass-sbom-legal-pending,docs/canonical/v1/delivery/STORIES_MASTER.md
-V1-ST-112,EPIC-17 Production Readiness & Repository,Observabilidade e correlation IDs ponta a ponta,P0,partial-hosted-observability-external-paging-pending,docs/canonical/v1/delivery/STORIES_MASTER.md
+V1-ST-108,EPIC-17 Production Readiness & Repository,E2E browser do happy path empresarial,P0,completed-hosted-runtime-limited,docs/canonical/v1/delivery/STORIES_MASTER.md
+V1-ST-109,EPIC-17 Production Readiness & Repository,E2E adversarial cross-tenant e permissions,P0,completed-hosted-runtime-limited,docs/canonical/v1/delivery/STORIES_MASTER.md
+V1-ST-110,EPIC-17 Production Readiness & Repository,Backup/restore/rollback drill,P0,partial-private-v2-manual-logical-pass-service-rpo-rto-pending,docs/canonical/v1/delivery/STORIES_MASTER.md
+V1-ST-111,EPIC-17 Production Readiness & Repository,SBOM + license + dependency + secret/security scans,P0,partial-deployed-package-bytes-pass-notice-legal-blocked,docs/canonical/v1/delivery/STORIES_MASTER.md
+V1-ST-112,EPIC-17 Production Readiness & Repository,Observabilidade e correlation IDs ponta a ponta,P0,partial-monitor-drill-alert-delivery-ack-pass-continuous-observation-pending,docs/canonical/v1/delivery/STORIES_MASTER.md
 V1-ST-113,EPIC-17 Production Readiness & Repository,Configurar dev/staging/prod e promoção controlada,P0,completed-hosted-staging-and-remote-ci,docs/canonical/v1/delivery/STORIES_MASTER.md
 V1-ST-114,EPIC-18 Activation Decisions,Aprovar e ativar versão jurídica de Data Submission Attestation,P0,planned-production,docs/canonical/v1/delivery/STORIES_MASTER.md
 V1-ST-115,EPIC-18 Activation Decisions,Implementar pipeline seguro de upload binário,P0,foundation-implemented-scanner-and-activation-pending,docs/canonical/v1/delivery/STORIES_MASTER.md
@@ -120,5 +120,5 @@ V1-ST-118,EPIC-18 Activation Decisions,Calibrar confidence engine com empresas p
 V1-ST-119,EPIC-18 Activation Decisions,Calibrar applicability setorial/operating traits,P1,planned-production,docs/canonical/v1/delivery/STORIES_MASTER.md
 V1-ST-120,EPIC-18 Activation Decisions,Executar spike Minimal vs Pydantic AI Slim,P1,planned-production,docs/canonical/v1/delivery/STORIES_MASTER.md
 V1-ST-121,EPIC-18 Activation Decisions,Migrar superfícies restantes para Precision Light V2,P1,planned-production,docs/canonical/v1/delivery/STORIES_MASTER.md
-V1-ST-122,EPIC-17 Production Readiness & Repository,Production Readiness Review e release candidate,P0,completed-hsp4-no-go,docs/canonical/v1/delivery/STORIES_MASTER.md
+V1-ST-122,EPIC-17 Production Readiness & Repository,Production Readiness Review e release candidate,P0,hsp4-prr-closed-no-go-objective-fixes,docs/canonical/v1/delivery/STORIES_MASTER.md
 V1-ST-123,EPIC-17 Production Readiness & Repository,Piloto controlado com rollout/rollback,P0,planned-not-started,docs/canonical/v1/delivery/STORIES_MASTER.md

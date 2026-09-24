@@ -12,12 +12,32 @@ export type DashboardOverview = {
   pains: Array<{ id: string; title: string; gap_summary: string | null; severity: number; confidence: number }>;
 };
 
-export async function loadDashboardOverview(ctx: TenantContext): Promise<DashboardOverview | null> {
+export type DashboardTimingPhase = "company_selection" | "diagnostic" | "pains";
+export type DashboardTimingObserver = (phase: DashboardTimingPhase, durationMs: number) => void;
+
+async function timed<T>(
+  phase: DashboardTimingPhase,
+  observer: DashboardTimingObserver | undefined,
+  run: () => PromiseLike<T>,
+): Promise<T> {
+  if (!observer) return await run();
+  const started = performance.now();
+  try {
+    return await run();
+  } finally {
+    // Timing is diagnostic only; a broken observer must never affect a read.
+    try { observer(phase, Math.max(0, performance.now() - started)); } catch { /* best effort */ }
+  }
+}
+
+export async function loadDashboardOverview(
+  ctx: TenantContext,
+  observeTiming?: DashboardTimingObserver,
+): Promise<DashboardOverview | null> {
   const db = await createSupabaseServerClient();
-  const selection = await selectUniqueTenantCompany(
-    db,
-    ctx.tenantId,
-    isDemoTenantAllowed(ctx.tenantId),
+  const selection = await timed(
+    "company_selection", observeTiming,
+    () => selectUniqueTenantCompany(db, ctx.tenantId, isDemoTenantAllowed(ctx.tenantId)),
   );
   if (selection.status !== "ready") {
     if (selection.status === "ambiguous") throw new Error("COMPANY_SELECTION_REQUIRED");
@@ -35,7 +55,9 @@ export async function loadDashboardOverview(ctx: TenantContext): Promise<Dashboa
     .limit(1)
     .maybeSingle();
 
-  const { data: diagnostic, error: diagnosticError } = await diagnosticQuery;
+  const { data: diagnostic, error: diagnosticError } = await timed(
+    "diagnostic", observeTiming, () => diagnosticQuery,
+  );
   if (diagnosticError) throw new Error("DASHBOARD_READ_FAILED");
   let pains: DashboardOverview["pains"] = [];
   if (diagnostic) {
@@ -47,7 +69,9 @@ export async function loadDashboardOverview(ctx: TenantContext): Promise<Dashboa
       .order("severity", { ascending: false })
       .limit(3);
 
-    const { data: painRows, error: painError } = await painQuery;
+    const { data: painRows, error: painError } = await timed(
+      "pains", observeTiming, () => painQuery,
+    );
     if (painError) throw new Error("DASHBOARD_READ_FAILED");
     pains = (painRows ?? []) as DashboardOverview["pains"];
   }

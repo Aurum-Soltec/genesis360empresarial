@@ -115,7 +115,7 @@ export default async function ResultadoV1({
 
   const { data: diagnosticEvidenceLinks, error: diagnosticEvidenceLinksError } = await db
     .from("evidence_links")
-    .select("evidence_id")
+    .select("evidence_id,relation")
     .eq("tenant_id", ctx.tenantId)
     .eq("company_id", diagnosticRow.company_id)
     .eq("subject_type", "diagnostic")
@@ -142,6 +142,8 @@ export default async function ResultadoV1({
     evidenceSetComplete(evidenceIds, evidenceRows);
   const evidencedAnswers = answersWithEvidence(answerEvidenceRows);
   const verifiedEvidence = verifiedEvidenceCount(evidenceRows);
+  const contextualSourceCount = (diagnosticEvidenceLinks ?? [])
+    .filter((link) => link.relation === "context_for").length;
   const ruleVersions = [...new Set((scores ?? []).map((score) => score.rule_version).filter(Boolean))];
   const reportDate = diagnosticRow.submitted_at
     ? new Intl.DateTimeFormat("pt-BR", { dateStyle: "long", timeStyle: "short" })
@@ -440,6 +442,9 @@ export default async function ResultadoV1({
             Referência declarada não comprova que a fonte sustenta a resposta. A
             pertinência e a verificação devem ser confirmadas antes de usar esta
             leitura como fato documental.
+            {contextualSourceCount > 0
+              ? " As fontes de contexto do diagnóstico não validam respostas individuais nem o score."
+              : ""}
             {isCurrentDemoCompany ? " Neste cenário, as fontes são fictícias." : ""}
           </p>
 

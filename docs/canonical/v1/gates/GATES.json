@@ -80,7 +80,7 @@
   "GATE-SEC": {
     "state": "blocked-operational-controls",
     "pending": [
-      "exact deployed Linux bundle inspection, NOTICE and technical/legal disposition for LGPL libvips and CC-BY caniuse-lite; public commit 40b9b82 Linux CI classified 9 of 30 findings on pnpm production tree and archived hashes/license files, but has no Railway byte proof for promoted 31df6086",
+      "complete NOTICE/source/conditions and technical/legal disposition for LGPL libvips, CC-BY caniuse-lite, MPL and other non-preferred licenses; read-only Railway web/worker inspection on promoted 31df6086 matched aggregate hashes of all 30 reviewed packages against same-SHA Linux CI, but did not attest the full image or approve obligations",
       "automatic encrypted backup retention and representative service restore with measured RPO/RTO; private GitHub v2 run 36002104320 made immutable encrypted backup with 129 ACL TOC entries and isolated logical DB restore; guarded cron PR #7 merged at 051a76d but activation variables absent and schedule OFF; service-restore scaffold PR #6 merged at 10214da with 34 local tests PASS and one Windows symlink SKIP, but no restore executed, 30-day history, independent key or ACL/owner equivalence after restore",
       "legal/privacy review of attestation copy",
       "binary upload malware/content scanning"
@@ -108,8 +108,10 @@
       "Dependabot alerts and security updates with zero open alerts",
       "CodeQL default setup passing with zero open alerts",
       "historical frozen-lockfile inventory; hosted bb290bc CI Linux SBOM has 455 entries and an unresolved LGPL package; public PR #25 commit 40b9b82 Linux CI quality/database/CodeQL/Analyze PASS and license inventory 9/30 production-reachable, but scanner does not inspect deployed bytes",
+      "promoted 31df6086 Railway web and worker read-only inspection: 454 installed packages per service, all 30 ADR-015 non-preferred packages physically present, all 30 aggregate hashes matching same-SHA Linux CI run 36009447882; LGPL libvips binary present in both; deployed package byte-comparison subgate passed, full-image attestation and NOTICE/legal disposition pending",
       "monitor issue #27: synthetic failure, recovery, email receipt and human ACK; public ACK notification quote sanitized, external cache residual unknown",
       "private backup v1 run 35945384891 PASS historical; private v2 run 36002104320 on e82a09c PASS with 129 ACL TOC entries, immutable encrypted release and isolated logical restore 102 tenants, 16 Auth users, 0 Storage objects, 24 migrations in 77.450s after download; PR #6 restore scaffold merged at 10214da with 34 local tests PASS and one Windows symlink SKIP but no service restore, RTO/RPO or ACL/owner equivalence",
+      "private PR #11 merged at 987964fc and Ubuntu manual run 36020411581 SUCCESS: 2 CPUs, 8.32 GB total RAM, empty isolated stack boot/health in 120 seconds, expected service identities and loopback-only bindings verified, cleanup SUCCESS; no backup, plaintext, staging credentials, restored service, RPO or RTO credit",
       "GitHub Actions organization budget USD0 with Stop usage enabled on 2026-09-24, 244 of 2000 included minutes used; shared quota exhaustion may stop backup even without billing"
     ]
   },
@@ -154,7 +156,7 @@
     "pending": [
       "100-tenant 60-minute duration, isolation and outbox passed on bb290bc run 662855c2dbd5; p95 <=750ms failed on login/Home/write/read and must be remeasured after safe correction",
       "automatic encrypted backup retention, representative service restore with owner/ACL equivalence and measured RPO/RTO; private v2 manual snapshot/logical restore passed, guarded cron code merged but inactive (activation variables absent), restore scaffold merged but no drill, 30-day history, independent key custody and equivalent-control decision pending",
-      "final bundle SBOM/NOTICE and legal LGPL/CC-BY license disposition; 40b9b82 CI classification and hash archive have no Railway image proof",
+      "final NOTICE, applicable sources/conditions and legal LGPL/CC-BY/MPL disposition; deployed 31df6086 web/worker package byte-comparison for all 30 reviewed items passed against same-SHA CI; approved exceptions/CI enforcement remain pending",
       "legal/privacy and upload activation gates"
     ]
   },
@@ -172,6 +174,7 @@
       "hosted HTTP member/manager/foreign-tenant isolation 12/12 on bb290bc; temporary fixture and users cleaned",
       "historical authenticated browser E2E 10/10",
       "private v2 immutable encrypted backup and isolated logical DB restore: run 36002104320, 129 ACL TOC entries, 102 tenants, 16 Auth users, 24 migrations, no Storage objects; local helper 77.450s after download is not service RTO or ACL equivalence; PRs #6/#7 merged as inert preparation, no restore and schedule OFF",
+      "private PR #11 / run 36020411581 booted and verified only an empty Ubuntu service stack with loopback bindings and cleanup in 120 seconds; this closes stack-bootstrap feasibility, not a restored service or measured RPO/RTO",
       "historical 100-tenant end-to-end soak with functional pass and performance fail",
       "controlled hosted invite email/callback/Tenant A-only session, owner-defined password and fresh sign-in on exact invited account with Auth timestamp advanced after retest",
       "issue #27 synthetic failure, recovery, email notification, human ACK and close; ACK quote sanitized",
@@ -179,7 +182,7 @@
     ],
     "pending": [
       "automatic encrypted backup/recovery with 30-day retention and measured service RPO/RTO; private v2 manual backup/isolated logical restore includes 129 ACL TOC entries, but does not prove applied ACL/owner equivalence; guarded cron PR #7 merged but schedule OFF, service restore PR #6 merged without drill, history/key custody/equivalence pending",
-      "final artifact license disposition and exact Railway bundle inventory",
+      "final artifact NOTICE/legal license disposition; deployed 31df6086 package byte-comparison for the 30 reviewed packages passed, but must be repeated after image changes",
       "actual document-linked/verified diagnostic conclusion remains unproven while real upload flag is off; corrected synthetic provenance runner retest pending after two Auth successes but no tenant selection/writes; later UI found Tenant A for one same account, so runner discrepancy cause unknown",
       "100-tenant 60-minute duration/isolation/outbox passed on previous bb290bc; p95 <=750ms failed, pool/slow-query and marginal cost telemetry incomplete; no new 100x60 on promoted 31df6086"
     ]
@@ -207,12 +210,14 @@
       "first bb290bc run aborted at 998 seconds with 10 client errors; retry 662855c2dbd5 completed 3604 seconds, 100 tenants, 24512 browser requests and 0 unexpected errors; browser p95 FAIL",
       "second bb290bc run hosted outbox probe: 5806 matched events processed, zero pending/dead/retries, worker latency p95 3476.20ms",
       "first private encrypted backup run 35945384891 passed historically; v2 run 36002104320 preserved 129 ACL TOC entries and isolated local logical restore passed; PRs #6/#7 merged as code preparation, but schedule OFF and no service restore, automatic retention or RPO/RTO",
+      "private PR #11 / run 36020411581 passed empty isolated Ubuntu service-stack boot, health, identity, loopback and cleanup with no credentials or restored data; 120 seconds is not service RTO and HSP-2 remains BLOCKED",
       "issue #27 email receipt, human ACK, recovery and close; public ACK sanitized",
       "fresh invited-user password login on exact alias passed with owner-observed Tenant A and Auth last_sign_in_at advanced after retest",
       "2026-09-24 short Home/API/Auth probe confirms p95 performance remains failed; local numerical instrumentation passed 27 focused tests but no hosted measurement or new 60-minute pass",
       "corrected synthetic provenance runner hosted retest blocked after two protected Auth successes, zero tenant choices and zero writes; no hosted provenance pass",
-      "public PR #25 predecessor 40b9b82 passed local 503 Vitest, 34 native hardening tests and remote CI; Linux license inventory 9/30 production-reachable from its CI remains unresolved for deployed bytes",
-      "public PR #25 latest code change 6d4d569 passes local pnpm quality with 506 Vitest, 34 native tests, lint, types, security and build; final remote CI quality/database/CodeQL/Analyze PASS on runs 36009033246 and 36009024373; PR merged as 31df6086, web/worker SUCCESS on that exact SHA, limited anonymous/authenticated/navigation smoke PASS; affected FULL, SQL/HTTP multi-role and 100x60 retests pending"
+      "public PR #25 predecessor 40b9b82 reported local 503 Vitest, 34 native hardening tests and remote CI; old local Vitest discovery did not exclude ignored tmp, so the count is not comparable to the current clean suite; its Linux license inventory classified 9/30 packages as production-reachable, supplemented by deployed 31df6086 inspection",
+      "promoted 31df6086 Railway web/worker read-only license inspection compared all 30 reviewed package aggregate hashes with same-SHA Linux CI run 36009447882; zero mismatches and 21 packages outside pnpm --prod physically present; NOTICE and legal disposition remain BLOCKED",
+      "public PR #25 latest code change 6d4d569 historical local pnpm quality reported 506 Vitest and 34 native tests under Vitest discovery that did not exclude tmp; current clean local suite after discovery fix passed 49 files/181 tests and these counts are not comparable; final remote CI quality/database/CodeQL/Analyze PASS on runs 36009033246 and 36009024373; PR merged as 31df6086, web/worker SUCCESS on that exact SHA, limited anonymous/authenticated/navigation smoke PASS; affected FULL, SQL/HTTP multi-role and 100x60 retests pending"
     ],
     "pending": [
       "close HSP-4 automatic backup/ACL-equivalent service restore/RPO-RTO, LGPL/CC-BY and 100-tenant 60-minute p95 blockers; document-grounded real conclusions remain pending under disabled upload flag",

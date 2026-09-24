@@ -69,6 +69,7 @@ try {
     state: "visible",
     timeout: 15000,
   });
+  await tenantButtons.first().waitFor({ state: "visible", timeout: 15000 });
   if (await tenantButtons.count() === 0) {
     throw new Error("No active tenant is available for the demo user");
   }
@@ -128,9 +129,10 @@ try {
 
   await apiJson(page, "POST", `/api/diagnostics/${diagnosticId}/submit`);
   await page.goto(`${baseURL}/resultado-v1?diagnostic=${diagnosticId}`, { waitUntil: "networkidle" });
-  await page.getByRole("heading", { name: "Como esta leitura foi sustentada" }).waitFor();
+  await page.getByRole("heading", { name: "Origem e limites da leitura" }).waitFor();
   const resultText = await page.locator("body").innerText();
-  if (!resultText.includes("Fontes vinculadas") || !resultText.includes("Regra de score")) {
+  if (!resultText.includes("Fontes registradas no diagnóstico") || !resultText.includes("Regra de score") ||
+      !resultText.includes("As fontes de contexto do diagnóstico não validam respostas individuais nem o score.")) {
     throw new Error("Traceable result content was not rendered");
   }
   if (!resultText.includes("Soluções compatíveis com as necessidades") || !resultText.includes("Empresas 100% fictícias")) {

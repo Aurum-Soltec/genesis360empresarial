@@ -46,4 +46,13 @@ describe("requirePageTenantContext", () => {
     await expect(requirePageTenantContext("/missoes")).rejects.toBe(failure);
     expect(redirect).not.toHaveBeenCalled();
   });
+
+  it("forwards optional timing observation without weakening authorization", async () => {
+    const observe = vi.fn();
+    const context = { tenantId: "tenant-a", userId: "user-a", role: "owner" };
+    vi.mocked(requireTenantContext).mockResolvedValueOnce(context);
+
+    await expect(requirePageTenantContext("/", "api.default", observe)).resolves.toEqual(context);
+    expect(requireTenantContext).toHaveBeenCalledWith("api.default", observe);
+  });
 });

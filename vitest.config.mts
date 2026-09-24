@@ -7,7 +7,7 @@ export default defineConfig({
     globals: true,
     maxWorkers: 2,
     include: ["**/*.test.ts", "**/*.test.tsx"],
-    exclude: [...configDefaults.exclude, "**/.audit-work/**"],
+    exclude: [...configDefaults.exclude, "**/.audit-work/**", "**/tmp/**"],
     coverage: {
       reporter: ["text", "json", "html"],
     },
