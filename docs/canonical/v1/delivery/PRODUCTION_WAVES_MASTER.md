@@ -2,7 +2,33 @@
 
 As Waves 0–8 registram a evolução histórica da fundação. As **PW** abaixo são as ondas de execução para transformar a baseline em produção.
 
-## Estado canônico Hosted Staging & Pilot Readiness — fonte `6dff3c9`
+## Estado canônico Hosted Staging & Pilot Readiness — fonte `458aac9`
+
+**NO-GO em 2026-09-24 UTC.** PR #33/CI PASS e merge na main
+`458aac964d1f9a7016ac1804fe99d68637a3c0b8`. Web Railway
+`65ede85d-f918-4ccf-b161-a9396d6c702a` e worker Railway
+`8e460f0f-4c6b-4506-b490-90682b5b1b4d` chegaram a SUCCESS de
+worktree limpa detached nesse SHA. Os deployments têm digests web
+`sha256:108dd4d9b0d33b5bd60d5df4fce63ca3dee62f7fc6136675d7ec6612803a613b`
+e worker `sha256:8318678e1197f06d97390dbf43629bfb88bea97963eda892ffd7ee9b234e2163`;
+Railway `meta.commitHash=null` em ambos. A rota opt-in
+`/api/ops/home-timing`
+devolveu 401 anônimo, mas a navegação autenticada foi bloqueada pelo
+navegador (`ERR_BLOCKED_BY_CLIENT`), sem tempos hospedados. Último 100×60
+permanece FAIL de p95; HTTP multi-role e FULL no candidato atual seguem
+PENDING, backup de serviço/RPO-RTO e NOTICE seguem BLOCKED. Nenhum gate
+herda PASS runtime do `6dff3c9` automaticamente. [Revisão A–T
+vigente](../../../audit-2026-09-24/HSP4_CURRENT_REVIEW_458AAC9_2026-09-24.md).
+
+| Wave | Estado no `458aac9` | Próxima evidência obrigatória |
+| --- | --- | --- |
+| HSP-0 | **PARTIAL** | Preservar CI e vincular fonte/deployments ao artefato sem alegar atestação nativa não observada. |
+| HSP-1 | **PARTIAL** | Repetir HTTP membro/gestor/outro tenant, FULL e flags no candidato; SQL-only anterior é histórico. |
+| HSP-2 | **BLOCKED** | Restore funcional com ACL/RLS e RPO/RTO, backup automático/retido, alerta/ACK, chave independente e NOTICE. |
+| HSP-3 | **FAIL p95 histórico; atual PENDING** | Medir fases autenticadas, corrigir gargalo demonstrado e repetir 100×60 no candidato. |
+| HSP-4 | **NO-GO** | Reconciliar gates antes de decisão de piloto. |
+
+## Registro histórico — fonte `6dff3c9`
 
 **NO-GO em 2026-09-24 UTC.** PRs #30/#31/#32 passaram CI e foram integrados.
 Uploads CLI da fonte local limpa `6dff3c9833ae2036f187dd1c9b3a2ad9680a20ac`
