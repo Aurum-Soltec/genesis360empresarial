@@ -22,7 +22,7 @@ export function classifyDeclaredLicense(value) {
   return { status: "review", reason: "outside_adr_015_preferred_list_or_composite_expression" };
 }
 
-export function auditSpdxDocument(spdx, sourceSha256, commitSha = null) {
+export function auditSpdxDocument(spdx, sourceSha256, evaluatedSha = null, prHeadSha = null) {
   if (spdx?.spdxVersion !== "SPDX-2.3" || !Array.isArray(spdx.packages)) {
     throw new Error("Expected an SPDX-2.3 document with a packages array");
   }
@@ -53,7 +53,9 @@ export function auditSpdxDocument(spdx, sourceSha256, commitSha = null) {
   return {
     policy: "ADR-015 declaration precheck v1",
     sourceSha256,
-    commitSha,
+    // GitHub PR jobs evaluate a synthetic merge ref; retain both identities.
+    ciEvaluatedSha: evaluatedSha,
+    prHeadSha,
     basis: "installed package.json declarations in the Linux/x64 CI SBOM; not deployed artifact contents",
     gate: counts.review + counts.blocked > 0 ? "BLOCKED" : "INCOMPLETE_ARTIFACT_AND_NOTICES_REVIEW",
     counts,
@@ -72,7 +74,12 @@ export function runCli(argv = process.argv.slice(2)) {
   const output = paths[1] ?? "test-results/hsp4-license-declarations.json";
   const source = fs.readFileSync(input);
   const spdx = JSON.parse(source.toString("utf8"));
-  const report = auditSpdxDocument(spdx, crypto.createHash("sha256").update(source).digest("hex"), process.env.GITHUB_SHA ?? null);
+  const report = auditSpdxDocument(
+    spdx,
+    crypto.createHash("sha256").update(source).digest("hex"),
+    process.env.GITHUB_SHA ?? null,
+    process.env.GENESIS_PR_HEAD_SHA || null,
+  );
   fs.mkdirSync(path.dirname(output), { recursive: true });
   fs.writeFileSync(output, `${JSON.stringify(report, null, 2)}\n`);
   console.log(JSON.stringify({ output, gate: report.gate, counts: report.counts }));

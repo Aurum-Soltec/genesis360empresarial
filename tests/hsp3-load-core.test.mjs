@@ -6,6 +6,7 @@ import os from "node:os";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { classifyLoginFailure, evaluateGate, parsePassportServerTiming, percentile, summarizeSamples, validateFixture, validateRunConfig } from "../scripts/hsp3-load-core.mjs";
+import { classifyBrowserFailure, shouldRecyclePage } from "../scripts/run-hsp3-100-tenants.mjs";
 
 function fixture() {
   return { synthetic: true, users: Array.from({ length: 10 }, (_, user) => ({
@@ -65,6 +66,43 @@ test("login diagnostics distinguish hydration, provider and routing failures wit
   assert.equal(classifyLoginFailure({ phase: "submit", authNetworkFailure: true }), "AUTH_NETWORK_FAILURE");
   assert.equal(classifyLoginFailure({ phase: "submit", authHttpStatus: 200 }), "LOGIN_ROUTE_TIMEOUT");
   assert.equal(classifyLoginFailure({ phase: "navigate" }), "LOGIN_NAVIGATION_FAILED");
+});
+
+test("runtime diagnostics separate browser, page, network and timeout without echoing exception text", () => {
+  const privateUrl = "https://staging.example.test/api/passport/facts?token=SECRET_SHOULD_NOT_LEAK";
+  const cases = [
+    [new Error(`page.goto: net::ERR_CONNECTION_RESET at ${privateUrl}`), {}, "NETWORK_FAILURE"],
+    [new Error(`page.evaluate: AbortError: request to ${privateUrl}`), {}, "BROWSER_OPERATION_TIMEOUT"],
+    [Object.assign(new Error(`page.goto: Timeout 30000ms exceeded at ${privateUrl}`), { name: "TimeoutError" }), {}, "BROWSER_OPERATION_TIMEOUT"],
+    [new Error(`Target page, context or browser has been closed at ${privateUrl}`), {}, "BROWSER_TARGET_CLOSED"],
+    [new Error(privateUrl), { pageClosed: true, browserConnected: true }, "PAGE_CLOSED"],
+    [new Error(privateUrl), { browserConnected: false }, "BROWSER_DISCONNECTED"],
+    [new Error(privateUrl), { pageCrashed: true, browserConnected: false }, "PAGE_CRASHED"],
+    [new Error(privateUrl), { networkFailure: true, browserConnected: true }, "NETWORK_FAILURE"],
+    [new Error(privateUrl), {}, "BROWSER_OR_NETWORK_FAILURE"],
+  ];
+  for (const [error, state, expected] of cases) {
+    const code = classifyBrowserFailure(error, state);
+    assert.equal(code, expected);
+    assert.doesNotMatch(code, /SECRET_SHOULD_NOT_LEAK|staging\.example\.test/);
+  }
+});
+
+test("page recycling is staggered before cycle 160 and preserves every scheduled workload cycle", () => {
+  const firstRecycles = Array.from({ length: 10 }, (_, userOrdinal) =>
+    Array.from({ length: 80 }, (_, cycle) => cycle + 1)
+      .find((cycle) => shouldRecyclePage(cycle, userOrdinal)));
+  assert.deepEqual(firstRecycles, [80, 76, 72, 68, 64, 60, 56, 52, 48, 44]);
+  assert.equal(new Set(firstRecycles).size, 10);
+  for (let userOrdinal = 0; userOrdinal < 10; userOrdinal += 1) {
+    for (let cycle = 1; cycle < 160; cycle += 1) {
+      if (shouldRecyclePage(cycle, userOrdinal)) {
+        assert.equal(shouldRecyclePage(cycle + 80, userOrdinal), true);
+      }
+    }
+  }
+  assert.equal(shouldRecyclePage(0, 0), false);
+  assert.equal(shouldRecyclePage(80, 10), false);
 });
 
 test("runtime alone cannot pass; observations must match run and prove processed events", () => {

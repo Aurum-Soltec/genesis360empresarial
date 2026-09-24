@@ -4,9 +4,40 @@
 import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
+import { pathToFileURL } from "node:url";
 import { chromium } from "playwright-core";
 import { classifyLoginFailure, evaluateGate, parsePassportServerTiming, percentile, readFixture, summarizeSamples, validateRunConfig } from "./hsp3-load-core.mjs";
 
+// Classify only known error shapes. Playwright exceptions can contain URLs,
+// cookies or response text, so neither their message nor stack is persisted.
+export function classifyBrowserFailure(error, state = {}) {
+  if (state.pageCrashed === true || /(?:page|target) crashed/i.test(error?.message ?? "")) return "PAGE_CRASHED";
+  if (state.browserConnected === false) return "BROWSER_DISCONNECTED";
+  if (state.pageClosed === true) return "PAGE_CLOSED";
+  if (state.networkFailure === true) return "NETWORK_FAILURE";
+  if (error?.name === "TimeoutError" || error?.name === "AbortError" ||
+      /(?:Timeout \d+ms exceeded|Navigation timeout of \d+ms exceeded|AbortError:)/i.test(error?.message ?? "")) {
+    return "BROWSER_OPERATION_TIMEOUT";
+  }
+  if (/(?:net::ERR_[A-Z_]+|Failed to fetch|NetworkError when attempting to fetch resource)/i.test(error?.message ?? "")) {
+    return "NETWORK_FAILURE";
+  }
+  if (/(?:Target page, context or browser has been closed|Target closed)/i.test(error?.message ?? "")) {
+    return "BROWSER_TARGET_CLOSED";
+  }
+  return "BROWSER_OR_NETWORK_FAILURE";
+}
+
+// Stagger resets so ten browsers never replace their pages in the same cycle.
+// The browser context (cookies and origin storage) survives; each next cycle
+// still executes the complete tenant switch, Home, write, read and RLS probes.
+export function shouldRecyclePage(cycleIndex, userOrdinal) {
+  return cycleIndex > 0 && Number.isInteger(cycleIndex) &&
+    Number.isInteger(userOrdinal) && userOrdinal >= 0 && userOrdinal < 10 &&
+    (cycleIndex + userOrdinal * 4) % 80 === 0;
+}
+
+async function run() {
 const mode = process.argv[2] ?? "--check-fixture";
 const repoRoot = path.resolve(import.meta.dirname, "..");
 if (!["--check-fixture", "--run"].includes(mode)) {
@@ -50,6 +81,10 @@ let stop = false;
 let startedAt = null;
 let browser;
 let sessions = [];
+const pageHealth = new WeakMap();
+let recycledPages = 0;
+let browserDisconnectedDuringRun = false;
+let cleanupStarted = false;
 for (const signal of ["SIGINT", "SIGTERM"]) {
   process.on(signal, () => {
     stop = true;
@@ -57,10 +92,42 @@ for (const signal of ["SIGINT", "SIGTERM"]) {
   });
 }
 
-function safeFailureCode(error) {
+function trackPage(page) {
+  const health = { crashed: false, closed: false, networkFailure: false };
+  pageHealth.set(page, health);
+  page.on("crash", () => { health.crashed = true; });
+  page.on("close", () => { health.closed = true; });
+  page.on("requestfailed", (request) => {
+    try {
+      const pathname = new URL(request.url()).pathname;
+      const relevant = request.isNavigationRequest() ||
+        pathname === "/api/tenant/active" || pathname === "/api/passport/facts";
+      // A navigation routinely cancels old resources; that is not a network outage.
+      if (relevant && request.failure()?.errorText !== "net::ERR_ABORTED") {
+        health.networkFailure = true;
+      }
+    } catch { /* Never retain a request URL or browser exception. */ }
+  });
+  return page;
+}
+
+function beginStep(session, step) {
+  session.step = step;
+  const health = pageHealth.get(session.activePage ?? session.page);
+  if (health) health.networkFailure = false;
+}
+
+function safeFailureCode(error, session) {
   const code = error instanceof Error ? error.message : "";
-  return /^(?:[A-Za-z]+_HTTP_[0-9]{3}|WORKLOAD_CAP_REACHED|SYNTHETIC_TENANT_ACCESS_MISMATCH|CROSS_TENANT_PREFLIGHT_FAILED|TENANT_SWITCH_WRONG_CONTEXT|DASHBOARD_REDIRECTED|FACT_COMMIT_ID_MISSING|FACT_READBACK_MISMATCH|CROSS_TENANT_DENIAL_UNEXPECTED|CROSS_TENANT_DATA_EXPOSURE|AUTH_REDIRECTED_OFF_STAGING_ORIGIN)$/.test(code)
-    ? code : "BROWSER_OR_NETWORK_FAILURE";
+  if (/^(?:[A-Za-z]+_HTTP_[0-9]{3}|WORKLOAD_CAP_REACHED|SYNTHETIC_TENANT_ACCESS_MISMATCH|CROSS_TENANT_PREFLIGHT_FAILED|TENANT_SWITCH_WRONG_CONTEXT|DASHBOARD_REDIRECTED|FACT_COMMIT_ID_MISSING|FACT_READBACK_MISMATCH|CROSS_TENANT_DENIAL_UNEXPECTED|CROSS_TENANT_DATA_EXPOSURE|AUTH_REDIRECTED_OFF_STAGING_ORIGIN)$/.test(code)) {
+    return code;
+  }
+  const page = session?.activePage ?? session?.page;
+  const health = page ? pageHealth.get(page) : null;
+  return classifyBrowserFailure(error, {
+    browserConnected: browser?.isConnected(), pageClosed: page?.isClosed(),
+    pageCrashed: health?.crashed, networkFailure: health?.networkFailure,
+  });
 }
 
 function reserveRequest(isWrite = false) {
@@ -134,13 +201,14 @@ async function call(page, operation, method, pathname, body, expectedStatus, cor
 
 async function login(user, index) {
   let context;
+  let page;
   let phase = "navigate";
   let authHttpStatus = null;
   let authNetworkFailure = false;
   let succeeded = false;
   try {
     context = await browser.newContext({ viewport: { width: 1280, height: 800 } });
-    const page = await context.newPage();
+    page = trackPage(await context.newPage());
     page.on("response", (response) => {
       try {
         const pathname = new URL(response.url()).pathname;
@@ -183,13 +251,19 @@ async function login(user, index) {
     samples.login.push(Math.round((performance.now() - start) * 100) / 100);
     const foreign = users[(index + 1) % users.length].tenants[0];
     succeeded = true;
-    return { context, page, user, foreign, index };
+    return { context, page, activePage: page, user, foreign, index, step: "preflightOwnTenant" };
   } catch (error) {
-    const known = safeFailureCode(error);
+    const known = safeFailureCode(error, { page });
+    const lifecycleFailure = ["PAGE_CRASHED", "PAGE_CLOSED", "BROWSER_DISCONNECTED", "BROWSER_TARGET_CLOSED"]
+      .includes(known);
     const failure = new Error("LOGIN_FAILURE");
     Object.assign(failure, { userOrdinal: index, phase: "login", step: phase,
-      code: known === "BROWSER_OR_NETWORK_FAILURE"
-        ? classifyLoginFailure({ phase, authHttpStatus, authNetworkFailure }) : known,
+      code: lifecycleFailure ? known :
+        Number.isInteger(authHttpStatus) && authHttpStatus >= 400 && authHttpStatus <= 599
+          ? `AUTH_HTTP_${authHttpStatus}` :
+          authNetworkFailure ? "AUTH_NETWORK_FAILURE" :
+            known === "BROWSER_OR_NETWORK_FAILURE"
+              ? classifyLoginFailure({ phase, authHttpStatus, authNetworkFailure }) : known,
       authHttpStatus: Number.isInteger(authHttpStatus) ? authHttpStatus : null });
     throw failure;
   } finally {
@@ -199,6 +273,7 @@ async function login(user, index) {
 
 async function preflight(session) {
   for (const tenant of session.user.tenants) {
+    beginStep(session, "preflightOwnTenant");
     reserveRequest();
     const result = await browserFetch(session.page, "POST", "/api/tenant/active", { tenantId: tenant.tenantId },
       `hsp3:${runId}:preflight`);
@@ -206,6 +281,7 @@ async function preflight(session) {
       throw new Error("SYNTHETIC_TENANT_ACCESS_MISMATCH");
     }
   }
+  beginStep(session, "preflightForeignTenant");
   reserveRequest();
   const foreign = await browserFetch(session.page, "POST", "/api/tenant/active",
     { tenantId: session.foreign.tenantId }, `hsp3:${runId}:preflight-deny`);
@@ -215,7 +291,10 @@ async function preflight(session) {
 }
 
 async function cycle(session, cycleIndex) {
-  const { page, user, foreign, index } = session;
+  const { user, foreign, index } = session;
+  let page = session.page;
+  session.activePage = page;
+  beginStep(session, "tenantSwitch");
   const tenant = user.tenants[cycleIndex % user.tenants.length];
   const marker = `hsp3:${runId}:${index}:${cycleIndex}`;
   const switchResult = await call(page, "tenantSwitch", "POST", "/api/tenant/active",
@@ -223,6 +302,16 @@ async function cycle(session, cycleIndex) {
   if (switchResult.data.tenantId !== tenant.tenantId) throw new Error("TENANT_SWITCH_WRONG_CONTEXT");
   seenTenants.add(tenant.tenantId);
 
+  if (shouldRecyclePage(cycleIndex, index)) {
+    beginStep(session, "pageRecycle");
+    const nextPage = trackPage(await session.context.newPage());
+    session.activePage = nextPage;
+    await page.close();
+    page = nextPage;
+    session.page = nextPage;
+    recycledPages += 1;
+  }
+  beginStep(session, "dashboard");
   reserveRequest();
   const dashboardStart = performance.now();
   const dashboardResponse = await page.goto(`${config.baseUrl}/`, { waitUntil: "domcontentloaded", timeout: 30000 });
@@ -242,6 +331,7 @@ async function cycle(session, cycleIndex) {
     timing: navigation }, 200);
   if (new URL(page.url()).pathname !== "/") throw new Error("DASHBOARD_REDIRECTED");
 
+  beginStep(session, "factWrite");
   const factKey = `hsp3_${runId}_${index}_${cycleIndex % user.tenants.length}`;
   const value = { synthetic: true, runId, sequence: cycleIndex };
   const written = await call(page, "factWrite", "POST", "/api/passport/facts", {
@@ -251,6 +341,7 @@ async function cycle(session, cycleIndex) {
   if (!written.data.fact?.id) throw new Error("FACT_COMMIT_ID_MISSING");
   writes += 1;
 
+  beginStep(session, "factRead");
   const facts = await call(page, "factRead", "GET",
     `/api/passport/facts?companyId=${tenant.companyId}`, undefined, 200, marker);
   const current = facts.data.facts?.find((fact) => fact.id === written.data.fact.id);
@@ -258,6 +349,7 @@ async function cycle(session, cycleIndex) {
       current.value?.sequence !== cycleIndex) throw new Error("FACT_READBACK_MISMATCH");
 
   if (cycleIndex % 10 === 0) {
+    beginStep(session, "crossTenantDeny");
     const denied = await call(page, "crossTenantDeny", "POST", "/api/tenant/active",
       { tenantId: foreign.tenantId }, 403, marker);
     if (denied.data.error !== "TENANT_ACCESS_DENIED") throw new Error("CROSS_TENANT_DENIAL_UNEXPECTED");
@@ -269,11 +361,15 @@ async function cycle(session, cycleIndex) {
       throw new Error("CROSS_TENANT_DATA_EXPOSURE");
     }
   }
+  session.step = "complete";
 }
 
 const initial = new Date().toISOString();
 try {
   browser = await chromium.launch({ executablePath, headless: true });
+  browser.on("disconnected", () => {
+    if (!cleanupStarted) browserDisconnectedDuringRun = true;
+  });
   const loginResults = await Promise.allSettled(users.map((user, index) => login(user, index)));
   sessions = loginResults.filter((result) => result.status === "fulfilled").map((result) => result.value);
   for (const [index, result] of loginResults.entries()) {
@@ -283,7 +379,7 @@ try {
       failures.push({ userOrdinal: index, phase: "login",
         step: ["navigate", "ready", "fill", "submit", "route"].includes(reason?.step)
           ? reason.step : "unknown",
-        code: typeof reason?.code === "string" && /^(?:AUTH_HTTP_[45][0-9]{2}|AUTH_NETWORK_FAILURE|LOGIN_[A-Z_]+|WORKLOAD_CAP_REACHED|AUTH_REDIRECTED_OFF_STAGING_ORIGIN)$/.test(reason.code)
+        code: typeof reason?.code === "string" && /^(?:AUTH_HTTP_[45][0-9]{2}|AUTH_NETWORK_FAILURE|LOGIN_[A-Z_]+|WORKLOAD_CAP_REACHED|AUTH_REDIRECTED_OFF_STAGING_ORIGIN|PAGE_CRASHED|PAGE_CLOSED|BROWSER_DISCONNECTED|BROWSER_TARGET_CLOSED|BROWSER_OPERATION_TIMEOUT|NETWORK_FAILURE)$/.test(reason.code)
           ? reason.code : "BROWSER_OR_NETWORK_FAILURE",
         authHttpStatus: Number.isInteger(reason?.authHttpStatus) && reason.authHttpStatus >= 100 && reason.authHttpStatus <= 599
           ? reason.authHttpStatus : null });
@@ -295,7 +391,9 @@ try {
       if (result.status === "rejected") {
         unexpectedErrors += 1;
         failures.push({ userOrdinal: sessions[index].index, phase: "preflight",
-          code: safeFailureCode(result.reason) });
+          step: ["preflightOwnTenant", "preflightForeignTenant"].includes(sessions[index].step)
+            ? sessions[index].step : "unknown",
+          code: safeFailureCode(result.reason, sessions[index]) });
       }
     }
   }
@@ -311,7 +409,9 @@ try {
           stop = true;
           unexpectedErrors += 1;
           failures.push({ userOrdinal: session.index, cycle: i,
-            code: safeFailureCode(error) });
+            step: ["tenantSwitch", "pageRecycle", "dashboard", "factWrite", "factRead", "crossTenantDeny"].includes(session.step)
+              ? session.step : "unknown",
+            code: safeFailureCode(error, session) });
           break;
         }
         const waitMs = Math.min(config.cycleMs - (Date.now() - cycleStarted), deadline - Date.now());
@@ -323,8 +423,18 @@ try {
   failures.push({ phase: startedAt ? "runtime" : "preflight",
     code: safeFailureCode(error) });
 } finally {
-  await Promise.allSettled(sessions.map((session) => session.context.close()));
-  await browser?.close();
+  cleanupStarted = true;
+  const contextResults = await Promise.allSettled(sessions.map((session) => session.context.close()));
+  const failedContextCloses = contextResults.filter((result) => result.status === "rejected").length;
+  if (failedContextCloses > 0) {
+    unexpectedErrors += 1;
+    failures.push({ phase: "cleanup", code: "CONTEXT_CLOSE_FAILED", count: failedContextCloses });
+  }
+  try { await browser?.close(); }
+  catch {
+    unexpectedErrors += 1;
+    failures.push({ phase: "cleanup", code: "BROWSER_CLOSE_FAILED" });
+  }
 }
 
 const endedAt = new Date().toISOString();
@@ -334,7 +444,8 @@ const report = {
   deploySha: config.deploySha, deployId: config.deployId, targetHost: new URL(config.baseUrl).host,
   synthetic: true, configuredTenants: 100, tenantsVisited: seenTenants.size,
   authenticatedUsers: samples.login.length, requests, factWrites: writes,
-  expectedCrossTenantDenials: denials, unexpectedErrors, failures,
+  expectedCrossTenantDenials: denials, unexpectedErrors, failures, recycledPages,
+  browserDisconnectedDuringRun,
   errorRatePercent: requests ? Math.round(unexpectedErrors / requests * 100000) / 1000 : null,
   operations: summarizeSamples(samples),
   clientHopTiming: Object.fromEntries(Object.entries(hops).map(([name, values]) => [name, {
@@ -359,3 +470,8 @@ console.log(JSON.stringify({ outputFile, runId, durationSeconds: report.duration
   tenantsVisited: report.tenantsVisited, requests, factWrites: writes,
   expectedCrossTenantDenials: denials, unexpectedErrors, gate: report.gate }, null, 2));
 if (failures.length) process.exitCode = 1;
+}
+
+if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) {
+  await run();
+}

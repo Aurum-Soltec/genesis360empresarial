@@ -17,6 +17,12 @@ describe("ADR-015 license declaration precheck", () => {
     expect(result.gate).toBe("INCOMPLETE_ARTIFACT_AND_NOTICES_REVIEW");
   });
 
+  it("distinguishes the CI merge commit from the reviewed PR head", () => {
+    const result = auditSpdxDocument(document("MIT"), "example", "merge-sha", "head-sha");
+    expect(result.ciEvaluatedSha).toBe("merge-sha");
+    expect(result.prHeadSha).toBe("head-sha");
+  });
+
   it("keeps LGPL under legal review without treating sharp's Apache declaration as sufficient", () => {
     const result = auditSpdxDocument(document("LGPL-3.0-or-later"), "example");
     expect(result.counts.review).toBe(1);

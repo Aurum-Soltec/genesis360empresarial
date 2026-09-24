@@ -6,7 +6,8 @@ export type LicenseVerdict = {
 export type LicenseAuditReport = {
   policy: string;
   sourceSha256: string;
-  commitSha: string | null;
+  ciEvaluatedSha: string | null;
+  prHeadSha: string | null;
   basis: string;
   gate: "BLOCKED" | "INCOMPLETE_ARTIFACT_AND_NOTICES_REVIEW";
   counts: {
@@ -25,5 +26,5 @@ export type LicenseAuditReport = {
 };
 
 export function classifyDeclaredLicense(value: unknown): LicenseVerdict;
-export function auditSpdxDocument(spdx: unknown, sourceSha256: string, commitSha?: string | null): LicenseAuditReport;
+export function auditSpdxDocument(spdx: unknown, sourceSha256: string, evaluatedSha?: string | null, prHeadSha?: string | null): LicenseAuditReport;
 export function runCli(argv?: string[]): number;

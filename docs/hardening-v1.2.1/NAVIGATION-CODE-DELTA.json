@@ -5,8 +5,8 @@
     {
       "path": ".github/workflows/ci.yml",
       "beforeSha256": "cd9b2de408d0feb75cf092d02dd1a1d61a520cceec8d23999020da99faa945f2",
-      "afterSha256": "8eefda8a7cf0432b8912338f696de76eb44b57a8efb4e72e081de191cf0036fa",
-      "reason": "HSP-4: declared-license scan and CI evidence for the Linux dependency inventory"
+      "afterSha256": "25fc9732db6474619552f3c1f85544f053a4664460befe99cc6331e231f4ea29",
+      "reason": "HSP-4: distinguish CI merge SHA from PR head in license evidence"
     },
     {
       "path": ".github/workflows/staging-monitor.yml",

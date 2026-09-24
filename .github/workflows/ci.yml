@@ -29,6 +29,8 @@ jobs:
       - name: Generate Linux deployment SBOM
         run: pnpm sbom:generate:runtime
       - name: Audit declared licenses (ADR-015 precheck)
+        env:
+          GENESIS_PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         run: node scripts/audit-sbom-licenses.mjs test-results/hsp4-runtime-linux-x64.sbom.spdx.json test-results/hsp4-license-declarations.json
       - uses: actions/upload-artifact@v4
         with:
