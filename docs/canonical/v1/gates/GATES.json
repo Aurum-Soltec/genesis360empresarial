@@ -23,7 +23,7 @@
       "PEND-013 legal attestation copy activation",
       "PEND-014 upload storage/scanning policy",
       "question-level documentary relevance and verification before claiming a document-grounded conclusion",
-      "repeat corrected synthetic provenance runner on hosted runtime; two protected synthetic accounts passed Auth but returned zero tenant choices and performed no writes"
+      "repeat corrected synthetic provenance runner on promoted hosted runtime; two protected synthetic accounts passed Auth before promotion but runner returned zero tenant choices and performed no writes, whereas later authenticated UI showed Tenant A for one of them; cause unknown, do not infer missing membership"
     ],
     "implemented": [
       "Passport/Diagnostic/GDS foundation",
@@ -53,10 +53,12 @@
       "hosted SHA bb290bc7bc35f77b4ca01aecdbf19b748c386270 web ab3f2a2d-9507-4e24-8749-bc313c7691fa and worker 96c1e771-c895-4f15-a8f5-157b4f97f892 SUCCESS; CI quality/database/CodeQL PASS",
       "versioned sanitized HSP3_100_TENANTS_60M_BB290BC_2026-09-24.json: run 662855c2dbd5 completed 3604 seconds, 100 tenants, 24512 browser requests, 5806 writes, 584 expected denials, 0 unexpected errors; outbox 5806 processed, 0 pending/dead/retries; p95 Home 1055.48ms/write 1024.5ms/read 793.8ms/login 1964.5ms, SLO FAIL",
       "2026-09-24 short causal probe on same bb290bc: 28 Home/API GETs; Home gzip 5681 bytes, first byte p95 151ms, stream p95 1130ms, API tenant context p95 566ms; Auth token spikes up to 7622ms; no safe latency correction or repeat 60-minute run yet",
-      "local numerical instrumentation for tenant-context and facts API passed 27 focused tests; no hosted spans, correction or SLO rerun"
+      "numerical instrumentation for tenant-context and facts API passed 27 focused tests and was deployed with 31df6086; no hosted subphase measurements, correction or SLO rerun",
+      "PR #25 merged at 31df6086cb612886dc5db4a45b946ea80dde2cf1; web deployment 09f91585-1ec8-47d9-9b2c-5c40950527f0 and worker 86828bcf-dd39-44a7-a94d-ef5819da766f SUCCESS on same SHA; limited anonymous/authenticated/navigation smoke passed, but SQL/HTTP multi-role and 100x60 not repeated on this SHA"
     ],
     "pending": [
-      "duration, isolation and outbox subgates passed; short probe separated Auth/context and Home gzip/SSR streaming but has not isolated SQL/pool or a safe p95 correction; compare short candidate first, then repeat 100-tenant 60-minute end-to-end soak after correction with p95 <=750ms and pool/slow-query/cost evidence"
+      "duration, isolation and outbox subgates passed historically on bb290bc; short probe separated Auth/context and Home gzip/SSR streaming but has not isolated SQL/pool or a safe p95 correction; collect hosted subphase timings on 31df6086, compare short candidate first, then repeat 100-tenant 60-minute end-to-end soak after correction with p95 <=750ms and pool/slow-query/cost evidence",
+      "repeat 0024 SQL and HTTP member/manager/foreign-tenant isolation on promoted SHA 31df6086 before assigning current-artifact pass"
     ]
   },
   "GATE-CONTRACT": {
@@ -78,7 +80,7 @@
   "GATE-SEC": {
     "state": "blocked-operational-controls",
     "pending": [
-      "exact deployed Linux bundle inspection, NOTICE and technical/legal disposition for LGPL libvips and CC-BY caniuse-lite; public commit 40b9b82 Linux CI classified 9 of 30 findings on pnpm production tree and archived hashes/license files, but has no Railway byte proof",
+      "exact deployed Linux bundle inspection, NOTICE and technical/legal disposition for LGPL libvips and CC-BY caniuse-lite; public commit 40b9b82 Linux CI classified 9 of 30 findings on pnpm production tree and archived hashes/license files, but has no Railway byte proof for promoted 31df6086",
       "automatic encrypted backup retention and representative service restore with measured RPO/RTO; private GitHub v2 run 36002104320 made immutable encrypted backup with 129 ACL TOC entries and isolated logical DB restore; guarded cron PR #7 merged at 051a76d but activation variables absent and schedule OFF; service-restore scaffold PR #6 merged at 10214da with 34 local tests PASS and one Windows symlink SKIP, but no restore executed, 30-day history, independent key or ACL/owner equivalence after restore",
       "legal/privacy review of attestation copy",
       "binary upload malware/content scanning"
@@ -164,7 +166,8 @@
       "0024 hosted SQL RLS probe 12/12 with synthetic authenticated roles and rollback",
       "historical 95/95 hosted pgTAP",
       "remote protected CI",
-      "hosted SHA bb290bc7bc35f77b4ca01aecdbf19b748c386270 web and worker Railway SUCCESS; CI quality/database/CodeQL PASS",
+      "hosted SHA bb290bc7bc35f77b4ca01aecdbf19b748c386270 web and worker Railway SUCCESS; CI quality/database/CodeQL PASS (historical full runtime)",
+      "promoted SHA 31df6086cb612886dc5db4a45b946ea80dde2cf1 web/worker Railway SUCCESS and final CI quality/database/CodeQL/Analyze PASS; anonymous denial and authenticated Tenant A UI/document/report/navigation smoke passed, full SQL/HTTP multi-role and load reruns pending",
       "hosted FULL on bb290bc: 55 answers, score 48, coverage 100%, confidence 78%, 12 dimensions and 90-day plan; zero linked/verified sources disclosed; document-grounded conclusion pending",
       "hosted HTTP member/manager/foreign-tenant isolation 12/12 on bb290bc; temporary fixture and users cleaned",
       "historical authenticated browser E2E 10/10",
@@ -177,8 +180,8 @@
     "pending": [
       "automatic encrypted backup/recovery with 30-day retention and measured service RPO/RTO; private v2 manual backup/isolated logical restore includes 129 ACL TOC entries, but does not prove applied ACL/owner equivalence; guarded cron PR #7 merged but schedule OFF, service restore PR #6 merged without drill, history/key custody/equivalence pending",
       "final artifact license disposition and exact Railway bundle inventory",
-      "actual document-linked/verified diagnostic conclusion remains unproven while real upload flag is off; corrected synthetic provenance runner retest is blocked after two Auth successes with zero tenant choices and no writes",
-      "100-tenant 60-minute duration/isolation/outbox passed; p95 <=750ms failed, pool/slow-query and marginal cost telemetry incomplete"
+      "actual document-linked/verified diagnostic conclusion remains unproven while real upload flag is off; corrected synthetic provenance runner retest pending after two Auth successes but no tenant selection/writes; later UI found Tenant A for one same account, so runner discrepancy cause unknown",
+      "100-tenant 60-minute duration/isolation/outbox passed on previous bb290bc; p95 <=750ms failed, pool/slow-query and marginal cost telemetry incomplete; no new 100x60 on promoted 31df6086"
     ]
   },
   "GATE-REPO": {
@@ -209,7 +212,7 @@
       "2026-09-24 short Home/API/Auth probe confirms p95 performance remains failed; local numerical instrumentation passed 27 focused tests but no hosted measurement or new 60-minute pass",
       "corrected synthetic provenance runner hosted retest blocked after two protected Auth successes, zero tenant choices and zero writes; no hosted provenance pass",
       "public PR #25 predecessor 40b9b82 passed local 503 Vitest, 34 native hardening tests and remote CI; Linux license inventory 9/30 production-reachable from its CI remains unresolved for deployed bytes",
-      "public PR #25 latest code change 6d4d569 passes local pnpm quality with 506 Vitest, 34 native tests, lint, types, security and build; remote CI quality/database/CodeQL/Analyze PASS on runs 36007816845 and 36007811013; interim a903 CRLF/LF integrity mismatch corrected; staging promotion and affected runtime retests pending"
+      "public PR #25 latest code change 6d4d569 passes local pnpm quality with 506 Vitest, 34 native tests, lint, types, security and build; final remote CI quality/database/CodeQL/Analyze PASS on runs 36009033246 and 36009024373; PR merged as 31df6086, web/worker SUCCESS on that exact SHA, limited anonymous/authenticated/navigation smoke PASS; affected FULL, SQL/HTTP multi-role and 100x60 retests pending"
     ],
     "pending": [
       "close HSP-4 automatic backup/ACL-equivalent service restore/RPO-RTO, LGPL/CC-BY and 100-tenant 60-minute p95 blockers; document-grounded real conclusions remain pending under disabled upload flag",

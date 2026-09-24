@@ -261,33 +261,45 @@
       "reason": "Describe fail-closed tenant selection, server-owned fictional evidence and required conflict reconciliation"
     },
     {
+      "path": "docs/audit-2026-09-24/HSP4_CORRECTIVE_GO_NO_GO_2026-09-24.md",
+      "beforeSha256": null,
+      "afterSha256": "98c2e431830dee32977071f9cd9f8fa4d1c480015a996ffbd057450ba7f88a39",
+      "reason": "HSP-4: reconcile promoted staging smoke with historical full-gate evidence and objective NO-GO"
+    },
+    {
+      "path": "docs/audit-2026-09-24/HSP4_PROMOTED_STAGING_SMOKE_2026-09-24.md",
+      "beforeSha256": null,
+      "afterSha256": "b4e8048efb27e2760187c2c87fd414030ed4152478e194b5ecfcd63284766d73",
+      "reason": "HSP-4: record exact promoted web/worker SHA, limited hosted smoke and missing full runtime gates"
+    },
+    {
       "path": "docs/canonical/v1/delivery/EPICS_MASTER.md",
       "beforeSha256": "6c8cd57c3ba860428f3d1649f0d4a90f23c6f735faca8b65648b38d62917b3c7",
-      "afterSha256": "7a28e6eed0a2e7719ac4034a25004c5c887ddf3b8dd95edf38b7993b91a446bc",
+      "afterSha256": "08dcb73c9606ae7cc4f9b1c0dfe1795f5b8c6cc6a816de98bf56f416c9653bfc",
       "reason": "HSP-4: reconcile CI, private backup preparations, failed runtime gates and final NO-GO evidence"
     },
     {
       "path": "docs/canonical/v1/delivery/PRODUCTION_WAVES_MASTER.md",
       "beforeSha256": "14af8551a84daf473cb9ec2c78818b789d3bc6500fbd92ee1cbfe5718735d62e",
-      "afterSha256": "0171678a64cb247b08d236fabf61e76af38bfaad072205b3e27e51823bcbce44",
+      "afterSha256": "cd3674a2bd0851ab510042811155a2bcb2cff681e9d5fd58ee7234b823863e4a",
       "reason": "HSP-4: reconcile CI, private backup preparations, failed runtime gates and final NO-GO evidence"
     },
     {
       "path": "docs/canonical/v1/delivery/PRODUCTION_WAVES.md",
       "beforeSha256": "fe82dd3e99e80142b971f72c867df24ab1d66d1d61390c42802b2a101ccdfdf0",
-      "afterSha256": "7a58555cbca644a63635f09bba0ad5854fc0b01f0a33e249ab58b2ab9b68cda2",
+      "afterSha256": "fbdf95da8de45a8191949cadef85407ee16ef9f5bba7f6f8b3f4e7f85fdbbf67",
       "reason": "HSP-4 final hosted evidence and NO-GO gate reconciliation"
     },
     {
       "path": "docs/canonical/v1/delivery/STORIES_MASTER.md",
       "beforeSha256": "a3f3ad9426753d3eaabe96609d514f4b17b586e1ff8a280476bfc14b8af87673",
-      "afterSha256": "9edc48c5cdbf85ae7ae4af3a17b4a0f7aeed81b910fa3af6ac0bf11f1ddef164",
+      "afterSha256": "ad3f56eba8c1be3518313522d8da2026c1ac8281e444137292211f6fa239c48d",
       "reason": "HSP-4: reconcile CI, private backup preparations, failed runtime gates and final NO-GO evidence"
     },
     {
       "path": "docs/canonical/v1/gates/GATES.json",
       "beforeSha256": "cd81e6aefa9228fe362befa930d0407f806a9a691429d5e395db446f8f615ca3",
-      "afterSha256": "e7ce22a6c4d1d9845263fb4da708425090dbd9620a3e9e6dff5953ce83e90adb",
+      "afterSha256": "e28e9ff8b008f9a083b8857a7403c1fb65e315829ee04149d758213983459a8a",
       "reason": "HSP-4: reconcile CI, private backup preparations, failed runtime gates and final NO-GO evidence"
     },
     {
@@ -377,7 +389,7 @@
     {
       "path": "PROJECT-STATE.md",
       "beforeSha256": "d872785f2e9e30f89ffc11d5a7e13962907c06372e92168c7f2216f9ee92ac3d",
-      "afterSha256": "820decd9631798fc60e2ff783518b8e7f710650b35ff018f8da3395773f87e97",
+      "afterSha256": "96a0eb8062e3cc0e93fa5bbf67bd4bba555aba913b32323310ba2140909cd5e4",
       "reason": "HSP-4: reconcile CI, private backup preparations, failed runtime gates and final NO-GO evidence"
     },
     {
@@ -431,8 +443,8 @@
     {
       "path": "scripts/prepare-demo-scenario.mjs",
       "beforeSha256": "dc5ba6b1e4f7bd304d94bc20382555d7074b86d4f3ef181d9015a228337f73db",
-      "afterSha256": "6e6fe72d3617c207af19e2297e1d36f3272eefce04e23026ee23b6a58bdd8fc7",
-      "reason": "HSP-4: wait for hosted tenant selection before synthetic diagnostic rehearsal"
+      "afterSha256": "f9b9edf5853c86f4926844d10905c8cbe252969f7720ea39e76e6fd8206a1425",
+      "reason": "HSP-4: wait for the rendered tenant chooser before counting memberships in the synthetic diagnostic rehearsal"
     },
     {
       "path": "scripts/run-backup-restore-drill.ps1",
