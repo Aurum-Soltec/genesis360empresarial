@@ -35,6 +35,23 @@
   "previousStagingSha": "31df6086cb612886dc5db4a45b946ea80dde2cf1",
   "matchingReviewPackageHashesAgainstPreviousWeb": 30,
   "matchingReviewPackageHashesAgainstPreviousWorker": 30,
-  "newStagingImageByteInspection": false,
+  "newStagingImageByteInspection": true,
+  "newStagingImageEvidence": {
+    "web": {
+      "deploymentId": "65ede85d-f918-4ccf-b161-a9396d6c702a",
+      "imageDigest": "sha256:108dd4d9b0d33b5bd60d5df4fce63ca3dee62f7fc6136675d7ec6612803a613b",
+      "sanitizedInventorySha256": "08bf8e24bf095c646b655446a917dd2c55ad7721cbb4820f4adcc963cf29bfc6",
+      "packagesMatchingCi": 30
+    },
+    "worker": {
+      "deploymentId": "8e460f0f-4c6b-4506-b490-90682b5b1b4d",
+      "imageDigest": "sha256:8318678e1197f06d97390dbf43629bfb88bea97963eda892ffd7ee9b234e2163",
+      "sanitizedInventorySha256": "20211ecb8fff6da3a85cdf432a219e02bc576909783db6080439437ce98d1dad",
+      "packagesMatchingCi": 30
+    },
+    "railwaySshKeysAfterInspection": 0,
+    "temporaryLocalKeyRemoved": true,
+    "railwayNativeCommitHashAttested": false
+  },
   "legalDisposition": "PENDING"
 }

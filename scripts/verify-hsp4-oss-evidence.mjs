@@ -4,9 +4,9 @@ import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 
-// Verifies only the Linux CI inventory for 458aac and its comparison with the
-// earlier 31df6086 web/worker package inventory. It does not attest the new
-// Railway images or grant legal approval.
+// Verifies the Linux CI inventory, earlier 31df6086 comparison, and the
+// sanitized 458aac Railway package snapshots. This does not attest the whole
+// Railway image or grant legal approval.
 const expectedCommit = "458aac964d1f9a7016ac1804fe99d68637a3c0b8";
 const expectedCiRun = 36057161088;
 const bundle = path.resolve(process.argv[2] ?? "docs/audit-2026-09-24/HSP4_OSS_NOTICE_REVIEW_458AAC");
@@ -27,7 +27,11 @@ const sourceNames = [
 ];
 const sourceHashes = Object.fromEntries(sourceNames.map((name) => [name, sha256(read(name))]));
 if (process.argv.includes("--check-index")) {
-  const paths = [...sourceNames];
+  const paths = [
+    ...sourceNames,
+    "../RAILWAY_INSTALLED_LICENSE_BYTES_458AAC_WEB.json",
+    "../RAILWAY_INSTALLED_LICENSE_BYTES_458AAC_WORKER.json",
+  ];
   for (const entry of json(read("hsp4-license-files.json")).entries) {
     for (const variant of entry.installedVariants) {
       for (const license of variant.licenseOrNoticeFiles) {
@@ -132,7 +136,7 @@ assert.equal(noticeRows.length, 30);
 for (const item of files.entries) {
   assert.ok(notice.includes(`| \`${item.name}@${item.version}\` | ${item.declaredLicense} |`));
 }
-for (const name of ["NOTICE_DRAFT.md", "OBLIGATIONS_MATRIX.md", "REVIEW_INDEX.md"]) {
+for (const name of ["NOTICE_DRAFT.md", "OBLIGATIONS_MATRIX.md", "REVIEW_INDEX.md", "HOSTED_IMAGE_BYTES_458AAC.md"]) {
   const document = path.join(bundle, name);
   const source = fs.readFileSync(document, "utf8");
   for (const [, target] of source.matchAll(/\]\(([^)]+)\)/g)) {
@@ -140,6 +144,69 @@ for (const name of ["NOTICE_DRAFT.md", "OBLIGATIONS_MATRIX.md", "REVIEW_INDEX.md
     assert.ok(fs.existsSync(path.resolve(path.dirname(document), target)), `${name}: missing ${target}`);
   }
 }
+
+const currentTargets = {
+  web: {
+    deploymentId: "65ede85d-f918-4ccf-b161-a9396d6c702a",
+    imageDigest: "sha256:108dd4d9b0d33b5bd60d5df4fce63ca3dee62f7fc6136675d7ec6612803a613b",
+    file: "RAILWAY_INSTALLED_LICENSE_BYTES_458AAC_WEB.json",
+  },
+  worker: {
+    deploymentId: "8e460f0f-4c6b-4506-b490-90682b5b1b4d",
+    imageDigest: "sha256:8318678e1197f06d97390dbf43629bfb88bea97963eda892ffd7ee9b234e2163",
+    file: "RAILWAY_INSTALLED_LICENSE_BYTES_458AAC_WORKER.json",
+  },
+};
+const newStagingImageEvidence = {};
+for (const [service, target] of Object.entries(currentTargets)) {
+  const snapshotPath = path.join(bundle, target.file);
+  const snapshotBytes = fs.readFileSync(snapshotPath);
+  const snapshot = json(snapshotBytes);
+  assert.deepEqual(Object.keys(snapshot).sort(), [
+    "schemaVersion", "basis", "sbomSha256", "ciEvaluatedSha", "prHeadSha",
+    "reviewPackageCount", "missingInstalledPackages", "entries", "projectId",
+    "environment", "serviceName", "deploymentId", "imageDigest", "sourceCommitLink",
+  ].sort());
+  assert.equal(snapshot.schemaVersion, 1);
+  assert.equal(snapshot.projectId, "4683da12-a0d1-4825-974c-f8d9e3be6e03");
+  assert.equal(snapshot.environment, "production");
+  assert.equal(snapshot.serviceName, service);
+  assert.equal(snapshot.deploymentId, target.deploymentId);
+  assert.equal(snapshot.imageDigest, target.imageDigest);
+  assert.equal(snapshot.sbomSha256, sourceHashes[sourceNames[0]]);
+  assert.equal(snapshot.reviewPackageCount, 30);
+  assert.deepEqual(snapshot.missingInstalledPackages, []);
+  assert.equal(snapshot.entries.length, 30);
+  const hostedByIdentity = byIdentity(snapshot.entries);
+  assert.equal(hostedByIdentity.size, 30);
+  for (const item of files.entries) {
+    const identity = `${item.name}@${item.version}`;
+    const installed = hostedByIdentity.get(identity);
+    assert.equal(installed?.declaredLicense, item.declaredLicense, `${service}: ${identity}`);
+    assert.equal(installed.status, item.status, `${service}: ${identity}`);
+    assert.equal(installed.installedVariants.length, item.installedVariants.length, `${service}: ${identity}`);
+    for (const variant of item.installedVariants) {
+      const actual = installed.installedVariants.find((candidate) => candidate.directory === variant.directory);
+      assert.ok(actual, `${service}: ${identity}`);
+      assert.equal(actual.contentSha256, variant.contentSha256, `${service}: ${identity}`);
+      assert.equal(actual.fileCount, variant.fileCount, `${service}: ${identity}`);
+      assert.equal(actual.totalBytes, variant.totalBytes, `${service}: ${identity}`);
+      for (const kind of ["licenseOrNoticeFiles", "nativeFiles"]) {
+        const projection = (items) => items.map(({ path, bytes, sha256: digest }) => ({ path, bytes, sha256: digest }));
+        assert.deepEqual(projection(actual[kind]), projection(variant[kind]), `${service}: ${identity}: ${kind}`);
+      }
+    }
+  }
+  newStagingImageEvidence[service] = {
+    deploymentId: target.deploymentId,
+    imageDigest: target.imageDigest,
+    sanitizedInventorySha256: sha256(snapshotBytes),
+    packagesMatchingCi: 30,
+  };
+}
+newStagingImageEvidence.railwaySshKeysAfterInspection = 0;
+newStagingImageEvidence.temporaryLocalKeyRemoved = true;
+newStagingImageEvidence.railwayNativeCommitHashAttested = false;
 
 const result = {
   schemaVersion: 1,
@@ -158,7 +225,8 @@ const result = {
   previousStagingSha: web.commit,
   matchingReviewPackageHashesAgainstPreviousWeb: previousWebMatches,
   matchingReviewPackageHashesAgainstPreviousWorker: previousWorkerMatches,
-  newStagingImageByteInspection: false,
+  newStagingImageByteInspection: true,
+  newStagingImageEvidence,
   legalDisposition: "PENDING",
 };
 
@@ -168,4 +236,4 @@ if (process.argv.includes("--write-manifest")) {
 } else {
   assert.deepEqual(json(fs.readFileSync(manifest)), result);
 }
-console.log(JSON.stringify({ status: "PASS_TECHNICAL_ONLY", commit: expectedCommit, packages: 454, review: 30, archivedTexts }));
+console.log(JSON.stringify({ status: "PASS_TECHNICAL_ONLY", commit: expectedCommit, packages: 454, review: 30, hostedWebHashes: 30, hostedWorkerHashes: 30, archivedTexts, legalDisposition: "PENDING" }));
