@@ -455,7 +455,7 @@
     {
       "path": "PROJECT-STATE.md",
       "beforeSha256": "d872785f2e9e30f89ffc11d5a7e13962907c06372e92168c7f2216f9ee92ac3d",
-      "afterSha256": "54baced212561421f24314e0e76d494120b5947e4a4fbb6dccab0708049f3be9",
+      "afterSha256": "f509508642c76390a3e4c0ebd4f5f652ec81e5eba37f393503f4c77b9b7ce6c0",
       "reason": "HSP-4: reconcile CI, private backup preparations, failed runtime gates and final NO-GO evidence"
     },
     {
