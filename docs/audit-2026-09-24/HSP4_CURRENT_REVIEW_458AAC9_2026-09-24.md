@@ -25,8 +25,11 @@ A tentativa de navegação direta autenticada no Chrome/IAB terminou
 `ERR_BLOCKED_BY_CLIENT` no navegador, sem resposta HTTP autenticada da
 rota. Portanto, nenhuma medição hospedada de fases foi obtida e não há
 diagnóstico causal ou correção comprovada do p95. A última carga completa
-100 empresas × 60 minutos, no `bb290bc`, falhou p95 ≤750 ms. Backup
-operacional, HTTP multi-role no candidato, licença final e conclusão
+100 empresas × 60 minutos, no `bb290bc`, falhou p95 ≤750 ms. O run privado
+HTTP multi-role `36062309891` e seu guard independente passaram no claim
+`458aac9`: o runner fail-fast permite inferir 12/12, com artefato
+sanitizado não inspecionado e proveniência Railway sem commitHash nativo.
+Backup operacional, licença final e conclusão
 fundamentada em documentos reais seguem abertos.
 
 ## B. Estado de cada Wave HSP-0 a HSP-4
@@ -34,7 +37,7 @@ fundamentada em documentos reais seguem abertos.
 | Wave | Estado | Limite da evidência |
 | --- | --- | --- |
 | HSP-0 | **PARTIAL** | PR #33/CI PASS; web e worker SUCCESS de fonte local limpa `458aac9`, com digests; `meta.commitHash=null` impede atestação nativa do SHA. |
-| HSP-1 | **PARTIAL** | FULL fictício 7/7 no `5b992d3`; SQL-only 0024 no `6dff3c9`; HTTP com membro, gestor e outro tenant no `458aac9` PENDING. |
+| HSP-1 | **PARTIAL; HTTP multi-role PASS limitado** | FULL fictício 7/7 no `5b992d3`; SQL-only 0024 no `6dff3c9`; run hospedado `36062309891` e guard `36062480126` SUCCESS no claim `458aac9`, 12/12 inferidos do runner fail-fast, artefato não inspecionado. |
 | HSP-2 | **BLOCKED** | Backup/restore real, retenção, RPO/RTO, alerta específico e licença final pendentes. |
 | HSP-3 | **FAIL** | Último 100×60 excedeu p95; rota de medição nova ainda sem resultado autenticado. |
 | HSP-4 | **NO-GO** | Gates operacionais de segurança, recuperação e desempenho sem PASS no candidato. |
@@ -46,8 +49,8 @@ fundamentada em documentos reais seguem abertos.
 | Repositório/CI e deploy | **PARTIAL** | PR #33 CI PASS; deployments web/worker SUCCESS a partir da fonte local limpa `458aac9`, com digests; `meta.commitHash=null`. |
 | Auth/onboarding | **PASS histórico limitado** | Convite, callback, novo login no alias exato e Tenant A apenas em candidato anterior; não é matriz multi-role no atual. |
 | Demo FULL fictícia | **PASS histórico no `5b992d3`** | 52 respostas/cockpit 7/7; sem análise de documentação real e sem repetição no `458aac9`. |
-| SQL 0024 / HTTP multi-role | **SQL histórico PASS limitado; HTTP PENDING** | Run privado `36035020570` no `6dff3c9`, com JSON privado não inspecionado; três sessões HTTP no `458aac9` faltam. |
-| Cinco flags sensíveis OFF | **PASS visual histórico no `6dff3c9`; atual PENDING** | UI de proprietário sintético mostrou cinco DESLIGADA e `/ecossistema` 404 no candidato anterior. |
+| SQL 0024 / HTTP multi-role | **SQL histórico PASS limitado; HTTP atual PASS limitado** | SQL run `36035020570` no `6dff3c9`; HTTP run `36062309891` e guard `36062480126` SUCCESS no claim `458aac9`, 12/12 inferidos pelo runner fail-fast. Artefatos privados não inspecionados independentemente; Railway `meta.commitHash=null`. |
+| Cinco flags sensíveis OFF | **PASS visual/de rota limitado no web atual `458aac9`** | Após reload real da IAB em `/demonstracao/administracao`, owner sintético do Tenant A viu resumo “Cinco funções sensíveis desligadas” e Agentic, Data Upload real, Qualification Network, Real Contact e Ecosystem como DESLIGADA; `/ecossistema` retornou 404. Escopo da UI/rota nessa sessão; sem leitura bruta de env ou prova em outros serviços. |
 | Rota de medição da Home | **PARTIAL** | 401 anônimo; navegação autenticada bloqueada no cliente antes de obter resposta. Nenhum tempo de fase. |
 | Alerta geral | **PASS histórico** | Issue pública #27 com e-mail, ACK e recuperação. Alerta de backup #17 ainda sem ACK. |
 | Backup, restore, RPO/RTO | **BLOCKED** | Ensaios lógicos/sintéticos e preparação de monitor sem restore real de serviço ou agendamento observado. |
@@ -57,7 +60,9 @@ fundamentada em documentos reais seguem abertos.
 ## D. Evidências produzidas
 
 - [PR #33](https://github.com/Aurum-Soltec/genesis360empresarial/pull/33): CI PASS e merge `458aac9`; deployments web `65ede85d-f918-4ccf-b161-a9396d6c702a` SUCCESS às 20:49:32Z e worker `8e460f0f-4c6b-4506-b490-90682b5b1b4d` SUCCESS às 20:50:27Z de worktree limpa detached no mesmo SHA, com digests indicados acima; ambos `meta.commitHash=null`.
+- [HTTP multi-role hospedado no claim `458aac9`](HSP4_HOSTED_HTTP_MULTIROLE_458AAC9_2026-09-24.md): run `36062309891`, jobs exercise/independent-residue-guard e backstop `36062480126` SUCCESS; 12/12 inferidos por runner fail-fast, artefato sanitizado id `10834806637` (511 bytes, SHA-256 registrado) não inspecionado independentemente.
 - Rota `/api/ops/home-timing`: 401 anônimo; tentativa autenticada por navegação direta no Chrome/IAB `ERR_BLOCKED_BY_CLIENT`, sem resposta HTTP e sem tempos.
+- Administração da demo no web atual `458aac9`: reload autenticado de proprietário sintético do Tenant A exibiu as cinco flags DESLIGADA; navegação direta `/ecossistema` deu 404. Evidência apenas da UI/rota nessa sessão.
 - [Revisão anterior A–T](HSP4_CURRENT_REVIEW_6DFF3C9_2026-09-24.md), [FULL fictício](HSP4_HOSTED_FULL_DEMO_5B992D3_2026-09-24.md), [SQL e recuperação sintética](HSP4_PRIVATE_SYNTHETIC_AND_SQL_METADATA_2026-09-24.md) e [carga histórica 100×60](../audit-2026-09-23/HSP3_100_TENANTS_60M_BB290BC_2026-09-24.json).
 
 ## E. Mudanças realizadas e F. Problemas/correções
@@ -73,11 +78,20 @@ acesso confiável para contornar o bloqueio.
 
 O SQL-only da migration 0024 passou por workflow fail-closed no candidato
 anterior `6dff3c9`; o resultado JSON privado não foi lido
-independentemente. O ensaio HTTP de membro, gestor e outro tenant segue
-pendente no `458aac9`. O último soak histórico observou 584 negativas
+independentemente. O run HTTP privado `36062309891` hospedado no claim
+`458aac9` terminou SUCCESS nos jobs de exercício e guard independente,
+com backstop `36062480126` SUCCESS. O runner revisado contém 12 assertions
+fail-fast; 12/12 e ausência de resíduo são inferidos do sucesso executável,
+sem leitura independente do artefato sanitizado `10834806637`. A
+proveniência ainda depende de checkout/mensagem/digests porque Railway
+`meta.commitHash=null`. O último soak histórico observou 584 negativas
 cross-tenant esperadas e zero erro inesperado, mas não transfere PASS de
-isolamento para o novo artefato. Cinco flags foram vistas desligadas na UI
-anterior; revalidar a configuração e as rotas no candidato atual.
+100×60 para o novo artefato. Após reload real da IAB na administração do
+web `458aac9`, proprietário sintético do Tenant A viu as cinco flags como
+DESLIGADA e o resumo de cinco funções desligadas; `/ecossistema` retornou
+404 ao navegar diretamente. Isso comprova a
+apresentação da UI/rota nessa sessão, sem inspecionar env bruto ou outros
+serviços; manter false em cada promoção.
 
 ## H. Auth e onboarding hospedados
 
@@ -125,7 +139,8 @@ fornecem custo marginal por tenant do novo artefato. Não houve nova medição.
 
 ## O. Débitos técnicos e P. Riscos para piloto
 
-P95 reprovado, falta de telemetria causal, HTTP multi-role atual, backup de
+P95 reprovado, falta de telemetria causal, proveniência nativa do SHA,
+backup de
 serviço, NOTICE/licença e fundamento documental real são riscos de piloto.
 O bloqueio de navegador na rota de medição não autoriza relaxar Auth, RLS
 ou controles de segurança. Cross-tenant, perda/corrupção de dados ou
@@ -133,10 +148,10 @@ vazamento de segredo causariam FAIL imediato.
 
 ## Q. Acessos e decisões humanas pendentes
 
-O nome do secret `STAGING_SUPABASE_ANON_KEY` ainda está ausente no Actions
-privado e o workflow HTTP multi-role não possui runs hospedados. O
-proprietário deve configurá-lo diretamente no Actions privado para o run,
-sem compartilhar o valor. Backup exige
+O proprietário configurou apenas a publishable anon key
+`STAGING_SUPABASE_ANON_KEY` diretamente no Actions privado, sem revelar o
+valor. O run HTTP hospedado ocorreu; eventual repetição afetada por correção
+de código deve preservar essa custódia. Backup exige
 chave sob custódia independente e decisão formal sobre controle autogerido;
 responsável jurídico deve fechar NOTICE e obrigações LGPL/CC-BY/MPL. A
 equipe precisa obter medição autenticada por meio que preserve Auth e não
@@ -159,9 +174,11 @@ escopo, sem novo crédito de prontidão operacional pelo deploy da rota.
 1. Medir fases autenticadas da Home no `458aac9` preservando Auth; distinguir
    bloqueio de cliente de resposta do servidor. Isolar gargalo antes de
    corrigir e repetir 100 empresas por 60 minutos com p95 ≤750 ms.
-2. Repetir HTTP Auth membro/gestor/outro tenant e confirmar isolamento,
-   flags e worker/outbox no candidato; registrar proveniência do artefato
-   sem atribuir ao Railway atestação não observada.
+2. Preservar a prova HTTP Auth multi-role limitada do run `36062309891` e
+   repetir apenas se uma correção a afetar; preservar as cinco flags OFF
+   observadas na UI/rota e testar worker/outbox no candidato. Registrar
+   proveniência sem atribuir ao Railway atestação
+   não observada.
 3. Executar backup agendado, restore real isolado com ACL/RLS/serviços e
    RPO/RTO; fechar monitor de atraso e ACK, custódia da chave e decisão do
    controle equivalente.

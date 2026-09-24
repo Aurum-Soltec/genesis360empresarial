@@ -15,7 +15,7 @@
     ]
   },
   "HSP-1": {
-    "status": "partial_demo_and_sql_pass_http_multi_role_pending",
+    "status": "partial_demo_sql_http_pass_limited",
     "evidence": [
       "isolated hosted staging; functional SHA bb290bc7bc35f77b4ca01aecdbf19b748c386270 web and worker SUCCESS with quality/database/CodeQL PASS",
       "24 migrations present after append-only 0024; 12/12 hosted authenticated-role SQL RLS assertions with rollback and 12/12 HTTP multi-role assertions with fixture cleanup",
@@ -25,10 +25,10 @@
       "Auth-form pre-hydration guard and 10 synthetic logins in first bb290bc 100-tenant run",
       "fresh invited-user password login on exact alias passed; only Tenant A visible, Auth last_sign_in_at advanced",
       "fictional FULL on hosted 5b992d3 passed 52 answers, score 51, confidence 78%, three context_for sources and cockpit 7/7; zero answer-level citations and zero verified documents",
-      "private validated run 36031065644 on predecessor ff864213 and run 36035020570 pinned to source 6dff3c9 passed SQL-only migration 0024 probe with 12 required named cases and rollback; private JSONs not independently inspected by agent"
+      "private validated run 36031065644 on predecessor ff864213 and run 36035020570 pinned to source 6dff3c9 passed SQL-only migration 0024 probe with 12 required named cases and rollback; private JSONs not independently inspected by agent",
+      "private hosted HTTP multi-role run 36062309891 SUCCESS on claimed 458aac9 source: exercise and independent-residue-guard SUCCESS; backstop workflow_run 36062480126 SUCCESS; fail-fast runner contains 12 assertions, so 12/12 and no residue inferred from executable results; sanitized artifact 10834806637 (511 bytes, sha256:96cbe42af882a26bb7a21ec135840d9783034fb747c5362297f79c5542399840) not independently inspected; Railway meta.commitHash=null limits native SHA attestation"
     ],
     "blocked": [
-      "HTTP Auth member/manager/foreign-tenant isolation has not been repeated on current 458aac9 web/worker; private PR #19 runner and isolated local three-GoTrue-login/no-residue rehearsal passed but hosted run has zero executions and owner-set STAGING_SUPABASE_ANON_KEY secret name is absent in private Actions; SQL-only PASS on predecessor 6dff3c9 and historical bb290bc HTTP 12/12 do not transfer",
       "question-level linked/verified documentation and a real document-grounded conclusion remain unproven while real upload is off; 7/7 fictitious demo belongs to predecessor 5b992d3"
     ]
   },
@@ -42,7 +42,8 @@
       "issue #27 synthetic monitor failure, email notification received, human ACK, recovery and close; public ACK quote sanitized",
       "hosted first-run outbox: 1600 matched facts/events processed, zero pending/dead/retries, worker latency p95 3589.34ms",
       "private run 36030761200 passed synthetic source-to-target recovery without staging backup/credentials; no real service restore or RPO/RTO credit",
-      "deployed package byte comparison for 30 reviewed OSS packages passed on 25c022d8 against same-SHA CI; NOTICE/legal disposition remains blocked"
+      "deployed package byte comparison for 30 reviewed OSS packages passed on 25c022d8 against same-SHA CI; NOTICE/legal disposition remains blocked",
+      "authenticated synthetic Tenant A owner reloaded /demonstracao/administracao on current 458aac9 web and saw all five sensitive flags DESLIGADA plus five-disabled summary; direct /ecossistema returned 404; UI/route-scope only, not raw environment or other services"
     ],
     "blocked": [
       "private manual backup, logical DB restore and synthetic source-to-target rehearsal passed; private PR #18 operator-held immutable release preflight and PR #20 retention prune guard at c3adbe3c with 77 synthetic CI tests merged; PR #21 backup monitor d8bdfb8d merged with 88 synthetic CI tests and dry-run 36039829373 SUCCESS, but monitor cron OFF, no real release read or issue opened and same GitHub Actions failure domain, but no real key/backup run; no active schedule, 30-day observed retention, real service restore/RPO-RTO, independent key custody, backup alert ACK (private issue #17 opened) or formal equivalent-control decision",
@@ -83,23 +84,25 @@
       "first bb290bc run ended at 998 seconds with 10 client errors; second run 662855c2dbd5 completed 3604 seconds/100 tenants/24512 requests/0 unexpected errors/584 expected denials, outbox 5806 processed without pending/dead/retries; p95 FAIL",
       "all five sensitive flags displayed DESLIGADA to authenticated synthetic Tenant A owner at /demonstracao/administracao on predecessor web uploaded from 6dff3c9; UI scope only, not raw env inspection",
       "historical web 2e2690bd and worker 56740353 Railway CLI uploads SUCCESS from clean detached source 6dff3c9833ae2036f187dd1c9b3a2ad9680a20ac with image digests; cliMessage exact SHA but meta.commitHash=null limits native attestation; fictional FULL on predecessor 5b992d3 passed 52 answers and cockpit 7/7 without real document proof",
-      "source 6dff3c9 private SQL-only workflow 36035020570 SUCCESS with fail-closed 12-case/rollback validator; private JSON not independently read due to access review; HTTP multi-role remains pending",
+      "source 6dff3c9 private SQL-only workflow 36035020570 SUCCESS with fail-closed 12-case/rollback validator; private JSON not independently read due to access review; HTTP multi-role was pending at this historical 6dff3c9 checkpoint",
       "private synthetic source-to-target recovery run 36030761200 SUCCESS without real staging data or RPO/RTO credit",
       "current objective NO-GO review: docs/audit-2026-09-24/HSP4_CURRENT_REVIEW_458AAC9_2026-09-24.md; prior 6dff3c9 review remains historical",
-      "PR #33 CI PASS/main 458aac9; current web 65ede85d-f918-4ccf-b161-a9396d6c702a digest sha256:108dd4d9b0d33b5bd60d5df4fce63ca3dee62f7fc6136675d7ec6612803a613b and worker 8e460f0f-4c6b-4506-b490-90682b5b1b4d digest sha256:8318678e1197f06d97390dbf43629bfb88bea97963eda892ffd7ee9b234e2163 SUCCESS from clean detached checkout; meta.commitHash=null; diagnostic route anonymous 401, authenticated browser ERR_BLOCKED_BY_CLIENT, no timings"
+      "PR #33 CI PASS/main 458aac9; current web 65ede85d-f918-4ccf-b161-a9396d6c702a digest sha256:108dd4d9b0d33b5bd60d5df4fce63ca3dee62f7fc6136675d7ec6612803a613b and worker 8e460f0f-4c6b-4506-b490-90682b5b1b4d digest sha256:8318678e1197f06d97390dbf43629bfb88bea97963eda892ffd7ee9b234e2163 SUCCESS from clean detached checkout; meta.commitHash=null; diagnostic route anonymous 401, authenticated browser ERR_BLOCKED_BY_CLIENT, no timings",
+      "private hosted HTTP multi-role run 36062309891 SUCCESS on claimed 458aac9 source: exercise and independent-residue-guard SUCCESS; backstop workflow_run 36062480126 SUCCESS; fail-fast runner contains 12 assertions, so 12/12 and no residue inferred from executable results; sanitized artifact 10834806637 (511 bytes, sha256:96cbe42af882a26bb7a21ec135840d9783034fb747c5362297f79c5542399840) not independently inspected; Railway meta.commitHash=null limits native SHA attestation",
+      "authenticated synthetic Tenant A owner reloaded /demonstracao/administracao on current 458aac9 web and saw all five sensitive flags DESLIGADA plus five-disabled summary; direct /ecossistema returned 404; UI/route-scope only, not raw environment or other services"
     ],
     "pending": [
-      "HTTP Auth member/manager/foreign-tenant isolation must repeat on current 458aac9 deployments; SQL-only PASS on predecessor 6dff3c9 is limited/historical; real document-grounded conclusion unproven under disabled upload flag",
       "automatic encrypted backup retention and representative real service restore with measured RPO/RTO, independent key custody, backup alert ACK and equivalent-control decision",
       "legal and technical LGPL/CC-BY/MPL disposition, final NOTICE and package-byte inspection tied to final new web/worker images",
       "100-tenant 60-minute duration, functional isolation and outbox proof passed; p95 <=750ms and remaining pool/saturation telemetry still pending",
       "repeat affected HSP-4 gates and issue a new review before any pilot authorization",
-      "repeat FULL fictional flow, five disabled flags and worker/outbox on current 458aac9 artifact; authenticated timing endpoint must yield actual server response before any p95 inference"
+      "repeat FULL fictional flow and worker/outbox on current 458aac9 artifact; authenticated timing endpoint must yield actual server response before any p95 inference",
+      "preserve limited hosted HTTP multi-role PASS and current UI/route five-flags-OFF proof; repeat only if an affected change invalidates them; close provider-native commit provenance separately"
     ]
   },
   "production": {
     "status": "blocked",
     "pilot": "no-go",
-    "reason": "HSP-4 current 458aac9-source review NO-GO: PR #33 CI PASS and web/worker SUCCESS from clean detached checkout but Railway meta.commitHash=null; diagnostic route 401 anonymous and authenticated browser blocked with no timings; historical 100-tenant 60-minute p95 failed, HTTP multi-role on current artifact pending, automatic retained backup/service RPO-RTO and final OSS disposition lack PASS; later Waves not started"
+    "reason": "HSP-4 current 458aac9-source review NO-GO: PR #33 CI PASS and web/worker SUCCESS from clean detached checkout but Railway meta.commitHash=null; diagnostic route 401 anonymous and authenticated browser blocked with no timings; historical 100-tenant 60-minute p95 failed, HTTP multi-role passed only as fail-fast workflow inference with uninspected private JSON and Railway meta.commitHash=null, automatic retained backup/service RPO-RTO and final OSS disposition lack PASS; later Waves not started"
   }
 }

@@ -15,15 +15,20 @@ Railway `meta.commitHash=null` em ambos. A rota opt-in
 `/api/ops/home-timing`
 devolveu 401 anônimo, mas a navegação autenticada foi bloqueada pelo
 navegador (`ERR_BLOCKED_BY_CLIENT`), sem tempos hospedados. Último 100×60
-permanece FAIL de p95; HTTP multi-role e FULL no candidato atual seguem
-PENDING, backup de serviço/RPO-RTO e NOTICE seguem BLOCKED. Nenhum gate
+permanece FAIL de p95; HTTP multi-role hospedado no claim `458aac9` passou
+no run privado `36062309891` com guard independente e backstop SUCCESS,
+12/12 inferidos do runner fail-fast, sem inspeção independente do artefato
+sanitizado. As cinco flags foram vistas DESLIGADA após reload autenticado
+da UI no `458aac9`, e `/ecossistema` retornou 404; escopo apenas visual/de
+rota. FULL no candidato atual segue PENDING, backup de serviço/RPO-RTO e
+NOTICE seguem BLOCKED. Nenhum gate
 herda PASS runtime do `6dff3c9` automaticamente. [Revisão A–T
 vigente](../../../audit-2026-09-24/HSP4_CURRENT_REVIEW_458AAC9_2026-09-24.md).
 
 | Wave | Estado no `458aac9` | Próxima evidência obrigatória |
 | --- | --- | --- |
 | HSP-0 | **PARTIAL** | Preservar CI e vincular fonte/deployments ao artefato sem alegar atestação nativa não observada. |
-| HSP-1 | **PARTIAL** | Repetir HTTP membro/gestor/outro tenant, FULL e flags no candidato; SQL-only anterior é histórico. |
+| HSP-1 | **PARTIAL; HTTP multi-role PASS limitado** | Run hospedado `36062309891` e backstop `36062480126` SUCCESS no claim `458aac9`; 12/12 inferidos do runner fail-fast, JSON privado não inspecionado. FULL no candidato ainda pende; SQL-only anterior é histórico. Cinco flags OFF foram observadas na UI/rota atual sob sessão sintética, sem env bruto. |
 | HSP-2 | **BLOCKED** | Restore funcional com ACL/RLS e RPO/RTO, backup automático/retido, alerta/ACK, chave independente e NOTICE. |
 | HSP-3 | **FAIL p95 histórico; atual PENDING** | Medir fases autenticadas, corrigir gargalo demonstrado e repetir 100×60 no candidato. |
 | HSP-4 | **NO-GO** | Reconciliar gates antes de decisão de piloto. |
