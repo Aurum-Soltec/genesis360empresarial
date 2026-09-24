@@ -1,4 +1,5 @@
 import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { renderToString } from "react-dom/server";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import NewPasswordPage from "./page";
 
@@ -11,6 +12,12 @@ afterEach(() => {
 });
 
 describe("Definição de senha", () => {
+  it("bloqueia envio nativo da senha antes da hidratação", () => {
+    const html = renderToString(<NewPasswordPage />);
+    expect(html).toMatch(/<form[^>]*method="post"/);
+    expect(html).toMatch(/<button[^>]*disabled=""[^>]*>Atualizar senha<\/button>/);
+  });
+
   it("só oferece continuação após o Auth confirmar a nova senha", async () => {
     updateUser.mockResolvedValue({ error: null });
     render(<NewPasswordPage />);

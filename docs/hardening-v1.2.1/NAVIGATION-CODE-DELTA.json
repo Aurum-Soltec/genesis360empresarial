@@ -9,6 +9,12 @@
       "reason": "HSP-4 remediation with executable regression and hosted recheck required"
     },
     {
+      "path": ".gitignore",
+      "beforeSha256": "00b3089af132ab89793b8098258da851d34b4b0c9d9d1c002da77eaaf4f5cccb",
+      "afterSha256": "9018c512b14fe8cc6e36f6bec4919cff9798c3fcee31e9dec74bb770bc7106ee",
+      "reason": "HSP-4: login prehydration protection and private backup isolation"
+    },
+    {
       "path": "app/api/decisions/[id]/missions/route.ts",
       "beforeSha256": "fb6fe5d4d7b124d72349e6b30ea3b5330cde89b2694ebea77af2b5fa609bc3f1",
       "afterSha256": "f09a20bf71f2ba06655ba312d924480d319e24e1a4c459b87b37cc3be08fa48e",
@@ -119,8 +125,8 @@
     {
       "path": "app/entrar/page.tsx",
       "beforeSha256": "bb62d98bac670ccc2ad7cf077caef3015d0cb58826814ef74bb49c96794829fb",
-      "afterSha256": "1f2b649b3f462f923dd5615ee0c268af247c746f5ff5710990b207c290be5b6a",
-      "reason": "HSP-4 remediation with executable regression and hosted recheck required"
+      "afterSha256": "f9409d4d8daa24d941e3bd13fb8addb8579ab47586cae96733857cf75c4570a9",
+      "reason": "HSP-4: login prehydration protection and private backup isolation"
     },
     {
       "path": "app/error.tsx",
@@ -161,8 +167,8 @@
     {
       "path": "app/nova-senha/page.tsx",
       "beforeSha256": "babda26eb67414581282ce0367102e07037469cb4295a4aac04192fd44435633",
-      "afterSha256": "3a6e83f80f616e98e953f00f6c190c6b89c836d923bd38dd1cf72b8d3535564c",
-      "reason": "HSP-4 remediation with executable regression and hosted recheck required"
+      "afterSha256": "d40fc8c67ac45255cffec2d2e57621bff763759cc4f0fd9ab327c05329458ce8",
+      "reason": "HSP-4: login prehydration protection and private backup isolation"
     },
     {
       "path": "app/page.tsx",
@@ -187,6 +193,12 @@
       "beforeSha256": "41327e515d58ef0cee0cb779b8a854d2120f06c662a533c371f6a6419351585f",
       "afterSha256": "f55649dfb7119de4ed96d46d9f48f3b626267c9605c3f7d38ecd525c234a2e52",
       "reason": "Navigation and explicit read-failure states for presentation-critical pages"
+    },
+    {
+      "path": "app/recuperar-acesso/page.tsx",
+      "beforeSha256": "9ad7c8e5fc9d5ba00dfca36bd07ad5b8c68340dc5bd50938eeffee50b80c2f89",
+      "afterSha256": "eb367205c1ddfa142b5e4fc7da30d87b636e28bc3e959f7bb9da9741f38f6259",
+      "reason": "HSP-4: login prehydration protection and private backup isolation"
     },
     {
       "path": "app/resultado-v1/page.tsx",

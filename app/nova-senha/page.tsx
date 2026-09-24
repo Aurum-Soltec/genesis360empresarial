@@ -3,10 +3,12 @@
 import Link from "next/link";
 import { FormEvent, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
+import { useHydrated } from "@/lib/use-hydrated";
 
 export default function NewPasswordPage() {
   const [message, setMessage] = useState<string | null>(null);
   const [complete, setComplete] = useState(false);
+  const hydrated = useHydrated();
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const password = String(new FormData(event.currentTarget).get("password") ?? "");
@@ -17,9 +19,9 @@ export default function NewPasswordPage() {
   return (
     <main className="focused-shell"><section className="focused-panel">
       <p className="eyebrow">Segurança</p><h1>Defina uma nova senha</h1>
-      <form onSubmit={submit} className="stack">
+      <form method="post" onSubmit={submit} className="stack">
         <label>Nova senha<input name="password" type="password" minLength={12} autoComplete="new-password" required /></label>
-        <button className="button button-primary" disabled={complete}>Atualizar senha</button>
+        <button className="button button-primary" disabled={!hydrated || complete}>Atualizar senha</button>
       </form>
       {message ? <p role="status">{message}</p> : null}
       {complete ? <Link href="/selecionar-empresa">Continuar para sua empresa</Link> : null}

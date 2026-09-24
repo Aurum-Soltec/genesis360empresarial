@@ -57,3 +57,6 @@ __pycache__/
 *.woff2
 *.ttf
 *.otf
+tmp/hsp4-private-backup/
+tmp/hsp4-private-backup-repo/
+tmp/hsp3-provider-metrics/

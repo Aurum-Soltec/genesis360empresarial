@@ -5,7 +5,7 @@ import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
 import { chromium } from "playwright-core";
-import { evaluateGate, readFixture, summarizeSamples, validateRunConfig } from "./hsp3-load-core.mjs";
+import { classifyLoginFailure, evaluateGate, readFixture, summarizeSamples, validateRunConfig } from "./hsp3-load-core.mjs";
 
 const mode = process.argv[2] ?? "--check-fixture";
 const repoRoot = path.resolve(import.meta.dirname, "..");
@@ -45,6 +45,7 @@ let unexpectedErrors = 0;
 let stop = false;
 let startedAt = null;
 let browser;
+let sessions = [];
 for (const signal of ["SIGINT", "SIGTERM"]) {
   process.on(signal, () => {
     stop = true;
@@ -122,21 +123,68 @@ async function call(page, operation, method, pathname, body, expectedStatus, cor
 }
 
 async function login(user, index) {
-  const context = await browser.newContext({ viewport: { width: 1280, height: 800 } });
-  const page = await context.newPage();
-  reserveRequest();
-  await page.goto(`${config.baseUrl}/entrar`, { waitUntil: "domcontentloaded", timeout: 30000 });
-  await page.locator('input[name="email"]').fill(user.email);
-  await page.locator('input[name="password"]').fill(user.password);
-  const start = performance.now();
-  await Promise.all([
-    page.waitForURL("**/selecionar-empresa", { timeout: 30000 }),
-    page.getByRole("button", { name: "Entrar", exact: true }).click(),
-  ]);
-  if (new URL(page.url()).origin !== config.baseUrl) throw new Error("AUTH_REDIRECTED_OFF_STAGING_ORIGIN");
-  samples.login.push(Math.round((performance.now() - start) * 100) / 100);
-  const foreign = users[(index + 1) % users.length].tenants[0];
-  return { context, page, user, foreign, index };
+  let context;
+  let phase = "navigate";
+  let authHttpStatus = null;
+  let authNetworkFailure = false;
+  let succeeded = false;
+  try {
+    context = await browser.newContext({ viewport: { width: 1280, height: 800 } });
+    const page = await context.newPage();
+    page.on("response", (response) => {
+      try {
+        const pathname = new URL(response.url()).pathname;
+        if (pathname === "/auth/v1/token" || pathname === "/auth/v1/user") {
+          authHttpStatus = response.status();
+        }
+      } catch { /* Never retain a request URL. */ }
+    });
+    page.on("requestfailed", (request) => {
+      try {
+        const pathname = new URL(request.url()).pathname;
+        if (pathname === "/auth/v1/token" || pathname === "/auth/v1/user") {
+          authNetworkFailure = true;
+        }
+      } catch { /* Never retain a request URL. */ }
+    });
+    reserveRequest();
+    await page.goto(`${config.baseUrl}/entrar`, { waitUntil: "domcontentloaded", timeout: 30000 });
+    phase = "ready";
+    const submitButton = page.getByRole("button", { name: "Entrar", exact: true });
+    await submitButton.waitFor({ state: "visible", timeout: 30000 });
+    // The app keeps submit disabled until the client form is hydrated. An
+    // early click could trigger native form navigation before React attaches.
+    await page.waitForFunction(() => {
+      const button = document.querySelector("form button");
+      return button instanceof HTMLButtonElement && !button.disabled;
+    }, null, { timeout: 30000 });
+    phase = "fill";
+    await page.locator('input[name="email"]').fill(user.email);
+    await page.locator('input[name="password"]').fill(user.password);
+    const start = performance.now();
+    phase = "submit";
+    await Promise.all([
+      page.waitForURL((url) => url.origin === config.baseUrl && url.pathname === "/selecionar-empresa",
+        { timeout: 30000 }),
+      submitButton.click(),
+    ]);
+    phase = "route";
+    if (new URL(page.url()).origin !== config.baseUrl) throw new Error("AUTH_REDIRECTED_OFF_STAGING_ORIGIN");
+    samples.login.push(Math.round((performance.now() - start) * 100) / 100);
+    const foreign = users[(index + 1) % users.length].tenants[0];
+    succeeded = true;
+    return { context, page, user, foreign, index };
+  } catch (error) {
+    const known = safeFailureCode(error);
+    const failure = new Error("LOGIN_FAILURE");
+    Object.assign(failure, { userOrdinal: index, phase: "login", step: phase,
+      code: known === "BROWSER_OR_NETWORK_FAILURE"
+        ? classifyLoginFailure({ phase, authHttpStatus, authNetworkFailure }) : known,
+      authHttpStatus: Number.isInteger(authHttpStatus) ? authHttpStatus : null });
+    throw failure;
+  } finally {
+    if (!succeeded) await context?.close().catch(() => {});
+  }
 }
 
 async function preflight(session) {
@@ -216,31 +264,56 @@ async function cycle(session, cycleIndex) {
 const initial = new Date().toISOString();
 try {
   browser = await chromium.launch({ executablePath, headless: true });
-  const sessions = await Promise.all(users.map((user, index) => login(user, index)));
-  await Promise.all(sessions.map(preflight));
-  startedAt = new Date().toISOString();
-  const deadline = Date.now() + config.durationSeconds * 1000;
-  await Promise.all(sessions.map(async (session) => {
-    for (let i = 0; !stop && Date.now() < deadline; i += 1) {
-      const cycleStarted = Date.now();
-      try {
-        await cycle(session, i);
-      } catch (error) {
-        stop = true;
-        unexpectedErrors += 1;
-        failures.push({ userOrdinal: session.index, cycle: i,
-          code: safeFailureCode(error) });
-        break;
-      }
-      const waitMs = Math.min(config.cycleMs - (Date.now() - cycleStarted), deadline - Date.now());
-      if (waitMs > 0 && !stop) await new Promise((resolve) => setTimeout(resolve, waitMs));
+  const loginResults = await Promise.allSettled(users.map((user, index) => login(user, index)));
+  sessions = loginResults.filter((result) => result.status === "fulfilled").map((result) => result.value);
+  for (const [index, result] of loginResults.entries()) {
+    if (result.status === "rejected") {
+      unexpectedErrors += 1;
+      const reason = result.reason;
+      failures.push({ userOrdinal: index, phase: "login",
+        step: ["navigate", "ready", "fill", "submit", "route"].includes(reason?.step)
+          ? reason.step : "unknown",
+        code: typeof reason?.code === "string" && /^(?:AUTH_HTTP_[45][0-9]{2}|AUTH_NETWORK_FAILURE|LOGIN_[A-Z_]+|WORKLOAD_CAP_REACHED|AUTH_REDIRECTED_OFF_STAGING_ORIGIN)$/.test(reason.code)
+          ? reason.code : "BROWSER_OR_NETWORK_FAILURE",
+        authHttpStatus: Number.isInteger(reason?.authHttpStatus) && reason.authHttpStatus >= 100 && reason.authHttpStatus <= 599
+          ? reason.authHttpStatus : null });
     }
-  }));
-  await Promise.all(sessions.map((session) => session.context.close()));
+  }
+  if (failures.length === 0) {
+    const checks = await Promise.allSettled(sessions.map(preflight));
+    for (const [index, result] of checks.entries()) {
+      if (result.status === "rejected") {
+        unexpectedErrors += 1;
+        failures.push({ userOrdinal: sessions[index].index, phase: "preflight",
+          code: safeFailureCode(result.reason) });
+      }
+    }
+  }
+  if (failures.length === 0) {
+    startedAt = new Date().toISOString();
+    const deadline = Date.now() + config.durationSeconds * 1000;
+    await Promise.all(sessions.map(async (session) => {
+      for (let i = 0; !stop && Date.now() < deadline; i += 1) {
+        const cycleStarted = Date.now();
+        try {
+          await cycle(session, i);
+        } catch (error) {
+          stop = true;
+          unexpectedErrors += 1;
+          failures.push({ userOrdinal: session.index, cycle: i,
+            code: safeFailureCode(error) });
+          break;
+        }
+        const waitMs = Math.min(config.cycleMs - (Date.now() - cycleStarted), deadline - Date.now());
+        if (waitMs > 0 && !stop) await new Promise((resolve) => setTimeout(resolve, waitMs));
+      }
+    }));
+  }
 } catch (error) {
   failures.push({ phase: startedAt ? "runtime" : "preflight",
     code: safeFailureCode(error) });
 } finally {
+  await Promise.allSettled(sessions.map((session) => session.context.close()));
   await browser?.close();
 }
 

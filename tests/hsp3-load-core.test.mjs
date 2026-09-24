@@ -5,7 +5,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
-import { evaluateGate, percentile, summarizeSamples, validateFixture, validateRunConfig } from "../scripts/hsp3-load-core.mjs";
+import { classifyLoginFailure, evaluateGate, percentile, summarizeSamples, validateFixture, validateRunConfig } from "../scripts/hsp3-load-core.mjs";
 
 function fixture() {
   return { synthetic: true, users: Array.from({ length: 10 }, (_, user) => ({
@@ -44,6 +44,14 @@ test("nearest-rank percentile and empty operation are explicit", () => {
   const data = summarizeSamples({ switch: [100, 200], read: [] });
   assert.equal(data.switch.p50Ms, 100);
   assert.equal(data.read.under750Ms, false);
+});
+
+test("login diagnostics distinguish hydration, provider and routing failures without identities", () => {
+  assert.equal(classifyLoginFailure({ phase: "ready" }), "LOGIN_HYDRATION_TIMEOUT");
+  assert.equal(classifyLoginFailure({ phase: "submit", authHttpStatus: 429 }), "AUTH_HTTP_429");
+  assert.equal(classifyLoginFailure({ phase: "submit", authNetworkFailure: true }), "AUTH_NETWORK_FAILURE");
+  assert.equal(classifyLoginFailure({ phase: "submit", authHttpStatus: 200 }), "LOGIN_ROUTE_TIMEOUT");
+  assert.equal(classifyLoginFailure({ phase: "navigate" }), "LOGIN_NAVIGATION_FAILED");
 });
 
 test("runtime alone cannot pass; observations must match run and prove processed events", () => {

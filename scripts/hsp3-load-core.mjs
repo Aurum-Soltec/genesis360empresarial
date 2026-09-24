@@ -82,6 +82,21 @@ export function readFixture(config) {
   return validateFixture(input);
 }
 
+// A login failure report must never contain request URLs, response bodies,
+// browser exception text, or the synthetic user's identity.
+export function classifyLoginFailure({ phase, authHttpStatus = null, authNetworkFailure = false }) {
+  if (Number.isInteger(authHttpStatus) && authHttpStatus >= 400 && authHttpStatus <= 599) {
+    return `AUTH_HTTP_${authHttpStatus}`;
+  }
+  if (authNetworkFailure) return "AUTH_NETWORK_FAILURE";
+  if (phase === "navigate") return "LOGIN_NAVIGATION_FAILED";
+  if (phase === "ready") return "LOGIN_HYDRATION_TIMEOUT";
+  if (phase === "fill") return "LOGIN_FORM_FAILED";
+  if (phase === "submit" && authHttpStatus === null) return "LOGIN_SUBMIT_FAILED";
+  if (authHttpStatus === null) return "LOGIN_NO_AUTH_RESPONSE";
+  return "LOGIN_ROUTE_TIMEOUT";
+}
+
 export function percentile(values, rank) {
   if (!values.length) return null;
   const sorted = [...values].sort((a, b) => a - b);

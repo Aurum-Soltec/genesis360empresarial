@@ -6,11 +6,13 @@ import { FormEvent, useEffect, useState } from "react";
 import { BrandMark } from "@/components/brand-mark";
 import { createClient } from "@/lib/supabase/client";
 import { safeInternalPath } from "@/lib/safe-navigation";
+import { useHydrated } from "@/lib/use-hydrated";
 
 export default function SignInPage() {
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  const hydrated = useHydrated();
 
   useEffect(() => {
     const fragment = window.location.hash;
@@ -86,11 +88,11 @@ export default function SignInPage() {
         </div>
         <p className="eyebrow">Acesso seguro</p>
         <h1>Entrar no Genesis 360</h1>
-        <form onSubmit={submit} className="stack">
+        <form method="post" onSubmit={submit} className="stack">
           <label>E-mail<input name="email" type="email" autoComplete="email" required /></label>
           <label>Senha<input name="password" type="password" autoComplete="current-password" required /></label>
           {error ? <p role="alert">{error}</p> : null}
-          <button className="button button-primary" disabled={busy}>{busy ? "Entrando…" : "Entrar"}</button>
+          <button className="button button-primary" disabled={!hydrated || busy}>{busy ? "Entrando…" : "Entrar"}</button>
         </form>
         <Link href="/recuperar-acesso">Esqueci minha senha</Link>
       </section>

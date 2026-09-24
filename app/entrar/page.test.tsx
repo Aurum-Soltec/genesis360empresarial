@@ -1,4 +1,5 @@
 import { cleanup, render, screen, waitFor } from "@testing-library/react";
+import { renderToString } from "react-dom/server";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import SignInPage from "./page";
 
@@ -34,6 +35,12 @@ afterEach(() => {
 });
 
 describe("Callback de convite na entrada", () => {
+  it("não expõe credenciais por GET antes da hidratação", () => {
+    const html = renderToString(<SignInPage />);
+    expect(html).toMatch(/<form[^>]*method="post"/);
+    expect(html).toMatch(/<button[^>]*disabled=""[^>]*>Entrar<\/button>/);
+  });
+
   it("remove o fragmento antes de estabelecer sessão e abre definição de senha", async () => {
     window.history.replaceState(null, "", "/entrar?next=%2F#access_token=test-access&refresh_token=test-refresh&type=invite");
     const removeFragment = vi.spyOn(window.history, "replaceState");
