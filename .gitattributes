@@ -1,2 +1,6 @@
 # Preserve the exact upstream LICENSE/NOTICE bytes archived for HSP-4 review.
 docs/audit-2026-09-24/HSP4_OSS_NOTICE_REVIEW_31df6086/CI_PACKAGE_LICENSE_TEXTS/** -text -diff
+# Preserve public CI artifact bytes: hashes in EVIDENCE_MANIFEST.json must
+# continue to match the repository blobs on Windows and Linux.
+docs/audit-2026-09-24/HSP4_OSS_NOTICE_REVIEW_458AAC/CI_EVIDENCE/*.json -text
+docs/audit-2026-09-24/HSP4_OSS_NOTICE_REVIEW_458AAC/CI_EVIDENCE/hsp4-license-texts/** -text -diff

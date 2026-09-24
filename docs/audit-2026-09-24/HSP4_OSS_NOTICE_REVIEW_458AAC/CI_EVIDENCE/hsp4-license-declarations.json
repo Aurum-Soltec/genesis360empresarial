@@ -1,0 +1,3653 @@
+{
+  "policy": "ADR-015 declaration precheck v1",
+  "sourceSha256": "8c7571051a264deb62cb0b155ee99f0678b5482cfc445443ddf55c15f894e6a6",
+  "ciEvaluatedSha": "458aac964d1f9a7016ac1804fe99d68637a3c0b8",
+  "prHeadSha": null,
+  "basis": "installed package.json declarations in the Linux/x64 CI SBOM; not deployed artifact contents",
+  "gate": "BLOCKED",
+  "counts": {
+    "preferred": 424,
+    "review": 30,
+    "blocked": 0,
+    "concludedNoAssertion": 454
+  },
+  "limitations": [
+    "No byte-level inventory of the deployed web or worker container",
+    "No verification of package license files, embedded native libraries, source offers, or complete notices",
+    "No legal conclusion or exception approval; preferred declarations are not automatic acceptance"
+  ],
+  "dependencies": [
+    {
+      "name": "@alloc/quick-lru",
+      "version": "5.3.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@asamuzakjp/css-color",
+      "version": "3.2.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@babel/code-frame",
+      "version": "7.29.7",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@babel/compat-data",
+      "version": "7.29.7",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@babel/core",
+      "version": "7.29.7",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@babel/generator",
+      "version": "7.29.8",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@babel/helper-compilation-targets",
+      "version": "7.29.7",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@babel/helper-globals",
+      "version": "7.29.7",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@babel/helper-module-imports",
+      "version": "7.29.7",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@babel/helper-module-transforms",
+      "version": "7.29.7",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@babel/helper-string-parser",
+      "version": "7.29.7",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@babel/helper-validator-identifier",
+      "version": "7.29.7",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@babel/helper-validator-option",
+      "version": "7.29.7",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@babel/helpers",
+      "version": "7.29.7",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@babel/parser",
+      "version": "7.29.9",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@babel/runtime",
+      "version": "7.29.7",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@babel/template",
+      "version": "7.29.7",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@babel/traverse",
+      "version": "7.29.8",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@babel/types",
+      "version": "7.29.8",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@csstools/color-helpers",
+      "version": "5.1.0",
+      "declaredLicense": "MIT-0",
+      "concludedLicense": "NOASSERTION",
+      "status": "review",
+      "reason": "outside_adr_015_preferred_list_or_composite_expression"
+    },
+    {
+      "name": "@csstools/css-calc",
+      "version": "2.1.4",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@csstools/css-color-parser",
+      "version": "3.1.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@csstools/css-parser-algorithms",
+      "version": "3.0.5",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@csstools/css-tokenizer",
+      "version": "3.0.4",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@eslint-community/eslint-utils",
+      "version": "4.10.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@eslint-community/eslint-utils",
+      "version": "4.9.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@eslint-community/regexpp",
+      "version": "4.12.2",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@eslint/config-array",
+      "version": "0.19.2",
+      "declaredLicense": "Apache-2.0",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@eslint/core",
+      "version": "0.12.0",
+      "declaredLicense": "Apache-2.0",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@eslint/core",
+      "version": "0.15.2",
+      "declaredLicense": "Apache-2.0",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@eslint/eslintrc",
+      "version": "3.3.7",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@eslint/js",
+      "version": "9.21.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@eslint/object-schema",
+      "version": "2.1.7",
+      "declaredLicense": "Apache-2.0",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@eslint/plugin-kit",
+      "version": "0.3.4",
+      "declaredLicense": "Apache-2.0",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@humanfs/core",
+      "version": "0.19.2",
+      "declaredLicense": "Apache-2.0",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@humanfs/node",
+      "version": "0.16.8",
+      "declaredLicense": "Apache-2.0",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@humanfs/types",
+      "version": "0.15.0",
+      "declaredLicense": "Apache-2.0",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@humanwhocodes/module-importer",
+      "version": "1.0.1",
+      "declaredLicense": "Apache-2.0",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@humanwhocodes/retry",
+      "version": "0.4.3",
+      "declaredLicense": "Apache-2.0",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@img/colour",
+      "version": "1.1.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@img/sharp-libvips-linux-x64",
+      "version": "1.3.3",
+      "declaredLicense": "LGPL-3.0-or-later",
+      "concludedLicense": "NOASSERTION",
+      "status": "review",
+      "reason": "weak_copyleft_requires_legal_review"
+    },
+    {
+      "name": "@img/sharp-linux-x64",
+      "version": "0.35.4",
+      "declaredLicense": "Apache-2.0",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@jridgewell/gen-mapping",
+      "version": "0.3.13",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@jridgewell/remapping",
+      "version": "2.3.5",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@jridgewell/resolve-uri",
+      "version": "3.1.2",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@jridgewell/sourcemap-codec",
+      "version": "1.6.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@jridgewell/trace-mapping",
+      "version": "0.3.31",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@next/env",
+      "version": "16.3.3",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@next/eslint-plugin-next",
+      "version": "16.3.3",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@next/swc-linux-x64-gnu",
+      "version": "16.3.3",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@nodelib/fs.scandir",
+      "version": "2.1.5",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@nodelib/fs.stat",
+      "version": "2.0.5",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@nodelib/fs.walk",
+      "version": "1.2.8",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@nolyfill/is-core-module",
+      "version": "1.0.39",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@oxc-project/types",
+      "version": "0.150.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@rolldown/binding-linux-x64-gnu",
+      "version": "1.2.9",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@rolldown/pluginutils",
+      "version": "1.0.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@rtsao/scc",
+      "version": "1.1.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@standard-schema/spec",
+      "version": "1.1.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@supabase/auth-js",
+      "version": "2.108.2",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@supabase/functions-js",
+      "version": "2.108.2",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@supabase/phoenix",
+      "version": "0.4.5",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@supabase/postgrest-js",
+      "version": "2.108.2",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@supabase/realtime-js",
+      "version": "2.108.2",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@supabase/ssr",
+      "version": "0.12.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@supabase/storage-js",
+      "version": "2.108.2",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@supabase/supabase-js",
+      "version": "2.108.2",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@swc/helpers",
+      "version": "0.5.23",
+      "declaredLicense": "Apache-2.0",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@tailwindcss/node",
+      "version": "4.3.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@tailwindcss/oxide-linux-x64-gnu",
+      "version": "4.3.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@tailwindcss/oxide",
+      "version": "4.3.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@tailwindcss/postcss",
+      "version": "4.3.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@testing-library/dom",
+      "version": "10.4.2",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@testing-library/react",
+      "version": "16.3.2",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@types/aria-query",
+      "version": "5.0.4",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@types/chai",
+      "version": "5.2.3",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@types/deep-eql",
+      "version": "4.0.2",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@types/estree",
+      "version": "1.0.9",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@types/json-schema",
+      "version": "7.0.15",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@types/json5",
+      "version": "0.0.29",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@types/node",
+      "version": "24.13.6",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@types/react-dom",
+      "version": "19.2.3",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@types/react",
+      "version": "19.2.17",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@typescript-eslint/eslint-plugin",
+      "version": "8.70.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@typescript-eslint/parser",
+      "version": "8.70.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@typescript-eslint/project-service",
+      "version": "8.70.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@typescript-eslint/scope-manager",
+      "version": "8.70.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@typescript-eslint/tsconfig-utils",
+      "version": "8.70.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@typescript-eslint/type-utils",
+      "version": "8.70.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@typescript-eslint/types",
+      "version": "8.70.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@typescript-eslint/typescript-estree",
+      "version": "8.70.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@typescript-eslint/utils",
+      "version": "8.70.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@typescript-eslint/visitor-keys",
+      "version": "8.70.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@unrs/resolver-binding-linux-x64-gnu",
+      "version": "1.12.2",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@vitest/expect",
+      "version": "4.1.11",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@vitest/mocker",
+      "version": "4.1.11",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@vitest/pretty-format",
+      "version": "4.1.11",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@vitest/runner",
+      "version": "4.1.11",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@vitest/snapshot",
+      "version": "4.1.11",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@vitest/spy",
+      "version": "4.1.11",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "@vitest/utils",
+      "version": "4.1.11",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "acorn-jsx",
+      "version": "5.3.2",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "acorn",
+      "version": "8.18.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "agent-base",
+      "version": "7.1.4",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "ajv",
+      "version": "6.15.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "ansi-regex",
+      "version": "5.0.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "ansi-styles",
+      "version": "4.3.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "ansi-styles",
+      "version": "5.2.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "argparse",
+      "version": "2.0.1",
+      "declaredLicense": "Python-2.0",
+      "concludedLicense": "NOASSERTION",
+      "status": "review",
+      "reason": "outside_adr_015_preferred_list_or_composite_expression"
+    },
+    {
+      "name": "aria-query",
+      "version": "5.3.0",
+      "declaredLicense": "Apache-2.0",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "aria-query",
+      "version": "5.3.2",
+      "declaredLicense": "Apache-2.0",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "array-buffer-byte-length",
+      "version": "1.0.2",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "array-includes",
+      "version": "3.2.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "array.prototype.findlast",
+      "version": "1.2.5",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "array.prototype.findlastindex",
+      "version": "1.2.6",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "array.prototype.flat",
+      "version": "1.3.3",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "array.prototype.flatmap",
+      "version": "1.3.3",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "array.prototype.tosorted",
+      "version": "1.1.4",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "arraybuffer.prototype.slice",
+      "version": "1.0.4",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "assertion-error",
+      "version": "2.0.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "ast-types-flow",
+      "version": "0.0.8",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "async-function",
+      "version": "1.0.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "asynckit",
+      "version": "0.4.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "available-typed-arrays",
+      "version": "1.0.7",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "axe-core",
+      "version": "4.13.0",
+      "declaredLicense": "MPL-2.0",
+      "concludedLicense": "NOASSERTION",
+      "status": "review",
+      "reason": "file_level_copyleft_requires_review"
+    },
+    {
+      "name": "axobject-query",
+      "version": "4.1.0",
+      "declaredLicense": "Apache-2.0",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "balanced-match",
+      "version": "1.0.2",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "balanced-match",
+      "version": "4.0.4",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "baseline-browser-mapping",
+      "version": "2.11.25",
+      "declaredLicense": "Apache-2.0",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "brace-expansion",
+      "version": "1.1.21",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "brace-expansion",
+      "version": "5.0.12",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "braces",
+      "version": "3.0.3",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "browserslist",
+      "version": "4.29.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "call-bind-apply-helpers",
+      "version": "1.0.2",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "call-bind",
+      "version": "1.0.9",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "call-bound",
+      "version": "1.0.4",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "callsites",
+      "version": "3.1.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "caniuse-lite",
+      "version": "1.0.30001810",
+      "declaredLicense": "CC-BY-4.0",
+      "concludedLicense": "NOASSERTION",
+      "status": "review",
+      "reason": "outside_adr_015_preferred_list_or_composite_expression"
+    },
+    {
+      "name": "chai",
+      "version": "6.2.2",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "chalk",
+      "version": "4.1.2",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "client-only",
+      "version": "0.0.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "color-convert",
+      "version": "2.0.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "color-name",
+      "version": "1.1.4",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "combined-stream",
+      "version": "1.0.8",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "concat-map",
+      "version": "0.0.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "convert-source-map",
+      "version": "2.0.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "cookie",
+      "version": "1.1.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "cross-spawn",
+      "version": "7.0.6",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "cssstyle",
+      "version": "4.6.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "csstype",
+      "version": "3.2.3",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "damerau-levenshtein",
+      "version": "1.0.8",
+      "declaredLicense": "BSD-2-Clause",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "data-urls",
+      "version": "5.0.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "data-view-buffer",
+      "version": "1.0.2",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "data-view-byte-length",
+      "version": "1.0.2",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "data-view-byte-offset",
+      "version": "1.0.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "debug",
+      "version": "3.2.7",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "debug",
+      "version": "4.4.3",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "decimal.js",
+      "version": "10.6.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "deep-is",
+      "version": "0.1.4",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "define-data-property",
+      "version": "1.1.4",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "define-properties",
+      "version": "1.2.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "delayed-stream",
+      "version": "1.0.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "dequal",
+      "version": "2.0.3",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "detect-libc",
+      "version": "2.1.2",
+      "declaredLicense": "Apache-2.0",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "doctrine",
+      "version": "2.1.0",
+      "declaredLicense": "Apache-2.0",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "dom-accessibility-api",
+      "version": "0.5.16",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "dunder-proto",
+      "version": "1.0.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "electron-to-chromium",
+      "version": "1.5.433",
+      "declaredLicense": "ISC",
+      "concludedLicense": "NOASSERTION",
+      "status": "review",
+      "reason": "outside_adr_015_preferred_list_or_composite_expression"
+    },
+    {
+      "name": "emoji-regex",
+      "version": "9.2.2",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "enhanced-resolve",
+      "version": "5.25.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "entities",
+      "version": "6.0.1",
+      "declaredLicense": "BSD-2-Clause",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "es-abstract-get",
+      "version": "1.0.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "es-abstract",
+      "version": "1.24.2",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "es-define-property",
+      "version": "1.0.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "es-errors",
+      "version": "1.3.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "es-iterator-helpers",
+      "version": "1.4.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "es-module-lexer",
+      "version": "2.3.2",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "es-object-atoms",
+      "version": "1.1.2",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "es-set-tostringtag",
+      "version": "2.1.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "es-shim-unscopables",
+      "version": "1.1.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "es-to-primitive",
+      "version": "1.3.4",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "escalade",
+      "version": "3.2.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "escape-string-regexp",
+      "version": "4.0.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "eslint-config-next",
+      "version": "16.3.3",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "eslint-import-resolver-node",
+      "version": "0.3.10",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "eslint-import-resolver-typescript",
+      "version": "3.10.1",
+      "declaredLicense": "ISC",
+      "concludedLicense": "NOASSERTION",
+      "status": "review",
+      "reason": "outside_adr_015_preferred_list_or_composite_expression"
+    },
+    {
+      "name": "eslint-module-utils",
+      "version": "2.14.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "eslint-plugin-import",
+      "version": "2.32.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "eslint-plugin-jsx-a11y",
+      "version": "6.10.2",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "eslint-plugin-react-hooks",
+      "version": "7.1.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "eslint-plugin-react",
+      "version": "7.37.5",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "eslint-scope",
+      "version": "8.4.0",
+      "declaredLicense": "BSD-2-Clause",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "eslint-visitor-keys",
+      "version": "3.4.3",
+      "declaredLicense": "Apache-2.0",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "eslint-visitor-keys",
+      "version": "4.2.1",
+      "declaredLicense": "Apache-2.0",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "eslint-visitor-keys",
+      "version": "5.0.1",
+      "declaredLicense": "Apache-2.0",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "eslint",
+      "version": "9.21.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "espree",
+      "version": "10.4.0",
+      "declaredLicense": "BSD-2-Clause",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "esquery",
+      "version": "1.7.0",
+      "declaredLicense": "BSD-3-Clause",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "esrecurse",
+      "version": "4.3.0",
+      "declaredLicense": "BSD-2-Clause",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "estraverse",
+      "version": "5.3.0",
+      "declaredLicense": "BSD-2-Clause",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "estree-walker",
+      "version": "3.0.3",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "esutils",
+      "version": "2.0.3",
+      "declaredLicense": "BSD-2-Clause",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "expect-type",
+      "version": "1.4.0",
+      "declaredLicense": "Apache-2.0",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "fast-deep-equal",
+      "version": "3.1.3",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "fast-glob",
+      "version": "3.3.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "fast-json-stable-stringify",
+      "version": "2.1.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "fast-levenshtein",
+      "version": "2.0.6",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "fastq",
+      "version": "1.20.3",
+      "declaredLicense": "ISC",
+      "concludedLicense": "NOASSERTION",
+      "status": "review",
+      "reason": "outside_adr_015_preferred_list_or_composite_expression"
+    },
+    {
+      "name": "fdir",
+      "version": "6.5.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "file-entry-cache",
+      "version": "8.0.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "fill-range",
+      "version": "7.1.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "find-up",
+      "version": "5.0.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "flat-cache",
+      "version": "4.0.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "flatted",
+      "version": "3.4.4",
+      "declaredLicense": "ISC",
+      "concludedLicense": "NOASSERTION",
+      "status": "review",
+      "reason": "outside_adr_015_preferred_list_or_composite_expression"
+    },
+    {
+      "name": "for-each",
+      "version": "0.3.5",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "form-data",
+      "version": "4.0.6",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "function-bind",
+      "version": "1.1.2",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "function.prototype.name",
+      "version": "1.2.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "functions-have-names",
+      "version": "1.2.3",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "generator-function",
+      "version": "2.0.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "gensync",
+      "version": "1.0.0-beta.2",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "get-intrinsic",
+      "version": "1.3.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "get-proto",
+      "version": "1.0.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "get-symbol-description",
+      "version": "1.1.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "get-tsconfig",
+      "version": "4.14.3",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "glob-parent",
+      "version": "5.1.2",
+      "declaredLicense": "ISC",
+      "concludedLicense": "NOASSERTION",
+      "status": "review",
+      "reason": "outside_adr_015_preferred_list_or_composite_expression"
+    },
+    {
+      "name": "glob-parent",
+      "version": "6.0.2",
+      "declaredLicense": "ISC",
+      "concludedLicense": "NOASSERTION",
+      "status": "review",
+      "reason": "outside_adr_015_preferred_list_or_composite_expression"
+    },
+    {
+      "name": "globals",
+      "version": "14.0.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "globals",
+      "version": "16.4.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "globalthis",
+      "version": "1.0.4",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "gopd",
+      "version": "1.2.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "graceful-fs",
+      "version": "4.2.11",
+      "declaredLicense": "ISC",
+      "concludedLicense": "NOASSERTION",
+      "status": "review",
+      "reason": "outside_adr_015_preferred_list_or_composite_expression"
+    },
+    {
+      "name": "has-bigints",
+      "version": "1.1.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "has-flag",
+      "version": "4.0.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "has-property-descriptors",
+      "version": "1.0.2",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "has-proto",
+      "version": "1.2.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "has-symbols",
+      "version": "1.1.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "has-tostringtag",
+      "version": "1.0.2",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "hasown",
+      "version": "2.0.4",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "hermes-estree",
+      "version": "0.25.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "hermes-parser",
+      "version": "0.25.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "html-encoding-sniffer",
+      "version": "4.0.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "http-proxy-agent",
+      "version": "7.0.2",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "https-proxy-agent",
+      "version": "7.0.6",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "iceberg-js",
+      "version": "0.8.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "iconv-lite",
+      "version": "0.6.3",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "ignore",
+      "version": "5.3.2",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "ignore",
+      "version": "7.0.9",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "import-fresh",
+      "version": "3.3.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "imurmurhash",
+      "version": "0.1.4",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "internal-slot",
+      "version": "1.1.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "is-array-buffer",
+      "version": "3.0.5",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "is-async-function",
+      "version": "2.1.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "is-bigint",
+      "version": "1.1.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "is-boolean-object",
+      "version": "1.2.2",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "is-bun-module",
+      "version": "2.0.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "is-callable",
+      "version": "1.2.7",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "is-core-module",
+      "version": "2.17.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "is-data-view",
+      "version": "1.0.2",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "is-date-object",
+      "version": "1.1.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "is-document.all",
+      "version": "1.0.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "is-extglob",
+      "version": "2.1.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "is-finalizationregistry",
+      "version": "1.1.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "is-generator-function",
+      "version": "1.1.2",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "is-glob",
+      "version": "4.0.3",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "is-map",
+      "version": "2.0.3",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "is-negative-zero",
+      "version": "2.0.3",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "is-number-object",
+      "version": "1.1.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "is-number",
+      "version": "7.0.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "is-potential-custom-element-name",
+      "version": "1.0.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "is-regex",
+      "version": "1.2.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "is-set",
+      "version": "2.0.3",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "is-shared-array-buffer",
+      "version": "1.0.4",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "is-string",
+      "version": "1.1.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "is-symbol",
+      "version": "1.1.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "is-typed-array",
+      "version": "1.1.15",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "is-weakmap",
+      "version": "2.0.2",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "is-weakref",
+      "version": "1.1.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "is-weakset",
+      "version": "2.0.4",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "isarray",
+      "version": "2.0.5",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "isexe",
+      "version": "2.0.0",
+      "declaredLicense": "ISC",
+      "concludedLicense": "NOASSERTION",
+      "status": "review",
+      "reason": "outside_adr_015_preferred_list_or_composite_expression"
+    },
+    {
+      "name": "iterator.prototype",
+      "version": "1.1.5",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "jiti",
+      "version": "2.7.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "js-tokens",
+      "version": "4.0.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "js-yaml",
+      "version": "4.3.2",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "jsdom",
+      "version": "24.1.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "jsesc",
+      "version": "3.1.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "json-buffer",
+      "version": "3.0.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "json-schema-traverse",
+      "version": "0.4.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "json-stable-stringify-without-jsonify",
+      "version": "1.0.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "json5",
+      "version": "1.0.2",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "json5",
+      "version": "2.2.3",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "jsx-ast-utils",
+      "version": "3.3.5",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "keyv",
+      "version": "4.5.4",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "language-subtag-registry",
+      "version": "0.3.23",
+      "declaredLicense": "CC0-1.0",
+      "concludedLicense": "NOASSERTION",
+      "status": "review",
+      "reason": "outside_adr_015_preferred_list_or_composite_expression"
+    },
+    {
+      "name": "language-tags",
+      "version": "1.0.9",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "levn",
+      "version": "0.4.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "lightningcss-linux-x64-gnu",
+      "version": "1.32.0",
+      "declaredLicense": "MPL-2.0",
+      "concludedLicense": "NOASSERTION",
+      "status": "review",
+      "reason": "file_level_copyleft_requires_review"
+    },
+    {
+      "name": "lightningcss-linux-x64-gnu",
+      "version": "1.33.0",
+      "declaredLicense": "MPL-2.0",
+      "concludedLicense": "NOASSERTION",
+      "status": "review",
+      "reason": "file_level_copyleft_requires_review"
+    },
+    {
+      "name": "lightningcss",
+      "version": "1.32.0",
+      "declaredLicense": "MPL-2.0",
+      "concludedLicense": "NOASSERTION",
+      "status": "review",
+      "reason": "file_level_copyleft_requires_review"
+    },
+    {
+      "name": "lightningcss",
+      "version": "1.33.0",
+      "declaredLicense": "MPL-2.0",
+      "concludedLicense": "NOASSERTION",
+      "status": "review",
+      "reason": "file_level_copyleft_requires_review"
+    },
+    {
+      "name": "locate-path",
+      "version": "6.0.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "lodash.merge",
+      "version": "4.6.2",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "loose-envify",
+      "version": "1.4.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "lru-cache",
+      "version": "10.4.3",
+      "declaredLicense": "ISC",
+      "concludedLicense": "NOASSERTION",
+      "status": "review",
+      "reason": "outside_adr_015_preferred_list_or_composite_expression"
+    },
+    {
+      "name": "lru-cache",
+      "version": "5.1.1",
+      "declaredLicense": "ISC",
+      "concludedLicense": "NOASSERTION",
+      "status": "review",
+      "reason": "outside_adr_015_preferred_list_or_composite_expression"
+    },
+    {
+      "name": "lz-string",
+      "version": "1.5.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "magic-string",
+      "version": "0.30.21",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "math-intrinsics",
+      "version": "1.1.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "merge2",
+      "version": "1.4.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "micromatch",
+      "version": "4.0.8",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "mime-db",
+      "version": "1.52.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "mime-types",
+      "version": "2.1.35",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "minimatch",
+      "version": "10.2.6",
+      "declaredLicense": "BlueOak-1.0.0",
+      "concludedLicense": "NOASSERTION",
+      "status": "review",
+      "reason": "outside_adr_015_preferred_list_or_composite_expression"
+    },
+    {
+      "name": "minimatch",
+      "version": "3.1.5",
+      "declaredLicense": "ISC",
+      "concludedLicense": "NOASSERTION",
+      "status": "review",
+      "reason": "outside_adr_015_preferred_list_or_composite_expression"
+    },
+    {
+      "name": "minimist",
+      "version": "1.2.8",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "ms",
+      "version": "2.1.3",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "nanoid",
+      "version": "3.3.19",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "napi-postinstall",
+      "version": "0.3.4",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "natural-compare",
+      "version": "1.4.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "next",
+      "version": "16.3.3",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "node-exports-info",
+      "version": "1.6.2",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "node-releases",
+      "version": "2.0.56",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "nwsapi",
+      "version": "2.2.28",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "object-assign",
+      "version": "4.1.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "object-inspect",
+      "version": "1.13.4",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "object-keys",
+      "version": "1.1.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "object.assign",
+      "version": "4.1.7",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "object.entries",
+      "version": "1.1.9",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "object.fromentries",
+      "version": "2.0.8",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "object.groupby",
+      "version": "1.0.3",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "object.values",
+      "version": "1.2.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "obug",
+      "version": "2.2.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "optionator",
+      "version": "0.9.4",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "own-keys",
+      "version": "1.0.2",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "p-limit",
+      "version": "3.1.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "p-locate",
+      "version": "5.0.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "parent-module",
+      "version": "1.0.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "parse5",
+      "version": "7.3.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "path-exists",
+      "version": "4.0.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "path-key",
+      "version": "3.1.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "path-parse",
+      "version": "1.0.7",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "pathe",
+      "version": "2.0.3",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "picocolors",
+      "version": "1.1.1",
+      "declaredLicense": "ISC",
+      "concludedLicense": "NOASSERTION",
+      "status": "review",
+      "reason": "outside_adr_015_preferred_list_or_composite_expression"
+    },
+    {
+      "name": "picomatch",
+      "version": "2.3.2",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "picomatch",
+      "version": "4.0.7",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "playwright-core",
+      "version": "1.63.0",
+      "declaredLicense": "Apache-2.0",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "possible-typed-array-names",
+      "version": "1.1.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "postcss",
+      "version": "8.5.23",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "prelude-ls",
+      "version": "1.2.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "pretty-format",
+      "version": "27.5.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "prop-types",
+      "version": "15.8.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "psl",
+      "version": "1.15.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "punycode",
+      "version": "2.3.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "querystringify",
+      "version": "2.2.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "queue-microtask",
+      "version": "1.2.3",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "react-dom",
+      "version": "19.2.8",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "react-is",
+      "version": "16.13.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "react-is",
+      "version": "17.0.2",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "react",
+      "version": "19.2.8",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "reflect.getprototypeof",
+      "version": "1.0.10",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "regexp.prototype.flags",
+      "version": "1.5.4",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "requires-port",
+      "version": "1.0.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "resolve-from",
+      "version": "4.0.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "resolve-pkg-maps",
+      "version": "1.0.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "resolve",
+      "version": "2.0.0-next.7",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "reusify",
+      "version": "1.1.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "rolldown",
+      "version": "1.2.9",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "rrweb-cssom",
+      "version": "0.7.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "rrweb-cssom",
+      "version": "0.8.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "run-parallel",
+      "version": "1.2.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "safe-array-concat",
+      "version": "1.1.4",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "safe-push-apply",
+      "version": "1.0.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "safe-regex-test",
+      "version": "1.1.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "safer-buffer",
+      "version": "2.1.2",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "saxes",
+      "version": "6.0.0",
+      "declaredLicense": "ISC",
+      "concludedLicense": "NOASSERTION",
+      "status": "review",
+      "reason": "outside_adr_015_preferred_list_or_composite_expression"
+    },
+    {
+      "name": "scheduler",
+      "version": "0.27.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "semver",
+      "version": "6.3.1",
+      "declaredLicense": "ISC",
+      "concludedLicense": "NOASSERTION",
+      "status": "review",
+      "reason": "outside_adr_015_preferred_list_or_composite_expression"
+    },
+    {
+      "name": "semver",
+      "version": "7.8.5",
+      "declaredLicense": "ISC",
+      "concludedLicense": "NOASSERTION",
+      "status": "review",
+      "reason": "outside_adr_015_preferred_list_or_composite_expression"
+    },
+    {
+      "name": "set-function-length",
+      "version": "1.2.2",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "set-function-name",
+      "version": "2.0.2",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "set-proto",
+      "version": "1.0.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "sharp",
+      "version": "0.35.4",
+      "declaredLicense": "Apache-2.0",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "shebang-command",
+      "version": "2.0.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "shebang-regex",
+      "version": "3.0.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "side-channel-list",
+      "version": "1.0.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "side-channel-map",
+      "version": "1.0.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "side-channel-weakmap",
+      "version": "1.0.2",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "side-channel",
+      "version": "1.1.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "siginfo",
+      "version": "2.0.0",
+      "declaredLicense": "ISC",
+      "concludedLicense": "NOASSERTION",
+      "status": "review",
+      "reason": "outside_adr_015_preferred_list_or_composite_expression"
+    },
+    {
+      "name": "source-map-js",
+      "version": "1.2.1",
+      "declaredLicense": "BSD-3-Clause",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "stable-hash",
+      "version": "0.0.5",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "stackback",
+      "version": "0.0.2",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "std-env",
+      "version": "4.2.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "stop-iteration-iterator",
+      "version": "1.1.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "string.prototype.includes",
+      "version": "2.0.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "string.prototype.matchall",
+      "version": "4.1.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "string.prototype.repeat",
+      "version": "1.0.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "string.prototype.trim",
+      "version": "1.2.11",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "string.prototype.trimend",
+      "version": "1.0.10",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "string.prototype.trimstart",
+      "version": "1.0.8",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "strip-bom",
+      "version": "3.0.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "strip-json-comments",
+      "version": "3.1.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "styled-jsx",
+      "version": "5.1.6",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "supports-color",
+      "version": "7.2.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "supports-preserve-symlinks-flag",
+      "version": "1.0.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "symbol-tree",
+      "version": "3.2.4",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "tailwindcss",
+      "version": "4.3.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "tapable",
+      "version": "2.3.3",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "tinybench",
+      "version": "2.9.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "tinyexec",
+      "version": "1.3.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "tinyglobby",
+      "version": "0.2.17",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "tinyrainbow",
+      "version": "3.1.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "to-regex-range",
+      "version": "5.0.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "tough-cookie",
+      "version": "4.1.4",
+      "declaredLicense": "BSD-3-Clause",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "tr46",
+      "version": "5.1.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "ts-api-utils",
+      "version": "2.5.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "tsconfig-paths",
+      "version": "3.15.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "tslib",
+      "version": "2.8.1",
+      "declaredLicense": "0BSD",
+      "concludedLicense": "NOASSERTION",
+      "status": "review",
+      "reason": "outside_adr_015_preferred_list_or_composite_expression"
+    },
+    {
+      "name": "type-check",
+      "version": "0.4.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "typed-array-buffer",
+      "version": "1.0.3",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "typed-array-byte-length",
+      "version": "1.0.3",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "typed-array-byte-offset",
+      "version": "1.0.5",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "typed-array-length",
+      "version": "1.0.8",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "typescript-eslint",
+      "version": "8.70.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "typescript",
+      "version": "6.0.3",
+      "declaredLicense": "Apache-2.0",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "unbox-primitive",
+      "version": "1.1.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "undici-types",
+      "version": "7.18.2",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "universalify",
+      "version": "0.2.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "unrs-resolver",
+      "version": "1.12.2",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "update-browserslist-db",
+      "version": "1.3.3",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "uri-js",
+      "version": "4.4.1",
+      "declaredLicense": "BSD-2-Clause",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "url-parse",
+      "version": "1.5.10",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "vite",
+      "version": "8.3.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "vitest",
+      "version": "4.1.11",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "w3c-xmlserializer",
+      "version": "5.0.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "webidl-conversions",
+      "version": "7.0.0",
+      "declaredLicense": "BSD-2-Clause",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "whatwg-encoding",
+      "version": "3.1.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "whatwg-mimetype",
+      "version": "4.0.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "whatwg-url",
+      "version": "14.2.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "which-boxed-primitive",
+      "version": "1.1.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "which-builtin-type",
+      "version": "1.2.1",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "which-collection",
+      "version": "1.0.2",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "which-typed-array",
+      "version": "1.1.24",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "which",
+      "version": "2.0.2",
+      "declaredLicense": "ISC",
+      "concludedLicense": "NOASSERTION",
+      "status": "review",
+      "reason": "outside_adr_015_preferred_list_or_composite_expression"
+    },
+    {
+      "name": "why-is-node-running",
+      "version": "2.3.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "word-wrap",
+      "version": "1.2.5",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "ws",
+      "version": "8.21.3",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "xml-name-validator",
+      "version": "5.0.0",
+      "declaredLicense": "Apache-2.0",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "xmlchars",
+      "version": "2.2.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "yallist",
+      "version": "3.1.1",
+      "declaredLicense": "ISC",
+      "concludedLicense": "NOASSERTION",
+      "status": "review",
+      "reason": "outside_adr_015_preferred_list_or_composite_expression"
+    },
+    {
+      "name": "yocto-queue",
+      "version": "0.1.0",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "zod-validation-error",
+      "version": "4.0.2",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    },
+    {
+      "name": "zod",
+      "version": "4.4.3",
+      "declaredLicense": "MIT",
+      "concludedLicense": "NOASSERTION",
+      "status": "preferred",
+      "reason": "adr_015_preferred_declaration"
+    }
+  ]
+}
