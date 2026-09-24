@@ -57,6 +57,18 @@
       "reason": "2026-09-23: fail-closed company, evidence, invitation or read-boundary correction"
     },
     {
+      "path": "app/api/ops/home-timing/route.test.ts",
+      "beforeSha256": null,
+        "afterSha256": "33d5b1ee1be7c92885b63d5112c8ff0c5e0808baa9c7b425d408eafa965ad9e8",
+      "reason": "HSP-4: numeric-only, fail-closed Home timing endpoint regression"
+    },
+    {
+      "path": "app/api/ops/home-timing/route.ts",
+      "beforeSha256": null,
+        "afterSha256": "d96118de123442d162e221e693832fc4a8a15be27d51e3cb91390462bf5add99",
+        "reason": "HSP-4: opt-in authenticated Home read timing in numeric JSON and Server-Timing"
+    },
+    {
       "path": "app/api/pains/[id]/gds/route.ts",
       "beforeSha256": "6f8e839c6bcd4f5a9ba59d065a76f4f824048e624c02d3555debad434d9487e6",
       "afterSha256": "eed029694c7b1729d451a4eddbb92587a751b181ae762a6f0374c782f983817d",
@@ -261,6 +273,12 @@
       "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects"
     },
     {
+      "path": "docs/API/openapi.yaml",
+      "beforeSha256": "f6f1a8b043218c2b32bebaaf29d748745a608a3cd869ab4fa7298de4bee0cc6c",
+        "afterSha256": "2e136f4012594ccb002ad810b0e7a69d7f76c6e9e9a700749ed0689aa3001863",
+      "reason": "HSP-4: document the opt-in numeric Home timing endpoint and its limits"
+    },
+    {
       "path": "docs/canonical/v1/delivery/DEMO_READINESS_WAVE_2026-09-21.md",
       "beforeSha256": "3080a009c6dcf3eab55cb6aa9f7f43404b569e4692959d550d790a1587e345d7",
       "afterSha256": "162764960b30eb3651e99822dae73ee7c9b31c726f82376bb3c5826c2b0196c3",
@@ -443,8 +461,8 @@
     {
       "path": "scripts/check-production-scale-baseline.mjs",
       "beforeSha256": "d3757a69ffbe4e2b1506b1b1c52d00887978eff2bc1d3cd447862df347277107",
-      "afterSha256": "dc17c664d9e846948a82d6c9957df1a19c4689b93247fd47da9789c308a77fc4",
-      "reason": "HSP-4: check limited hosted evidence status without requiring an overstated unqualified PASS"
+      "afterSha256": "7c3974ce0a96b9af1d1c203dd16765f7c84474769ab600a2fc4a5fe9b87487e8",
+      "reason": "HSP-4: require the reviewed authenticated Home timing route while preserving strict API count and limited hosted evidence status"
     },
     {
       "path": "scripts/demo-answer.mjs",
