@@ -13,7 +13,7 @@ const eslintConfig = [
     rules: { "@typescript-eslint/no-require-imports": "off" }
   },
   {
-    ignores: [".audit-work/**", ".next/**", "coverage/**", "dist/**", "docs/history/**"]
+    ignores: [".audit-work/**", ".next/**", "coverage/**", "dist/**", "docs/history/**", "tmp/**"]
   }
 ];
 

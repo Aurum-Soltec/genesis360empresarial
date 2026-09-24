@@ -16,6 +16,7 @@ tsconfig.tsbuildinfo
 supabase/.temp
 playwright-report
 test-results
+/tmp/
 
 # Never stage original project dossiers, archives, credentials or generated outputs.
 .env.*

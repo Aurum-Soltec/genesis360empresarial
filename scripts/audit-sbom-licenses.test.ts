@@ -1,5 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { auditSpdxDocument, classifyDeclaredLicense } from "./audit-sbom-licenses.mjs";
+import crypto from "node:crypto";
+import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
+import { auditSpdxDocument, classifyDeclaredLicense, runCli } from "./audit-sbom-licenses.mjs";
 
 const document = (license: string) => ({
   spdxVersion: "SPDX-2.3",
@@ -37,5 +41,21 @@ describe("ADR-015 license declaration precheck", () => {
   it("requires manual review of composite expressions and rejects an invalid SBOM", () => {
     expect(classifyDeclaredLicense("MIT OR Apache-2.0").status).toBe("review");
     expect(() => auditSpdxDocument({ packages: [] }, "example")).toThrow("SPDX-2.3");
+  });
+
+  it("writes review evidence but fails the enforce step until an exception is approved", () => {
+    const directory = fs.mkdtempSync(path.join(os.tmpdir(), "genesis-license-test-"));
+    try {
+      const input = path.join(directory, "sbom.json");
+      const output = path.join(directory, "report.json");
+      const source = JSON.stringify(document("LGPL-3.0-or-later"));
+      fs.writeFileSync(input, source);
+      expect(runCli([input, output, "--enforce"])).toBe(1);
+      const report = JSON.parse(fs.readFileSync(output, "utf8"));
+      expect(report.gate).toBe("BLOCKED");
+      expect(report.sourceSha256).toBe(crypto.createHash("sha256").update(source).digest("hex"));
+    } finally {
+      fs.rmSync(directory, { recursive: true, force: true });
+    }
   });
 });

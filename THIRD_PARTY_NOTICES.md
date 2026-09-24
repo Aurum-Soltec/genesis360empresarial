@@ -11,6 +11,15 @@ Linux/x64 SPDX inventory and a machine-readable ADR-015 declaration precheck
 using `scripts/generate-sbom.mjs` and `scripts/audit-sbom-licenses.mjs`. The
 inventory includes packages installed for building and testing. It cannot by
 itself establish which files are present in the deployed web and worker images.
+The HSP-4 license-gate candidate configures CI to archive `hsp4-license-files.json`
+with per-package file digests for declarations outside the ADR-015 preferred
+list, plus copies of the installed LICENSE/NOTICE files in
+`hsp4-license-texts/`. It separates production dependency reachability from
+packages installed for development/build. This makes the review reproducible
+for the CI install;
+it is not a complete distribution notice or proof that the same bytes were
+deployed. CI reports the HSP-4 license gate as **BLOCKED**, even if its
+declaration precheck completes; its remote execution has not yet been credited.
 
 The Linux/x64 inventory includes `sharp@0.35.4` and
 `@img/sharp-libvips-linux-x64@1.3.3`. The latter declares
@@ -29,6 +38,14 @@ component, preserve sources at immutable versions where required, and record
 the owner/legal decision for licenses outside ADR-015's preferred list. The
 declaration precheck intentionally reports these packages as requiring review;
 it does not mark HSP-4's license gate as passed.
+
+The current reviewed baseline has 30 outside-preference declarations, including
+`@img/sharp-libvips-linux-x64@1.3.3` (LGPL-3.0-or-later), five MPL-2.0
+declarations, and 18 ISC declarations. Nine are reachable from the local
+production dependency tree; this is not proof of deployment or legal
+admissibility. Exact names, versions, file hashes and
+the declarations for the other six appear in the CI artifacts and the
+[HSP-4 engineering candidate record](docs/audit-2026-09-24/HSP4_LICENSE_ENGINEERING_CANDIDATE.md).
 
 ## Selective OSS research used in Wave 5
 No source code from the repositories below is vendored into the Genesis production runtime in this Wave.

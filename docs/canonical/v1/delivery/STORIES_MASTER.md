@@ -1374,7 +1374,9 @@ Estados `implemented*` indicam implementação existente; não significam prova 
 
 ## EPIC-17 Production Readiness & Repository
 
-**Rechecagem HSP-4 em 2026-09-24 UTC:** os estados completed abaixo que
+**Revisão corretiva HSP-4 em 2026-09-24 UTC: NO-GO.** O novo login da conta convidada passou com Tenant A exclusivo e `last_sign_in_at` posterior. Backup v2 privado capturou 129 entradas ACL e restaurou logicamente 102 tenants/16 Auth/24 migrations em 77,450 s, mas não recuperou serviço ou comprovou RPO/RTO, schedule, retenção e chave independente. A carga de 100 empresas/60 min continua FAIL em p95 ≤750 ms; scanner local de licenças separou 9/30 itens na árvore de produção, ainda sem contêiner Railway/decisão LGPL e CC-BY. `V1-ST-110`, `V1-ST-111` e `V1-ST-122` permanecem abertas; `V1-ST-123` não iniciou. Evidência: `docs/audit-2026-09-24/HSP4_CORRECTIVE_GO_NO_GO_2026-09-24.md`.
+
+**Registro anterior HSP-4 em 2026-09-24 UTC (histórico):** os estados completed abaixo que
 descrevem a revisão de 20/09 são históricos. O artefato funcional
 bb290bc7bc35f77b4ca01aecdbf19b748c386270 passou CI e web/worker no
 staging. O convite passou e-mail, callback, sessão e vínculo member apenas no
@@ -1385,7 +1387,7 @@ repetido no mesmo SHA, com zero documentos vinculados/verificados. A issue
 #27 passou falha sintética, aviso por e-mail, ACK e recuperação. Backup privado
 run 35945384891 criou release cifrada imutável e restore lógico isolado de
 102 tenants/16 Auth/24 migrations em 37,476 s de drill local, **não** RTO de
-serviço. O export/restore omite owners/ACLs; faltam equivalência de permissões,
+serviço. O export v1 omitiu ACL por `--no-privileges`, e o restore v1 pulou owners/ACLs; `pg_dump --no-owner` não remove owner do arquivo customizado. Faltam equivalência de permissões,
 agendamento, retenção, RPO/RTO de serviço, custódia independente e aceite do
 controle autogerido. Scanner de licença CI no candidato posterior 0c6dc1a,
 não no runtime bb290bc, deixou 30 itens para revisão, incluindo LGPL. O
@@ -1495,8 +1497,9 @@ sem parcela de latência isolada. HSP-4 permanece **NO-GO**; PILOT-1 não começ
 - **Rollback:** obrigatório quando houver migration, configuração, segurança ou mudança de fluxo crítico.
 
 ### V1-ST-110 — Backup/restore/rollback drill
-- **Status:** `partial-hosted-logical-pass-managed-backup-rpo-pending`
-- **Rechecagem:** o restore lógico histórico de dataset pequeno foi superado
+- **Status:** `partial-private-v2-manual-logical-pass-service-rpo-rto-pending`
+- **Revisão corretiva:** run privado v2 `36002104320` com release cifrada imutável e 129 entradas ACL no TOC; restore lógico isolado 102 tenants, 16 Auth, zero Storage, 24 migrations em 77,450 s após download. Aplicação/equivalência de owners/ACL, serviço HTTP/Auth/Storage/worker, schedule, 30 dias, RPO/RTO e custódia independente ainda BLOCKED. GitHub Actions US$0/Stop usage foi confirmado, mas a cota compartilhada pode impedir backup futuro.
+- **Rechecagem anterior (histórica):** o restore lógico histórico de dataset pequeno foi superado
   por uma subprova manual real: workflow privado `7e6a54e`, run `35945384891`
   PASS, release cifrada imutável e restore isolado de 102 tenants, 16 Auth,
   zero objetos Storage e 24 migrations. Banco e verificações levaram 32,241 s;
@@ -1517,7 +1520,8 @@ sem parcela de latência isolada. HSP-4 permanece **NO-GO**; PILOT-1 não começ
 
 ### V1-ST-111 — SBOM + license + dependency + secret/security scans
 - **Status:** `partial-ci-sbom-pass-lgpl-disposition-blocked`
-- **Rechecagem:** o SBOM Linux do CI anterior lista 455 entradas, incluindo
+- **Revisão corretiva:** candidato local classifica 9/30 declarações fora da preferência ADR-015 na árvore `pnpm --prod` e 21 fora dela; CI candidato arquiva hashes e LICENSE/NOTICE. Ainda não executado no CI remoto nem comparado ao contêiner Railway; decisão LGPL/CC-BY pendente. Gate BLOCKED.
+- **Rechecagem anterior (histórica):** o SBOM Linux do CI anterior lista 455 entradas, incluindo
   `@img/sharp-libvips-linux-x64` sob `LGPL-3.0-or-later`. O scanner de licenças
   passou no candidato `0c6dc1a`, mas gerou 30 itens para revisão. Inventário
   e scanner não são aceite jurídico, NOTICE completo ou inspeção byte a byte
@@ -1687,8 +1691,7 @@ sem parcela de latência isolada. HSP-4 permanece **NO-GO**; PILOT-1 não começ
 
 ### V1-ST-122 — Production Readiness Review e release candidate
 - **Status:** `hsp4-prr-closed-no-go-objective-fixes`
-- **Histórico:** a revisão de 20/09 concluiu NO-GO. A revisão nova ainda
-  aguarda os gates operacionais e relatório A–T; não há GO para piloto.
+- **Revisão corretiva:** relatório A–T de 24/09 emitido com NO-GO. Novo login convidado passou; p95 segue FAIL e backup/restore de serviço/licença BLOCKED. Não há GO para piloto ou produção aberta. A revisão de 20/09 é histórica.
 - **Prioridade:** `P0`
 - **Source:** `docs/canonical/v1/delivery/STORIES_MASTER.md`
 - **Critérios de aceite:**

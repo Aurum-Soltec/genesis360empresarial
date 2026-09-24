@@ -69,15 +69,16 @@ export default function SignInPage() {
     const form = new FormData(event.currentTarget);
     const email = String(form.get("email") ?? "").trim();
     const password = String(form.get("password") ?? "");
-    const { error: signInError } = await createClient().auth.signInWithPassword({ email, password });
-    if (signInError) {
+    try {
+      const { error: signInError } = await createClient().auth.signInWithPassword({ email, password });
+      if (signInError) throw signInError;
+      const next = safeInternalPath(new URLSearchParams(window.location.search).get("next"));
+      router.push(next);
+      router.refresh();
+    } catch {
       setError("Não foi possível entrar. Confira seus dados ou recupere o acesso.");
       setBusy(false);
-      return;
     }
-    const next = safeInternalPath(new URLSearchParams(window.location.search).get("next"));
-    router.push(next);
-    router.refresh();
   }
 
   return (
@@ -90,6 +91,7 @@ export default function SignInPage() {
         <h1>Entrar no Genesis 360</h1>
         <form method="post" onSubmit={submit} className="stack">
           <label>E-mail<input name="email" type="email" autoComplete="email" required /></label>
+          <p className="muted">Se recebeu um convite, use o endereço completo do destinatário, inclusive o sufixo + se houver.</p>
           <label>Senha<input name="password" type="password" autoComplete="current-password" required /></label>
           {error ? <p role="alert">{error}</p> : null}
           <button className="button button-primary" disabled={!hydrated || busy}>{busy ? "Entrando…" : "Entrar"}</button>

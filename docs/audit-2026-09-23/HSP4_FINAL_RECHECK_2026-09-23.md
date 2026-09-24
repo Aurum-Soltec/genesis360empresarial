@@ -1,5 +1,7 @@
 # Revisão final HSP-4 — relatório A–T e decisão NO-GO
 
+> **Registro histórico, substituído pela [revisão corretiva de 24/09](../audit-2026-09-24/HSP4_CORRECTIVE_GO_NO_GO_2026-09-24.md).** O novo login convidado passou após usar o alias exato; backup v2 capturou ACL no arquivo mas ainda não provou restauração de serviço; p95/licença permanecem abertos. Errata técnica: em arquivo customizado, `pg_dump --no-owner` não remove o owner do arquivo; `--no-privileges` do export v1 suprimia ACL, e `pg_restore --no-owner --no-privileges` não a reaplicava. As afirmações abaixo refletem o estado anterior a essas provas.
+
 **Data:** 2026-09-24 UTC. **Decisão HSP-4: NO-GO COM CORREÇÕES OBJETIVAS.** A carga fim a fim de 100 empresas por 60 minutos completou duração, isolamento sintético e outbox, mas falhou no SLO p95 ≤750 ms. Backup automático/retido com recuperação de serviço, licença e novo login do convidado continuam abertos. Nenhuma Wave após HSP-4 foi iniciada. Somente execução no artefato identificado recebe crédito de runtime; a revisão de 20/09 permanece histórica.
 
 ## A. Executive Summary

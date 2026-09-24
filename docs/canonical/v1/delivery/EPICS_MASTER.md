@@ -199,7 +199,9 @@
 **Objetivo:** Transformar a fundação implementada por contrato em release candidate comprovada.
 **Exit gate:** Repo bootstrap, runtime gates, restore, security, E2E e PRR aprovados.
 **Stories:** 12
-**Estado da rechecagem HSP-4 (2026-09-24 UTC): NO-GO.** O SHA funcional
+**Revisão corretiva HSP-4 (2026-09-24 UTC): NO-GO.** O novo login por senha da conta convidada passou, corroborado por `last_sign_in_at` posterior e acesso somente a Tenant A. Backup v2 manual privado passou com 129 entradas ACL no arquivo e restore lógico de 102 tenants/16 Auth/24 migrations em 77,450 s, mas sem equivalência de permissões aplicada, serviço, RPO/RTO, schedule e retenção. O orçamento GitHub Actions está em US$0 com Stop usage ativo. A carga de 100 empresas/60 min continua acima de p95 750 ms; a investigação curta localizou streaming SSR lento e picos Auth, sem correção segura demonstrada. O inventário local separou 9/30 licenças na árvore de produção; contêiner Railway e disposição LGPL/CC-BY pendentes. `V1-ST-110`, `V1-ST-111` e `V1-ST-122` permanecem abertos; `V1-ST-123` não começou. Detalhe: `docs/audit-2026-09-24/HSP4_CORRECTIVE_GO_NO_GO_2026-09-24.md`.
+
+**Registro da rechecagem anterior HSP-4 (histórico, 2026-09-24 UTC): NO-GO.** O SHA funcional
 bb290bc7bc35f77b4ca01aecdbf19b748c386270 passou CI e web/worker
 Railway SUCCESS. A migration 0024 passou 12/12 SQL e 12/12 HTTP multi-role;
 o FULL de 55 respostas e relatório foi repetido, ainda com zero documentos
@@ -207,8 +209,7 @@ vinculados/verificados. Convite/e-mail/callback/sessão/Tenant A passaram e o
 proprietário confirmou senha e acesso, mas falta logout seguido de novo login.
 A issue #27 comprovou e-mail, ACK humano e recuperação. Backup privado run
 35945384891 passou release cifrada imutável e restore lógico isolado de 102
-tenants/16 Auth/24 migrations em 37,476 s local; não é RTO de serviço. Owners
-e ACLs omitidos no export/restore seguem risco estrutural; faltam agendamento,
+tenants/16 Auth/24 migrations em 37,476 s local; não é RTO de serviço. O export v1 suprimiu ACL por `--no-privileges`, e o restore v1 pulou owners/ACLs; `pg_dump --no-owner` não elimina owner em arquivo customizado. Seguem risco estrutural e falta de agendamento,
 30 dias de retenção, RPO/RTO de serviço, guarda independente da chave e
 decisão de equivalência. Scanner CI do candidato posterior 0c6dc1a deixou 30
 itens, incluindo LGPL, sem disposição do artefato hospedado. O primeiro run
@@ -225,8 +226,8 @@ foi comprovado, sem contribuição causal quantificada. PILOT-1 não começou.
 - `V1-ST-107` — Full lint + TypeScript 6 + Vitest + Next build — **completed-remote-ci** — P0
 - `V1-ST-108` — E2E browser e novo FULL 55 respostas no bb290bc, sem vínculo documental — **completed-hosted-runtime-limited** — P0
 - `V1-ST-109` — Cross-tenant 12/12 RLS SQL e 12/12 HTTP multi-role no bb290bc — **completed-hosted-runtime-limited** — P0
-- `V1-ST-110` — Backup/restore/rollback drill — **partial-hosted-logical-pass-managed-backup-rpo-pending** — P0
-- `V1-ST-111` — SBOM + license + dependency + secret/security scans — **partial-ci-sbom-pass-lgpl-disposition-blocked** — P0
+- `V1-ST-110` — Backup/restore/rollback drill — **partial-private-v2-manual-logical-pass-service-rpo-rto-pending** — P0
+- `V1-ST-111` — SBOM + license + dependency + secret/security scans — **partial-local-classification-ci-artifact-legal-disposition-blocked** — P0
 - `V1-ST-112` — Observabilidade e correlation IDs ponta a ponta — **partial-monitor-drill-alert-delivery-ack-pass-continuous-observation-pending** — P0
 - `V1-ST-113` — Configurar dev/staging/prod e promoção controlada — **completed-hosted-staging-and-remote-ci** — P0
 - `V1-ST-122` — Production Readiness Review e release candidate — **hsp4-prr-closed-no-go-objective-fixes** — P0

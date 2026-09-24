@@ -1,4 +1,4 @@
-import { cleanup, render, screen, waitFor } from "@testing-library/react";
+import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { renderToString } from "react-dom/server";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import SignInPage from "./page";
@@ -7,13 +7,15 @@ const auth = vi.hoisted(() => ({
   setSession: vi.fn(),
   getUser: vi.fn(),
   signOut: vi.fn(),
+  signInWithPassword: vi.fn(),
   createClient: vi.fn(),
   replace: vi.fn(),
   refresh: vi.fn(),
+  push: vi.fn(),
 }));
 
 vi.mock("next/navigation", () => ({
-  useRouter: () => ({ replace: auth.replace, refresh: auth.refresh }),
+  useRouter: () => ({ replace: auth.replace, refresh: auth.refresh, push: auth.push }),
 }));
 vi.mock("@/lib/supabase/client", () => ({ createClient: () => {
   auth.createClient();
@@ -77,5 +79,20 @@ describe("Callback de convite na entrada", () => {
     expect(window.location.hash).toBe("");
     expect(auth.replace).not.toHaveBeenCalled();
     expect(auth.signOut).toHaveBeenCalledWith({ scope: "local" });
+  });
+});
+
+describe("Entrada por senha", () => {
+  it("orienta o convidado a usar o endereço completo e recupera a interface após falha de rede", async () => {
+    auth.signInWithPassword.mockRejectedValue(new Error("network unavailable"));
+    render(<SignInPage />);
+    expect(screen.getByText(/endereço completo do destinatário/i)).toBeTruthy();
+    fireEvent.change(screen.getByLabelText("E-mail"), { target: { value: "convidado+teste@example.com" } });
+    fireEvent.change(screen.getByLabelText("Senha"), { target: { value: "example-password-123" } });
+    await waitFor(() => expect(screen.getByRole("button", { name: "Entrar" }).hasAttribute("disabled")).toBe(false));
+    fireEvent.submit(screen.getByRole("button", { name: "Entrar" }).closest("form")!);
+    expect((await screen.findByRole("alert")).textContent).toMatch(/não foi possível entrar/i);
+    expect(screen.getByRole("button", { name: "Entrar" }).hasAttribute("disabled")).toBe(false);
+    expect(auth.push).not.toHaveBeenCalled();
   });
 });

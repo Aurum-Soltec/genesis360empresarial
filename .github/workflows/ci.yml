@@ -32,12 +32,25 @@ jobs:
         env:
           GENESIS_PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         run: node scripts/audit-sbom-licenses.mjs test-results/hsp4-runtime-linux-x64.sbom.spdx.json test-results/hsp4-license-declarations.json
+      - name: Inventory bytes and notices of non-preferred installed packages
+        run: node scripts/inventory-license-files.mjs test-results/hsp4-license-declarations.json test-results/hsp4-license-files.json test-results/hsp4-license-texts
+      - name: Classify production dependency reachability
+        shell: bash
+        run: |
+          pnpm list --prod --depth Infinity --json > test-results/hsp4-production-dependency-tree.json
+          node scripts/classify-license-dependencies.mjs test-results/hsp4-license-declarations.json test-results/hsp4-production-dependency-tree.json test-results/hsp4-license-production-classification.json
+          echo 'HSP-4 license gate: **BLOCKED** pending deployed-artifact inventory and owner/legal disposition. A green CI check is only a declaration precheck.' >> "$GITHUB_STEP_SUMMARY"
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: hsp4-runtime-linux-x64-sbom
           path: |
             test-results/hsp4-runtime-linux-x64.sbom.spdx.json
             test-results/hsp4-license-declarations.json
+            test-results/hsp4-license-files.json
+            test-results/hsp4-license-texts/
+            test-results/hsp4-production-dependency-tree.json
+            test-results/hsp4-license-production-classification.json
           if-no-files-found: error
           retention-days: 30
   database:

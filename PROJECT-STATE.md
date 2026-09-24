@@ -1,11 +1,18 @@
 # PROJECT-STATE — Genesis 360 Empresarial
 
-Atualização: **2026-09-24 UTC, revisão final HSP-4: NO-GO COM CORREÇÕES OBJETIVAS**. A revisão de
-20/09 terminou em **NO-GO** e a rechecagem atual também: **100 TENANTS READY: NÃO,
-PILOTO CONTROLADO: NO-GO e PRODUÇÃO ABERTA: NO-GO**. As Waves após HSP-4 não
-foram iniciadas.
+Atualização: **2026-09-24 UTC, revisão corretiva HSP-4: NO-GO COM CORREÇÕES OBJETIVAS**. **100 TENANTS READY: NÃO; PILOTO CONTROLADO: NO-GO; PRODUÇÃO ABERTA: NO-GO.** Nenhuma Wave posterior foi iniciada. A decisão e a lista atual de gates estão em `docs/audit-2026-09-24/HSP4_CORRECTIVE_GO_NO_GO_2026-09-24.md`; a revisão anterior abaixo é histórica.
 
-## Estado canônico da decisão HSP-4 — 2026-09-24 UTC
+## Estado canônico da revisão corretiva HSP-4 — 2026-09-24 UTC
+
+O SHA funcional hospedado continua `bb290bc7bc35f77b4ca01aecdbf19b748c386270`. A migration 0024 e o isolamento entre membro, gestor e outro tenant passaram 12/12 SQL e 12/12 HTTP no staging. O proprietário entrou novamente com a conta exata convidada, observou somente Tenant A e a leitura Auth registrou `last_sign_in_at` posterior ao reteste: o subgate de novo login passou. O endereço principal tentado antes pertence a outra conta de teste. O relatório FULL hospedado teve 55 respostas e zero fontes vinculadas/verificadas; análise de documento real permanece pendente sob a flag OFF.
+
+No backup privado, a PR #9 foi integrada e o run manual `36002104320` no SHA `e82a09c103c96a693f2669f660a863248a3daa50` publicou uma release cifrada imutável com 129 entradas ACL no TOC. O restore lógico isolado verificou 102 tenants, 16 usuários Auth, 24 migrations e zero objetos Storage em 77,450 s após download. Isso **não** comprova aplicação/equivalência de owner/ACL, RPO, RTO de serviço, agendamento ou retenção de 30 dias. O orçamento GitHub Actions da organização está em US$0 com Stop usage ativo, mas a cota pode esgotar. A chave ainda requer custódia independente e o controle autogerido, aceite formal. Em arquivo customizado, `pg_dump --no-owner` é ignorado; a cópia v1 omitiu ACL por `--no-privileges` e o restore v1 pulou owner/ACL. A v2 preserva entradas ACL no arquivo, não a restauração final.
+
+A carga integral de 100 empresas por 3.604 s passou duração, 584 negativas cross-tenant esperadas e 5.806/5.806 eventos outbox processados, mas **falhou p95 ≤750 ms** em login (1.964,5), Home (1.055,48), escrita (1.024,5) e leitura (793,8 ms). A amostra causal adicional mediu Home gzip 5.681 bytes, primeiro byte rápido, streaming SSR lento e picos Auth; não há correção pequena segura demonstrada. O candidato local de licenças classifica 9/30 itens na árvore de produção e 21 fora dela, com inventário de CI/NOTICE ainda sem execução remota e sem bytes do contêiner Railway ou disposição LGPL/CC-BY. O candidato público local passou `pnpm quality` (503 Vitest, 34 testes nativos e build), mas não foi publicado/promovido. Cinco flags sensíveis permanecem OFF. Fundação 92%, MVP 82% e V1 64% permanecem estimativas históricas, sem crédito de prontidão operacional.
+
+## Registro histórico da revisão anterior HSP-4 — 2026-09-24 UTC
+
+Os parágrafos abaixo descrevem a evidência disponível **antes** do reteste de login, do backup v2 e da investigação adicional de desempenho. Onde há diferença, prevalece o estado canônico acima e a revisão corretiva vinculada. A afirmação anterior de que `pg_dump --no-owner` retirou owners do arquivo customizado foi corrigida acima; o restore v1 continuava sem equivalência de owner/ACL.
 
 O artefato funcional hospedado **bb290bc7bc35f77b4ca01aecdbf19b748c386270** passou CI quality/database/CodeQL; Railway web **ab3f2a2d-9507-4e24-8749-bc313c7691fa** e worker **96c1e771-c895-4f15-a8f5-157b4f97f892** chegaram a SUCCESS no mesmo SHA do projeto isolado de staging. O nome production no ambiente Railway não autoriza produção aberta. A correção posterior do harness em `dc9c124` passou quality/database/CodeQL no PR #25; ela não muda o SHA funcional do ensaio hospedado. A HSP-4 foi encerrada nesta revisão com decisão **NO-GO**, não PASS.
 
