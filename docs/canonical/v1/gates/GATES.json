@@ -17,13 +17,13 @@
       "PEND-005 qualification methodology",
       "PEND-006 capability taxonomy",
       "PEND-010 approved consent copy",
-      "runtime E2E evidence",
+      "real-document end-to-end evidence; hosted fictional FULL passed only within its stated scope",
       "PEND-011 sector taxonomy calibration",
       "PEND-012 confidence calibration",
       "PEND-013 legal attestation copy activation",
       "PEND-014 upload storage/scanning policy",
       "question-level documentary relevance and verification before claiming a document-grounded conclusion",
-      "repeat corrected synthetic provenance runner on promoted hosted runtime; two protected synthetic accounts passed Auth before promotion but runner returned zero tenant choices and performed no writes, whereas later authenticated UI showed Tenant A for one of them; cause unknown, do not infer missing membership"
+      "FULL fictional demo with three context_for sources and cockpit 7/7 passed in hosted UI on 5b992d3; this does not prove real document analysis, answer-level references, verified sources or a new FULL on source 6dff3c9 uploaded to staging; real upload flag remains off"
     ],
     "implemented": [
       "Passport/Diagnostic/GDS foundation",
@@ -54,11 +54,14 @@
       "versioned sanitized HSP3_100_TENANTS_60M_BB290BC_2026-09-24.json: run 662855c2dbd5 completed 3604 seconds, 100 tenants, 24512 browser requests, 5806 writes, 584 expected denials, 0 unexpected errors; outbox 5806 processed, 0 pending/dead/retries; p95 Home 1055.48ms/write 1024.5ms/read 793.8ms/login 1964.5ms, SLO FAIL",
       "2026-09-24 short causal probe on same bb290bc: 28 Home/API GETs; Home gzip 5681 bytes, first byte p95 151ms, stream p95 1130ms, API tenant context p95 566ms; Auth token spikes up to 7622ms; no safe latency correction or repeat 60-minute run yet",
       "numerical instrumentation for tenant-context and facts API passed 27 focused tests and was deployed with 31df6086; no hosted subphase measurements, correction or SLO rerun",
-      "PR #25 merged at 31df6086cb612886dc5db4a45b946ea80dde2cf1; web deployment 09f91585-1ec8-47d9-9b2c-5c40950527f0 and worker 86828bcf-dd39-44a7-a94d-ef5819da766f SUCCESS on same SHA; limited anonymous/authenticated/navigation smoke passed, but SQL/HTTP multi-role and 100x60 not repeated on this SHA"
+      "PR #25 merged at 31df6086cb612886dc5db4a45b946ea80dde2cf1; web deployment 09f91585-1ec8-47d9-9b2c-5c40950527f0 and worker 86828bcf-dd39-44a7-a94d-ef5819da766f SUCCESS on same SHA; limited anonymous/authenticated/navigation smoke passed, but SQL/HTTP multi-role and 100x60 not repeated on this historical SHA",
+      "current web 2e2690bd and worker 56740353 Railway CLI uploads SUCCESS from clean detached source 6dff3c9833ae2036f187dd1c9b3a2ad9680a20ac with individual image digests; cliMessage states SHA but meta.commitHash=null, so provider-native commit attestation unavailable; fictional hosted FULL at predecessor 5b992d3, no new 100x60",
+      "SQL-only 0024 private workflow runs 36031065644 (ff864213) and 36035020570 (pinned source 6dff3c9) SUCCESS with fail-closed validator requiring exactly 12 named cases, counts and rollback residue [0,0,1,0]; private sanitized JSONs were not independently inspected by agent; HTTP multi-role remains pending",
+      "new web authenticated Home GET 200 in 2287ms and 14ms; no filtered home_latency server-side events; broader log filter rejected by automatic access review, not circumvented; no causal hosted subphase measurements or p95 credit"
     ],
     "pending": [
-      "duration, isolation and outbox subgates passed historically on bb290bc; short probe separated Auth/context and Home gzip/SSR streaming but has not isolated SQL/pool or a safe p95 correction; collect hosted subphase timings on 31df6086, compare short candidate first, then repeat 100-tenant 60-minute end-to-end soak after correction with p95 <=750ms and pool/slow-query/cost evidence",
-      "repeat 0024 SQL and HTTP member/manager/foreign-tenant isolation on promoted SHA 31df6086 before assigning current-artifact pass"
+      "duration, isolation and outbox subgates passed historically on bb290bc; short probe separated Auth/context and Home gzip/SSR streaming but has not isolated SQL/pool or a safe p95 correction; collect safe hosted subphase timings on source 6dff3c9, compare short candidate first, then repeat 100-tenant 60-minute end-to-end soak after correction with p95 <=750ms and pool/slow-query/cost evidence",
+      "repeat HTTP Auth member/manager/foreign-tenant isolation on new web/worker uploaded from source 6dff3c9; private PR #19 runner and local isolated three-GoTrue-login/no-residue rehearsal passed, but hosted run requires owner to set STAGING_SUPABASE_ANON_KEY directly in private Actions; SQL-only on this source passed by private validated workflow but does not substitute HTTP; close Railway meta.commitHash=null provenance gap"
     ]
   },
   "GATE-CONTRACT": {
@@ -80,8 +83,8 @@
   "GATE-SEC": {
     "state": "blocked-operational-controls",
     "pending": [
-      "complete NOTICE/source/conditions and technical/legal disposition for LGPL libvips, CC-BY caniuse-lite, MPL and other non-preferred licenses; read-only Railway web/worker inspection on promoted 31df6086 matched aggregate hashes of all 30 reviewed packages against same-SHA Linux CI, but did not attest the full image or approve obligations",
-      "automatic encrypted backup retention and representative service restore with measured RPO/RTO; private GitHub v2 run 36002104320 made immutable encrypted backup with 129 ACL TOC entries and isolated logical DB restore; guarded cron PR #7 merged at 051a76d but activation variables absent and schedule OFF; service-restore scaffold PR #6 merged at 10214da with 34 local tests PASS and one Windows symlink SKIP, but no restore executed, 30-day history, independent key or ACL/owner equivalence after restore",
+      "complete NOTICE/source/conditions and technical/legal disposition for LGPL libvips, CC-BY caniuse-lite, MPL and other non-preferred licenses; deployed-byte inspection passed for 30 reviewed packages on 25c022d8, but not on new web/worker images uploaded from 6dff3c9; review bundle is not final NOTICE or approval",
+      "automatic encrypted backup retention and representative service restore with measured RPO/RTO; private GitHub v2 run 36002104320 made immutable encrypted backup with 129 ACL TOC entries and isolated logical DB restore; guarded cron PR #7 merged but activation absent and schedule OFF; private PR #15/run 36030761200 passed only source-to-target synthetic rehearsal without staging backup/credentials; private PR #18 merged operator-held immutable release preflight with tests but no real key/backup run; private PR #20 at c3adbe3c merged fail-closed retention prune guard after 77 synthetic CI tests, not 30-day observed retention; private PR #21 at d8bdfb8d merged monitor with 88 synthetic CI tests and dry-run 36039829373 SUCCESS, but monitor cron OFF, no real release read or issue opened and same GitHub Actions failure domain; no real service restore, independent key or ACL/owner equivalence after restore; backup-specific alert drill run 36031382116 opened private issue #17 but notification delivery, human ACK and recovery remain pending",
       "legal/privacy review of attestation copy",
       "binary upload malware/content scanning"
     ],
@@ -110,9 +113,12 @@
       "historical frozen-lockfile inventory; hosted bb290bc CI Linux SBOM has 455 entries and an unresolved LGPL package; public PR #25 commit 40b9b82 Linux CI quality/database/CodeQL/Analyze PASS and license inventory 9/30 production-reachable, but scanner does not inspect deployed bytes",
       "promoted 31df6086 Railway web and worker read-only inspection: 454 installed packages per service, all 30 ADR-015 non-preferred packages physically present, all 30 aggregate hashes matching same-SHA Linux CI run 36009447882; LGPL libvips binary present in both; deployed package byte-comparison subgate passed, full-image attestation and NOTICE/legal disposition pending",
       "monitor issue #27: synthetic failure, recovery, email receipt and human ACK; public ACK notification quote sanitized, external cache residual unknown",
+      "authenticated synthetic Tenant A owner on new web source 6dff3c9 opened /demonstracao/administracao and saw all five sensitive flags DESLIGADA plus five-disabled summary; direct /ecossistema navigation returned 404; hosted UI/route-scope evidence, not raw env-value inspection",
       "private backup v1 run 35945384891 PASS historical; private v2 run 36002104320 on e82a09c PASS with 129 ACL TOC entries, immutable encrypted release and isolated logical restore 102 tenants, 16 Auth users, 0 Storage objects, 24 migrations in 77.450s after download; PR #6 restore scaffold merged at 10214da with 34 local tests PASS and one Windows symlink SKIP but no service restore, RTO/RPO or ACL/owner equivalence",
       "private PR #11 merged at 987964fc and Ubuntu manual run 36020411581 SUCCESS: 2 CPUs, 8.32 GB total RAM, empty isolated stack boot/health in 120 seconds, expected service identities and loopback-only bindings verified, cleanup SUCCESS; no backup, plaintext, staging credentials, restored service, RPO or RTO credit",
-      "GitHub Actions organization budget USD0 with Stop usage enabled on 2026-09-24, 244 of 2000 included minutes used; shared quota exhaustion may stop backup even without billing"
+      "GitHub Actions organization budget USD0 with Stop usage enabled on 2026-09-24, 244 of 2000 included minutes used; shared quota exhaustion may stop backup even without billing",
+      "private PR #15 at 52f047ac run 36030761200 SUCCESS for synthetic source-to-target recovery only; no real staging backup or service RPO/RTO credit",
+      "private PR #16 at fe544825 run 36031065644 SUCCESS for SQL-only migration 0024 probe against current candidate; validator fail-closed for 12 named cases and rollback; private JSON artifact not independently inspected after auto-review rejection"
     ]
   },
   "GATE-UX": {
@@ -155,8 +161,8 @@
     "state": "blocked-hsp4-no-go",
     "pending": [
       "100-tenant 60-minute duration, isolation and outbox passed on bb290bc run 662855c2dbd5; p95 <=750ms failed on login/Home/write/read and must be remeasured after safe correction",
-      "automatic encrypted backup retention, representative service restore with owner/ACL equivalence and measured RPO/RTO; private v2 manual snapshot/logical restore passed, guarded cron code merged but inactive (activation variables absent), restore scaffold merged but no drill, 30-day history, independent key custody and equivalent-control decision pending",
-      "final NOTICE, applicable sources/conditions and legal LGPL/CC-BY/MPL disposition; deployed 31df6086 web/worker package byte-comparison for all 30 reviewed items passed against same-SHA CI; approved exceptions/CI enforcement remain pending",
+      "automatic encrypted backup retention, representative service restore with owner/ACL equivalence and measured RPO/RTO; private v2 manual snapshot/logical restore and synthetic source-to-target rehearsal passed, but guarded cron remains inactive, no real full-service restore, 30-day history, independent key custody or equivalent-control decision; backup-specific alert drill/ACK pending",
+      "final NOTICE, applicable sources/conditions and legal LGPL/CC-BY/MPL disposition; deployed-byte comparison passed for 30 reviewed packages at 25c022d8, but new web/worker images uploaded from 6dff3c9 lack exact-artifact reinspection; approved exceptions/CI enforcement remain pending",
       "legal/privacy and upload activation gates"
     ]
   },
@@ -169,12 +175,14 @@
       "historical 95/95 hosted pgTAP",
       "remote protected CI",
       "hosted SHA bb290bc7bc35f77b4ca01aecdbf19b748c386270 web and worker Railway SUCCESS; CI quality/database/CodeQL PASS (historical full runtime)",
-      "promoted SHA 31df6086cb612886dc5db4a45b946ea80dde2cf1 web/worker Railway SUCCESS and final CI quality/database/CodeQL/Analyze PASS; anonymous denial and authenticated Tenant A UI/document/report/navigation smoke passed, full SQL/HTTP multi-role and load reruns pending",
+      "promoted SHA 31df6086cb612886dc5db4a45b946ea80dde2cf1 web/worker Railway SUCCESS and final CI quality/database/CodeQL/Analyze PASS; anonymous denial and authenticated Tenant A UI/document/report/navigation smoke passed, full SQL/HTTP multi-role and load reruns pending on that historical SHA",
+      "current web 2e2690bd and worker 56740353 Railway CLI uploads SUCCESS from clean local source 6dff3c9 with digests; meta.commitHash=null limits native SHA provenance; fictional FULL 52 answers and cockpit 7/7 passed on 5b992d3; current-source SQL-only 0024 workflow 36035020570 SUCCESS by fail-closed validator, HTTP multi-role and new full soak pending",
       "hosted FULL on bb290bc: 55 answers, score 48, coverage 100%, confidence 78%, 12 dimensions and 90-day plan; zero linked/verified sources disclosed; document-grounded conclusion pending",
       "hosted HTTP member/manager/foreign-tenant isolation 12/12 on bb290bc; temporary fixture and users cleaned",
       "historical authenticated browser E2E 10/10",
       "private v2 immutable encrypted backup and isolated logical DB restore: run 36002104320, 129 ACL TOC entries, 102 tenants, 16 Auth users, 24 migrations, no Storage objects; local helper 77.450s after download is not service RTO or ACL equivalence; PRs #6/#7 merged as inert preparation, no restore and schedule OFF",
       "private PR #11 / run 36020411581 booted and verified only an empty Ubuntu service stack with loopback bindings and cleanup in 120 seconds; this closes stack-bootstrap feasibility, not a restored service or measured RPO/RTO",
+      "private PR #15 / run 36030761200 passed synthetic source-to-target rehearsal without staging backup/credentials; no real-service/RPO/RTO credit",
       "historical 100-tenant end-to-end soak with functional pass and performance fail",
       "controlled hosted invite email/callback/Tenant A-only session, owner-defined password and fresh sign-in on exact invited account with Auth timestamp advanced after retest",
       "issue #27 synthetic failure, recovery, email notification, human ACK and close; ACK quote sanitized",
@@ -182,9 +190,10 @@
     ],
     "pending": [
       "automatic encrypted backup/recovery with 30-day retention and measured service RPO/RTO; private v2 manual backup/isolated logical restore includes 129 ACL TOC entries, but does not prove applied ACL/owner equivalence; guarded cron PR #7 merged but schedule OFF, service restore PR #6 merged without drill, history/key custody/equivalence pending",
-      "final artifact NOTICE/legal license disposition; deployed 31df6086 package byte-comparison for the 30 reviewed packages passed, but must be repeated after image changes",
-      "actual document-linked/verified diagnostic conclusion remains unproven while real upload flag is off; corrected synthetic provenance runner retest pending after two Auth successes but no tenant selection/writes; later UI found Tenant A for one same account, so runner discrepancy cause unknown",
-      "100-tenant 60-minute duration/isolation/outbox passed on previous bb290bc; p95 <=750ms failed, pool/slow-query and marginal cost telemetry incomplete; no new 100x60 on promoted 31df6086"
+      "final artifact NOTICE/legal license disposition; deployed-byte comparison for 30 reviewed packages passed on 25c022d8, not new images uploaded from 6dff3c9",
+      "actual document-linked/verified diagnostic conclusion remains unproven while real upload flag is off; fictional contextual provenance passed in hosted UI at predecessor 5b992d3 but zero answer-level references and zero verified sources",
+      "100-tenant 60-minute duration/isolation/outbox passed on previous bb290bc; p95 <=750ms failed, pool/slow-query and marginal cost telemetry incomplete; no new 100x60 on source 6dff3c9",
+      "HTTP Auth member/manager/foreign-tenant isolation remains pending on new deployments uploaded from 6dff3c9; SQL-only workflow passed with private JSON not independently inspected"
     ]
   },
   "GATE-REPO": {
@@ -217,11 +226,12 @@
       "corrected synthetic provenance runner hosted retest blocked after two protected Auth successes, zero tenant choices and zero writes; no hosted provenance pass",
       "public PR #25 predecessor 40b9b82 reported local 503 Vitest, 34 native hardening tests and remote CI; old local Vitest discovery did not exclude ignored tmp, so the count is not comparable to the current clean suite; its Linux license inventory classified 9/30 packages as production-reachable, supplemented by deployed 31df6086 inspection",
       "promoted 31df6086 Railway web/worker read-only license inspection compared all 30 reviewed package aggregate hashes with same-SHA Linux CI run 36009447882; zero mismatches and 21 packages outside pnpm --prod physically present; NOTICE and legal disposition remain BLOCKED",
-      "public PR #25 latest code change 6d4d569 historical local pnpm quality reported 506 Vitest and 34 native tests under Vitest discovery that did not exclude tmp; current clean local suite after discovery fix passed 49 files/181 tests and these counts are not comparable; final remote CI quality/database/CodeQL/Analyze PASS on runs 36009033246 and 36009024373; PR merged as 31df6086, web/worker SUCCESS on that exact SHA, limited anonymous/authenticated/navigation smoke PASS; affected FULL, SQL/HTTP multi-role and 100x60 retests pending"
+      "public PR #25 latest code change 6d4d569 historical local pnpm quality reported 506 Vitest and 34 native tests under Vitest discovery that did not exclude tmp; current clean local suite after discovery fix passed 49 files/181 tests and these counts are not comparable; final remote CI quality/database/CodeQL/Analyze PASS on runs 36009033246 and 36009024373; PR merged as 31df6086, web/worker SUCCESS on that exact SHA, limited anonymous/authenticated/navigation smoke PASS; affected FULL, SQL/HTTP multi-role and 100x60 retests were pending at that historical review",
+      "current 6dff3c9-source HSP-4 review remains NO-GO: Railway web/worker CLI uploads SUCCESS with digests but meta.commitHash=null; fictional FULL 7/7 on predecessor 5b992d3; SQL-only 0024 PASS by private validated run 36035020570 without independent JSON inspection; HTTP multi-role, real backup service recovery, license/legal and new 100x60 p95 remain open; docs/audit-2026-09-24/HSP4_CURRENT_REVIEW_6DFF3C9_2026-09-24.md"
     ],
     "pending": [
       "close HSP-4 automatic backup/ACL-equivalent service restore/RPO-RTO, LGPL/CC-BY and 100-tenant 60-minute p95 blockers; document-grounded real conclusions remain pending under disabled upload flag",
-      "repeat failed HSP-4 gates after correction; 2026-09-24 corrective review remains NO-GO",
+      "repeat failed HSP-4 gates after correction; current 2026-09-24 6dff3c9-source review remains NO-GO",
       "new owner authorization before PILOT-1"
     ]
   }

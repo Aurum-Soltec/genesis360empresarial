@@ -1,20 +1,24 @@
 # PRODUCTION WAVES
 
 > **Atualização operacional — 2026-09-24 UTC:** este mapa PW permanece histórico.
-> A revisão HSP-4 de 20/09 terminou em NO-GO. O run histórico de 100 tenants
-> por 60 minutos concluiu sem erro funcional, mas falhou no p95. O PR #25 foi
-> integrado e seu merge SHA `31df6086` está em web e worker no staging;
-> o smoke novo foi limitado e não repetiu o run de escala nem a matriz multi-role.
-> A decisão permanece NO-GO. Seu estado atual está em
-> `PRODUCTION_WAVES_MASTER.md` e no relatório
-> `../../../audit-2026-09-24/HSP4_CORRECTIVE_GO_NO_GO_2026-09-24.md`.
+> Web e worker do staging receberam por CLI fonte local limpa `6dff3c9` e
+> terminaram SUCCESS com digests; Railway `meta.commitHash=null` limita a
+> atestação nativa do SHA. A demo
+> fictícia 7/7 foi observada no predecessor `5b992d3`. O último soak de
+> 100 tenants por 60 minutos concluiu sem erro funcional, mas falhou no p95.
+> SQL 0024 **PASS limitado ao workflow privado** pinado à fonte atual no run
+> `36035020570`, sem leitura independente do JSON; HTTP multi-role, backup de serviço/RPO-RTO,
+> retenção e licença final continuam pendentes ou bloqueados. A decisão é
+> **HSP-4 NO-GO**. Estado vigente: `PRODUCTION_WAVES_MASTER.md` e
+> `../../../audit-2026-09-24/HSP4_CURRENT_REVIEW_6DFF3C9_2026-09-24.md`.
 > Nenhuma Wave após HSP-4 começou. A cópia privada cifrada e o restore lógico
 > isolado passaram como subprova manual; o gate de recuperação continua BLOCKED
 > por agendamento, retenção, equivalência de permissões e RPO/RTO de serviço.
-> A inspeção read-only do SHA `31df6086` confirmou os hashes dos 30 pacotes
-> sob revisão em web e worker contra o CI Linux do mesmo SHA; NOTICE e decisão
-> LGPL/CC-BY/MPL permanecem BLOCKED. Correções locais de demo e performance
-> ainda não receberam crédito runtime.
+> A inspeção read-only foi repetida no SHA `25c022d8` para os 30 pacotes;
+> as imagens novas ainda requerem vínculo de licença ao artefato exato. NOTICE
+> e decisão LGPL/CC-BY/MPL permanecem BLOCKED. O vínculo contextual da demo
+> passou no `5b992d3`; instrumentação da Home enviada como `6dff3c9` ainda
+> não mostrou evento `home_latency` filtrado e não prova SLO.
 > A PR privada #11/run `36020411581` passou somente boot/saúde de stack
 > sintética vazia, isolada em loopback no runner Ubuntu; 120 s não são RTO.
 > Restore real, RPO/RTO, agendamento e retenção seguem BLOCKED.
