@@ -24,9 +24,12 @@ function collectRoutes(directory) {
 }
 collectRoutes("app/api");
 
-if (apiRoutes.length !== 23) fail(`expected 23 API routes, found ${apiRoutes.length}`);
+if (apiRoutes.length !== 24) fail(`expected 24 API routes, found ${apiRoutes.length}`);
 if (!apiRoutes.some((route) => route.replaceAll("\\", "/") === "app/api/demo/evidence/route.ts")) {
   fail("controlled demo evidence API route is missing from the reconciled baseline");
+}
+if (!apiRoutes.some((route) => route.replaceAll("\\", "/") === "app/api/ops/home-timing/route.ts")) {
+  fail("authenticated Home timing API route is missing from the reviewed HSP-4 candidate");
 }
 
 const stories = fs.readFileSync(

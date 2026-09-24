@@ -461,8 +461,8 @@
     {
       "path": "scripts/check-production-scale-baseline.mjs",
       "beforeSha256": "d3757a69ffbe4e2b1506b1b1c52d00887978eff2bc1d3cd447862df347277107",
-      "afterSha256": "dc17c664d9e846948a82d6c9957df1a19c4689b93247fd47da9789c308a77fc4",
-      "reason": "HSP-4: check limited hosted evidence status without requiring an overstated unqualified PASS"
+      "afterSha256": "7c3974ce0a96b9af1d1c203dd16765f7c84474769ab600a2fc4a5fe9b87487e8",
+      "reason": "HSP-4: require the reviewed authenticated Home timing route while preserving strict API count and limited hosted evidence status"
     },
     {
       "path": "scripts/demo-answer.mjs",
