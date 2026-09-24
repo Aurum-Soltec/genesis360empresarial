@@ -347,8 +347,8 @@
     {
       "path": "docs/canonical/v1/delivery/PRODUCTION_WAVES_MASTER.md",
       "beforeSha256": "14af8551a84daf473cb9ec2c78818b789d3bc6500fbd92ee1cbfe5718735d62e",
-      "afterSha256": "90978a97c3de169ecf44fe10cd66fe327ded18516a5479a10fca9bb2bf7210d9",
-      "reason": "HSP-4: reconcile CI, private backup preparations, failed runtime gates and final NO-GO evidence"
+      "afterSha256": "7a1a853671463a3f2f658e5da3675a7e54924cfd4e319baa0eb790dafa037d89",
+      "reason": "HSP-4: reconcile CI, current evidence, historical Waves and final NO-GO"
     },
     {
       "path": "docs/canonical/v1/delivery/PRODUCTION_WAVES.md",

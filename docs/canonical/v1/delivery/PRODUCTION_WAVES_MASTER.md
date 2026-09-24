@@ -44,18 +44,18 @@ chegaram a SUCCESS no web `2e2690bd` e worker `56740353`, com digests
 individuais; Railway registrou `meta.commitHash=null`, logo a identidade
 do commit não tem atestação nativa do provedor. O [FULL fictício](../../../audit-2026-09-24/HSP4_HOSTED_FULL_DEMO_5B992D3_2026-09-24.md)
 chegou a cockpit 7/7 no SHA predecessor `5b992d3`, sem validação documental
-real. A [revisão A–T vigente](../../../audit-2026-09-24/HSP4_CURRENT_REVIEW_6DFF3C9_2026-09-24.md)
+real. A [revisão A–T daquele SHA](../../../audit-2026-09-24/HSP4_CURRENT_REVIEW_6DFF3C9_2026-09-24.md)
 mantém SQL 0024 **PASS limitado pelos workflows privados**, inclusive
-`36035020570` pinado à fonte atual, e HTTP multi-role pendente; backup de
+`36035020570` pinado à fonte `6dff3c9`, e HTTP multi-role então pendente; backup de
 serviço/RPO-RTO e licença final BLOCKED, e carga 100×60 com p95 FAIL no último
 ensaio integral. O ensaio source→target sintético passou sem dados reais e
 não concluiu o gate de recuperação. Dois GETs Home no novo web retornaram
 200 em 2.287/14 ms, sem eventos `home_latency` filtrados: sem crédito p95.
 
-| Wave | Estado atual | Próxima evidência obrigatória |
+| Wave | Estado histórico no `6dff3c9` | Próxima evidência obrigatória à época |
 | --- | --- | --- |
 | HSP-0 | **PARTIAL de proveniência; repo/CI PASS** | Preservar CI; fechar vínculo entre fonte limpa, digests e SHA sem `commitHash` nativo. |
-| HSP-1 | **PARTIAL; demo e SQL-only PASS limitados, HTTP PENDING** | SQL 0024 passou por workflow privado fail-closed na fonte atual (`36035020570`); JSON privado não inspecionado independentemente. PR privada #19 preparou runner HTTP e passou ensaio local, sem run hospedado; proprietário precisa configurar anon key na Actions privada. FULL 7/7 no predecessor. A Wave inteira não recebe PASS. |
+| HSP-1 | **PARTIAL; demo e SQL-only PASS limitados, HTTP PENDING** | SQL 0024 passou por workflow privado fail-closed na fonte `6dff3c9` (`36035020570`); JSON privado não inspecionado independentemente. PR privada #19 preparou runner HTTP e passou ensaio local, sem run hospedado; a anon key ainda não estava configurada na Actions privada. FULL 7/7 no predecessor. A Wave inteira não recebeu PASS. |
 | HSP-2 | **BLOCKED** | Restore funcional com ACL/RLS e RPO/RTO, backup automático/retido, chave independente e NOTICE/disposição jurídica. |
 | HSP-3 | **FAIL de p95** | Medir gargalo e repetir 100 tenants/60 min no candidato corrigido, p95 ≤750 ms. |
 | HSP-4 | **NO-GO** | Reconciliar todos os gates antes de qualquer decisão de piloto. |
