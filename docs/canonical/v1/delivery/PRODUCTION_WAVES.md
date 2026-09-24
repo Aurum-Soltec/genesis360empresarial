@@ -1,23 +1,17 @@
 # PRODUCTION WAVES
 
-> **Atualização operacional — 2026-09-24 UTC:** este mapa PW permanece histórico.
-> A revisão HSP-4 de 20/09 terminou em NO-GO. O run histórico de 100 tenants
-> por 60 minutos concluiu sem erro funcional, mas falhou no p95. O PR #25 foi
-> integrado e seu merge SHA `31df6086` está em web e worker no staging;
-> o smoke novo foi limitado e não repetiu o run de escala nem a matriz multi-role.
-> A decisão permanece NO-GO. Seu estado atual está em
-> `PRODUCTION_WAVES_MASTER.md` e no relatório
-> `../../../audit-2026-09-24/HSP4_CORRECTIVE_GO_NO_GO_2026-09-24.md`.
-> Nenhuma Wave após HSP-4 começou. A cópia privada cifrada e o restore lógico
-> isolado passaram como subprova manual; o gate de recuperação continua BLOCKED
-> por agendamento, retenção, equivalência de permissões e RPO/RTO de serviço.
-> A inspeção read-only do SHA `31df6086` confirmou os hashes dos 30 pacotes
-> sob revisão em web e worker contra o CI Linux do mesmo SHA; NOTICE e decisão
-> LGPL/CC-BY/MPL permanecem BLOCKED. Correções locais de demo e performance
-> ainda não receberam crédito runtime.
-> A PR privada #11/run `36020411581` passou somente boot/saúde de stack
-> sintética vazia, isolada em loopback no runner Ubuntu; 120 s não são RTO.
-> Restore real, RPO/RTO, agendamento e retenção seguem BLOCKED.
+> **Atualização operacional — 2026-09-24 UTC:** este mapa `PW-*` permanece
+> histórico. O estado vigente da etapa Hosted Staging & Pilot Readiness é
+> `PRODUCTION_WAVES_MASTER.md` e
+> `../../../audit-2026-09-24/HSP4_CURRENT_REVIEW_458AAC9_2026-09-24.md`.
+> Web e worker do staging receberam a fonte limpa `458aac9` e terminaram
+> SUCCESS com digests; Railway `meta.commitHash=null` não atesta nativamente o
+> SHA. A matriz HTTP membro/gestor/outro tenant passou 12 verificações
+> fail-fast no workflow privado, com crédito limitado porque o artefato não foi
+> inspecionado independentemente. O ensaio de 100 tenants por 60 minutos ainda
+> falhou p95 ≤750 ms. Backup automático, restore real, retenção, RPO/RTO e
+> licenças finais não receberam PASS. **HSP-4 NO-GO.** Nenhuma Wave posterior
+> foi iniciada. Resultados anteriores abaixo conservam caráter histórico.
 
 As Waves 0-4 existentes representam evolução histórica da fundação. A partir deste pacote, usar identificadores `PW-*` para produção.
 

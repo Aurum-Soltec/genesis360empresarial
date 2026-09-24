@@ -2,7 +2,72 @@
 
 As Waves 0–8 registram a evolução histórica da fundação. As **PW** abaixo são as ondas de execução para transformar a baseline em produção.
 
-## Rechecagem canônica Hosted Staging & Pilot Readiness — 2026-09-24 UTC
+## Estado canônico Hosted Staging & Pilot Readiness — fonte `458aac9`
+
+**NO-GO em 2026-09-24 UTC.** PR #33/CI PASS e merge na main
+`458aac964d1f9a7016ac1804fe99d68637a3c0b8`. Web Railway
+`65ede85d-f918-4ccf-b161-a9396d6c702a` e worker Railway
+`8e460f0f-4c6b-4506-b490-90682b5b1b4d` chegaram a SUCCESS de
+worktree limpa detached nesse SHA. Os deployments têm digests web
+`sha256:108dd4d9b0d33b5bd60d5df4fce63ca3dee62f7fc6136675d7ec6612803a613b`
+e worker `sha256:8318678e1197f06d97390dbf43629bfb88bea97963eda892ffd7ee9b234e2163`;
+Railway `meta.commitHash=null` em ambos. A rota opt-in
+`/api/ops/home-timing`
+devolveu 401 anônimo, mas a navegação direta autenticada foi bloqueada
+pelo navegador (`ERR_BLOCKED_BY_CLIENT`). O run privado `36063913391`
+mediu depois 16 amostras numéricas em fixture escassa sem pains: total
+p50/p95 799,01/1.337,44 ms, tenant context 504,71/709,60 ms e dashboard
+284,31/810,15 ms. A PR privada #26/run `36068483011` acrescentou 200 GETs
+autenticados em um tenant scored com três dores, p50/p95/p99
+728,55/1.229,81/1.758,33 ms e 77/200 acima de 750 ms; região do runner
+e método de score não validados, sem causa definitiva ou crédito de SLO. Último 100×60
+permanece FAIL de p95; HTTP multi-role hospedado no claim `458aac9` passou
+no run privado `36062309891` com guard independente e backstop SUCCESS,
+12/12 inferidos do runner fail-fast, sem inspeção independente do artefato
+sanitizado. As cinco flags foram vistas DESLIGADA após reload autenticado
+da UI no `458aac9`, e `/ecossistema` retornou 404; escopo apenas visual/de
+rota. FULL no candidato atual segue PENDING, backup de serviço/RPO-RTO e
+NOTICE seguem BLOCKED. Inspeção OSS read-only dos deployments atuais
+comparou 30/30 hashes de pacotes com CI em cada serviço, 28 LICENSE/NOTICE,
+3 binários nativos, zero pacote ausente; [evidência versionada](../../../audit-2026-09-24/HSP4_OSS_NOTICE_REVIEW_458AAC/HOSTED_IMAGE_BYTES_458AAC.md), sem aceite jurídico. Nenhum gate
+herda PASS runtime do `6dff3c9` automaticamente. [Revisão A–T
+vigente](../../../audit-2026-09-24/HSP4_CURRENT_REVIEW_458AAC9_2026-09-24.md).
+
+| Wave | Estado no `458aac9` | Próxima evidência obrigatória |
+| --- | --- | --- |
+| HSP-0 | **PARTIAL** | Preservar CI e vincular fonte/deployments ao artefato sem alegar atestação nativa não observada. |
+| HSP-1 | **PARTIAL; HTTP multi-role PASS limitado** | Run hospedado `36062309891` e backstop `36062480126` SUCCESS no claim `458aac9`; 12/12 inferidos do runner fail-fast, JSON privado não inspecionado. FULL no candidato ainda pende; SQL-only anterior é histórico. Cinco flags OFF foram observadas na UI/rota atual sob sessão sintética, sem env bruto. |
+| HSP-2 | **BLOCKED** | PR #22/run `36063130004` passou stack sintética com 3 Auth/2 tenants/24 migrations/4 outbox. PR #25/run `36067300522` igualou 71 bytes fictícios source→target por byte/SHA e verificou catálogo/owner/ACL/RLS/cleanup; `storage_bytes_restored_from_backup=false`, 188,167 s até worker não é RTO. PR #27/run `36067885407` alertou falha intencional anterior a secrets/DB/Storage e mencionou o proprietário na issue #17, com e-mail externo e ACK humano confirmados; dry-run `36069498641` comprovou apenas wiring, sem recuperação real, e issue #17 OPEN. OSS atual: 30/30 hashes de pacotes iguais ao CI em cada serviço, [evidência versionada](../../../audit-2026-09-24/HSP4_OSS_NOTICE_REVIEW_458AAC/HOSTED_IMAGE_BYTES_458AAC.md), sem NOTICE/aceite jurídico. Faltam restore real, RPO/RTO, backup automático/retido, chave independente e NOTICE. |
+| HSP-3 | **FAIL p95 histórico; atual PENDING 100×60** | Runs `36063913391` (16 amostras escassas) e `36068483011` (200 GETs em um tenant scored/três dores, p95 1.229,81 ms) ampliaram a triagem; isolar causa, corrigir gargalo demonstrado e repetir 100×60 no candidato. |
+| HSP-4 | **NO-GO** | Reconciliar gates antes de decisão de piloto. |
+
+## Registro histórico — fonte `6dff3c9`
+
+**NO-GO em 2026-09-24 UTC.** PRs #30/#31/#32 passaram CI e foram integrados.
+Uploads CLI da fonte local limpa `6dff3c9833ae2036f187dd1c9b3a2ad9680a20ac`
+chegaram a SUCCESS no web `2e2690bd` e worker `56740353`, com digests
+individuais; Railway registrou `meta.commitHash=null`, logo a identidade
+do commit não tem atestação nativa do provedor. O [FULL fictício](../../../audit-2026-09-24/HSP4_HOSTED_FULL_DEMO_5B992D3_2026-09-24.md)
+chegou a cockpit 7/7 no SHA predecessor `5b992d3`, sem validação documental
+real. A [revisão A–T daquele SHA](../../../audit-2026-09-24/HSP4_CURRENT_REVIEW_6DFF3C9_2026-09-24.md)
+mantém SQL 0024 **PASS limitado pelos workflows privados**, inclusive
+`36035020570` pinado à fonte `6dff3c9`, e HTTP multi-role então pendente; backup de
+serviço/RPO-RTO e licença final BLOCKED, e carga 100×60 com p95 FAIL no último
+ensaio integral. O ensaio source→target sintético passou sem dados reais e
+não concluiu o gate de recuperação. Dois GETs Home no novo web retornaram
+200 em 2.287/14 ms, sem eventos `home_latency` filtrados: sem crédito p95.
+
+| Wave | Estado histórico no `6dff3c9` | Próxima evidência obrigatória à época |
+| --- | --- | --- |
+| HSP-0 | **PARTIAL de proveniência; repo/CI PASS** | Preservar CI; fechar vínculo entre fonte limpa, digests e SHA sem `commitHash` nativo. |
+| HSP-1 | **PARTIAL; demo e SQL-only PASS limitados, HTTP PENDING** | SQL 0024 passou por workflow privado fail-closed na fonte `6dff3c9` (`36035020570`); JSON privado não inspecionado independentemente. PR privada #19 preparou runner HTTP e passou ensaio local, sem run hospedado; a anon key ainda não estava configurada na Actions privada. FULL 7/7 no predecessor. A Wave inteira não recebeu PASS. |
+| HSP-2 | **BLOCKED** | Restore funcional com ACL/RLS e RPO/RTO, backup automático/retido, chave independente e NOTICE/disposição jurídica. |
+| HSP-3 | **FAIL de p95** | Medir gargalo e repetir 100 tenants/60 min no candidato corrigido, p95 ≤750 ms. |
+| HSP-4 | **NO-GO** | Reconciliar todos os gates antes de qualquer decisão de piloto. |
+
+Nenhuma Wave PILOT-1 ou posterior foi iniciada ou autorizada automaticamente.
+
+## Registro histórico da rechecagem no SHA `31df6086` — 2026-09-24 UTC
 
 A revisão inicial HSP-4 de 20/09 terminou em **NO-GO**. A revisão corretiva de
 24/09 continua **NO-GO** no staging isolado. O PR #25 foi integrado em
@@ -28,6 +93,15 @@ identidade dos serviços, portas em loopback e limpeza. Os 120 s medidos não
 são RTO; não houve restore nem RPO. O bloqueio de inicialização isolada foi
 reduzido, mas HSP-2/HSP-4 e o estado NO-GO permanecem. Evidência:
 `docs/audit-2026-09-24/HSP4_PRIVATE_SYNTHETIC_STACK_BOOT_2026-09-24.md`.
+
+**Preparação HSP-2 posterior:** as PRs privadas #18/#20/#21 integraram
+preflight controlado pelo operador, poda fail-closed e monitor de backup.
+O monitor #21 (`d8bdfb8d`) passou 88 testes sintéticos e dry-run
+`36039829373`, sem leitura de release real nem nova issue; seu cron segue
+OFF por padrão. Monitor e backup compartilham GitHub Actions como domínio
+de falha. Issue privada #17 ainda não tem ACK humano. Nenhum desses passos
+mede restore, RPO/RTO, retenção real ou alerta independente; HSP-2 segue
+**BLOCKED**. [Evidência limitada](../../../audit-2026-09-24/HSP4_PRIVATE_SYNTHETIC_AND_SQL_METADATA_2026-09-24.md).
 
 Sequência aprovada, mas **sem autorização de execução** nesta etapa:
 PILOT-1 → SCALE-500 → V1-F → SCALE-2000 → V1-GA → AGENTIC-1 → MEMORY-1.

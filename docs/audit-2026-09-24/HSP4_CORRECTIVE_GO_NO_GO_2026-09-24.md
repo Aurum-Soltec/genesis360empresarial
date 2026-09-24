@@ -1,10 +1,15 @@
 # Revisão corretiva HSP-4 — 2026-09-24
 
+> **Registro histórico do SHA `31df6086`.** A revisão operacional vigente é
+> [revisão HSP-4 vigente da fonte `6dff3c9`](HSP4_CURRENT_REVIEW_6DFF3C9_2026-09-24.md).
+> Nesta página, 6/7 e FULL pendente descrevem exclusivamente a promoção
+> anterior; a demo fictícia chegou a 7/7 no SHA posterior `5b992d3`.
+
 **Decisão após promoção: NO-GO COM CORREÇÕES OBJETIVAS.** O PR #25 foi integrado e o mesmo SHA chegou a web e worker no staging; [o smoke hospedado](HSP4_PROMOTED_STAGING_SMOKE_2026-09-24.md) provou apenas rotas anônimas, navegação e leitura autenticada limitadas. O subgate de novo login do convidado passou e a cópia cifrada v2 corrigiu a captura futura de ACL. A carga de 100 empresas por 60 minutos no SHA anterior continua acima do p95 aprovado e não foi repetida no novo; backup automático/retido com recuperação completa e disposição de licenças continuam sem prova de fechamento. A [inspeção dos contêineres](HSP4_DEPLOYED_LICENSE_BYTES_31df6086.md) fechou apenas a lacuna técnica dos bytes dos 30 pacotes em revisão para o deployment atual. Esta revisão substitui o estado operacional da [rechecagem anterior](../audit-2026-09-23/HSP4_FINAL_RECHECK_2026-09-23.md); resultados históricos permanecem rastreáveis. Nenhuma Wave após HSP-4 foi iniciada.
 
 ## A. Executive Summary
 
-O runtime **atual** é o merge commit `31df6086cb612886dc5db4a45b946ea80dde2cf1` (Railway web `09f91585-1ec8-47d9-9b2c-5c40950527f0`, worker `86828bcf-dd39-44a7-a94d-ef5819da766f`, ambos SUCCESS). A prova integral anterior pertence ao SHA `bb290bc7bc35f77b4ca01aecdbf19b748c386270`: migration 0024, isolamento SQL 12/12, HTTP multi-role 12/12, FULL de 55 respostas, outbox e carga de 100 empresas. O run `662855c2dbd5` completou 3.604 s, 100/100 empresas, 24.512 requests, 5.806 escritas, 584 negativas cross-tenant esperadas e zero erro inesperado, mas falhou no p95 ≤750 ms. O novo SHA passou um smoke limitado; não herdou automaticamente os PASS da prova integral. A investigação curta adicional confirma lentidão de streaming SSR e picos Auth no SHA anterior, sem correção pequena comprovada.
+O runtime **desta revisão histórica** era o merge commit `31df6086cb612886dc5db4a45b946ea80dde2cf1` (Railway web `09f91585-1ec8-47d9-9b2c-5c40950527f0`, worker `86828bcf-dd39-44a7-a94d-ef5819da766f`, ambos SUCCESS). A prova integral anterior pertence ao SHA `bb290bc7bc35f77b4ca01aecdbf19b748c386270`: migration 0024, isolamento SQL 12/12, HTTP multi-role 12/12, FULL de 55 respostas, outbox e carga de 100 empresas. O run `662855c2dbd5` completou 3.604 s, 100/100 empresas, 24.512 requests, 5.806 escritas, 584 negativas cross-tenant esperadas e zero erro inesperado, mas falhou no p95 ≤750 ms. O SHA `31df6086` passou um smoke limitado; não herdou automaticamente os PASS da prova integral. A investigação curta adicional confirma lentidão de streaming SSR e picos Auth no SHA anterior, sem correção pequena comprovada.
 
 O proprietário entrou novamente por senha usando o endereço exato do último convite e confirmou somente Tenant A. O Auth registrou `last_sign_in_at` posterior ao reteste nessa conta, e ela possui um único vínculo `member`. O primeiro login falhara porque havia usado o endereço principal, uma conta distinta da convidada mais recente. Nenhuma senha foi vista ou registrada.
 
