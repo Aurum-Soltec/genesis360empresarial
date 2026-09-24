@@ -1374,7 +1374,9 @@ Estados `implemented*` indicam implementação existente; não significam prova 
 
 ## EPIC-17 Production Readiness & Repository
 
-**Revisão corretiva HSP-4 em 2026-09-24 UTC: NO-GO.** O novo login da conta convidada passou com Tenant A exclusivo e `last_sign_in_at` posterior. Backup v2 privado capturou 129 entradas ACL e restaurou logicamente 102 tenants/16 Auth/24 migrations em 77,450 s; PRs #6/#7 integradas como preparação, sem restore de serviço, RPO/RTO, schedule ativo, retenção ou chave independente. A carga de 100 empresas/60 min continua FAIL em p95 ≤750 ms; instrumentação numérica local passou 27 testes, sem medição hospedada/correção. Reteste do roteiro sintético corrigido passou Auth com duas contas, mas zero opções de tenant e nenhuma escrita: proveniência hospedada BLOCKED. O CI Linux do commit público `40b9b82` separou 9/30 itens na árvore de produção e arquivou hashes/textos instalados, ainda sem contêiner Railway/decisão LGPL e CC-BY. `V1-ST-110`, `V1-ST-111` e `V1-ST-122` permanecem abertas; `V1-ST-123` não iniciou. Evidência: `docs/audit-2026-09-24/HSP4_CORRECTIVE_GO_NO_GO_2026-09-24.md`.
+**Estado após promoção de 2026-09-24 UTC: NO-GO.** O PR #25 integrou `31df6086cb612886dc5db4a45b946ea80dde2cf1`; CI final e deployments web/worker no mesmo SHA passaram. O smoke hospedado limitou-se a negativas anônimas, Tenant A autenticado, administração/Passport/demo/relatório existentes e quatro destinos de navegação. A demo mostrou 6/7 etapas, com zero fontes vinculadas/verificadas. O login convidado passou. O FULL corrigido, 0024 SQL/HTTP multi-role e 100 empresas/60 min **não foram repetidos nesse SHA**. A carga integral anterior falhou p95 ≤750 ms. Backup de serviço/RPO/RTO/automação e licença seguem BLOCKED. O runner sintético anterior não selecionou tenant, mas a UI posterior mostrou Tenant A para uma das mesmas contas; causa não estabelecida. `V1-ST-110`, `V1-ST-111` e `V1-ST-122` permanecem abertas; `V1-ST-123` não iniciou. Evidência: `docs/audit-2026-09-24/HSP4_CORRECTIVE_GO_NO_GO_2026-09-24.md`.
+
+**Revisão corretiva anterior de 2026-09-24 UTC (histórica):** o novo login convidado passou; backup v2 capturou 129 entradas ACL e restore lógico 102 tenants/16 Auth/24 migrations em 77,450 s. PRs #6/#7 foram integradas como preparação, sem restore de serviço/RPO/RTO/schedule/retenção/chave independente. O run 100×60 anterior falhou p95. O CI Linux do `40b9b82` classificou 9/30 itens de licença na árvore de produção, sem bytes do contêiner ou decisão LGPL/CC-BY.
 
 **Registro anterior HSP-4 em 2026-09-24 UTC (histórico):** os estados completed abaixo que
 descrevem a revisão de 20/09 são históricos. O artefato funcional
@@ -1447,7 +1449,7 @@ sem parcela de latência isolada. HSP-4 permanece **NO-GO**; PILOT-1 não começ
 
 ### V1-ST-107 — Full lint + TypeScript 6 + Vitest + Next build
 - **Status:** `completed-remote-ci`
-- **Revisão corretiva:** o predecessor público `40b9b82` passou CI e 503 Vitest/34 testes nativos no check local. O último commit com código `6d4d569` no PR #25 incorpora instrumentação/runner, passou `pnpm quality` local com 506 Vitest/34 nativos, lint, tipos, segurança e build; quality/database/CodeQL/Analyze remotos passaram nos runs `36007816845` e `36007811013`. Continua sem promoção ao staging ou crédito runtime.
+- **Revisão após promoção:** o predecessor público `40b9b82` passou CI e 503 Vitest/34 testes nativos no check local. O último commit com código `6d4d569` no PR #25 incorpora instrumentação/runner, passou `pnpm quality` local com 506 Vitest/34 nativos, lint, tipos, segurança e build; quality/database/CodeQL/Analyze finais passaram nos runs `36009033246` e `36009024373`. O merge `31df6086` está em web e worker do staging. O crédito runtime do novo SHA limita-se ao smoke; testes integrais afetados ainda pendem.
 - **Prioridade:** `P0`
 - **Source:** `docs/canonical/v1/delivery/STORIES_MASTER.md`
 - **Critérios de aceite:**
@@ -1467,7 +1469,11 @@ sem parcela de latência isolada. HSP-4 permanece **NO-GO**; PILOT-1 não começ
   repetido no artefato hospedado, mas a prova documental real segue pendente.
   O roteiro sintético corrigido teve reteste hospedado tentado com duas contas:
   Auth PASS, zero opções de tenant, nenhuma escrita e nenhum relatório novo;
-  a proveniência corrigida permanece BLOCKED em runtime.
+  a proveniência corrigida permanece PENDING em runtime. Após a promoção,
+  a UI autenticada encontrou Tenant A para uma dessas contas; a divergência
+  com o runner não tem causa demonstrada. O relatório existente mostrou
+  55 respostas e zero referências/fontes vinculadas/verificadas; não é um
+  novo FULL no SHA `31df6086`.
 - **Prioridade:** `P0`
 - **Source:** `docs/canonical/v1/delivery/STORIES_MASTER.md`
 - **Critérios de aceite:**
@@ -1566,7 +1572,10 @@ sem parcela de latência isolada. HSP-4 permanece **NO-GO**; PILOT-1 não começ
 ### V1-ST-113 — Configurar dev/staging/prod e promoção controlada
 - **Status:** `completed-hosted-staging-and-remote-ci`
 - **Rechecagem:** CI quality/database/CodeQL PASS e web/worker Railway
-  `SUCCESS` no mesmo SHA `bb290bc7bc35f77b4ca01aecdbf19b748c386270`.
+  `SUCCESS` no mesmo SHA histórico `bb290bc7bc35f77b4ca01aecdbf19b748c386270`.
+  O PR #25 foi integrado em `31df6086cb612886dc5db4a45b946ea80dde2cf1`;
+  quality/database/CodeQL/Analyze e ambos os deployments novos passaram
+  nesse mesmo SHA.
   O ambiente Railway chamado `production` é o projeto dedicado de staging;
   isso não é promoção à produção aberta.
 - **Prioridade:** `P0`
@@ -1695,7 +1704,7 @@ sem parcela de latência isolada. HSP-4 permanece **NO-GO**; PILOT-1 não começ
 
 ### V1-ST-122 — Production Readiness Review e release candidate
 - **Status:** `hsp4-prr-closed-no-go-objective-fixes`
-- **Revisão corretiva:** relatório A–T de 24/09 emitido com NO-GO. Novo login convidado passou; p95 segue FAIL, backup/restore de serviço/licença BLOCKED e reteste da proveniência sintética corrigida parou após Auth sem opções de tenant. PRs privadas #6/#7 integradas não alteram gates operacionais. Não há GO para piloto ou produção aberta. A revisão de 20/09 é histórica.
+- **Revisão após promoção:** relatório A–T de 24/09 permanece NO-GO. PR #25 integrado em `31df6086` e web/worker SUCCESS no mesmo SHA; smoke autenticado limitado e negativas anônimas passaram. Novo FULL, matriz multi-role e run 100×60 não foram repetidos; p95 do último run segue FAIL, backup/restore de serviço/licença BLOCKED. O runner anterior parou após Auth sem seleção de tenant, enquanto a UI posterior encontrou Tenant A para uma conta; divergência indeterminada. PRs privadas #6/#7 integradas não alteram gates operacionais. Não há GO para piloto ou produção aberta.
 - **Prioridade:** `P0`
 - **Source:** `docs/canonical/v1/delivery/STORIES_MASTER.md`
 - **Critérios de aceite:**

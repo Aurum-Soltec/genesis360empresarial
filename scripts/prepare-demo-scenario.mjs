@@ -65,7 +65,7 @@ try {
   ]);
 
   const tenantButtons = page.locator("button.tenant-choice");
-  await page.locator('button.tenant-choice, [role="status"]').first().waitFor({
+  await page.getByRole("heading", { name: "Escolha a empresa" }).waitFor({
     state: "visible",
     timeout: 15000,
   });

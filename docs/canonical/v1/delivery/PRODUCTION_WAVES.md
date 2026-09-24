@@ -1,14 +1,16 @@
 # PRODUCTION WAVES
 
 > **Atualização operacional — 2026-09-24 UTC:** este mapa PW permanece histórico.
-> A revisão HSP-4 de 20/09 terminou em NO-GO; a rechecagem autorizada também
-> concluiu 100 tenants por 60 minutos sem erro funcional, mas falhou no p95
-> e permanece NO-GO. Seu estado atual está em
+> A revisão HSP-4 de 20/09 terminou em NO-GO. O run histórico de 100 tenants
+> por 60 minutos concluiu sem erro funcional, mas falhou no p95. O PR #25 foi
+> integrado e seu merge SHA `31df6086` está em web e worker no staging;
+> o smoke novo foi limitado e não repetiu o run de escala nem a matriz multi-role.
+> A decisão permanece NO-GO. Seu estado atual está em
 > `PRODUCTION_WAVES_MASTER.md` e no relatório
-> `../../../audit-2026-09-23/HSP4_FINAL_RECHECK_2026-09-23.md`. Nenhuma Wave após
-> HSP-4 começou. A primeira cópia privada cifrada e o restore lógico isolado
-> passaram como subprova manual; o gate de recuperação continua BLOCKED por
-> agendamento, retenção e RPO/RTO de serviço.
+> `../../../audit-2026-09-24/HSP4_CORRECTIVE_GO_NO_GO_2026-09-24.md`.
+> Nenhuma Wave após HSP-4 começou. A cópia privada cifrada e o restore lógico
+> isolado passaram como subprova manual; o gate de recuperação continua BLOCKED
+> por agendamento, retenção, equivalência de permissões e RPO/RTO de serviço.
 
 As Waves 0-4 existentes representam evolução histórica da fundação. A partir deste pacote, usar identificadores `PW-*` para produção.
 
