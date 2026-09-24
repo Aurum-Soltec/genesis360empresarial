@@ -131,11 +131,11 @@ function StageRail({ currentStage }: { currentStage: number | null }) {
 export default function DiagnosticJourney({
   companyId,
   companyName,
-  demoEvidenceIds,
+  demoSourceCount,
 }: {
   companyId: string;
   companyName: string;
-  demoEvidenceIds: string[];
+  demoSourceCount: number;
 }) {
   const router = useRouter();
   const [diagnosticId, setDiagnosticId] = useState<string | null>(null);
@@ -199,7 +199,10 @@ export default function DiagnosticJourney({
           answerState: input.answerState,
           response: input.response ?? { state: input.answerState },
           maturity: input.maturity ?? null,
-          informationSlots: input.informationSlots ?? {}, evidenceRefs: demoEvidenceIds,
+          informationSlots: input.informationSlots ?? {},
+          // The demo package is linked to the diagnostic, not to every answer.
+          // A source needs a reviewed question-level relevance rule before linking.
+          evidenceRefs: [],
         }),
       });
       const data = await response.json();
@@ -441,7 +444,7 @@ export default function DiagnosticJourney({
               onClick={() => setProfile("FULL")}
             >
               <strong>Diagnóstico completo</strong>
-              <span>31 âncoras e aprofundamentos adaptativos, com até 60 interações típicas.</span>
+              <span>24 âncoras em 31 interações iniciais, com aprofundamentos adaptativos até 60 interações típicas.</span>
             </button>
             <button
               type="button"
@@ -484,9 +487,9 @@ export default function DiagnosticJourney({
                 Atualizar estado sem reenviar resposta
               </button> : null}</div> : null}
           </main>
-          {demoEvidenceIds.length ? (
+          {demoSourceCount ? (
             <p className="diagnostic-evidence-note">
-              {demoEvidenceIds.length} fonte(s) fictícia(s) serão vinculadas às respostas para demonstrar rastreabilidade.
+              {demoSourceCount} fonte(s) fictícia(s) registrada(s) para consulta. Elas não comprovam nem são vinculadas automaticamente às respostas.
             </p>
           ) : null}
       </div>

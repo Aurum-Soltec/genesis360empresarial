@@ -1,8 +1,14 @@
 # PRODUCTION WAVES
 
-> **Atualização operacional — 2026-09-20:** este mapa permanece histórico. A
-> execução vigente usa HSP-0 a HSP-4 conforme `PRODUCTION_WAVES_MASTER.md` e foi
-> encerrada com NO-GO em `GENESIS_360_HSP_0_4_FINAL_REPORT_2026-09-20.md`.
+> **Atualização operacional — 2026-09-24 UTC:** este mapa PW permanece histórico.
+> A revisão HSP-4 de 20/09 terminou em NO-GO; a rechecagem autorizada também
+> concluiu 100 tenants por 60 minutos sem erro funcional, mas falhou no p95
+> e permanece NO-GO. Seu estado atual está em
+> `PRODUCTION_WAVES_MASTER.md` e no relatório
+> `../../../audit-2026-09-23/HSP4_FINAL_RECHECK_2026-09-23.md`. Nenhuma Wave após
+> HSP-4 começou. A primeira cópia privada cifrada e o restore lógico isolado
+> passaram como subprova manual; o gate de recuperação continua BLOCKED por
+> agendamento, retenção e RPO/RTO de serviço.
 
 As Waves 0-4 existentes representam evolução histórica da fundação. A partir deste pacote, usar identificadores `PW-*` para produção.
 

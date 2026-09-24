@@ -25,6 +25,9 @@ for (const file of required) {
 const css = fs.readFileSync("app/globals.css", "utf8");
 const nav = fs.readFileSync("components/app-navigation.tsx", "utf8");
 const home = fs.readFileSync("app/page.tsx", "utf8");
+const priorities = fs.readFileSync("app/prioridades/page.tsx", "utf8");
+const indicators = fs.readFileSync("app/indicadores/page.tsx", "utf8");
+const history = fs.readFileSync("app/historico/page.tsx", "utf8");
 const diagnostic = fs.readFileSync("app/diagnostico-v1/journey.tsx", "utf8");
 const result = fs.readFileSync("app/resultado-v1/page.tsx", "utf8");
 
@@ -66,8 +69,19 @@ for (const token of [
   }
 }
 
+for (const [, route] of nav.matchAll(/href: "(\/[^\"]*)"/g)) {
+  const page = route === "/" ? "app/page.tsx" : `app${route}/page.tsx`;
+  if (!fs.existsSync(page)) {
+    console.error(`NAVIGATION DESTINATION MISSING: ${route}`);
+    process.exit(1);
+  }
+}
+
 for (const [name, source, tokens] of [
-  ["Home", home, ["executive-hero", "Suas prioridades agora", "Growth Score", "Confiabilidade"]],
+  ["Home", home, ["executive-hero", "Próximo movimento", "Growth Score", "Confiabilidade"]],
+  ["Priorities", priorities, ["Prioridades", "priority"]],
+  ["Indicators", indicators, ["Indicadores", "Growth Score"]],
+  ["History", history, ["Histórico", "timeline"]],
   ["Diagnostic", diagnostic, ["diagnostic-stage-rail", "Progresso", "Confiabilidade", "Não sei", "Responder depois"]],
   ["Result", result, ["result-hero", "Growth Score", "O que merece atenção agora", "Ver detalhes técnicos da leitura"]],
 ]) {
@@ -108,6 +122,26 @@ const contrastPairs = [
   ["white / Genesis deep", "#FFFFFF", "#0B3D3A", 7],
   ["ink / lime", "#082B29", "#7ED321", 7],
 ];
+
+function cssColor(variable) {
+  const match = css.match(new RegExp(`\\-\\-${variable}:\\s*(#[0-9a-fA-F]{6})\\s*;`));
+  if (!match) {
+    console.error(`DESIGN COLOR TOKEN MISSING: --${variable}`);
+    process.exit(1);
+  }
+  return match[1];
+}
+
+const faint = cssColor("g-faint");
+for (const surface of ["g-surface", "g-canvas", "g-surface-soft", "g-surface-strong", "g-green-soft"]) {
+  contrastPairs.push([`faint text / ${surface}`, faint, cssColor(surface), 4.5]);
+}
+contrastPairs.push(["focus indicator / white", cssColor("g-focus"), cssColor("g-surface"), 3]);
+
+if (!css.includes("outline: 3px solid var(--g-focus)")) {
+  console.error("FOCUS CONTRACT MISSING: visible 3px focus indicator");
+  process.exit(1);
+}
 
 for (const [label, fg, bg, minimum] of contrastPairs) {
   const ratio = contrast(fg, bg);

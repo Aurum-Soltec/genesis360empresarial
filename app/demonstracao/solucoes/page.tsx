@@ -1,35 +1,73 @@
 import Link from "next/link";
-import { notFound, redirect } from "next/navigation";
 import { AppShell } from "@/components/app-shell";
 import { buildDemoSolutionPreview } from "@/lib/demo-solution-preview";
 import { isDemoTenantAllowed } from "@/lib/feature-flags";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
-import { requireTenantContext } from "@/lib/tenant-context";
+import { requirePageTenantContext } from "@/lib/page-tenant-context";
+import { selectUniqueTenantCompany } from "@/lib/server/company-selection";
 
 export default async function DemoSolutionsPage({
   searchParams,
 }: {
   searchParams: Promise<{ diagnostic?: string }>;
 }) {
-  const ctx = await requireTenantContext().catch(() => null);
-  if (!ctx) redirect("/");
-  if (!isDemoTenantAllowed(ctx.tenantId)) notFound();
+  const ctx = await requirePageTenantContext("/demonstracao/solucoes");
+  if (!isDemoTenantAllowed(ctx.tenantId)) return (
+    <AppShell>
+      <section className="card empty-state" aria-labelledby="demo-solutions-unavailable">
+        <p className="kicker">Soluções compatíveis</p>
+        <h1 id="demo-solutions-unavailable">A prévia de empresas fictícias está disponível apenas no tenant de demonstração.</h1>
+        <p>Nenhuma empresa real foi classificada ou recomendada por esta tela.</p>
+        <Link className="button button-secondary" href="/solucoes">Ver disponibilidade de soluções qualificadas</Link>
+      </section>
+    </AppShell>
+  );
 
   const db = await createSupabaseServerClient();
+  const selection = await selectUniqueTenantCompany(db, ctx.tenantId, true);
+  if (selection.status !== "ready") return (
+    <AppShell>
+      <section className="card empty-state" aria-labelledby="demo-solutions-company-unavailable">
+        <p className="kicker">Soluções compatíveis</p>
+        <h1 id="demo-solutions-company-unavailable">Empresa fictícia indisponível</h1>
+        <p>A simulação requer exatamente uma empresa fictícia neste tenant. Nenhum dado de empresa real será usado.</p>
+        <Link className="button button-secondary" href="/demonstracao">Voltar ao roteiro</Link>
+      </section>
+    </AppShell>
+  );
+  const demoCompany = selection.company;
   const params = await searchParams;
   let diagnosticId = params.diagnostic ?? null;
   if (!diagnosticId) {
-    const { data: latest } = await db.from("diagnostics").select("id").eq("tenant_id", ctx.tenantId).eq("status", "scored").order("created_at", { ascending: false }).limit(1).maybeSingle();
+    const { data: latest, error: latestError } = await db.from("diagnostics").select("id").eq("tenant_id", ctx.tenantId).eq("company_id", demoCompany.id).eq("status", "scored").order("created_at", { ascending: false }).limit(1).maybeSingle();
+    if (latestError) throw new Error("DEMO_SOLUTIONS_DIAGNOSTIC_READ_FAILED");
     diagnosticId = latest?.id ?? null;
   }
-  if (!diagnosticId) redirect("/demonstracao");
+  if (!diagnosticId) return (
+    <AppShell>
+      <section className="card empty-state" aria-labelledby="demo-solutions-needs-report">
+        <p className="kicker">Prévia de soluções</p>
+        <h1 id="demo-solutions-needs-report">Conclua o diagnóstico para ver as soluções compatíveis.</h1>
+        <p>A prévia usa necessidades do relatório e exibe somente provedores fictícios, com justificativa de aderência.</p>
+        <Link className="button button-primary" href="/diagnostico-v1">Abrir diagnóstico</Link>
+      </section>
+    </AppShell>
+  );
 
-  const { data: diagnostic } = await db.from("diagnostics").select("id,company_id,growth_score,confidence").eq("tenant_id", ctx.tenantId).eq("id", diagnosticId).eq("status", "scored").maybeSingle();
-  if (!diagnostic) redirect("/demonstracao");
-  const [{ data: company }, { data: scores }] = await Promise.all([
-    db.from("companies").select("trade_name").eq("tenant_id", ctx.tenantId).eq("id", diagnostic.company_id).maybeSingle(),
-    db.from("score_results").select("dimension,score").eq("tenant_id", ctx.tenantId).eq("diagnostic_id", diagnostic.id),
-  ]);
+  const { data: diagnostic, error: diagnosticError } = await db.from("diagnostics").select("id,company_id,growth_score,confidence").eq("tenant_id", ctx.tenantId).eq("company_id", demoCompany.id).eq("id", diagnosticId).eq("status", "scored").maybeSingle();
+  if (diagnosticError) throw new Error("DEMO_SOLUTIONS_DIAGNOSTIC_READ_FAILED");
+  if (!diagnostic) return (
+    <AppShell>
+      <section className="card empty-state" aria-labelledby="demo-solutions-report-missing">
+        <p className="kicker">Prévia de soluções</p>
+        <h1 id="demo-solutions-report-missing">Ainda não há um relatório concluído para esta prévia.</h1>
+        <p>Finalize o diagnóstico da empresa de demonstração e depois retorne para revisar o encaixe das soluções simuladas.</p>
+        <Link className="button button-primary" href="/diagnostico-v1">Continuar diagnóstico</Link>
+      </section>
+    </AppShell>
+  );
+  const { data: scores, error: scoresError } = await db.from("score_results").select("dimension,score").eq("tenant_id", ctx.tenantId).eq("diagnostic_id", diagnostic.id);
+  if (scoresError) throw new Error("DEMO_SOLUTIONS_BASIS_READ_FAILED");
   const solutions = buildDemoSolutionPreview((scores ?? []).map((item) => ({ dimension: item.dimension, score: item.score === null ? null : Number(item.score) })));
 
   return (
@@ -38,7 +76,7 @@ export default async function DemoSolutionsPage({
         <div>
           <div className="kicker">Demonstração controlada</div>
           <h1 className="page-title">Soluções compatíveis</h1>
-          <p className="page-subtitle">Uma tradução das menores leituras de {company?.trade_name ?? "empresa fictícia"} em capacidades de apoio, com a lógica de aderência aberta.</p>
+          <p className="page-subtitle">Uma tradução das menores leituras de {demoCompany.trade_name} em capacidades de apoio, com a lógica de aderência aberta.</p>
         </div>
         <Link className="button button-secondary" href={`/resultado-v1?diagnostic=${diagnostic.id}`}>Voltar ao relatório</Link>
       </header>

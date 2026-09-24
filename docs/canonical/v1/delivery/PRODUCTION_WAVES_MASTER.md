@@ -2,19 +2,26 @@
 
 As Waves 0–8 registram a evolução histórica da fundação. As **PW** abaixo são as ondas de execução para transformar a baseline em produção.
 
-## Execução canônica Hosted Staging & Pilot Readiness — 2026-09-20
+## Rechecagem canônica Hosted Staging & Pilot Readiness — 2026-09-24 UTC
+
+A revisão inicial HSP-4 de 20/09 terminou em **NO-GO**. A revisão corretiva de
+24/09 continua **NO-GO** no staging isolado. O artefato funcional sob prova
+**bb290bc7bc35f77b4ca01aecdbf19b748c386270** passou
+quality/database/CodeQL e web/worker Railway chegaram a SUCCESS no mesmo
+artefato. Os gates operacionais abaixo prevalecem sobre estados históricos
+completed e não liberam piloto. Evidência atual: `docs/audit-2026-09-24/HSP4_CORRECTIVE_GO_NO_GO_2026-09-24.md`.
 
 | Wave | Estado | Resultado objetivo |
-|---|---|---|
-| HSP-0 — Baseline, repositório e controle remoto | **PASS** | GitHub público organizacional, `main` protegida, PR e CI obrigatórios; commit baseline e correção de headers rastreáveis. |
-| HSP-1 — Staging hospedado isolado | **BLOCKED no convite; core PASS** | Supabase/Railway hospedados, migrations 23/23, pgTAP 95/95, browser 10/10 e worker contínuo; convite real bloqueado por SMTP/inbox controlado. |
-| HSP-2 — Segurança, observabilidade e recuperação | **BLOCKED; subgates técnicos PASS** | Headers, flags, logs, métricas, GitHub security e restore lógico passaram; paging externo e backup gerenciado/retido não estão disponíveis na solução gratuita atual. |
-| HSP-3 — Prova de 100 tenants | **FAIL de performance** | Caminho fim a fim e isolamento passaram sem erro funcional; p95 hospedado excedeu o SLO de 750 ms. |
-| HSP-4 — Production Readiness Review hospedado | **CONCLUÍDA — NO-GO** | Relatório reconciliado; piloto e ondas seguintes permanecem não iniciados. |
+| --- | --- | --- |
+| HSP-0 — Baseline, repositório e controle remoto | **PASS histórico; CI corretivo PASS** | GitHub organizacional, branch principal protegida, PR/CI; checks de bb290bc, dc9c124 e último commit com código 6d4d569 no PR #25 aprovados, incluindo quality/database/CodeQL/Analyze. O candidato passou `pnpm quality` local com 506 Vitest/34 nativos, mas não foi promovido. O runtime funcional sob ensaio continua bb290bc. |
+| HSP-1 — Staging hospedado isolado | **PASS para Auth/fluxo anterior; proveniência sintética corrigida BLOCKED e documentação real pending** | Migrations 0001–0024; 0024 RLS 12/12 SQL e 12/12 HTTP multi-role no bb290bc. FULL anterior 55 respostas, score 48 e relatório, com zero fontes vinculadas/verificadas. Convite/e-mail/callback e novo login da conta convidada com somente Tenant A passaram. Reteste do roteiro corrigido: duas contas sintéticas passaram Auth, mas retornaram zero opções de tenant, sem escrita. |
+| HSP-2 — Segurança, observabilidade e recuperação | **BLOCKED; subprova manual de backup v2 PASS** | Cinco flags OFF; issue #27 comprovou alerta por e-mail, ACK e recuperação. Backup privado v2 run 36002104320: release cifrada imutável, 129 entradas ACL no arquivo, restore lógico isolado de 102 tenants/16 Auth/24 migrations em 77,450 s após download. PR #7 do cron guardado integrada no SHA privado 051a76d, porém variáveis de ativação ausentes mantêm schedule OFF; PR #6 do scaffold de restore de serviço integrada no SHA 10214da, 34 testes locais PASS e um symlink SKIP no Windows, sem restore executado. Não há equivalência de ACL/owner restaurada, serviço recuperado, backup agendado, 30 dias, RPO/RTO ou chave independente. Orçamento GitHub Actions US$0/Stop usage confirmado, com risco de esgotar minutos. Licença ainda BLOCKED: CI Linux do 40b9b82 separou 9/30 itens na árvore de produção, sem bytes Railway/decisão LGPL/CC-BY. |
+| HSP-3 — Prova de 100 tenants | **PASS de duração/isolamento/outbox; FAIL p95** | Primeiro run bb290bc terminou aos 998 s com 10 erros. Retry no mesmo runtime, run 662855c2dbd5: 3.604 s, 100/100 tenants, 24.512 requests, 5.806 escritas, 584 negativas esperadas, zero erro inesperado; outbox 5.806 processados e zero pending/dead/retries. p95 login 1.964,5, Home 1.055,48, escrita 1.024,5 e leitura 793,8 ms >750 ms. Railway Virgínia/Supabase São Paulo comprovados, causalidade não quantificada. Instrumentação numérica local adicional passou 27 testes, sem medição hospedada ou correção. |
+| HSP-4 — Production Readiness Review hospedado | **NO-GO; revisão corretiva** | Novo login convidado passou. p95 continua FAIL; backup automático/restore de serviço/ACL/RPO-RTO e licença continuam BLOCKED. Documento real fundamentando conclusão permanece pending sob flag OFF, sem promover demo sintética a fato. Produção aberta e piloto não autorizados. |
 
-Próxima sequência aprovada, porém sem autorização de execução nesta etapa:
-`PILOT-1 -> SCALE-500 -> V1-F -> SCALE-2000 -> V1-GA -> AGENTIC-1 -> MEMORY-1`.
-Nenhuma dessas ondas foi iniciada.
+Sequência aprovada, mas **sem autorização de execução** nesta etapa:
+PILOT-1 → SCALE-500 → V1-F → SCALE-2000 → V1-GA → AGENTIC-1 → MEMORY-1.
+Nenhuma dessas Waves foi iniciada.
 
 ## Histórico consolidado
 - Wave 0 — tenancy/consent;

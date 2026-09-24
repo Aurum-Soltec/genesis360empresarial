@@ -20,7 +20,7 @@ function failure(error: unknown) {
 export async function GET() {
   try {
     const result = await listTenantMembers(await requireTenantContext());
-    if (result.error) throw new Error("MEMBER_NOT_FOUND");
+    if (result.error) throw new Error("MEMBERSHIP_READ_FAILED");
     return NextResponse.json({ members: result.data });
   } catch (error) { return failure(error); }
 }

@@ -1,11 +1,18 @@
 import { redirect } from "next/navigation";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { safeInternalPath } from "@/lib/safe-navigation";
 import TenantChooser from "./tenant-chooser";
 
-export default async function SelectTenantPage() {
+export default async function SelectTenantPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ next?: string }>;
+}) {
+  const { next } = await searchParams;
   const db = await createSupabaseServerClient();
   const { data: auth } = await db.auth.getUser();
-  if (!auth.user) redirect("/entrar");
+  const nextPath = safeInternalPath(next, "/");
+  if (!auth.user) redirect(`/entrar?next=${encodeURIComponent(nextPath)}`);
   const { data, error } = await db
     .from("memberships")
     .select("tenant_id,role,tenants(id,name,status)")
@@ -19,5 +26,5 @@ export default async function SelectTenantPage() {
       ? [{ id: tenant.id, name: tenant.name, role: membership.role }]
       : [];
   });
-  return <TenantChooser email={auth.user.email ?? ""} memberships={memberships} />;
+  return <TenantChooser email={auth.user.email ?? ""} memberships={memberships} nextPath={nextPath} />;
 }

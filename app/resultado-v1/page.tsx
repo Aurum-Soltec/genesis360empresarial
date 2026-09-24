@@ -6,13 +6,15 @@ import { PrintReportButton } from "@/components/print-report-button";
 import {
   answersWithEvidence,
   evidenceIdsFromAnswers,
+  evidenceSetComplete,
   verifiedEvidenceCount,
 } from "@/lib/report-provenance";
-import { requireTenantContext } from "@/lib/tenant-context";
+import { requirePageTenantContext } from "@/lib/page-tenant-context";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { buildExecutivePlan, evidenceQualityMessage } from "@/lib/report-insights";
 import { buildDemoSolutionPreview } from "@/lib/demo-solution-preview";
 import { isDemoTenantAllowed } from "@/lib/feature-flags";
+import { selectUniqueTenantCompany } from "@/lib/server/company-selection";
 
 const dimensionLabels: Record<string, string> = {
   EST: "Estratégia",
@@ -43,16 +45,17 @@ export default async function ResultadoV1({
 }: {
   searchParams: Promise<{ diagnostic?: string }>;
 }) {
-  const ctx = await requireTenantContext().catch(() => null);
-  if (!ctx) redirect("/");
-
   const params = await searchParams;
+  const destination = params.diagnostic
+    ? `/resultado-v1?diagnostic=${encodeURIComponent(params.diagnostic)}`
+    : "/resultado-v1";
+  const ctx = await requirePageTenantContext(destination);
   const db = await createSupabaseServerClient();
 
   let diagnosticId = params.diagnostic ?? null;
 
   if (!diagnosticId) {
-    const { data: latest } = await db
+    const { data: latest, error: latestError } = await db
       .from("diagnostics")
       .select("id")
       .eq("tenant_id", ctx.tenantId)
@@ -60,41 +63,49 @@ export default async function ResultadoV1({
       .order("created_at", { ascending: false })
       .limit(1)
       .maybeSingle();
+    if (latestError) throw new Error("REPORT_DIAGNOSTIC_READ_FAILED");
     diagnosticId = latest?.id ?? null;
   }
 
   if (!diagnosticId) redirect("/diagnostico-v1");
 
-  const { data: diagnosticRow } = await db
+  const { data: diagnosticRow, error: diagnosticError } = await db
     .from("diagnostics")
     .select("id,company_id,status,coverage,confidence,confidence_level,submitted_at,growth_score,growth_score_status,confidence_rule_version")
     .eq("tenant_id", ctx.tenantId)
     .eq("id", diagnosticId)
     .maybeSingle();
+  if (diagnosticError) throw new Error("REPORT_DIAGNOSTIC_READ_FAILED");
 
   if (!diagnosticRow || diagnosticRow.status !== "scored") redirect("/diagnostico-v1");
 
-  const { data: company } = await db
+  const { data: company, error: companyError } = await db
     .from("companies")
-    .select("trade_name")
+    .select("trade_name,fictional")
     .eq("tenant_id", ctx.tenantId)
     .eq("id", diagnosticRow.company_id)
     .maybeSingle();
+  if (companyError) throw new Error("REPORT_COMPANY_READ_FAILED");
+  const demoSelection = company?.fictional && isDemoTenantAllowed(ctx.tenantId)
+    ? await selectUniqueTenantCompany(db, ctx.tenantId, true)
+    : null;
+  const isCurrentDemoCompany = demoSelection?.status === "ready" && demoSelection.company.id === diagnosticRow.company_id;
 
-  const { data: scores } = await db
+  const { data: scores, error: scoresError } = await db
     .from("score_results")
     .select("dimension,score,coverage,confidence,rule_version")
     .eq("tenant_id", ctx.tenantId)
     .eq("diagnostic_id", diagnosticId)
     .order("score");
 
-  const { data: pains } = await db
+  const { data: pains, error: painsError } = await db
     .from("pain_findings")
     .select("id,title,dimension,severity,confidence,gap_summary")
     .eq("tenant_id", ctx.tenantId)
     .eq("diagnostic_id", diagnosticId)
     .order("severity", { ascending: false })
     .limit(3);
+  if (scoresError || painsError) throw new Error("REPORT_ANALYSIS_READ_FAILED");
 
   const { data: answerEvidenceRows, error: answerEvidenceError } = await db
     .from("answers")
@@ -127,7 +138,8 @@ export default async function ResultadoV1({
     : { data: [], error: null };
 
   const provenanceAvailable =
-    !answerEvidenceError && !diagnosticEvidenceLinksError && !evidenceError;
+    !answerEvidenceError && !diagnosticEvidenceLinksError && !evidenceError &&
+    evidenceSetComplete(evidenceIds, evidenceRows);
   const evidencedAnswers = answersWithEvidence(answerEvidenceRows);
   const verifiedEvidence = verifiedEvidenceCount(evidenceRows);
   const ruleVersions = [...new Set((scores ?? []).map((score) => score.rule_version).filter(Boolean))];
@@ -145,14 +157,14 @@ export default async function ResultadoV1({
     dimension: score.dimension,
     score: score.score === null ? null : Number(score.score),
   })));
-  const demoSolutionPreview = isDemoTenantAllowed(ctx.tenantId)
+  const demoSolutionPreview = isCurrentDemoCompany
     ? buildDemoSolutionPreview((scores ?? []).map((score) => ({
         dimension: score.dimension,
         score: score.score === null ? null : Number(score.score),
       })))
     : [];
   const evidenceQuality = provenanceAvailable
-    ? evidenceQualityMessage(evidenceIds.length, verifiedEvidence)
+    ? evidenceQualityMessage(evidenceRows?.length ?? 0, verifiedEvidence)
     : "A proveniência está indisponível; nenhuma conclusão sobre ausência de evidência foi assumida.";
 
   return (
@@ -205,7 +217,8 @@ export default async function ResultadoV1({
               aria-label="Confiabilidade da análise"
               aria-valuemin={0}
               aria-valuemax={100}
-              aria-valuenow={confidence ?? 0}
+              aria-valuenow={confidence ?? undefined}
+              aria-valuetext={confidence === null ? "Sem leitura" : undefined}
             >
               <span style={{ width: `${confidence ?? 0}%` }} />
             </div>
@@ -397,7 +410,7 @@ export default async function ResultadoV1({
           <div className="section-heading-row">
             <div>
               <span className="section-eyebrow">Rastreabilidade</span>
-              <h2 id="report-provenance-title">Como esta leitura foi sustentada</h2>
+              <h2 id="report-provenance-title">Origem e limites da leitura</h2>
             </div>
             <Link className="text-action report-screen-only" href="/documentos">
               Revisar evidências
@@ -410,18 +423,25 @@ export default async function ResultadoV1({
               <strong>{answerEvidenceRows?.length ?? "Indisponível"}</strong>
             </div>
             <div>
-              <span>Respostas com evidência</span>
+              <span>Respostas com referência declarada</span>
               <strong>{provenanceAvailable ? evidencedAnswers : "Indisponível"}</strong>
             </div>
             <div>
-              <span>Fontes vinculadas</span>
-              <strong>{provenanceAvailable ? evidenceIds.length : "Indisponível"}</strong>
+              <span>Fontes registradas no diagnóstico</span>
+              <strong>{provenanceAvailable ? evidenceRows?.length ?? 0 : "Indisponível"}</strong>
             </div>
             <div>
-              <span>Evidências verificadas</span>
+              <span>Fontes verificadas</span>
               <strong>{provenanceAvailable ? verifiedEvidence : "Indisponível"}</strong>
             </div>
           </div>
+
+          <p className="report-provenance-note">
+            Referência declarada não comprova que a fonte sustenta a resposta. A
+            pertinência e a verificação devem ser confirmadas antes de usar esta
+            leitura como fato documental.
+            {isCurrentDemoCompany ? " Neste cenário, as fontes são fictícias." : ""}
+          </p>
 
           {!provenanceAvailable ? (
             <div className="precision-empty compact">

@@ -1,58 +1,61 @@
-import { redirect } from "next/navigation";
 import { AppShell } from "@/components/app-shell";
-import { requireTenantContext } from "@/lib/tenant-context";
+import { isDemoTenantAllowed } from "@/lib/feature-flags";
+import { requirePageTenantContext } from "@/lib/page-tenant-context";
+import { selectUniqueTenantCompany } from "@/lib/server/company-selection";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
 export default async function CapacidadesPage() {
-  let ctx;
-  try {
-    ctx = await requireTenantContext();
-  } catch {
-    redirect("/");
-  }
+  const ctx = await requirePageTenantContext("/capacidades");
 
   const db = await createSupabaseServerClient();
-  const { data: company } = await db
-    .from("companies")
-    .select("id,trade_name")
-    .eq("tenant_id", ctx.tenantId)
-    .limit(1)
-    .maybeSingle();
+  const selection = await selectUniqueTenantCompany(db, ctx.tenantId, isDemoTenantAllowed(ctx.tenantId));
+  if (selection.status !== "ready") return (
+    <AppShell>
+      <section className="card empty-state" aria-labelledby="capabilities-company-required">
+        <p className="kicker">Minhas capacidades</p>
+        <h1 id="capabilities-company-required">{selection.status === "ambiguous" ? "Seleção da empresa necessária" : "A empresa ainda não está vinculada."}</h1>
+        <p>As capacidades pertencem a uma empresa específica. Nenhum registro de outra empresa será exibido sem contexto inequívoco.</p>
+      </section>
+    </AppShell>
+  );
+  const company = selection.company;
 
-  const { data: subscriptions } = await db
+  const { data: subscriptions, error: subscriptionsError } = await db
     .from("tenant_subscriptions")
     .select("plan_id,status")
     .eq("tenant_id", ctx.tenantId)
     .in("status", ["trialing", "active"])
     .limit(1);
+  if (subscriptionsError) throw new Error("CAPABILITIES_SUBSCRIPTIONS_READ_FAILED");
 
   const planId = subscriptions?.[0]?.plan_id ?? null;
-  const { data: plan } = planId
+  const { data: plan, error: planError } = planId
     ? await db
         .from("plan_catalog")
         .select("name,provider_network_eligible")
         .eq("id", planId)
         .maybeSingle()
-    : { data: null };
+    : { data: null, error: null };
+  if (planError) throw new Error("CAPABILITIES_PLAN_READ_FAILED");
 
-  const { data: rows } = company
-    ? await db
+  const { data: rows, error: rowsError } = await db
         .from("provider_capabilities")
         .select(
           "id,capability_id,qualification_status,qualification_score,capacity_status,compliance_status,valid_until",
         )
         .eq("tenant_id", ctx.tenantId)
         .eq("company_id", company.id)
-        .order("updated_at", { ascending: false })
-    : { data: [] as Array<Record<string, unknown>> };
+        .order("updated_at", { ascending: false });
+  if (rowsError) throw new Error("CAPABILITIES_ROWS_READ_FAILED");
 
   const capabilityIds = [...new Set((rows ?? []).map((row) => String(row.capability_id)))];
-  const { data: capabilities } = capabilityIds.length
+  const { data: capabilities, error: capabilitiesError } = capabilityIds.length
     ? await db
         .from("capabilities")
         .select("id,code,title,domain")
         .in("id", capabilityIds)
-    : { data: [] as Array<Record<string, unknown>> };
+    : { data: [] as Array<Record<string, unknown>>, error: null };
+  if (capabilitiesError) throw new Error("CAPABILITIES_CATALOG_READ_FAILED");
   const capabilityById = new Map(
     (capabilities ?? []).map((item) => [String(item.id), item]),
   );

@@ -1,30 +1,26 @@
-import { redirect } from "next/navigation";
 import { AppShell } from "@/components/app-shell";
-import { requireTenantContext } from "@/lib/tenant-context";
+import { requirePageTenantContext } from "@/lib/page-tenant-context";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
 export default async function PrivacidadePage() {
-  let ctx;
-  try {
-    ctx = await requireTenantContext();
-  } catch {
-    redirect("/");
-  }
+  const ctx = await requirePageTenantContext("/privacidade");
 
   const db = await createSupabaseServerClient();
-  const { data: purposes } = await db
+  const { data: purposes, error: purposesError } = await db
     .from("consent_purposes")
     .select("code,description,required_for_core")
     .eq("active", true)
     .order("required_for_core", { ascending: false });
+  if (purposesError) throw new Error("PRIVACY_PURPOSES_READ_FAILED");
 
-  const { data: decisions } = await db
+  const { data: decisions, error: decisionsError } = await db
     .from("consents")
     .select("purpose_code,granted,decision_at,created_at,company_id")
     .eq("tenant_id", ctx.tenantId)
     .eq("user_id", ctx.userId)
     .order("decision_at", { ascending: false, nullsFirst: false })
     .order("created_at", { ascending: false });
+  if (decisionsError) throw new Error("PRIVACY_DECISIONS_READ_FAILED");
 
   type ConsentDecision = NonNullable<typeof decisions>[number];
   const latestByPurpose = new Map<string, ConsentDecision>();

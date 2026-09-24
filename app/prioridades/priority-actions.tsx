@@ -17,20 +17,27 @@ export function PriorityActions({
   const [error, setError] = useState<string | null>(null);
 
   async function run(url: string, body: unknown = {}) {
+    if (busy) return;
     setBusy(true);
     setError(null);
-    const response = await fetch(url, {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(body),
-    });
-    const data = await response.json().catch(() => ({}));
-    setBusy(false);
-    if (!response.ok) {
-      setError(data.error ?? "Não foi possível concluir a ação.");
-      return;
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(body),
+        signal: AbortSignal.timeout(15000),
+      });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        setError(data.error ?? "Não foi possível concluir a ação.");
+        return;
+      }
+      router.refresh();
+    } catch {
+      setError("Não foi possível confirmar a gravação. Atualize Prioridades antes de tentar novamente.");
+    } finally {
+      setBusy(false);
     }
-    router.refresh();
   }
 
   return (
@@ -58,7 +65,7 @@ export function PriorityActions({
           </a>
         )}
       </div>
-      {error ? <p className="metric-note">{error}</p> : null}
+      {error ? <p className="metric-note" role="alert">{error}</p> : null}
     </div>
   );
 }

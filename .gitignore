@@ -16,6 +16,7 @@ tsconfig.tsbuildinfo
 supabase/.temp
 playwright-report
 test-results
+/tmp/
 
 # Never stage original project dossiers, archives, credentials or generated outputs.
 .env.*
@@ -57,3 +58,8 @@ __pycache__/
 *.woff2
 *.ttf
 *.otf
+tmp/hsp4-private-backup/
+tmp/hsp4-private-backup-repo/
+tmp/hsp4-private-schedule-pr/
+tmp/hsp4-private-service-drill-pr/
+tmp/hsp3-provider-metrics/

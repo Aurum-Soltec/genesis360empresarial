@@ -1,54 +1,50 @@
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { AppShell } from "@/components/app-shell";
-import { GlassCard } from "@/components/glass-card";
+import { getFeatureFlags } from "@/lib/feature-flags";
+import { requirePageTenantContext } from "@/lib/page-tenant-context";
 
-export default function TaxPage() {
+export default async function TaxPage() {
+  if (!getFeatureFlags().tax) notFound();
+  await requirePageTenantContext("/cto-tax");
+
   return (
     <AppShell>
-      <header>
-        <div className="eyebrow">CTO-Tax • triagem preliminar</div>
-        <p className="muted">Rules-first • humano no loop • demonstração</p>
+      <header className="page-header">
+        <div>
+          <div className="kicker">CTO-Tax · simulação didática</div>
+          <h1 className="page-title">Como funciona uma triagem fiscal responsável</h1>
+          <p className="page-subtitle">
+            Esta tela ilustra critérios de revisão. Ela não analisa o diagnóstico
+            ou os documentos da sua empresa e não identifica crédito, direito
+            ou valor tributário.
+          </p>
+        </div>
       </header>
 
-      <section className="tax-hero">
-        <div className="glass tax-signal">
-          <div className="signal-status"><span className="signal-dot" /> Possível aderência para revisão</div>
-          <h1>Há sinais que merecem análise especializada.</h1>
-          <p className="muted" style={{ maxWidth: 720, lineHeight: 1.68 }}>
-            As respostas indicam pressão de caixa, retenções e mudança operacional recente. A triagem não confirma
-            crédito, valor ou direito. A conclusão depende de documentos e validação profissional.
-          </p>
-          <div className="hero-actions">
-            <Link className="button button-primary" href="/referral">Avaliar encaminhamento</Link>
-            <Link className="button button-secondary" href="/diagnostico">Revisar respostas</Link>
-          </div>
+      <section className="card card-pad" aria-labelledby="tax-simulation-title">
+        <div className="kicker">Exemplo hipotético</div>
+        <h2 id="tax-simulation-title" className="section-title" style={{ marginTop: 10 }}>
+          Sinais que poderiam justificar uma revisão especializada
+        </h2>
+        <p className="page-subtitle">
+          Regime tributário, alterações operacionais, obrigações recentes e
+          documentação disponível são avaliados em conjunto. Nenhum desses
+          sinais foi constatado para sua empresa nesta simulação.
+        </p>
+        <p className="metric-note">
+          Uma conclusão exigiria dados pertinentes, autorização específica e
+          validação por profissional habilitado. O Genesis não realiza ato
+          tributário nem encaminha dados por esta página.
+        </p>
+        <div className="action-row" style={{ marginTop: 20 }}>
+          <Link className="button button-primary" href="/diagnostico-v1">
+            Abrir diagnóstico atual
+          </Link>
+          <Link className="button button-secondary" href="/solucoes">
+            Entender soluções qualificadas
+          </Link>
         </div>
-
-        <div className="glass sponsor-card">
-          <div className="eyebrow">Parceira patrocinadora de lançamento</div>
-          <div className="sponsor-wordmark" style={{ marginTop: 22 }}>REDE GENESIS</div>
-          <p className="muted" style={{ lineHeight: 1.62 }}>
-            A empresa qualificada poderá receber solicitações de análise somente com autorização. O patrocínio não garante
-            elegibilidade, resultado ou superioridade técnica.
-          </p>
-          <div className="callout callout-tax">
-            DEMO-001 • critérios simulados • nenhum envio real
-          </div>
-        </div>
-      </section>
-
-      <section className="section grid-3">
-        {[
-          ["Regime", "Informado", "Revisão há mais de 24 meses"],
-          ["Pressão de caixa", "Alta", "Obrigações de curto prazo"],
-          ["Documentação", "Parcial", "3 itens ainda necessários"],
-        ].map(([title, value, note]) => (
-          <GlassCard key={title}>
-            <div className="eyebrow">{title}</div>
-            <div className="metric-value">{value}</div>
-            <p className="muted">{note}</p>
-          </GlassCard>
-        ))}
       </section>
     </AppShell>
   );

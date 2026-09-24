@@ -50,3 +50,38 @@ export function demoEvidenceLoadedCount(sourceRefs: Array<string | null>): numbe
 export function isCanonicalDemoEvidence(sourceRef: string | null): boolean {
   return DemoEvidenceTemplates.some((item) => item.sourceRef === sourceRef);
 }
+
+export type DemoEvidenceRecord = {
+  source_ref: string | null;
+  evidence_type: string;
+  summary: string;
+  payload: unknown;
+  sensitivity: string;
+  purpose_codes: string[] | null;
+  verification_status: string;
+};
+
+function stableJson(value: unknown): string {
+  if (Array.isArray(value)) return `[${value.map(stableJson).join(",")}]`;
+  if (value !== null && typeof value === "object") {
+    return `{${Object.entries(value).sort(([a], [b]) => a.localeCompare(b))
+      .map(([key, item]) => `${JSON.stringify(key)}:${stableJson(item)}`).join(",")}}`;
+  }
+  return JSON.stringify(value);
+}
+
+export function isCanonicalDemoEvidenceRecord(row: DemoEvidenceRecord): boolean {
+  const template = DemoEvidenceTemplates.find((item) => item.sourceRef === row.source_ref);
+  return Boolean(template &&
+    row.evidence_type === template.evidenceType &&
+    row.summary === template.summary &&
+    row.sensitivity === template.sensitivity &&
+    row.purpose_codes?.length === 1 && row.purpose_codes[0] === "DEMO_CONTROLLED" &&
+    ["unverified", "pending"].includes(row.verification_status) &&
+    stableJson(row.payload) === stableJson(template.payload));
+}
+
+export function canonicalDemoEvidenceCount(rows: DemoEvidenceRecord[] | null | undefined): number {
+  const refs = (rows ?? []).filter(isCanonicalDemoEvidenceRecord).map((row) => row.source_ref);
+  return demoEvidenceLoadedCount(refs);
+}

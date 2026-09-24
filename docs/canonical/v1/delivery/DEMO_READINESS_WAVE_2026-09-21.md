@@ -54,10 +54,17 @@ generated artifacts.
 $env:DEMO_BASE_URL = "https://staging.example"
 $env:DEMO_EMAIL = "dedicated-demo-user@example.com"
 $env:DEMO_PASSWORD = "<provided-at-runtime>"
-$env:DEMO_TENANT_NAME = "<optional-tenant-name>"
+$env:DEMO_TENANT_NAME = "<exact-demo-tenant-name>"
 $env:DEMO_PROFILE = "FULL"
 pnpm demo:prepare
 ```
+
+The current runner requires `DEMO_TENANT_NAME` when the user belongs to more
+than one active tenant; a supplied name must match exactly one tenant. It
+requests the three fixed fictional sources through `/api/demo/evidence`, which
+checks existing source content before reuse. A `DEMO_SOURCE_CONFLICT` (409)
+requires explicit ledger reconciliation; the runner does not reuse a record
+solely because its source reference matches.
 
 Outputs are written to `docs/audit-2026-09-18/demo-readiness/` by default:
 

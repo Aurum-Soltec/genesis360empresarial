@@ -34,7 +34,6 @@ const modules: Module[] = [
     items: [
       { label: "Roteiro completo", href: "/demonstracao", exact: true },
       { label: "Soluções simuladas", href: "/demonstracao/solucoes" },
-      { label: "Central administrativa", href: "/demonstracao/administracao" },
     ],
   },
   {
@@ -45,7 +44,8 @@ const modules: Module[] = [
       pathname === "/" ||
       pathname.startsWith("/prioridades") ||
       pathname.startsWith("/indicadores") ||
-      pathname.startsWith("/historico"),
+      pathname.startsWith("/historico") ||
+      utilities.some((item) => isCurrent(pathname, item)),
     items: [
       { label: "Visão executiva", href: "/", exact: true },
       { label: "Prioridades", href: "/prioridades" },
@@ -187,7 +187,7 @@ export function AppNavigation({
 
   const activeModule =
     availableModules.find((module) => module.match(pathname)) ??
-    availableModules[0];
+    availableModules.find((module) => module.code === "today")!;
 
   useEffect(() => {
     if (!mobileOpen) return;
@@ -265,7 +265,7 @@ export function AppNavigation({
 
         <div className="precision-top-actions">
           <span className="company-context" aria-label="Contexto atual">
-            Empresa ativa
+            Área da empresa
           </span>
           <button
             ref={triggerRef}

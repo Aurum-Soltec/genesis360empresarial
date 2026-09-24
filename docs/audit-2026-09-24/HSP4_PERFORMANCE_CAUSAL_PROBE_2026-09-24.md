@@ -1,0 +1,36 @@
+# HSP-4 — prova causal de latência hospedada (2026-09-24)
+
+**Estado: FAIL; nenhuma correção de p95 foi promovida.** Esta investigação é somente leitura no staging e não substitui a carga de 100 empresas por 60 minutos. Artefato funcional medido: `bb290bc7bc35f77b4ca01aecdbf19b748c386270`; web Railway `ab3f2a2d-9507-4e24-8749-bc313c7691fa`. Contas sintéticas preexistentes, flags sensíveis desligadas. Nenhum segredo, token, corpo de resposta ou identificador de empresa foi retido no relatório.
+
+## Problema e evidência
+
+O run integral `662855c2dbd5` registrou p95 de login **1.964,5 ms**, Home **1.055,48 ms**, escrita **1.024,5 ms** e leitura **793,8 ms** para o limite **≤750 ms**. Para alcançar o limite, esses percentis precisariam cair pelo menos **1.214,5 / 305,48 / 274,5 / 43,8 ms**, respectivamente. Duração, isolamento e processamento de outbox passaram, mas não compensam esse FAIL de latência. Fonte: [`HSP3_100_TENANTS_60M_BB290BC_2026-09-24.json`](../audit-2026-09-23/HSP3_100_TENANTS_60M_BB290BC_2026-09-24.json).
+
+Uma nova amostra de **28 GETs autenticados da Home e 28 GETs da API de fatos**, sobre o mesmo staging, deu:
+
+| Componente | p50 | p95 | Limite da evidência |
+| --- | ---: | ---: | --- |
+| Home até `DOMContentLoaded` | 910 ms | **1.281 ms** | Amostra curta, baixa concorrência; não é o soak. |
+| Home pedido → primeiro byte | 141 ms | **151 ms** | Inclui navegador/rede/Proxy até o início do HTML. |
+| Home primeiro byte → fim da resposta | 759 ms | **1.130 ms** | Inclui renderização/streaming SSR; não equivale a tempo de transferência de bytes. |
+| Home fim da resposta → DOM pronto | 2 ms | **3,3 ms** | Não aponta parse DOM como gargalo. |
+| API de fatos, GET completo | 586 ms | **1.092 ms** | Amostra curta de uma empresa sintética. |
+| API de fatos: `tenant_context` no servidor | 294 ms | **566 ms** | Auth + membership + quota, com percentis não aditivos. |
+| API de fatos: `data_access` no servidor | 143 ms | **402 ms** | Leitura com Trusted Data Access Boundary e RLS, percentis não aditivos. |
+
+Todos os 28 HTMLs da Home tinham **5.681 bytes comprimidos com gzip** (17.930 descomprimidos); o `Content-Length` estava ausente, coerente com streaming. Uma amostra anterior de 28 Home GETs separada deu p50 **711 ms**, p95 **1.462 ms**, primeiro byte p95 **158 ms** e stream p95 **1.310 ms**. O corpo pequeno e estável, com DOM parse abaixo de 4 ms, **afastam peso do HTML e parse como explicação principal**. A variação está sobretudo depois do primeiro byte, na produção/streaming da resposta; não é prova isolada de causa SQL, pool ou geografia. O arquivo local ignorado `.audit-work/evidence/hsp4-perf-home-probe.json` (SHA-256 `8F1F385512752592FF7325D3D8CA92556C31F9D23CD84F7C1525739090005BFF`) preserva apenas métricas numéricas e cabeçalhos não sensíveis.
+
+Dez logins sintéticos paralelos separaram a resposta da API Auth do redirecionamento: `auth/v1/token` p50 **2.388 ms**, p95 **2.393 ms**; rota `/selecionar-empresa` p95 **2.946 ms**, todos HTTP 200. Dez logins seriados deram token p50 **265 ms** e rota p50 **582 ms**, mas dois picos de token de **1.943 ms** e **7.622 ms**, ambos HTTP 200, elevaram p95 da rota para **8.122 ms**. Essas amostras pequenas não estabelecem distribuição estável, mas mostram que a **latência do próprio Auth e seus picos podem impedir o limite de 750 ms mesmo antes da navegação**. Serializar login no harness para aparentar PASS não seria uma correção. Evidência local ignorada: `hsp4-perf-login-probe.json` SHA-256 `EB8183C74B91E9DA76F7AFA805E8C4D08FD210A726C9C7E719D6D6DD35042830`; `hsp4-perf-login-probe-serial.json` SHA-256 `8549DD0880C9D9DDC97C50AE81EE3FAECFA810833C64A1F113514B198A4FE8A9`.
+
+Traces anteriores no staging mostraram consultas Supabase sequenciais de aproximadamente **140–160 ms** para Auth, membership/quota, seleção de empresa e dados da Home. O mesmo SHA executa web e worker na Railway Virgínia e Supabase `sa-east-1` São Paulo, conforme [`HSP3_REGION_BB290BC_2026-09-24.json`](../audit-2026-09-23/HSP3_REGION_BB290BC_2026-09-24.json). A distância **não foi isolada causalmente**: os picos Auth seriados e a diferença entre p95 do provedor e do navegador podem ter outras causas. O CLI de projetos mostrou um staging ativo no Brasil e dois projetos não relacionados pausados nos EUA; não se deve reutilizá-los. A documentação oficial lista [quatro regiões Railway, sem Brasil](https://docs.railway.com/deployments/regions), [região `us-east-1` e `sa-east-1` no Supabase](https://supabase.com/docs/guides/platform/regions), [dois projetos ativos no plano Free](https://supabase.com/docs/guides/platform/billing-on-supabase) e explica que [troca de região exige projeto novo e migração](https://supabase.com/docs/guides/troubleshooting/change-project-region-eWJo5Z). Disponibilidade de uma vaga Free na conta precisa ser verificada no momento da criação; não foi criada nova conta/projeto.
+
+## Impacto, alternativas e recomendação
+
+1. **Manter o runtime e o gate atuais:** risco de segurança zero, mas p95 continua FAIL e HSP-4 NO-GO.
+2. **Reduzir consultas em série por RPC ou materialização de leitura:** pode aliviar Home e fatos, mas introduz contrato/migration e não resolve os picos medidos do token Auth. Exige ADR, prova de equivalência de RLS/membership/quota, regressão hospedada e comparação antes/depois. Não há estimativa causal suficiente para alegar que fecharia 750 ms.
+3. **Comparar uma topologia co-localizada em um projeto Supabase Free novo, vazio e sintético, `us-east-1`:** é a hipótese com maior alcance para leituras e escritas, pois o Railway já está na Virgínia. Precisa confirmar vaga Free, orçamento/limites, requisitos de residência, projeto isolado, ADR, backup/rollback e migração de Auth/Storage/ACLs/RLS antes de qualquer promoção. **Não mover o staging atual** nem usar projetos alheios apenas com a inferência de distância. Mesmo uma melhoria no banco não garante o SLO de login: o token Auth precisa ser comparado separadamente.
+4. **Rever explicitamente o contrato de SLO para login:** um objetivo próprio de Auth poderia ser mais realista no plano gratuito, mas isso mudaria um gate aprovado. Não foi aplicado, não transforma os resultados atuais em PASS e depende de decisão formal do proprietário baseada em risco de produto; o limite de 750 ms permanece vigente até lá.
+
+**Menor próximo experimento defensável:** amostrar Auth token (serial e concorrente), contexto, SQL/pool/slow queries e Home no **mesmo intervalo**; se houver capacidade Free, comparar com canário sintético `us-east-1` sob as mesmas verificações e volume curto, sem dados reais. Só depois escolher correção/ADR. Repetir 100 empresas por 60 minutos no **SHA corrigido** com HTTP→Auth→Tenant Context→API→Services→PostgreSQL→Outbox→Worker→Observabilidade; preservar flag OFF, isolamento, quota, custo e evidência de pool. O harness existente `scripts/run-hsp3-100-tenants.mjs` e `scripts/HSP3_100_TENANTS_RUNBOOK.md` já estão prontos para o reteste; fixture protegida deve permanecer fora do repositório. Se a comparação curta não mostrar margem robusta abaixo de 750 ms inclusive em login, **não consumir outra hora de carga para forçar PASS**.
+
+**Rollback:** nenhum necessário para esta investigação, que não alterou runtime, banco ou configuração. Qualquer candidato futuro terá rollback próprio e invalida os gates afetados.

@@ -34,18 +34,19 @@ export async function proxy(request: NextRequest) {
     },
   });
 
-  // getUser() validates the token with Auth and refreshes cookies when required.
-  const { data } = await supabase.auth.getUser();
+  // Verify the signed session and refresh cookies here. The page/data layer
+  // still calls getUser() and checks tenant membership before reading data.
+  const { data } = await supabase.auth.getClaims();
   const pathname = request.nextUrl.pathname;
   const publicPath =
     pathname === "/entrar" ||
     pathname === "/recuperar-acesso" ||
     pathname === "/nova-senha" ||
     pathname.startsWith("/auth/");
-  if (!data.user && !publicPath) {
+  if (!data?.claims?.sub && !publicPath) {
     const target = request.nextUrl.clone();
     target.pathname = "/entrar";
-    target.searchParams.set("next", pathname);
+    target.searchParams.set("next", `${pathname}${request.nextUrl.search}`);
     const redirect = NextResponse.redirect(target);
     redirect.headers.set("x-correlation-id", correlation);
     return redirect;

@@ -1374,6 +1374,31 @@ Estados `implemented*` indicam implementação existente; não significam prova 
 
 ## EPIC-17 Production Readiness & Repository
 
+**Revisão corretiva HSP-4 em 2026-09-24 UTC: NO-GO.** O novo login da conta convidada passou com Tenant A exclusivo e `last_sign_in_at` posterior. Backup v2 privado capturou 129 entradas ACL e restaurou logicamente 102 tenants/16 Auth/24 migrations em 77,450 s; PRs #6/#7 integradas como preparação, sem restore de serviço, RPO/RTO, schedule ativo, retenção ou chave independente. A carga de 100 empresas/60 min continua FAIL em p95 ≤750 ms; instrumentação numérica local passou 27 testes, sem medição hospedada/correção. Reteste do roteiro sintético corrigido passou Auth com duas contas, mas zero opções de tenant e nenhuma escrita: proveniência hospedada BLOCKED. O CI Linux do commit público `40b9b82` separou 9/30 itens na árvore de produção e arquivou hashes/textos instalados, ainda sem contêiner Railway/decisão LGPL e CC-BY. `V1-ST-110`, `V1-ST-111` e `V1-ST-122` permanecem abertas; `V1-ST-123` não iniciou. Evidência: `docs/audit-2026-09-24/HSP4_CORRECTIVE_GO_NO_GO_2026-09-24.md`.
+
+**Registro anterior HSP-4 em 2026-09-24 UTC (histórico):** os estados completed abaixo que
+descrevem a revisão de 20/09 são históricos. O artefato funcional
+bb290bc7bc35f77b4ca01aecdbf19b748c386270 passou CI e web/worker no
+staging. O convite passou e-mail, callback, sessão e vínculo member apenas no
+Tenant A; o proprietário confirmou definição de senha e acesso, mas **não**
+logout seguido de novo login. A migration 0024 passou 12/12 SQL e 12/12 HTTP
+multi-role com limpeza. O FULL de 55 respostas, score 48 e relatório foi
+repetido no mesmo SHA, com zero documentos vinculados/verificados. A issue
+#27 passou falha sintética, aviso por e-mail, ACK e recuperação. Backup privado
+run 35945384891 criou release cifrada imutável e restore lógico isolado de
+102 tenants/16 Auth/24 migrations em 37,476 s de drill local, **não** RTO de
+serviço. O export v1 omitiu ACL por `--no-privileges`, e o restore v1 pulou owners/ACLs; `pg_dump --no-owner` não remove owner do arquivo customizado. Faltam equivalência de permissões,
+agendamento, retenção, RPO/RTO de serviço, custódia independente e aceite do
+controle autogerido. Scanner de licença CI no candidato posterior 0c6dc1a,
+não no runtime bb290bc, deixou 30 itens para revisão, incluindo LGPL. O
+primeiro run de carga terminou aos 998 s com dez erros; o retry no mesmo
+runtime, run 662855c2dbd5, **concluiu 3.604 s**, 100/100 tenants, 24.512
+requests, 5.806 escritas, 584 negações esperadas e zero erros inesperados.
+Outbox 5.806/5.806 processados, zero pending/dead/retries, worker p95
+3.476,20 ms. Duração, isolamento sintético e outbox passaram; p95 login
+1.964,5 ms, Home 1.055,48 ms, escrita 1.024,5 ms e leitura 793,8 ms
+**falharam** contra 750 ms. Railway Virgínia/Supabase São Paulo foi provado,
+sem parcela de latência isolada. HSP-4 permanece **NO-GO**; PILOT-1 não começou.
 ### V1-ST-104 — Bootstrap do novo repositório GitHub
 - **Status:** `completed-remote-repository`
 - **Prioridade:** `P0`
@@ -1389,7 +1414,9 @@ Estados `implemented*` indicam implementação existente; não significam prova 
 - **Rollback:** obrigatório quando houver migration, configuração, segurança ou mudança de fluxo crítico.
 
 ### V1-ST-105 — Bootstrap limpo das migrations 0001→0023
-- **Status:** `completed-hosted-runtime`
+- **Status:** `completed-hosted-runtime-limited`
+- **Limite da rechecagem:** o bootstrap limpo `0001`–`0023` é histórico; `0024`
+  foi aplicada append-only no banco hospedado, sem novo bootstrap destrutivo.
 - **Prioridade:** `P0`
 - **Source:** `docs/canonical/v1/delivery/STORIES_MASTER.md`
 - **Critérios de aceite:**
@@ -1401,7 +1428,11 @@ Estados `implemented*` indicam implementação existente; não significam prova 
 - **Rollback:** obrigatório quando houver migration, configuração, segurança ou mudança de fluxo crítico.
 
 ### V1-ST-106 — Executar pgTAP tenancy/RBAC/governance completo
-- **Status:** `completed-hosted-runtime`
+- **Status:** `completed-hosted-runtime-limited`
+- **Limite da rechecagem:** os 95/95 pgTAP hospedados precedem `0024`. A nova
+  política foi testada no staging com 12/12 assertions SQL sob papéis
+  `authenticated` de membro, gestor, proprietário e outro tenant, em transação
+  revertida. Não chamar essa execução de pgTAP hospedado.
 - **Prioridade:** `P0`
 - **Source:** `docs/canonical/v1/delivery/STORIES_MASTER.md`
 - **Critérios de aceite:**
@@ -1416,6 +1447,7 @@ Estados `implemented*` indicam implementação existente; não significam prova 
 
 ### V1-ST-107 — Full lint + TypeScript 6 + Vitest + Next build
 - **Status:** `completed-remote-ci`
+- **Revisão corretiva:** o predecessor público `40b9b82` passou CI e 503 Vitest/34 testes nativos no check local. O último commit com código `6d4d569` no PR #25 incorpora instrumentação/runner, passou `pnpm quality` local com 506 Vitest/34 nativos, lint, tipos, segurança e build; quality/database/CodeQL/Analyze remotos passaram nos runs `36007816845` e `36007811013`. Continua sem promoção ao staging ou crédito runtime.
 - **Prioridade:** `P0`
 - **Source:** `docs/canonical/v1/delivery/STORIES_MASTER.md`
 - **Critérios de aceite:**
@@ -1427,7 +1459,15 @@ Estados `implemented*` indicam implementação existente; não significam prova 
 - **Rollback:** obrigatório quando houver migration, configuração, segurança ou mudança de fluxo crítico.
 
 ### V1-ST-108 — E2E browser do happy path empresarial
-- **Status:** `completed-hosted-runtime`
+- **Status:** `completed-hosted-runtime-limited`
+- **Rechecagem:** novo FULL na UI hospedada do SHA `bb290bc`:
+  55 respostas, score 48, cobertura 100% e confiança 78%. O relatório novo
+  não tem fonte vinculada ou verificada; isso comprova questionário→relatório
+  naquele SHA, não conclusão sustentada por documento. O fluxo afetado foi
+  repetido no artefato hospedado, mas a prova documental real segue pendente.
+  O roteiro sintético corrigido teve reteste hospedado tentado com duas contas:
+  Auth PASS, zero opções de tenant, nenhuma escrita e nenhum relatório novo;
+  a proveniência corrigida permanece BLOCKED em runtime.
 - **Prioridade:** `P0`
 - **Source:** `docs/canonical/v1/delivery/STORIES_MASTER.md`
 - **Critérios de aceite:**
@@ -1441,7 +1481,11 @@ Estados `implemented*` indicam implementação existente; não significam prova 
 - **Rollback:** obrigatório quando houver migration, configuração, segurança ou mudança de fluxo crítico.
 
 ### V1-ST-109 — E2E adversarial cross-tenant e permissions
-- **Status:** `completed-hosted-runtime`
+- **Status:** `completed-hosted-runtime-limited`
+- **Rechecagem:** 12/12 assertions de RLS no banco hospedado após `0024`
+  preservaram a separação de membro, gestor e outro tenant; no SHA `bb290bc`,
+  três sessões Auth HTTP distintas desses papéis passaram 12/12 assertions
+  pelas APIs de fatos, Timeline e tenant ativo, com limpeza do fixture.
 - **Prioridade:** `P0`
 - **Source:** `docs/canonical/v1/delivery/STORIES_MASTER.md`
 - **Critérios de aceite:**
@@ -1457,7 +1501,15 @@ Estados `implemented*` indicam implementação existente; não significam prova 
 - **Rollback:** obrigatório quando houver migration, configuração, segurança ou mudança de fluxo crítico.
 
 ### V1-ST-110 — Backup/restore/rollback drill
-- **Status:** `partial-hosted-logical-pass-managed-backup-pending`
+- **Status:** `partial-private-v2-manual-logical-pass-service-rpo-rto-pending`
+- **Revisão corretiva:** run privado v2 `36002104320` com release cifrada imutável e 129 entradas ACL no TOC; restore lógico isolado 102 tenants, 16 Auth, zero Storage, 24 migrations em 77,450 s após download. PR #7 de cron guardado integrada no SHA privado `051a76d`, mas variáveis de ativação/atestação ausentes mantêm schedule OFF; PR #6 de scaffold de serviço integrada no SHA `10214da`, com 34 testes locais PASS e um symlink SKIP no Windows, sem restore de serviço executado. Aplicação/equivalência de owners/ACL, serviço HTTP/Auth/Storage/worker, backup agendado, 30 dias, RPO/RTO e custódia independente ainda BLOCKED. GitHub Actions US$0/Stop usage foi confirmado, mas a cota compartilhada pode impedir backup futuro.
+- **Rechecagem anterior (histórica):** o restore lógico histórico de dataset pequeno foi superado
+  por uma subprova manual real: workflow privado `7e6a54e`, run `35945384891`
+  PASS, release cifrada imutável e restore isolado de 102 tenants, 16 Auth,
+  zero objetos Storage e 24 migrations. Banco e verificações levaram 32,241 s;
+  drill local após download levou 37,476 s, **não** RTO de serviço. Faltam
+  agendamento, 30 dias de retenção, RPO/RTO de serviço, chave fora do mesmo
+  computador e aceite formal do controle equivalente. Gate BLOCKED.
 - **Prioridade:** `P0`
 - **Source:** `docs/canonical/v1/delivery/STORIES_MASTER.md`
 - **Critérios de aceite:**
@@ -1471,7 +1523,13 @@ Estados `implemented*` indicam implementação existente; não significam prova 
 - **Rollback:** obrigatório quando houver migration, configuração, segurança ou mudança de fluxo crítico.
 
 ### V1-ST-111 — SBOM + license + dependency + secret/security scans
-- **Status:** `partial-scans-and-license-inventory-pass-sbom-legal-pending`
+- **Status:** `partial-ci-sbom-pass-lgpl-disposition-blocked`
+- **Revisão corretiva:** commit público `40b9b82` no PR #25 classifica 9/30 declarações fora da preferência ADR-015 na árvore `pnpm --prod` e 21 fora dela. CI Linux `36004585089` passou, arquivou hashes dos 30 pacotes instalados e 28 arquivos LICENSE/NOTICE copiados; CodeQL/Analyze `36004579982` também passaram. Não há comparação com os bytes do contêiner Railway nem decisão LGPL/CC-BY. Gate BLOCKED.
+- **Rechecagem anterior (histórica):** o SBOM Linux do CI anterior lista 455 entradas, incluindo
+  `@img/sharp-libvips-linux-x64` sob `LGPL-3.0-or-later`. O scanner de licenças
+  passou no candidato `0c6dc1a`, mas gerou 30 itens para revisão. Inventário
+  e scanner não são aceite jurídico, NOTICE completo ou inspeção byte a byte
+  do bundle Railway.
 - **Prioridade:** `P0`
 - **Source:** `docs/canonical/v1/delivery/STORIES_MASTER.md`
 - **Critérios de aceite:**
@@ -1485,7 +1543,16 @@ Estados `implemented*` indicam implementação existente; não significam prova 
 - **Rollback:** obrigatório quando houver migration, configuração, segurança ou mudança de fluxo crítico.
 
 ### V1-ST-112 — Observabilidade e correlation IDs ponta a ponta
-- **Status:** `partial-hosted-observability-external-paging-pending`
+- **Status:** `partial-monitor-drill-alert-delivery-ack-pass-continuous-observation-pending`
+- **Rechecagem:** issue #27 registrou falha sintética e recuperação;
+  o operador recebeu e-mail, comentou ACK humano e a issue foi fechada.
+  O comentário público foi sanitizado após trazer notificação citada; cache
+  externo residual não pode ser descartado. Drill de alerta PASS; observação
+  contínua e recuperação de backup permanecem em gates separados. No segundo
+  run bb290bc de 3.604 s, 5.806 eventos sintéticos do outbox foram
+  processados; zero pending/dead/retries, worker latency p95 3.476,20 ms.
+  O SLO HTTP de 750 ms ainda falhou; pool/slow-query e custo marginal seguem
+  sem série completa.
 - **Prioridade:** `P0`
 - **Source:** `docs/canonical/v1/delivery/STORIES_MASTER.md`
 - **Critérios de aceite:**
@@ -1498,6 +1565,10 @@ Estados `implemented*` indicam implementação existente; não significam prova 
 
 ### V1-ST-113 — Configurar dev/staging/prod e promoção controlada
 - **Status:** `completed-hosted-staging-and-remote-ci`
+- **Rechecagem:** CI quality/database/CodeQL PASS e web/worker Railway
+  `SUCCESS` no mesmo SHA `bb290bc7bc35f77b4ca01aecdbf19b748c386270`.
+  O ambiente Railway chamado `production` é o projeto dedicado de staging;
+  isso não é promoção à produção aberta.
 - **Prioridade:** `P0`
 - **Source:** `docs/canonical/v1/delivery/STORIES_MASTER.md`
 - **Critérios de aceite:**
@@ -1623,7 +1694,8 @@ Estados `implemented*` indicam implementação existente; não significam prova 
 ## EPIC-17 Production Readiness & Repository
 
 ### V1-ST-122 — Production Readiness Review e release candidate
-- **Status:** `completed-hsp4-no-go`
+- **Status:** `hsp4-prr-closed-no-go-objective-fixes`
+- **Revisão corretiva:** relatório A–T de 24/09 emitido com NO-GO. Novo login convidado passou; p95 segue FAIL, backup/restore de serviço/licença BLOCKED e reteste da proveniência sintética corrigida parou após Auth sem opções de tenant. PRs privadas #6/#7 integradas não alteram gates operacionais. Não há GO para piloto ou produção aberta. A revisão de 20/09 é histórica.
 - **Prioridade:** `P0`
 - **Source:** `docs/canonical/v1/delivery/STORIES_MASTER.md`
 - **Critérios de aceite:**

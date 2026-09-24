@@ -1,36 +1,46 @@
-import { redirect } from "next/navigation";
 import { AppShell } from "@/components/app-shell";
-import { requireTenantContext } from "@/lib/tenant-context";
+import { requirePageTenantContext } from "@/lib/page-tenant-context";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { isDemoTenantAllowed } from "@/lib/feature-flags";
+import { selectUniqueTenantCompany } from "@/lib/server/company-selection";
 
 export default async function IndicadoresPage() {
-  let ctx;
-  try {
-    ctx = await requireTenantContext();
-  } catch {
-    redirect("/");
-  }
+  const ctx = await requirePageTenantContext("/indicadores");
 
   const db = await createSupabaseServerClient();
-  const { data: diagnostic } = await db
+  const demoTenant = isDemoTenantAllowed(ctx.tenantId);
+  const selection = await selectUniqueTenantCompany(db, ctx.tenantId, demoTenant);
+  if (selection.status !== "ready") return (
+    <AppShell>
+      <section className="card empty-state" aria-labelledby="indicators-company-required">
+        <p className="kicker">Indicadores</p>
+        <h1 id="indicators-company-required">{selection.status === "ambiguous" ? "Seleção da empresa necessária" : "A empresa ainda não está vinculada."}</h1>
+        <p>{selection.status === "ambiguous" ? "Há mais de uma empresa elegível neste tenant. Os indicadores não podem ser atribuídos a uma delas sem seleção explícita." : demoTenant ? "O roteiro demonstrativo requer uma empresa fictícia vinculada ao tenant." : "Peça ao administrador para provisionar uma empresa antes de consultar indicadores."}</p>
+      </section>
+    </AppShell>
+  );
+  const companyId = selection.company.id;
+  const { data: diagnostic, error: diagnosticError } = await db
     .from("diagnostics")
     .select("id,coverage,confidence,submitted_at,growth_score,growth_score_status")
     .eq("tenant_id", ctx.tenantId)
+    .eq("company_id", companyId)
     .eq("status", "scored")
     .order("created_at", { ascending: false })
     .limit(1)
     .maybeSingle();
+  if (diagnosticError) throw new Error("INDICATORS_DIAGNOSTIC_READ_FAILED");
 
-  const scores = diagnostic
-    ? (
-        await db
+  const scoresResult = diagnostic
+    ? await db
           .from("score_results")
           .select("dimension,score,coverage,confidence,rule_version")
           .eq("tenant_id", ctx.tenantId)
           .eq("diagnostic_id", diagnostic.id)
           .order("score")
-      ).data ?? []
-    : [];
+    : { data: [], error: null };
+  if (scoresResult.error) throw new Error("INDICATORS_SCORES_READ_FAILED");
+  const scores = scoresResult.data ?? [];
 
   const overall = diagnostic?.growth_score ?? null;
 

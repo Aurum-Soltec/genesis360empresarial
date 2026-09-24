@@ -9,15 +9,47 @@ export interface TenantContext {
   role: string;
 }
 
-export async function requireTenantContext(operation = "api.default"): Promise<TenantContext> {
-  const supabase = await createSupabaseServerClient();
-  const { data: authData, error: authError } = await supabase.auth.getUser();
+export type TenantContextTimingPhase = "auth_user" | "active_cookie" | "membership" | "quota";
+export type TenantContextTimingObserver = (phase: TenantContextTimingPhase, durationMs: number) => void;
 
-  if (authError || !authData.user) {
+async function timed<T>(
+  phase: TenantContextTimingPhase,
+  observer: TenantContextTimingObserver,
+  run: () => PromiseLike<T>,
+): Promise<T> {
+  const started = performance.now();
+  try {
+    return await run();
+  } finally {
+    // Telemetry must never change an authorization decision or error mapping.
+    try { observer(phase, Math.max(0, performance.now() - started)); } catch { /* best effort */ }
+  }
+}
+
+export async function requireTenantContext(
+  operation = "api.default",
+  observeTiming?: TenantContextTimingObserver,
+): Promise<TenantContext> {
+  const supabase = await createSupabaseServerClient();
+  const { data: authData, error: authError } = await (observeTiming
+    ? timed("auth_user", observeTiming, () => supabase.auth.getUser())
+    : supabase.auth.getUser());
+
+  if (authError) {
+    // Supabase reports a missing browser session as status 400, while an
+    // expired/denied session may return 401 or 403. All are unauthenticated;
+    // unrelated provider failures must still surface as availability errors.
+    if (authError.name === "AuthSessionMissingError" || authError.code === "session_not_found" ||
+        authError.status === 401 || authError.status === 403) throw new Error("AUTH_REQUIRED");
+    throw new Error("AUTH_PROVIDER_READ_FAILED");
+  }
+  if (!authData.user) {
     throw new Error("AUTH_REQUIRED");
   }
 
-  const cookieStore = await cookies();
+  const cookieStore = await (observeTiming
+    ? timed("active_cookie", observeTiming, cookies)
+    : cookies());
   const tenantId = cookieStore.get(ACTIVE_TENANT_COOKIE)?.value;
   if (!tenantId) {
     throw new Error("ACTIVE_TENANT_REQUIRED");
@@ -35,10 +67,14 @@ export async function requireTenantContext(operation = "api.default"): Promise<T
     p_default_max_requests: 600,
     p_default_window_seconds: 60,
   });
-  const [membershipResult, quotaResult] = await Promise.all([membershipQuery, quotaQuery]);
+  const [membershipResult, quotaResult] = await Promise.all([
+    observeTiming ? timed("membership", observeTiming, () => membershipQuery) : membershipQuery,
+    observeTiming ? timed("quota", observeTiming, () => quotaQuery) : quotaQuery,
+  ]);
   const { data: membership, error } = membershipResult;
 
-  if (error || !membership) {
+  if (error) throw new Error("MEMBERSHIP_READ_FAILED");
+  if (!membership) {
     throw new Error("TENANT_ACCESS_DENIED");
   }
 

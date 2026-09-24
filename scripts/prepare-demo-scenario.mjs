@@ -1,11 +1,13 @@
 import fs from "node:fs";
 import path from "node:path";
 import { chromium } from "playwright-core";
+import { requestDemoEvidencePackage } from "./demo-package-client.mjs";
+import { demoAnswer } from "./demo-answer.mjs";
 
 const baseURL = (process.env.DEMO_BASE_URL ?? "http://127.0.0.1:3000").replace(/\/$/, "");
 const email = process.env.DEMO_EMAIL;
 const password = process.env.DEMO_PASSWORD;
-const tenantName = process.env.DEMO_TENANT_NAME;
+const tenantName = process.env.DEMO_TENANT_NAME?.trim();
 const profile = process.env.DEMO_PROFILE === "FULL" ? "FULL" : "ESSENTIAL";
 const executablePath = process.env.CHROME_PATH ??
   "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe";
@@ -26,61 +28,6 @@ fs.mkdirSync(outputDir, { recursive: true });
 
 function safeName(value) {
   return value.replace(/[^a-z0-9.-]+/gi, "-").replace(/^-|-$/g, "").toLowerCase();
-}
-
-function demoAnswer(questionId, evidenceIds, position) {
-  const metadata = metadataById.get(questionId);
-  if (!metadata) throw new Error(`Missing metadata for ${questionId}`);
-
-  const informationSlots = Object.fromEntries(
-    (metadata.informationSlots ?? []).map((slot) => [
-      slot.key,
-      /date|data|period|período/i.test(`${slot.key} ${slot.label}`)
-        ? "2026-09-21"
-        : "Informação fictícia do cenário controlado de demonstração",
-    ]),
-  );
-  const evidenceRefs = evidenceIds.length
-    ? [evidenceIds[position % evidenceIds.length]]
-    : [];
-
-  if (questionId === "TEC-002") {
-    const option = metadata.ui?.options?.find(
-      (candidate) => typeof candidate === "object" && candidate.maturity === 2,
-    ) ?? metadata.ui?.options?.find((candidate) => typeof candidate === "object");
-    if (!option || typeof option === "string") throw new Error("TEC-002 option missing");
-    return {
-      answerState: "ANSWERED",
-      response: { choice: option.value },
-      maturity: option.maturity ?? null,
-      informationSlots,
-      evidenceRefs,
-    };
-  }
-
-  if (metadata.scoreRole === "CORE_ANCHOR") {
-    const maturity = position % 5 === 0 ? 3 : 2;
-    return {
-      answerState: "ANSWERED",
-      response: { maturity },
-      maturity,
-      informationSlots,
-      evidenceRefs,
-    };
-  }
-
-  const firstOption = metadata.ui?.options?.[0];
-  const choice = typeof firstOption === "string" ? firstOption : firstOption?.value;
-  return {
-    answerState: "ANSWERED",
-    response: {
-      value: "Resposta fictícia do cenário controlado de demonstração",
-      choice: choice ?? null,
-    },
-    maturity: null,
-    informationSlots,
-    evidenceRefs,
-  };
 }
 
 async function apiJson(page, method, pathname, data) {
@@ -118,10 +65,22 @@ try {
   ]);
 
   const tenantButtons = page.locator("button.tenant-choice");
-  if (await tenantButtons.count() === 0) throw new Error("No active tenant is available for the demo user");
-  const tenantButton = tenantName
-    ? page.getByRole("button", { name: new RegExp(tenantName, "i") }).first()
-    : tenantButtons.first();
+  await page.locator('button.tenant-choice, [role="status"]').first().waitFor({
+    state: "visible",
+    timeout: 15000,
+  });
+  if (await tenantButtons.count() === 0) {
+    throw new Error("No active tenant is available for the demo user");
+  }
+  const matchingTenants = tenantName
+    ? tenantButtons.filter({ has: page.getByText(tenantName, { exact: true }) })
+    : tenantButtons;
+  if (await matchingTenants.count() !== 1) {
+    throw new Error(tenantName
+      ? "The named demo tenant must match exactly one active tenant"
+      : "DEMO_TENANT_NAME is required when the demo user has multiple active tenants");
+  }
+  const tenantButton = matchingTenants.first();
   await Promise.all([
     page.waitForURL(`${baseURL}/`),
     tenantButton.click(),
@@ -143,47 +102,12 @@ try {
   const diagnosticId = startBody.diagnostic.id;
   const companyId = startRequest.companyId;
 
-  const evidenceTemplates = [
-    {
-      evidenceType: "user_declaration",
-      summary: "Direcionadores estratégicos declarados pela liderança — cenário fictício",
-      payload: { demo: true, documentType: "strategic_brief", content: "Crescer com previsibilidade, reduzir retrabalho comercial e melhorar a disciplina de caixa.", disclaimer: "Dados integralmente fictícios para demonstração controlada." },
-      sourceRef: "DEMO:direcionadores-estrategicos-v1.txt",
-    },
-    {
-      evidenceType: "metric",
-      summary: "Indicadores financeiros e operacionais — cenário fictício",
-      payload: { demo: true, documentType: "management_metrics", period: "2026-Q3", metrics: { revenueTrend: "stable", cashVisibilityDays: 30, reworkIndex: "moderate" }, disclaimer: "Dados integralmente fictícios para demonstração controlada." },
-      sourceRef: "DEMO:indicadores-2026-q3.csv",
-    },
-    {
-      evidenceType: "observation",
-      summary: "Mapa de processos e riscos operacionais — cenário fictício",
-      payload: { demo: true, documentType: "process_and_risk_map", observations: ["Handoffs manuais", "Indicadores dispersos", "Ritos gerenciais irregulares"], disclaimer: "Dados integralmente fictícios para demonstração controlada." },
-      sourceRef: "DEMO:mapa-processos-riscos-v1.json",
-    },
-  ];
-
-  const existingEvidence = await apiJson(page, "GET", `/api/evidence?companyId=${companyId}`);
-  const existingBySourceRef = new Map(
-    (existingEvidence.evidence ?? []).map((item) => [item.source_ref, item.id]),
+  const evidenceIds = await requestDemoEvidencePackage(
+    apiJson,
+    page,
+    companyId,
+    diagnosticId,
   );
-  const evidenceIds = [];
-  for (const item of evidenceTemplates) {
-    const existingId = existingBySourceRef.get(item.sourceRef);
-    if (existingId) {
-      evidenceIds.push(existingId);
-      continue;
-    }
-    const created = await apiJson(page, "POST", "/api/evidence", {
-      companyId,
-      ...item,
-      sensitivity: "internal",
-      purposeCodes: ["DEMO_CONTROLLED"],
-      link: { subjectType: "diagnostic", subjectId: diagnosticId, relation: "supports" },
-    });
-    evidenceIds.push(created.evidence.id);
-  }
 
   let answeredCount = 0;
   for (; answeredCount < 100; answeredCount += 1) {
@@ -197,7 +121,7 @@ try {
     await apiJson(page, "PUT", `/api/diagnostics/${diagnosticId}/answers`, {
       questionId: state.nextQuestionId,
       expectedRevision: state.answerRevision,
-      ...demoAnswer(state.nextQuestionId, evidenceIds, answeredCount),
+      ...demoAnswer(state.nextQuestionId, metadataById.get(state.nextQuestionId), answeredCount),
     });
   }
   if (answeredCount >= 100) throw new Error("Diagnostic safety limit exceeded");
@@ -211,6 +135,13 @@ try {
   }
   if (!resultText.includes("Soluções compatíveis com as necessidades") || !resultText.includes("Empresas 100% fictícias")) {
     throw new Error("Controlled solution preview was not rendered in the report");
+  }
+  const provenanceMetrics = page.locator(".provenance-metrics > div strong");
+  if (await provenanceMetrics.count() !== 4 ||
+      await provenanceMetrics.nth(1).innerText() !== "0" ||
+      await provenanceMetrics.nth(2).innerText() !== String(evidenceIds.length) ||
+      await provenanceMetrics.nth(3).innerText() !== "0") {
+    throw new Error("Demo provenance is not truthful: expected zero answer-level references, three diagnostic-level fictional sources, and zero verified sources");
   }
 
   const runSlug = safeName(new Date().toISOString());
@@ -260,6 +191,7 @@ try {
     result: "PASS",
     answeredCount,
     evidenceCount: evidenceIds.length,
+    answersWithEvidenceRefs: 0,
     evidenceVerification: "unverified_demo_declarations",
     artifacts: { resultScreenshot, documentsScreenshot, demoScreenshot, solutionsScreenshot, administrationScreenshot, councilScreenshot, reportPdf },
     boundaries: {

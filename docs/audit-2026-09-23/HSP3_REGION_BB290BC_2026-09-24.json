@@ -1,0 +1,55 @@
+{
+  "wave": "HSP-3",
+  "compiledAt": "2026-09-24T01:51:52Z",
+  "environment": "dedicated Railway/Supabase staging",
+  "artifactSha": "bb290bc7bc35f77b4ca01aecdbf19b748c386270",
+  "window": {
+    "startDate": "2026-09-24T00:59:49Z",
+    "endDate": "2026-09-24T01:00:21Z",
+    "correspondsTo": "test-results/hsp3-smoke-bb290bc.json"
+  },
+  "method": {
+    "railwayMetricQuery": "metrics(startDate,endDate,serviceId,environmentId,groupBy:[REGION,DEPLOYMENT_ID],measurements:[CPU_USAGE,MEMORY_USAGE_GB]) { measurement tags { region deploymentId } values { ts value } }",
+    "railwayDeploymentQuery": "railway deployment list --limit 1 --json; output restricted to id,status,meta.commitHash",
+    "railwayRegionCatalogQuery": "regions(projectId) { id region name location country }",
+    "supabaseQuery": "supabase projects list --output json; output restricted to name,region,status",
+    "redaction": "No variables, credentials, request bodies, tenant IDs, user IDs or raw logs retained."
+  },
+  "railway": {
+    "web": {
+      "deploymentId": "ab3f2a2d-9507-4e24-8749-bc313c7691fa",
+      "deploymentStatus": "SUCCESS",
+      "deploymentSha": "bb290bc7bc35f77b4ca01aecdbf19b748c386270",
+      "metricRegion": "us-east4-eqdc16a",
+      "regionalMetricSamples": [
+        { "measurement": "CPU_USAGE", "ts": 1790211540, "value": 0.04209895 },
+        { "measurement": "MEMORY_USAGE_GB", "ts": 1790211540, "value": 0.221118464 }
+      ]
+    },
+    "worker": {
+      "deploymentId": "96c1e771-c895-4f15-a8f5-157b4f97f892",
+      "deploymentStatus": "SUCCESS",
+      "deploymentSha": "bb290bc7bc35f77b4ca01aecdbf19b748c386270",
+      "metricRegion": "us-east4-eqdc16a",
+      "regionalMetricSamples": [
+        { "measurement": "CPU_USAGE", "ts": 1790211540, "value": 0.0017796333333333337 },
+        { "measurement": "MEMORY_USAGE_GB", "ts": 1790211540, "value": 0.070680576 }
+      ]
+    },
+    "regionCatalogMatch": {
+      "id": "iad",
+      "region": "Virginia",
+      "name": "us-east4-eqdc16a",
+      "location": "US East",
+      "country": "USA"
+    },
+    "workspacePreferredRegion": "ams",
+    "workspacePreferenceIsDeploymentProof": false
+  },
+  "supabase": {
+    "projectName": "genesis360-staging",
+    "region": "sa-east-1",
+    "status": "ACTIVE_HEALTHY"
+  },
+  "finding": "The exact bb290bc web and worker deployments ran in Railway US East/Virginia during the smoke, while the Supabase staging project is in sa-east-1/Sao Paulo. A regional split is proven; its share of request latency is not yet isolated from Auth, RLS, pool or SQL processing."
+}

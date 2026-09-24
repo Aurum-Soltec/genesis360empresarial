@@ -1,43 +1,52 @@
-import { redirect } from "next/navigation";
 import { AppShell } from "@/components/app-shell";
-import { demoEvidenceAlreadyLoaded, isCanonicalDemoEvidence } from "@/lib/demo-scenario";
+import { DemoEvidenceTemplates, canonicalDemoEvidenceCount, isCanonicalDemoEvidenceRecord } from "@/lib/demo-scenario";
 import { getFeatureFlags, isDemoTenantAllowed } from "@/lib/feature-flags";
-import { requireTenantContext } from "@/lib/tenant-context";
+import { requirePageTenantContext } from "@/lib/page-tenant-context";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { DemoPackage } from "./demo-package";
+import { selectUniqueTenantCompany } from "@/lib/server/company-selection";
 
 export default async function DocumentosPage() {
-  let ctx;
-  try { ctx = await requireTenantContext(); } catch { redirect("/"); }
+  const ctx = await requirePageTenantContext("/documentos");
 
   const flags = getFeatureFlags();
-  const demoAllowed = isDemoTenantAllowed(ctx.tenantId);
+  const demoTenant = isDemoTenantAllowed(ctx.tenantId);
   const db = await createSupabaseServerClient();
-  const { data: company } = await db
-    .from("companies")
-    .select("id,trade_name")
-    .eq("tenant_id", ctx.tenantId)
-    .limit(1)
-    .maybeSingle();
+  const selection = await selectUniqueTenantCompany(db, ctx.tenantId, demoTenant);
+  if (selection.status === "ambiguous") return (
+    <AppShell>
+      <section className="card empty-state" aria-labelledby="documents-company-ambiguous">
+        <p className="kicker">Evidências e documentos</p>
+        <h1 id="documents-company-ambiguous">Seleção da empresa necessária</h1>
+        <p>Há mais de uma empresa elegível neste tenant. O registro de evidências não escolhe uma empresa arbitrariamente e o pacote fictício permanece indisponível.</p>
+      </section>
+    </AppShell>
+  );
+  const company = selection.company;
+  const demoAllowed = demoTenant && Boolean(company?.fictional);
 
-  const { data: version } = await db
+  const { data: version, error: versionError } = await db
     .from("data_submission_attestation_versions")
     .select("id,version,title,declaration_text,warning_text,genesis_responsibility_text")
     .eq("code", "DIAGNOSTIC_EVIDENCE_UPLOAD")
     .eq("status", "active")
     .maybeSingle();
+  if (versionError) throw new Error("DOCUMENTS_ATTESTATION_READ_FAILED");
 
-  const { data: evidence, error: evidenceError } = company
-    ? await db
-        .from("evidence_items")
-        .select("id,evidence_type,source_ref,summary,captured_at,verification_status,sensitivity")
-        .eq("tenant_id", ctx.tenantId)
-        .eq("company_id", company.id)
-        .order("captured_at", { ascending: false })
-        .limit(50)
-    : { data: [], error: null };
+  const evidenceFields = "id,evidence_type,source_ref,summary,captured_at,verification_status,sensitivity,payload,purpose_codes" as const;
+  const evidenceResult = !company
+    ? { data: [], error: null }
+    : demoAllowed
+      ? await db.from("evidence_items").select(evidenceFields)
+          .eq("tenant_id", ctx.tenantId).eq("company_id", company.id)
+          .in("source_ref", DemoEvidenceTemplates.map((item) => item.sourceRef))
+          .order("captured_at", { ascending: false })
+      : await db.from("evidence_items").select(evidenceFields)
+          .eq("tenant_id", ctx.tenantId).eq("company_id", company.id)
+          .order("captured_at", { ascending: false }).limit(50);
+  const { data: evidence, error: evidenceError } = evidenceResult;
 
-  const { data: latestDiagnostic } = company && demoAllowed
+  const { data: latestDiagnostic, error: latestDiagnosticError } = company && demoAllowed
     ? await db
         .from("diagnostics")
         .select("id")
@@ -47,7 +56,8 @@ export default async function DocumentosPage() {
         .order("created_at", { ascending: false })
         .limit(1)
         .maybeSingle()
-    : { data: null };
+    : { data: null, error: null };
+  if (latestDiagnosticError) throw new Error("DOCUMENTS_DIAGNOSTIC_READ_FAILED");
 
   const evidenceTypeLabel: Record<string, string> = {
     user_declaration: "Declaração",
@@ -66,7 +76,7 @@ export default async function DocumentosPage() {
     expired: "Expirada",
   };
   const displayedEvidence = demoAllowed
-    ? (evidence ?? []).filter((item) => isCanonicalDemoEvidence(item.source_ref))
+    ? (evidence ?? []).filter(isCanonicalDemoEvidenceRecord)
     : (evidence ?? []);
 
   return (
@@ -83,11 +93,11 @@ export default async function DocumentosPage() {
         </div>
       </header>
 
-      {company && demoAllowed ? (
+      {company && demoAllowed && !evidenceError ? (
         <DemoPackage
           companyId={company.id}
           diagnosticId={latestDiagnostic?.id ?? null}
-          loaded={demoEvidenceAlreadyLoaded((evidence ?? []).map((item) => item.source_ref))}
+          loaded={canonicalDemoEvidenceCount(evidence) === DemoEvidenceTemplates.length}
         />
       ) : null}
 
