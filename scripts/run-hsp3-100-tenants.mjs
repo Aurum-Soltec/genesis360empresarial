@@ -5,7 +5,7 @@ import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
 import { chromium } from "playwright-core";
-import { classifyLoginFailure, evaluateGate, readFixture, summarizeSamples, validateRunConfig } from "./hsp3-load-core.mjs";
+import { classifyLoginFailure, evaluateGate, parsePassportServerTiming, percentile, readFixture, summarizeSamples, validateRunConfig } from "./hsp3-load-core.mjs";
 
 const mode = process.argv[2] ?? "--check-fixture";
 const repoRoot = path.resolve(import.meta.dirname, "..");
@@ -35,6 +35,10 @@ if (outputRelative.startsWith("..") || path.isAbsolute(outputRelative)) {
 }
 const samples = { login: [], tenantSwitch: [], dashboard: [], factWrite: [], factRead: [], crossTenantDeny: [] };
 const hops = { dashboard: [], tenantSwitch: [], factWrite: [], factRead: [], crossTenantDeny: [] };
+const passportTiming = {
+  factWrite: { tenantContextMs: [], dataAccessMs: [] },
+  factRead: { tenantContextMs: [], dataAccessMs: [] },
+};
 const seenTenants = new Set();
 const correlationSamples = [];
 const failures = [];
@@ -74,6 +78,12 @@ function observe(operation, result, expectedStatus, detail = "") {
   }
   samples[operation].push(result.durationMs);
   if (result.timing) hops[operation].push(result.timing);
+  if (Object.hasOwn(passportTiming, operation)) {
+    const parsed = parsePassportServerTiming(result.serverTiming);
+    for (const phase of ["tenantContextMs", "dataAccessMs"]) {
+      if (parsed[phase] !== null) passportTiming[operation][phase].push(parsed[phase]);
+    }
+  }
   if (result.correlationId && correlationSamples.length < 100) {
     correlationSamples.push({ operation, id: result.correlationId });
   }
@@ -334,6 +344,11 @@ const report = {
     p95TlsMs: summarizeSamples({ tls: values.map((item) => item.tlsMs) }).tls.p95Ms,
     p95RequestToFirstByteMs: summarizeSamples({ firstByte: values.map((item) => item.requestToFirstByteMs) }).firstByte.p95Ms,
     p95ResponseDownloadMs: summarizeSamples({ download: values.map((item) => item.responseDownloadMs) }).download.p95Ms,
+  }])),
+  passportServerTiming: Object.fromEntries(Object.entries(passportTiming).map(([operation, phases]) => [operation, {
+    responses: samples[operation].length,
+    tenantContext: { samples: phases.tenantContextMs.length, p95Ms: percentile(phases.tenantContextMs, 0.95) },
+    dataAccess: { samples: phases.dataAccessMs.length, p95Ms: percentile(phases.dataAccessMs, 0.95) },
   }])),
   correlationSamples, operatorObservations: null,
 };

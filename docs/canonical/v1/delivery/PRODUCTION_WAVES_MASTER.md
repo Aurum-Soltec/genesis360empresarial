@@ -5,23 +5,23 @@ As Waves 0–8 registram a evolução histórica da fundação. As **PW** abaixo
 ## Rechecagem canônica Hosted Staging & Pilot Readiness — 2026-09-23
 
 A revisão inicial HSP-4 de 20/09 terminou em **NO-GO**. A rechecagem autorizada
-está em andamento no staging isolado. O candidato exato
-`fe0e5b4583d98bf9985bf247c5976a367fc3b3e9` passou quality/database/CodeQL
-e tem web e worker Railway em `SUCCESS`; isso não aprova os gates operacionais
-restantes. O relatório A–T da rechecagem precisa declarar GO ou NO-GO apenas
-após avaliar todas as provas exigidas.
+permanece aberta no staging isolado. O SHA atual
+**8df90d955479ffee98a62b7334faf1a172ec78a5** passou
+quality/database/CodeQL e web/worker Railway chegaram a SUCCESS no mesmo
+artefato. Os gates operacionais abaixo prevalecem sobre estados históricos
+completed e não liberam piloto.
 
 | Wave | Estado | Resultado objetivo |
-|---|---|---|
-| HSP-0 — Baseline, repositório e controle remoto | **PASS histórico** | GitHub público organizacional, `main` protegida, PR e CI obrigatórios; CI do SHA atual também passou. |
-| HSP-1 — Staging hospedado isolado | **BLOCKED no callback do convite; core parcial PASS** | Migrações `0001`–`0024` presentes; RLS hospedada de `0024` passou 12/12 assertions SQL com rollback; FULL no SHA anterior `5e6e836` gerou 55 respostas e relatório. O fluxo afetado precisa de rechecagem no SHA final. Os 95/95 pgTAP e 10/10 browser são evidências históricas. No SHA final, convite HTTP 201, usuário Auth criado, membership `member` somente no Tenant A, audit e e-mail recebido passaram; o link abriu a raiz com fragmento implícito, sem sessão app nem tela de senha. Callback E2E falhou. |
-| HSP-2 — Segurança, observabilidade e recuperação | **BLOCKED** | Flags, logs e restore lógico históricos; issue #27 registrou simulação e recuperação, mas não houve entrega de notificação nem ACK humano. Backup automático retido, restore representativo/RPO real e disposição do LGPL `libvips` no SBOM CI Linux (455 entradas) seguem pendentes. |
-| HSP-3 — Prova de 100 tenants | **FAIL histórico; nova execução PENDING** | O ensaio anterior de 60 minutos preservou isolamento e zero erro funcional, mas p95 excedeu 750 ms. A fixture privada temporária foi reconstituída; pré-checagem read-only confirmou 10/10 contas, 100/100 tenants e vínculos. Login real e novo soak no SHA final ainda não foram executados. |
-| HSP-4 — Production Readiness Review hospedado | **RECHECAGEM EM ANDAMENTO — NO-GO vigente** | O NO-GO de 20/09 continua até convite, recuperação, alertas, licenças e carga atingirem critérios objetivos. Piloto e ondas seguintes não foram iniciados. |
+| --- | --- | --- |
+| HSP-0 — Baseline, repositório e controle remoto | **PASS histórico e CI atual PASS** | GitHub organizacional, branch principal protegida, PR/CI; checks do 8df90d9 aprovados. |
+| HSP-1 — Staging hospedado isolado | **PASS parcial; onboarding aberto** | Migrations 0001–0024; 0024 RLS 12/12 em SQL com rollback. FULL 55 respostas/relatório no SHA anterior 5e6e836, sem fonte vinculada; fluxo afetado precisa nova prova. Convite em 6737406 passou API, Auth, e-mail, callback, sessão, Tenant A e negação admin; senha definida pelo proprietário, mas novo login após logout pendente. O SHA 8df90d9 corrigiu formulário pré-hidratação e autenticou 10 contas sintéticas no smoke. |
+| HSP-2 — Segurança, observabilidade e recuperação | **BLOCKED** | Cinco flags OFF; issue #27 comprovou falha sintética, recuperação, e-mail recebido, ACK humano e fechamento. Comentário de ACK foi sanitizado, com risco residual de cache. Repo privado de backup/immutability/blueprint manual existem, mas sem backup/schedule/restore/RPO/RTO. LGPL libvips carece de disposição final. |
+| HSP-3 — Prova de 100 tenants | **FAIL p95; 60 minutos PENDING** | Ensaio histórico teve isolamento funcional e falhou p95. Smoke de 30 s em 8df90d9 visitou 50 tenants, 340 requests, 50 escritas, 10 negações esperadas e 0 erros; p95 login 2164, Home 1326, escrita 1513, leitura 1175 ms contra 750 ms. Soak completo ainda não terminou. |
+| HSP-4 — Production Readiness Review hospedado | **RECHECAGEM EM ANDAMENTO — NO-GO vigente** | Backup/recuperação, LGPL, SLO 100 tenants e provas afetadas pendentes. Produção aberta e piloto não autorizados. |
 
-Próxima sequência aprovada, porém sem autorização de execução nesta etapa:
-`PILOT-1 -> SCALE-500 -> V1-F -> SCALE-2000 -> V1-GA -> AGENTIC-1 -> MEMORY-1`.
-Nenhuma dessas ondas foi iniciada.
+Sequência aprovada, mas **sem autorização de execução** nesta etapa:
+PILOT-1 → SCALE-500 → V1-F → SCALE-2000 → V1-GA → AGENTIC-1 → MEMORY-1.
+Nenhuma dessas Waves foi iniciada.
 
 ## Histórico consolidado
 - Wave 0 — tenancy/consent;

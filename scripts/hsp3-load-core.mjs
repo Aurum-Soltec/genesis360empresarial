@@ -103,6 +103,22 @@ export function percentile(values, rank) {
   return Math.round(sorted[Math.ceil(rank * sorted.length) - 1] * 100) / 100;
 }
 
+// Only these numeric durations may leave a Server-Timing header for the
+// sanitized HSP-3 report. Ignore descriptions and unrecognized metrics.
+export function parsePassportServerTiming(header) {
+  const result = { tenantContextMs: null, dataAccessMs: null };
+  if (typeof header !== "string") return result;
+  for (const metric of header.split(",")) {
+    const match = /^\s*(tenant_context|data_access);dur=(\d+(?:\.\d+)?)\s*$/i.exec(metric);
+    if (!match) continue;
+    const duration = Number(match[2]);
+    if (!Number.isFinite(duration) || duration > 300000) continue;
+    const key = match[1].toLowerCase() === "tenant_context" ? "tenantContextMs" : "dataAccessMs";
+    if (result[key] === null) result[key] = duration;
+  }
+  return result;
+}
+
 export function summarizeSamples(samples) {
   return Object.fromEntries(Object.entries(samples).map(([operation, values]) => [operation, {
     samples: values.length, p50Ms: percentile(values, 0.5),

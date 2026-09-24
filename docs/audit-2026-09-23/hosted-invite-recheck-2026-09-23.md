@@ -119,3 +119,64 @@ operacional e teste próprio; não foi aplicada cegamente.
 teste único sob a mesma caixa controlada, verificar sessão, definição de senha
 pelo proprietário, login posterior e tenant correto. O gate não muda para PASS
 antes dessa prova hospedada.
+
+## Reteste pós-correção — artefato `6737406` hospedado
+
+CI remoto (quality, database e CodeQL) passou; web e worker no Railway foram
+confirmados `SUCCESS` no mesmo SHA completo
+`6737406394e25e073f9281a9c3ecfb59a97ed851`. Antes do novo convite, a
+consulta somente leitura para um alias único da caixa controlada retornou
+`auth_exists=false` e `membership_exists=false`; o endereço não está neste
+relatório público. Uma única submissão via formulário owner do tenant fictício
+foi aceita pelo ramo HTTP 201. Pós-consulta retornou `auth_exists=true`,
+`expected_tenant_member=true` (somente `Tenant A`, papel `member`) e
+`audit_present=true` para `membership.invited`.
+
+O e-mail chegou à caixa controlada às 20h45 locais e tinha destinatário do
+alias esperado. O link de Supabase Auth ainda usou `type=invite` e
+`redirect_to` para a raiz do web; nenhuma configuração Auth externa foi
+alterada. No clique único, o navegador passou por `/entrar?next=/` e terminou
+em `/nova-senha` com o fragmento removido da URL. Uma segunda aba protegida
+da mesma sessão abriu `/selecionar-empresa` e exibiu **apenas `Tenant A`, papel
+`member`**. Após selecionar essa empresa, a Home da Empresa A abriu. O acesso
+do membro a `/demonstracao/administracao` retornou 404, sem expor a central
+administrativa. Assim, recebimento, callback, sessão de aplicativo, vínculo
+correto e negação administrativa receberam evidência runtime.
+
+A tela de definição de senha foi preservada para o proprietário, sem digitação
+de senha por agente. Naquele momento ainda faltavam a confirmação real de
+`updateUser`, a saída/novo login com essa senha e a verificação da sessão após
+login. Este reteste não demonstra por si só
+RLS cross-tenant de todos os recursos, recuperação de backup ou escala.
+
+### Complemento após intervenção humana
+
+O proprietário informou que **definiu a senha na aba preservada e acessou a
+empresa**. Isso é atestado humano; nenhum agente digitou, viu ou registrou a
+senha. Consulta Auth somente leitura retornou `password_hash_present=true`,
+`auth_row_updated_after_creation=true` e `sign_in_recorded=true`, sem imprimir
+hash, e-mail, identificadores ou horários do usuário. O booleano
+`sign_in_after_callback_window=false` indica que o registro disponível de
+`last_sign_in_at` não comprova um **novo login por senha após o callback**;
+acesso na mesma sessão de convite é compatível com a observação. Assim,
+definição de senha e acesso à empresa foram confirmados, mas o teste explícito
+de sair e entrar novamente com a senha ainda falta para encerrar esse último
+subgate. A aba do usuário não foi inspecionada após a intervenção.
+## Estado após correção do formulário Auth — artefato 8df90d9
+
+O SHA completo 8df90d955479ffee98a62b7334faf1a172ec78a5 passou
+quality/database/CodeQL; web 45c64cf2-bd03-468c-80e4-8086c6489b15 e
+worker 2d8d5fe3 reportaram SUCCESS. Esse candidato protege os formulários
+de entrada, recuperação de acesso e nova senha contra submissão antes da
+hidratação. No smoke hospedado af3269d3df91, **dez contas sintéticas
+autenticaram** sem erro; o teste visitou 50 tenants em 30 segundos. Isso
+confirma login dessas contas de carga, **não** o login novo por senha do
+convidado humano.
+
+O proprietário confirmou que a senha do convite foi definida e que teve
+acesso à empresa; nenhuma senha foi recebida ou registrada. Continua
+pendente sair da sessão estabelecida pelo convite, entrar novamente com a
+nova senha e comprovar que somente Tenant A aparece. Até essa prova, o
+onboarding completo fica **parcial/PENDING**, embora entrega, callback,
+sessão inicial e vínculo correto tenham sido observados. Não reutilizar o
+link consumido nem marcar o gate PASS por atestado sem logout.

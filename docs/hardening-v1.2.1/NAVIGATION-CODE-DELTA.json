@@ -51,6 +51,12 @@
       "reason": "2026-09-23: fail-closed company, evidence, invitation or read-boundary correction"
     },
     {
+      "path": "app/api/passport/facts/route.ts",
+      "beforeSha256": "d7b3096ea347e1f277455dacad8f30eceef662929901f9c2782ffd9585b005a2",
+      "afterSha256": "7ee6b2e2e77f7b7622fbd9eb8d06935cef8e9f1af669e91709418ecfb6e7e403",
+      "reason": "HSP-4: login prehydration protection and private backup isolation"
+    },
+    {
       "path": "app/api/solutions/contact/route.ts",
       "beforeSha256": "cc0a8000df84657ba09041c1d3f5e4ba7ade150df469d303935cc677a741c403",
       "afterSha256": "0af38dbaf3317f9b366266102f3409c281fa8c437ea229f53ba9bed72cfd23dd",
@@ -245,32 +251,32 @@
     {
       "path": "docs/canonical/v1/delivery/EPICS_MASTER.md",
       "beforeSha256": "6c8cd57c3ba860428f3d1649f0d4a90f23c6f735faca8b65648b38d62917b3c7",
-      "afterSha256": "c227571826c0aec0f20534bdcce6bd2e093601071a6278ea19ab3c3b19d74f1c",
-      "reason": "HSP-4 remediation with executable regression and hosted recheck required"
+      "afterSha256": "bc07c4284de2e7daa90ca4f3da8017cb7980abee135d7f80f2ed8b2e1207eed8",
+      "reason": "HSP-4: login prehydration protection and private backup isolation"
     },
     {
       "path": "docs/canonical/v1/delivery/PRODUCTION_WAVES_MASTER.md",
       "beforeSha256": "14af8551a84daf473cb9ec2c78818b789d3bc6500fbd92ee1cbfe5718735d62e",
-      "afterSha256": "3b3df8b58baf64b414f141d961b757b05bd4f6e061d24d2547b66b305539f870",
-      "reason": "HSP-4 remediation with executable regression and hosted recheck required"
+      "afterSha256": "90f782c909bfc270b5843d34838e7a71a1c357d53aff285fbddc79116ad97a5c",
+      "reason": "HSP-4: login prehydration protection and private backup isolation"
     },
     {
       "path": "docs/canonical/v1/delivery/STORIES_MASTER.md",
       "beforeSha256": "a3f3ad9426753d3eaabe96609d514f4b17b586e1ff8a280476bfc14b8af87673",
-      "afterSha256": "4e16865d2b0a9544f1974e658b35b66d4bcd2a64a327bb2f6033e47e638e8759",
-      "reason": "HSP-4 remediation with executable regression and hosted recheck required"
+      "afterSha256": "125d3ee3b400f61f0052b4250199183e86640e73afae89e4f7f38bf5672f5dd9",
+      "reason": "HSP-4: login prehydration protection and private backup isolation"
     },
     {
       "path": "docs/canonical/v1/gates/GATES.json",
       "beforeSha256": "cd81e6aefa9228fe362befa930d0407f806a9a691429d5e395db446f8f615ca3",
-      "afterSha256": "95dcea2ea624051650f37073e1d223f5b1dca07de3eee9206c7d477b0aa92726",
-      "reason": "HSP-4 remediation with executable regression and hosted recheck required"
+      "afterSha256": "3e5ec1482343028d390416556090fc1d538336798ddd58b4a43eae2680870e2c",
+      "reason": "HSP-4: login prehydration protection and private backup isolation"
     },
     {
       "path": "GATES.json",
       "beforeSha256": "0bbead31fbc1457d082cdeae406d1a080fe23ed904b9ee3f47268d517d9077f5",
-      "afterSha256": "f6ea92646bb10552ff894310cf4225c24b3110fb7306978754c99f559f75a869",
-      "reason": "HSP-4 remediation with executable regression and hosted recheck required"
+      "afterSha256": "5af8bcaf35c548b80e0a10162291c89f1cbdaf72fe181d6658d408dc03505a0d",
+      "reason": "HSP-4: login prehydration protection and private backup isolation"
     },
     {
       "path": "lib/api-errors.ts",
@@ -281,8 +287,8 @@
     {
       "path": "lib/dashboard-overview.ts",
       "beforeSha256": "f840dd9230d63668c6c2db940eb4289368904840d3dbdee9fcfcc64095241474",
-      "afterSha256": "d74c05017ff78c71e6f3b4ec9692fda2bf6e59d30b3f444b271be85b8ef6abb2",
-      "reason": "Separate contextual navigation pages and preserve explicit hosted auth and tenant redirects; 2026-09-23: reviewed local correction"
+      "afterSha256": "8283f2637ad4569c1531f3e9de865f0ba8a9e69572edc3526d4246a7da55e881",
+      "reason": "HSP-4: login prehydration protection and private backup isolation"
     },
     {
       "path": "lib/demo-scenario.test.ts",
@@ -353,8 +359,8 @@
     {
       "path": "PROJECT-STATE.md",
       "beforeSha256": "d872785f2e9e30f89ffc11d5a7e13962907c06372e92168c7f2216f9ee92ac3d",
-      "afterSha256": "d6e2b814745a0b6b56c2120ae967882b33b752de688f4c64ad3e1eac55748fa8",
-      "reason": "HSP-4 remediation with executable regression and hosted recheck required"
+      "afterSha256": "22f54a406715829ca7c175127d2434a4def6d7fa486380c7806334f89bd265ae",
+      "reason": "HSP-4: login prehydration protection and private backup isolation"
     },
     {
       "path": "proxy.test.ts",

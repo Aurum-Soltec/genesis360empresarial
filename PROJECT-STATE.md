@@ -7,48 +7,17 @@ foram iniciadas.
 
 ## Estado canônico da rechecagem HSP-4 — 2026-09-23
 
-O candidato exato `fe0e5b4583d98bf9985bf247c5976a367fc3b3e9` passou CI
-quality/database/CodeQL. No projeto Railway dedicado de staging, web
-`0205de1b-e123-407d-b6c5-d048ee8888aa` e worker
-`6110522e-c59e-4830-b1c3-457abbbf1714` chegaram a `SUCCESS` no mesmo SHA.
-O nome `production` do ambiente Railway não significa produção aberta.
+O artefato hospedado **8df90d955479ffee98a62b7334faf1a172ec78a5** passou CI quality/database/CodeQL; Railway web **45c64cf2-bd03-468c-80e4-8086c6489b15** e worker **2d8d5fe3** chegaram a SUCCESS no mesmo SHA do projeto isolado de staging. O nome production no ambiente Railway não autoriza produção aberta. A revisão HSP-4 continua **NO-GO**.
 
-O banco hospedado tem as migrations `0001`–`0024`; a `0024` foi aplicada
-append-only. Prova SQL hospedada sob papéis `authenticated` distintos de
-membro, gestor, proprietário e outro tenant passou **12/12**, com transação
-revertida e nenhum dado sintético residual. Os 95/95 pgTAP hospedados citados
-abaixo antecedem `0024` e não são esta prova. Um novo diagnóstico FULL na UI
-hospedada do **SHA anterior `5e6e836`** percorreu **55 respostas**, com score 48, cobertura 100% e confiança
-78%, gerando plano de 90 dias e soluções fictícias. O relatório novo contém
-**zero fontes vinculadas e zero verificadas** apesar de três fontes fictícias
-cadastradas na empresa: há comprovação de questionário→relatório naquele SHA,
-não de conclusão sustentada por documentos. A correção do cockpit que separa
-fontes registradas de fontes vinculadas está no SHA atual; o fluxo afetado e a
-tela no novo deploy ainda precisam de rechecagem hospedada.
+A migration 0024 está aplicada append-only, somando 24 migrations. A prova hospedada de RLS usou papéis authenticated e sujeitos JWT sintéticos de membro, gestor, proprietário e outro tenant: **12/12 asserts PASS**, ROLLBACK e zero dados de ensaio residuais. É prova no banco, não três sessões HTTP independentes. Um diagnóstico FULL de 55 respostas no SHA anterior 5e6e836 gerou score 48, cobertura 100%, confiança 78%, plano de 90 dias e soluções fictícias; o relatório tinha **zero fontes vinculadas ou verificadas** apesar de três fontes fictícias cadastradas. A tela afetada precisa de rechecagem no artefato atual antes de receber crédito de runtime atualizado.
 
-O monitor registrou falha simulada e recuperação na issue #27, mas o operador
-abriu a issue manualmente e informou não receber notificação. Entrega de alerta
-e ACK humano continuam **BLOCKED**. O SBOM Linux do CI do SHA final lista
-**455 entradas, com um `LGPL-3.0-or-later` (`libvips`)**: composição exata do
-bundle, NOTICE e decisão técnica/jurídica ainda não receberam aceite. Backup
-automático retido, restore representativo e RPO/RTO reais seguem BLOCKED; o
-restore lógico histórico não os substitui. No SHA final, o convite retornou
-HTTP 201: usuário Auth criado, associação `member` exclusivamente ao Tenant A,
-audit `membership.invited` e e-mail recebido em caixa controlada. O link levou
-à raiz com fragmento implícito; o callback PKCE da aplicação não estabeleceu
-sessão nem abriu a tela de senha. **Convite E2E: BLOCKED**, apesar das etapas
-anteriores comprovadas. Para a nova prova fim a fim de 100 tenants por 60
-minutos existem 100 tenants sintéticos e 10 usuários × 10. O adaptador privado
-reconstituiu a fixture temporária sem publicar credenciais; a pré-checagem
-somente leitura confirmou 10/10 contas e 100/100 vínculos. Login real e nova
-carga ainda **não foram executados**. O ensaio histórico
-falhou no SLO p95 ≤750 ms.
+O convite controlado em 6737406 retornou HTTP 201, criou usuário Auth, vínculo member somente em Tenant A, evento membership.invited e e-mail recebido. O callback com fragmento implícito passou a estabelecer sessão do aplicativo, abrir /nova-senha e mostrar somente Tenant A; a área administrativa negou o membro. O proprietário confirmou definição de senha e acesso, mas o dado disponível de Auth não prova novo login por senha **após logout**. O SHA atual corrigiu a possibilidade de submissão do formulário Auth antes da hidratação; dez usuários sintéticos fizeram login no smoke. O último subgate humano do convite permanece PENDING.
 
-As cinco flags sensíveis permanecem congeladas: Agentic, Data Upload real,
-Qualification Network, Real Contact e Ecosystem. Não habilitar esses caminhos
-nem iniciar `PILOT-1` sem fechamento objetivo da HSP-4 e nova decisão do
-proprietário. Evidências novas estão em `docs/audit-2026-09-23/`; o relatório
-A–T de rechecagem é rascunho até os fatos operacionais finais serem anexados.
+A issue #27 registrou falha sintética do monitor, recuperação, aviso por e-mail recebido pelo operador, ACK humano e fechamento posterior. O ACK inicialmente trouxe conteúdo citado da notificação para a issue pública; o comentário foi sanitizado e verificado sem links de notificação. Cópias/cache anteriores não podem ser descartados. O subgate do drill de alerta passou; backup e licença não. O repositório separado genesis360-staging-backups é privado, com immutable releases habilitado; PR privado #1 incorporou blueprint manual-only no SHA fd593c1 e 15 testes sintéticos passaram. Ainda não há secrets instalados, backup real, schedule, retenção comprovada, restore representativo nem RPO/RTO medidos. O SBOM Linux identificou libvips LGPL-3.0-or-later; composição final/NOTICE/disposição jurídica seguem BLOCKED.
+
+A fixture privada de HSP-3 confirmou 10 contas e 100 empresas sintéticas. O smoke de 30 segundos no SHA atual (run af3269d3df91) autenticou dez contas, visitou 50 tenants, fez 340 requests, 50 escritas e dez negativas cross-tenant esperadas, com zero erro inesperado. Mesmo assim, p95 login **2.164,45 ms**, Home **1.326,37 ms**, escrita **1.512,60 ms** e leitura **1.174,80 ms** excedem o limite de **750 ms**. O ensaio de 60 minutos no artefato atual está PENDING. Railway mostrou p95 Home 1.166 ms, escrita 1.377 ms e geral 842 ms na janela consultada; custo Railway acumulado US$ 0,394, sem representar custo total nem custo por tenant.
+
+As cinco flags sensíveis continuam OFF: Agentic, Data Upload para usuários reais, Qualification Network, Real Contact e Ecosystem. Não iniciar PILOT-1 ou qualquer Wave posterior sem fechar os gates objetivos e receber nova autorização do proprietário. O relatório A–T provisório está em docs/audit-2026-09-23/HSP4_FINAL_RECHECK_2026-09-23.md. Percentuais históricos de escopo permanecem Fundação 92%, MVP 82%, V1 64%, sem transformá-los em aprovação operacional.
 
 ## Registro histórico do candidato local anterior — 2026-09-23
 

@@ -5,7 +5,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
-import { classifyLoginFailure, evaluateGate, percentile, summarizeSamples, validateFixture, validateRunConfig } from "../scripts/hsp3-load-core.mjs";
+import { classifyLoginFailure, evaluateGate, parsePassportServerTiming, percentile, summarizeSamples, validateFixture, validateRunConfig } from "../scripts/hsp3-load-core.mjs";
 
 function fixture() {
   return { synthetic: true, users: Array.from({ length: 10 }, (_, user) => ({
@@ -44,6 +44,19 @@ test("nearest-rank percentile and empty operation are explicit", () => {
   const data = summarizeSamples({ switch: [100, 200], read: [] });
   assert.equal(data.switch.p50Ms, 100);
   assert.equal(data.read.under750Ms, false);
+});
+
+test("passport timing report accepts only numeric whitelisted durations", () => {
+  assert.deepEqual(parsePassportServerTiming("tenant_context;dur=12.34, data_access;dur=56.78"), {
+    tenantContextMs: 12.34, dataAccessMs: 56.78,
+  });
+  assert.deepEqual(parsePassportServerTiming(
+    'tenant_context;dur=12.34;desc="private", data_access;dur=56.78, trace;desc="secret"',
+  ), { tenantContextMs: null, dataAccessMs: 56.78 });
+  assert.deepEqual(parsePassportServerTiming("tenant_context;dur=-1, data_access;dur=Infinity"), {
+    tenantContextMs: null, dataAccessMs: null,
+  });
+  assert.deepEqual(parsePassportServerTiming(null), { tenantContextMs: null, dataAccessMs: null });
 });
 
 test("login diagnostics distinguish hydration, provider and routing failures without identities", () => {

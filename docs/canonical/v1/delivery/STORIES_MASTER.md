@@ -1374,20 +1374,22 @@ Estados `implemented*` indicam implementação existente; não significam prova 
 
 ## EPIC-17 Production Readiness & Repository
 
-**Rechecagem HSP-4 em 2026-09-23:** os estados `completed-*` abaixo que
+**Rechecagem HSP-4 em 2026-09-23:** os estados completed abaixo que
 descrevem a revisão de 20/09 são históricos e limitados ao artefato daquele
-ensaio. O candidato atual `fe0e5b4583d98bf9985bf247c5976a367fc3b3e9`
-passou CI quality/database/CodeQL e teve web/worker hospedados com deploy
-`SUCCESS`. Convite no SHA final passou HTTP 201, criação Auth, membership
-`member` somente no Tenant A, audit e recebimento em caixa controlada; o link
-abriu a raiz com fragmento implícito, sem sessão app ou tela de senha. O
-callback permanece **BLOCKED**. A nova carga de 100 tenants/60 min não rodou:
-a fixture privada foi reconstituída e 10/10 contas e 100/100 vínculos passaram
-pré-checagem read-only; login real e soak no SHA novo seguem pendentes. A
-rechecagem permanece **NO-GO** até callback,
-backup/RPO, entrega e ACK de alerta, licença LGPL e SLO de 100 tenants
-receberem prova.
-
+ensaio. O candidato atual 8df90d955479ffee98a62b7334faf1a172ec78a5
+passou CI quality/database/CodeQL e web/worker hospedados com deploy SUCCESS.
+O convite administrado em 6737406 passou HTTP 201, criação Auth, e-mail,
+callback, sessão do app, vínculo member somente no Tenant A e negativa da
+administração. O proprietário confirmou definição de senha e acesso; falta
+logout e novo login por senha. O candidato atual protege os formulários Auth
+antes da hidratação e o smoke autenticou dez contas sintéticas. A issue #27
+comprovou notificação por e-mail, ACK humano e recuperação; o ACK público foi
+sanitizado, com risco residual de cache. O repo privado de backup contém
+blueprint manual-only, sem snapshot/restore/RPO/RTO; LGPL ainda aguarda
+disposição. O smoke de 30 s no SHA atual visitou 50 tenants, 340 requests,
+50 escritas e dez negativas esperadas com zero erro, porém p95 login/Home/
+escrita/leitura excedeu 750 ms. A carga de 100 tenants por 60 minutos ainda
+não terminou. A revisão permanece NO-GO; PILOT-1 não começou.
 ### V1-ST-104 — Bootstrap do novo repositório GitHub
 - **Status:** `completed-remote-repository`
 - **Prioridade:** `P0`
@@ -1519,10 +1521,12 @@ receberem prova.
 - **Rollback:** obrigatório quando houver migration, configuração, segurança ou mudança de fluxo crítico.
 
 ### V1-ST-112 — Observabilidade e correlation IDs ponta a ponta
-- **Status:** `partial-monitor-drill-technical-pass-delivery-ack-blocked`
-- **Rechecagem:** issue #27 registrou falha simulada e recuperação técnica.
-  O operador abriu a issue manualmente e informou não ter recebido aviso;
-  entrega de notificação e ACK humano permanecem BLOCKED.
+- **Status:** `partial-monitor-drill-alert-delivery-ack-pass-continuous-observation-pending`
+- **Rechecagem:** issue #27 registrou falha sintética e recuperação;
+  o operador recebeu e-mail, comentou ACK humano e a issue foi fechada.
+  O comentário público foi sanitizado após trazer notificação citada; cache
+  externo residual não pode ser descartado. Drill de alerta PASS; observação
+  contínua e recuperação de backup permanecem em gates separados.
 - **Prioridade:** `P0`
 - **Source:** `docs/canonical/v1/delivery/STORIES_MASTER.md`
 - **Critérios de aceite:**
@@ -1536,7 +1540,7 @@ receberem prova.
 ### V1-ST-113 — Configurar dev/staging/prod e promoção controlada
 - **Status:** `completed-hosted-staging-and-remote-ci`
 - **Rechecagem:** CI quality/database/CodeQL PASS e web/worker Railway
-  `SUCCESS` no mesmo SHA `fe0e5b4583d98bf9985bf247c5976a367fc3b3e9`.
+  `SUCCESS` no mesmo SHA `8df90d955479ffee98a62b7334faf1a172ec78a5`.
   O ambiente Railway chamado `production` é o projeto dedicado de staging;
   isso não é promoção à produção aberta.
 - **Prioridade:** `P0`

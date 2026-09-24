@@ -1,6 +1,6 @@
-# HSP-2 — backup gratuito usando somente GitHub (análise, sem implantação)
+# HSP-2 — backup gratuito usando somente GitHub (blueprint, sem backup runtime)
 
-**Estado em 2026-09-23: BLOCKED.** O proprietário **recusou Cloudflare R2**; não abrir conta, bucket ou checkout. Esta nota reavalia apenas GitHub Free privado. Nenhum repositório, release, artifact, dump, credencial ou recurso externo foi criado nesta análise.
+**Estado em 2026-09-23: BLOCKED.** O proprietário **recusou Cloudflare R2**; não abrir conta, bucket ou checkout. Esta nota reavalia apenas GitHub Free privado. Após a análise inicial, o proprietário criou `Aurum-Soltec/genesis360-staging-backups`, confirmado privado. O PR privado #1 agora contém blueprint manual-only, sem agendamento, secrets, Release ou backup real. A organização herda READ para `aurumsoltec` e somente `hudsonlcustodio` tem ADMIN; esse leitor poderá acessar futuros arquivos cifrados e logs.
 
 ## Requisito canônico e dados medidos
 
@@ -31,7 +31,7 @@ Isto é **tamanho físico do banco**, não tamanho de dump comprimido/cifrado; o
 
 ## Desenho mínimo sujeito a ADR
 
-Criar **repositório GitHub privado separado**, da organização e acessível só ao operador autorizado. Um workflow agendado a cada 12 horas, em branch default controlada, exportaria roles/schema/data/migration history seguindo o [guia oficial Supabase](https://supabase.com/docs/guides/platform/migrating-within-supabase/backup-restore), mais bytes Storage se houver, conferiria integridade e cifraria o arquivo **antes de publicar**. Apenas chave **pública** de cifragem no runner; chave privada de restore sob guarda humana fora do GitHub. Segredos de conexão e, se necessário, acesso Storage ficam só nos secrets do repositório privado, nunca no repo público, logs ou relatórios. A release se publicaria somente após todos os arquivos e checksums estarem prontos; uma segunda rotina apagaria somente releases com idade **>32 dias** e preservaria sempre a última cópia íntegra. Probes periódicos verificariam recuperabilidade e idade do snapshot; [agendas Actions podem atrasar](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows), logo executar uma vez a cada 24 h sem margem não comprova RPO ≤24 h. Uma política de orçamento de **US$ 0/bloqueio de excedentes** e monitor de minutos/uso são necessários para respeitar o pedido de soluções gratuitas; ao atingir a cota, a rotina pode parar e o RPO falhar.
+O **repositório GitHub privado separado** já foi criado na organização. O workflow preparado é inicialmente **manual-only**; após snapshot real, restore isolado e decisão de equivalência, um agendamento a cada 12 horas em branch default controlada poderia exportar roles/schema/data/migration history seguindo o [guia oficial Supabase](https://supabase.com/docs/guides/platform/migrating-within-supabase/backup-restore), mais bytes Storage se houver, conferiria integridade e cifraria o arquivo **antes de publicar**. Apenas chave **pública** de cifragem no runner; chave privada de restore sob guarda humana fora do GitHub. Segredos de conexão e, se necessário, acesso Storage ficariam só nos secrets do repositório privado, nunca no repo público, logs ou relatórios. A release se publicaria somente após todos os arquivos e checksums estarem prontos; uma segunda rotina apagaria somente releases com idade **>32 dias** e preservaria sempre a última cópia íntegra. Probes periódicos verificariam recuperabilidade e idade do snapshot; [agendas Actions podem atrasar](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows), logo executar uma vez a cada 24 h sem margem não comprova RPO ≤24 h. Uma política de orçamento de **US$ 0/bloqueio de excedentes** e monitor de minutos/uso são necessários para respeitar o pedido de soluções gratuitas; ao atingir a cota, a rotina pode parar e o RPO falhar.
 
 O GitHub é um **projeto separado** do banco, mas não um provedor independente da conta GitHub que também abriga o código; comprometimento administrativo ou exclusão do repo pode atingir as cópias. A execução é **autogerida** e o destino Release não é backup gerenciado; o runbook não pode ser marcado PASS sem **ADR/decisão expressa do proprietário** aceitando esse controle compensatório e documentando recuperação alternativa, risco de conta única, política de retenção e proteção de dados de clientes futuros. Esta decisão não altera PostgreSQL, Supabase primário, tenancy, RLS ou código de aplicação.
 
@@ -40,3 +40,23 @@ O GitHub é um **projeto separado** do banco, mas não um provedor independente 
 Proprietário/operador: aprovar ou recusar ADR de equivalência; autorizar o repositório privado separado e sua política de acesso/immutability; provisionar os segredos de exportação por secret store e guardar a chave privada fora do CI; verificar franquia/orçamento; designar responsável por monitor, restore e proteção de dados. O [Supabase Free admite até dois projetos ativos](https://supabase.com/pricing), mas não foi verificado se há uma vaga de restauração isolada. Um ambiente local isolado pode servir a um ensaio técnico, mas o aceite de RTO hospedado requer prova no ambiente representativo definido pelo gate.
 
 Para reavaliar PASS: medir tamanho final **DB + Storage cifrados** sem exibir conteúdo; publicar snapshot automático com ID/UTC/hash; demonstrar política de retenção de ≥30 dias e proteção contra exclusão prematura; restaurar **esse arquivo externo** em ambiente isolado com Auth, migrations, RLS, tenant A/B, worker/outbox e HTTP; simular incidente e medir RPO como idade do último dado efetivamente recuperável no instante da falha, e RTO da falha até serviço funcional. Retestar após correções. Até lá, **backup automático/retido e RPO/RTO HSP-2/HSP-4 seguem BLOCKED**.
+
+## Atualização do repositório privado — 23/09, sem backup runtime
+
+A organização criou o repositório separado genesis360-staging-backups, confirmado
+privado, e habilitou immutable releases (enabled=true). O PR privado #1 foi
+incorporado no SHA fd593c1. O conteúdo remoto é **blueprint manual-only**:
+scripts/workflow preparados e **15 testes sintéticos** aprovados, sem secrets,
+chaves, dump, objeto Storage, Release de backup ou agendamento. Portanto não há
+cópia recuperável nem janela de retenção observada. O uso de releases imutáveis
+não garante que um administrador não apague a release inteira.
+
+A autorização do proprietário cobre avaliar e implementar essa alternativa
+gratuita; ainda falta decisão expressa de que o controle autogerido pode
+substituir o requisito canônico de backup gerenciado, com aceitação dos riscos
+de mesma conta administrativa, ausência de SLA e retenção autogerida. Antes
+do primeiro snapshot real, guardar chave privada fora do GitHub, provisionar
+credenciais somente no cofre do repo privado, validar CA/verify-full, orçamento
+e permissões. Após isso, testar backup completo, download, restauração isolada,
+serviço HTTP/Auth/worker, retenção e RPO/RTO reais em volume representativo.
+Até esses testes, **HSP-2 e HSP-4 continuam BLOCKED**.
