@@ -1,42 +1,51 @@
 {
-  "version": "1.2.1-rc.2-hsp4",
+  "version": "1.2.1-rc.2-hsp4-6dff3c9-review",
   "gateZero": "GZ-C / authorized incremental hardening",
   "HSP-0": {
-    "status": "passed",
+    "status": "partial_repo_ci_pass_artifact_provenance_pending",
     "evidence": [
       "public organization repository",
       "protected main requiring pull request and CI",
-      "remote CI passing"
+      "remote CI passing on public PR #32 and merged main 6dff3c9833ae2036f187dd1c9b3a2ad9680a20ac",
+      "Railway CLI web 2e2690bd and worker 56740353 SUCCESS from clean detached source with individual image digests and cliMessage exact SHA; meta.commitHash=null limits native commit attestation"
+    ],
+    "pending": [
+      "close exact-artifact provenance gap between local clean source, Railway digests and provider-native commit identity before HSP-0 full PASS"
     ]
   },
   "HSP-1": {
-    "status": "partial_invite_fresh_login_pending_core_pass",
+    "status": "partial_demo_and_sql_pass_http_multi_role_pending",
     "evidence": [
       "isolated hosted staging; functional SHA bb290bc7bc35f77b4ca01aecdbf19b748c386270 web and worker SUCCESS with quality/database/CodeQL PASS",
       "24 migrations present after append-only 0024; 12/12 hosted authenticated-role SQL RLS assertions with rollback and 12/12 HTTP multi-role assertions with fixture cleanup",
       "FULL repeated on bb290bc: 55 answers, score 48, coverage 100%, confidence 78%, 12 dimensions and 90-day plan; zero linked/verified documents, so document-grounded conclusion remains unproven",
       "historical 95/95 hosted pgTAP and 10 browser E2E tests",
       "controlled invitation 201, Auth, Tenant A-only member, audit, email, callback, app session, admin denial; owner confirmed password update and access",
-      "Auth-form pre-hydration guard and 10 synthetic logins in first bb290bc 100-tenant run"
+      "Auth-form pre-hydration guard and 10 synthetic logins in first bb290bc 100-tenant run",
+      "fresh invited-user password login on exact alias passed; only Tenant A visible, Auth last_sign_in_at advanced",
+      "fictional FULL on hosted 5b992d3 passed 52 answers, score 51, confidence 78%, three context_for sources and cockpit 7/7; zero answer-level citations and zero verified documents",
+      "private validated run 36031065644 on predecessor ff864213 and run 36035020570 pinned to source 6dff3c9 passed SQL-only migration 0024 probe with 12 required named cases and rollback; private JSONs not independently inspected by agent"
     ],
     "blocked": [
-      "fresh invited-user login by password after logout pending; owner confirmed password set and access, not this separate login proof",
-      "question-level linked/verified documentation and a document-grounded conclusion unproven in the FULL retest"
+      "HTTP Auth member/manager/foreign-tenant isolation has not been repeated on new web/worker uploaded from clean source 6dff3c9; private PR #19 runner and isolated local three-GoTrue-login/no-residue rehearsal passed but hosted run requires owner-set STAGING_SUPABASE_ANON_KEY in private Actions; historical bb290bc HTTP 12/12 does not transfer",
+      "question-level linked/verified documentation and a real document-grounded conclusion remain unproven while real upload is off; 7/7 fictitious demo belongs to predecessor 5b992d3"
     ]
   },
   "HSP-2": {
     "status": "partial_blocked",
     "passed": [
-      "security headers and five sensitive flags off",
+      "security headers; authenticated synthetic Tenant A owner UI on deployed 6dff3c9-source web showed Agentic, real Data Upload, Qualification Network, Real Contact and Ecosystem DESLIGADA, plus five-disabled summary; direct /ecossistema returned 404; UI/route-scope evidence, not raw environment inspection",
       "provider metrics and structured logs",
       "private backup workflow SHA 7e6a54e, run 35945384891 PASS: immutable encrypted release 3,613,039 bytes and isolated local logical restore of 102 tenants, 16 Auth users, 0 Storage objects and 24 migrations; DB 32.241s, full local drill 37.476s, not service RTO",
       "Dependabot and secret scanning controls",
       "issue #27 synthetic monitor failure, email notification received, human ACK, recovery and close; public ACK quote sanitized",
-      "hosted first-run outbox: 1600 matched facts/events processed, zero pending/dead/retries, worker latency p95 3589.34ms"
+      "hosted first-run outbox: 1600 matched facts/events processed, zero pending/dead/retries, worker latency p95 3589.34ms",
+      "private run 36030761200 passed synthetic source-to-target recovery without staging backup/credentials; no real service restore or RPO/RTO credit",
+      "deployed package byte comparison for 30 reviewed OSS packages passed on 25c022d8 against same-SHA CI; NOTICE/legal disposition remains blocked"
     ],
     "blocked": [
-      "one private manual backup and isolated DB restore passed, but no safe schedule, 30-day observed retention, service restore/RPO/RTO, independent key custody or formal equivalent-control decision",
-      "exact deployed artifact license disposition: bb290bc CI Linux SBOM has LGPL-3.0-or-later libvips; scanner PASS belongs to later CI candidate 0c6dc1a with 30 review items, not hosted runtime; bundle/NOTICE/legal decision pending"
+      "private manual backup, logical DB restore and synthetic source-to-target rehearsal passed; private PR #18 operator-held immutable release preflight and PR #20 retention prune guard at c3adbe3c with 77 synthetic CI tests merged; PR #21 backup monitor d8bdfb8d merged with 88 synthetic CI tests and dry-run 36039829373 SUCCESS, but monitor cron OFF, no real release read or issue opened and same GitHub Actions failure domain, but no real key/backup run; no active schedule, 30-day observed retention, real service restore/RPO-RTO, independent key custody, backup alert ACK (private issue #17 opened) or formal equivalent-control decision",
+      "exact new web/worker image license disposition and NOTICE/legal decision pending; 25c022d8 package-byte inspection and historical CI SBOM do not transfer to uploads from source 6dff3c9"
     ]
   },
   "HSP-3": {
@@ -48,7 +57,8 @@
       "hosted outbox in first run: 1600 matched facts/events processed, zero pending/dead/retries, worker latency p95 3589.34ms, attempt p95 164ms",
       "Railway web/worker ran in Virginia us-east4-eqdc16a while Supabase staging is Sao Paulo sa-east-1; regional contribution to p95 not isolated",
       "second same-runtime bb290bc run 662855c2dbd5 completed 3604 seconds, 100/100 tenants, 10 Auth users, 24512 requests, 5806 fact writes, 584 expected cross-tenant denials, 0 unexpected errors, 70 recycled pages",
-      "second run hosted outbox: 5806 matched facts/events processed, 0 pending/dead/retries, worker latency p95 3476.20ms and attempt p95 163ms"
+      "second run hosted outbox: 5806 matched facts/events processed, 0 pending/dead/retries, worker latency p95 3476.20ms and attempt p95 163ms",
+      "web/worker Railway CLI uploads from clean detached source 6dff3c9 both SUCCESS with digests, cliMessage exact SHA but meta.commitHash=null; new web authenticated Home GET 200 in 2287ms and 14ms, zero filtered home_latency events; no hosted subphase series or repeat 100x60; instrumentation is not a latency fix"
     ],
     "failed": [
       "first bb290bc run p95 FAIL with 10 client errors and only 998 seconds; second 3604-second run p95 login 1964.5ms, Home 1055.48ms, write 1024.5ms, read 793.8ms against <=750ms gate despite 0 unexpected errors"
@@ -58,21 +68,25 @@
     ]
   },
   "HSP-4": {
-    "status": "closed_no_go_objective_fixes",
+    "status": "closed_no_go_6dff3c9_objective_fixes",
     "evidence": [
       "migration 0024 hosted SQL RLS 12/12 and bb290bc HTTP multi-role isolation 12/12",
       "FULL 55-answer diagnostic repeated on bb290bc with score 48, zero linked/verified documents",
       "functional SHA bb290bc7bc35f77b4ca01aecdbf19b748c386270 quality/database/CodeQL PASS and web/worker Railway SUCCESS; later harness SHA dc9c124 CI PASS but is not deployed runtime",
-      "controlled invite through callback and Tenant A session; password confirmed by owner, fresh login pending",
+      "controlled invite through callback and Tenant A session; fresh login on exact invited alias passed with only Tenant A visible",
       "issue #27 email notification, human ACK, recovery and close; ACK quote sanitized",
       "private backup run 35945384891 PASS for immutable encrypted release and isolated logical restore; HSP-2 still BLOCKED",
       "first bb290bc run ended at 998 seconds with 10 client errors; second run 662855c2dbd5 completed 3604 seconds/100 tenants/24512 requests/0 unexpected errors/584 expected denials, outbox 5806 processed without pending/dead/retries; p95 FAIL",
-      "five sensitive flags OFF in hosted web and worker"
+      "all five sensitive flags displayed DESLIGADA to authenticated synthetic Tenant A owner at /demonstracao/administracao on new web uploaded from 6dff3c9; UI scope only, not raw env inspection",
+      "new web 2e2690bd and worker 56740353 Railway CLI uploads SUCCESS from clean detached source 6dff3c9833ae2036f187dd1c9b3a2ad9680a20ac with image digests; cliMessage exact SHA but meta.commitHash=null limits native attestation; fictional FULL on predecessor 5b992d3 passed 52 answers and cockpit 7/7 without real document proof",
+      "source 6dff3c9 private SQL-only workflow 36035020570 SUCCESS with fail-closed 12-case/rollback validator; private JSON not independently read due to access review; HTTP multi-role remains pending",
+      "private synthetic source-to-target recovery run 36030761200 SUCCESS without real staging data or RPO/RTO credit",
+      "current objective NO-GO review: docs/audit-2026-09-24/HSP4_CURRENT_REVIEW_6DFF3C9_2026-09-24.md"
     ],
     "pending": [
-      "fresh invited-user login after logout and document-grounded conclusion remain unproven; FULL flow retest itself passed",
-      "automatic encrypted backup retention and representative service restore with measured RPO/RTO, independent key custody and equivalent-control decision",
-      "legal and technical LGPL disposition",
+      "HTTP Auth member/manager/foreign-tenant isolation must repeat on new deployments uploaded from 6dff3c9; SQL-only has limited PASS; real document-grounded conclusion remains unproven under disabled upload flag",
+      "automatic encrypted backup retention and representative real service restore with measured RPO/RTO, independent key custody, backup alert ACK and equivalent-control decision",
+      "legal and technical LGPL/CC-BY/MPL disposition, final NOTICE and package-byte inspection tied to final new web/worker images",
       "100-tenant 60-minute duration, functional isolation and outbox proof passed; p95 <=750ms and remaining pool/saturation telemetry still pending",
       "repeat affected HSP-4 gates and issue a new review before any pilot authorization"
     ]
@@ -80,6 +94,6 @@
   "production": {
     "status": "blocked",
     "pilot": "no-go",
-    "reason": "HSP-4 recheck NO-GO: 100-tenant 60-minute duration/isolation/outbox passed but p95 <=750ms failed; automatic retained backup/service RPO-RTO, ACL/owner-equivalent restore and LGPL disposition lack PASS; invited-user fresh login and document-grounded conclusions remain pending; later Waves not started"
+    "reason": "HSP-4 current 6dff3c9-source review NO-GO: Railway CLI uploads SUCCESS but meta.commitHash=null limits native source attestation; historical 100-tenant 60-minute duration/isolation/outbox passed but p95 <=750ms failed; SQL-only 0024 passed via validated private workflow but HTTP multi-role remains pending; automatic retained backup/service RPO-RTO, ACL/owner-equivalent restore and final OSS disposition lack PASS; real document-grounded conclusions remain unproven with upload off; later Waves not started"
   }
 }

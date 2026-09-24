@@ -285,9 +285,27 @@
       "reason": "Describe fail-closed tenant selection, server-owned fictional evidence and required conflict reconciliation"
     },
     {
+      "path": "docs/audit-2026-09-24/HSP4_CURRENT_REVIEW_6DFF3C9_2026-09-24.md",
+      "beforeSha256": null,
+      "afterSha256": "9c44a8d8ec8fe4d42cb35d673a21e751786782ba7b72ad3a37e79a3e9adef7d2",
+      "reason": "HSP-4: current A-T review of exact staged candidate, bounded evidence and objective NO-GO"
+    },
+    {
+      "path": "docs/audit-2026-09-24/HSP4_HOSTED_FULL_DEMO_5B992D3_2026-09-24.md",
+      "beforeSha256": null,
+      "afterSha256": "4c8809b3a6b80367578bfe5fbab76d1c42ee0ebc60c2ef3ed1aa24a6ff0960d2",
+      "reason": "HSP-4: record hosted fictional FULL demo and its documentary and latency limits"
+    },
+    {
+      "path": "docs/audit-2026-09-24/HSP4_PRIVATE_SYNTHETIC_AND_SQL_METADATA_2026-09-24.md",
+      "beforeSha256": null,
+      "afterSha256": "fee68fada87f3cd47a729a6ac7b101adab2bfce646dac0dd617292c24ec85196",
+      "reason": "HSP-4: public sanitized private-run metadata, SQL-only PASS and synthetic recovery limits"
+    },
+    {
       "path": "docs/audit-2026-09-24/HSP4_CORRECTIVE_GO_NO_GO_2026-09-24.md",
       "beforeSha256": null,
-      "afterSha256": "99bfcd376dabe68b28936c271e9b8aa366a6ef71162ebb323adaf0025c8652f6",
+      "afterSha256": "c9fcdc111a305f12a27a78472d9a0c960ea821e4d3ea363e80a873f25bef4363",
       "reason": "HSP-4: reconcile promoted staging smoke with historical full-gate evidence and objective NO-GO"
     },
     {
@@ -305,19 +323,19 @@
     {
       "path": "docs/canonical/v1/delivery/EPICS_MASTER.md",
       "beforeSha256": "6c8cd57c3ba860428f3d1649f0d4a90f23c6f735faca8b65648b38d62917b3c7",
-      "afterSha256": "5da5283088dbc7eda73d9bd21a6e94671e8d7a111cec7c68bc9fe40379eb78fc",
+      "afterSha256": "0192515ae68bd5b3f7d6126c6b19a63a346f53bc99081480d518dda514cf10ce",
       "reason": "HSP-4: reconcile CI, private backup preparations, failed runtime gates and final NO-GO evidence"
     },
     {
       "path": "docs/canonical/v1/delivery/PRODUCTION_WAVES_MASTER.md",
       "beforeSha256": "14af8551a84daf473cb9ec2c78818b789d3bc6500fbd92ee1cbfe5718735d62e",
-      "afterSha256": "fcd48faacc8021dea684e8f21ab2bbb7521c5351ea1a7711e4147c4d47246a3a",
+      "afterSha256": "21763f7eef720bc189375bb3479d79b00a942105658e3aa12d83bbdb0e189717",
       "reason": "HSP-4: reconcile CI, private backup preparations, failed runtime gates and final NO-GO evidence"
     },
     {
       "path": "docs/canonical/v1/delivery/PRODUCTION_WAVES.md",
       "beforeSha256": "fe82dd3e99e80142b971f72c867df24ab1d66d1d61390c42802b2a101ccdfdf0",
-      "afterSha256": "15af3edaaaa49b73e93bd9ca9dce8d08da04b66d57e86e32a19eae4f6de18afa",
+      "afterSha256": "36b662acdd3b6d2f817f0921e732c613fd0186fd46c00fceffd7584bf6a1cab6",
       "reason": "HSP-4 final hosted evidence and NO-GO gate reconciliation"
     },
     {
@@ -329,19 +347,19 @@
     {
       "path": "docs/canonical/v1/delivery/STORIES_MASTER.md",
       "beforeSha256": "a3f3ad9426753d3eaabe96609d514f4b17b586e1ff8a280476bfc14b8af87673",
-      "afterSha256": "e12ef9281619ba1078f618b6fe04e657fdfe6dc885ce75e0d95e643c91bc3f0c",
+      "afterSha256": "1290911f7c1f4f324f56284238aca785d7edc31baa5dd83e77584bc281d67278",
       "reason": "HSP-4: reconcile CI, private backup preparations, failed runtime gates and final NO-GO evidence"
     },
     {
       "path": "docs/canonical/v1/gates/GATES.json",
       "beforeSha256": "cd81e6aefa9228fe362befa930d0407f806a9a691429d5e395db446f8f615ca3",
-      "afterSha256": "c0a2e8c9bbf20ad2548427a421f78d9b98f3dde858ad1951b429199447a06021",
+      "afterSha256": "7dd88d9dc5d58172a3317a02e767a86f21d1d03c5f5c6def81a23b687fbaec4f",
       "reason": "HSP-4: reconcile CI, private backup preparations, failed runtime gates and final NO-GO evidence"
     },
     {
       "path": "GATES.json",
       "beforeSha256": "0bbead31fbc1457d082cdeae406d1a080fe23ed904b9ee3f47268d517d9077f5",
-      "afterSha256": "cf203563e0fd870dc3cca6ace0ce4cb73437a6a56f9735c785be7521188d250e",
+      "afterSha256": "e1ba5d78dea1190d08d54127227168c1071c54f2fbcc92bc4db14c604cb865ce",
       "reason": "HSP-4 final hosted evidence and NO-GO gate reconciliation"
     },
     {
@@ -431,7 +449,7 @@
     {
       "path": "PROJECT-STATE.md",
       "beforeSha256": "d872785f2e9e30f89ffc11d5a7e13962907c06372e92168c7f2216f9ee92ac3d",
-      "afterSha256": "c150c5666ade0622b921479d419aba15bfd36ac4f539d9455284e8e68cf55637",
+      "afterSha256": "2a82f2a7fd16e0460dee6d3932c53d00054db5f3708633c3eb36b8ac65bad0ab",
       "reason": "HSP-4: reconcile CI, private backup preparations, failed runtime gates and final NO-GO evidence"
     },
     {
