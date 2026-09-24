@@ -9,10 +9,13 @@ import type { TenantContextTimingPhase } from "@/lib/tenant-context";
 type HomeTimingPhase = TenantContextTimingPhase | DashboardTimingPhase;
 
 async function logHomeTiming(started: number, phases: Partial<Record<HomeTimingPhase, number>>) {
+  let safeCorrelation: string | null = null;
   try {
     const correlation = (await headers()).get("x-correlation-id");
-    const safeCorrelation = correlation && /^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$/.test(correlation)
+    safeCorrelation = correlation && /^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$/.test(correlation)
       ? correlation : null;
+  } catch { /* The correlation header is optional; keep numeric telemetry. */ }
+  try {
     console.log(operationalLog("info", "home_latency", {
       ...(safeCorrelation ? { correlation_id: safeCorrelation } : {}),
       duration_ms: Math.round((performance.now() - started) * 100) / 100,

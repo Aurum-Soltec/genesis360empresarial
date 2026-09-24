@@ -7,14 +7,17 @@ export function DemoPackage({
   companyId,
   diagnosticId,
   loaded,
+  linked,
 }: {
   companyId: string;
   diagnosticId: string | null;
   loaded: boolean;
+  linked: boolean;
 }) {
   const router = useRouter();
   const [confirmed, setConfirmed] = useState(false);
   const [working, setWorking] = useState(false);
+  const [completed, setCompleted] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
 
   async function loadPackage() {
@@ -29,9 +32,12 @@ export function DemoPackage({
       });
       const body = await response.json();
       if (!response.ok) throw new Error(body.error ?? "DEMO_PACKAGE_FAILED");
-      setMessage(body.created
-        ? `${body.created} documentos fictícios foram registrados com rastreabilidade.`
-        : "O pacote fictício já estava registrado para esta empresa.");
+      setMessage(diagnosticId
+        ? "As três fontes fictícias foram vinculadas como contexto do diagnóstico. Elas não verificam respostas individuais."
+        : body.created
+          ? `${body.created} documentos fictícios foram registrados com rastreabilidade.`
+          : "O pacote fictício já estava registrado para esta empresa.");
+      setCompleted(true);
       router.refresh();
     } catch {
       setMessage("Não foi possível registrar o pacote fictício. Nenhum dado real foi enviado.");
@@ -66,10 +72,13 @@ export function DemoPackage({
       <div className="action-row">
         <button
           className="button button-primary"
-          disabled={!confirmed || working || loaded}
+          disabled={!confirmed || working || completed || (loaded && (!diagnosticId || linked))}
           onClick={loadPackage}
         >
-          {working ? "Registrando…" : loaded ? "Pacote já registrado" : "Enviar documentação fictícia"}
+          {working ? "Registrando…" : completed || linked
+            ? "Pacote vinculado ao diagnóstico"
+            : loaded ? diagnosticId ? "Vincular ao diagnóstico" : "Pacote já registrado"
+              : "Enviar documentação fictícia"}
         </button>
         <span className="demo-safety-note">Upload real continua desligado.</span>
       </div>

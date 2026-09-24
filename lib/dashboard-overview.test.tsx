@@ -153,4 +153,25 @@ describe("executive Home reads", () => {
     await expect(loadDashboardOverview(context, () => { throw new Error("TELEMETRY_FAILED"); }))
       .resolves.toMatchObject({ companyName: "Empresa Alfa", growthScore: 68 });
   });
+
+  it("keeps numeric Home telemetry when the optional correlation header fails", async () => {
+    vi.mocked(createSupabaseServerClient).mockResolvedValue(dashboardDb(true) as never);
+    vi.mocked(headers).mockRejectedValueOnce(new Error("HEADER_UNAVAILABLE"));
+    vi.stubEnv("HSP4_PERF_TRACE", "1");
+    const output = vi.spyOn(console, "log").mockImplementation(() => {});
+    try {
+      const html = renderToStaticMarkup(await DashboardPage());
+      const event = JSON.parse(String(output.mock.calls.at(-1)?.[0]));
+      expect(html).toContain("Empresa Alfa");
+      expect(event.operation).toBe("home_latency");
+      expect(event).not.toHaveProperty("correlation_id");
+      expect(event.phases_ms).toEqual(expect.objectContaining({
+        company_selection: expect.any(Number), diagnostic: expect.any(Number), pains: expect.any(Number),
+      }));
+      expect(JSON.stringify(event)).not.toContain("Empresa Alfa");
+      expect(JSON.stringify(event)).not.toContain("tenant-a");
+    } finally {
+      output.mockRestore();
+    }
+  });
 });

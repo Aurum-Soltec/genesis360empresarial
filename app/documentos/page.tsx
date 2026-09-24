@@ -79,6 +79,20 @@ export default async function DocumentosPage() {
     ? (evidence ?? []).filter(isCanonicalDemoEvidenceRecord)
     : (evidence ?? []);
 
+  const canonicalIds = displayedEvidence.map((item) => item.id);
+  const { data: contextLinks, error: contextLinksError } = demoAllowed && latestDiagnostic &&
+    canonicalIds.length === DemoEvidenceTemplates.length
+    ? await db.from("evidence_links").select("evidence_id")
+        .eq("tenant_id", ctx.tenantId)
+        .eq("subject_type", "diagnostic")
+        .eq("subject_id", latestDiagnostic.id)
+        .eq("relation", "context_for")
+        .in("evidence_id", canonicalIds)
+    : { data: [], error: null };
+  if (contextLinksError) throw new Error("DOCUMENTS_LINK_READ_FAILED");
+  const packageLinked = canonicalIds.length === DemoEvidenceTemplates.length &&
+    new Set((contextLinks ?? []).map((item) => item.evidence_id)).size === DemoEvidenceTemplates.length;
+
   return (
     <AppShell>
       <header className="page-header">
@@ -98,6 +112,7 @@ export default async function DocumentosPage() {
           companyId={company.id}
           diagnosticId={latestDiagnostic?.id ?? null}
           loaded={canonicalDemoEvidenceCount(evidence) === DemoEvidenceTemplates.length}
+          linked={packageLinked}
         />
       ) : null}
 

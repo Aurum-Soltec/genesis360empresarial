@@ -137,8 +137,14 @@
     {
       "path": "app/documentos/page.tsx",
       "beforeSha256": "84b4104ed456dc1c300c1c952661fa454af716bc3ba7758b4274f1d807bdf485",
-      "afterSha256": "042a3ea6e0ad47ed7055a931c807c1fd569b1556ec1a1960fcb7bd706444b79c",
-      "reason": "Navigation and explicit read-failure states for presentation-critical pages; 2026-09-23: reviewed local correction"
+      "afterSha256": "778c4bdeb5e6d79570ac00416fdcb4a3af9b01614204ac090deefa1215f2a61e",
+      "reason": "Navigation and explicit read-failure states; HSP-4: expose idempotent linking of existing fictional sources to a new diagnostic"
+    },
+    {
+      "path": "app/documentos/demo-package.tsx",
+      "beforeSha256": "e69a866fc54d0e8c3b802c5b1070bf7a06fed2edecaf3f678a2890d4f54fd821",
+      "afterSha256": "5942b38bee392bcf6cfeccd2dfd6288988ce27f2aa0aecab616ad73e9a461923",
+      "reason": "HSP-4: let an existing fictional package become context for a new diagnostic without claiming answer verification"
     },
     {
       "path": "app/entrar/page.tsx",
@@ -191,8 +197,8 @@
     {
       "path": "app/page.tsx",
       "beforeSha256": "4dd8dfe30b1e78a3561437b521f168317bb2faff6ebbfe32ca257a47386b844d",
-      "afterSha256": "386707ceb53086d52fe174e608bd090dd34474162b8fb8971c48fe18efe1d74f",
-      "reason": "Separate contextual navigation pages; HSP-4 opt-in numeric Home latency phases"
+      "afterSha256": "a7f54a44ca71c100d6a456a5dc2805c786a6a8e3ed1c25a8d09da0efd5a9bd00",
+      "reason": "Separate contextual navigation pages; HSP-4 numeric Home latency survives an unavailable correlation header"
     },
     {
       "path": "app/passaporte/page.tsx",
@@ -329,8 +335,8 @@
     {
       "path": "lib/dashboard-overview.test.tsx",
       "beforeSha256": null,
-      "afterSha256": "6c1b77cfeab3491a5b15dab1f8346900f9b38a6dc5320b58dda3f7c0a76a8472",
-      "reason": "HSP-4 numeric latency telemetry regression without business or tenant data in logs"
+      "afterSha256": "275264c0645853b285b89e2fe03c1c2ab522d3e6e7d23f296de1ec79ef52cf5f",
+      "reason": "HSP-4 numeric latency telemetry regression including optional header failure without business or tenant data in logs"
     },
     {
       "path": "lib/dashboard-overview.ts",
