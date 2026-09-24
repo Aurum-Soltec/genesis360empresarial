@@ -348,13 +348,13 @@
     "storyCount": 12,
     "statusCounts": {
       "completed-remote-repository": 1,
-      "completed-hosted-runtime": 4,
+      "completed-hosted-runtime-limited": 4,
       "completed-remote-ci": 1,
-      "partial-hosted-logical-pass-managed-backup-pending": 1,
-      "partial-scans-and-license-inventory-pass-sbom-legal-pending": 1,
-      "partial-hosted-observability-external-paging-pending": 1,
+      "partial-private-v2-manual-logical-pass-service-rpo-rto-pending": 1,
+      "partial-deployed-package-bytes-pass-notice-legal-blocked": 1,
+      "partial-monitor-drill-alert-delivery-ack-pass-continuous-observation-pending": 1,
       "completed-hosted-staging-and-remote-ci": 1,
-      "completed-hsp4-no-go": 1,
+      "hsp4-prr-closed-no-go-objective-fixes": 1,
       "planned-not-started": 1
     },
     "priorities": {

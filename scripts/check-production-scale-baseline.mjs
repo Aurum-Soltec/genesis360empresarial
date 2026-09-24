@@ -36,8 +36,8 @@ const stories = fs.readFileSync(
 const expectedStories = [
   ["V1-ST-004", "implemented-runtime-verified"],
   ["V1-ST-066", "implemented-runtime-verified"],
-  ["V1-ST-105", "completed-hosted-runtime"],
-  ["V1-ST-106", "completed-hosted-runtime"],
+  ["V1-ST-105", "completed-hosted-runtime-limited"],
+  ["V1-ST-106", "completed-hosted-runtime-limited"],
   ["V1-ST-107", "completed-remote-ci"],
 ];
 for (const [story, status] of expectedStories) {

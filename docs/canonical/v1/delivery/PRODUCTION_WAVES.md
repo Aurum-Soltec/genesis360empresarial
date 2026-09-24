@@ -11,6 +11,13 @@
 > Nenhuma Wave após HSP-4 começou. A cópia privada cifrada e o restore lógico
 > isolado passaram como subprova manual; o gate de recuperação continua BLOCKED
 > por agendamento, retenção, equivalência de permissões e RPO/RTO de serviço.
+> A inspeção read-only do SHA `31df6086` confirmou os hashes dos 30 pacotes
+> sob revisão em web e worker contra o CI Linux do mesmo SHA; NOTICE e decisão
+> LGPL/CC-BY/MPL permanecem BLOCKED. Correções locais de demo e performance
+> ainda não receberam crédito runtime.
+> A PR privada #11/run `36020411581` passou somente boot/saúde de stack
+> sintética vazia, isolada em loopback no runner Ubuntu; 120 s não são RTO.
+> Restore real, RPO/RTO, agendamento e retenção seguem BLOCKED.
 
 As Waves 0-4 existentes representam evolução histórica da fundação. A partir deste pacote, usar identificadores `PW-*` para produção.
 

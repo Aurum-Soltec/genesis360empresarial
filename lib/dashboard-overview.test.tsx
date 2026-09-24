@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { beforeEach, describe, expect, it, vi } from "vitest";
+import { headers } from "next/headers";
 import DashboardPage from "@/app/page";
 import { loadDashboardOverview } from "@/lib/dashboard-overview";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
@@ -15,6 +16,9 @@ vi.mock("@/lib/page-tenant-context", () => ({
 }));
 vi.mock("@/lib/feature-flags", () => ({ isDemoTenantAllowed: vi.fn(() => false) }));
 vi.mock("@/lib/supabase/server", () => ({ createSupabaseServerClient: vi.fn() }));
+vi.mock("next/headers", () => ({
+  headers: vi.fn(async () => new Headers({ "x-correlation-id": "hsp4-probe" })),
+}));
 
 const context = { tenantId: "tenant-a", userId: "user-a", role: "owner" };
 
@@ -72,7 +76,7 @@ function dashboardDb(withDiagnostic: boolean) {
   return { from, filters };
 }
 
-beforeEach(() => vi.clearAllMocks());
+beforeEach(() => { vi.clearAllMocks(); vi.unstubAllEnvs(); });
 
 describe("executive Home reads", () => {
   it("renders the same score and next action without unused data reads", async () => {
@@ -113,5 +117,40 @@ describe("executive Home reads", () => {
     expect(html).toContain("Construa sua primeira leitura empresarial.");
     expect(html).toContain("Iniciar diagnóstico");
     expect(db.from.mock.calls.map(([table]) => table)).toEqual(["companies", "diagnostics"]);
+  });
+
+  it("records numeric Home phases without exposing business data or changing the read", async () => {
+    const db = dashboardDb(true);
+    vi.mocked(createSupabaseServerClient).mockResolvedValue(db as never);
+    const phases: Array<[string, number]> = [];
+    const data = await loadDashboardOverview(context, (phase, durationMs) => {
+      phases.push([phase, durationMs]);
+    });
+    expect(data?.growthScore).toBe(68);
+    expect(phases.map(([phase]) => phase)).toEqual(["company_selection", "diagnostic", "pains"]);
+    expect(phases.every(([, duration]) => Number.isFinite(duration) && duration >= 0)).toBe(true);
+
+    vi.stubEnv("HSP4_PERF_TRACE", "1");
+    const output = vi.spyOn(console, "log").mockImplementation(() => {});
+    try {
+      await DashboardPage();
+      const event = JSON.parse(String(output.mock.calls.at(-1)?.[0]));
+      expect(headers).toHaveBeenCalledOnce();
+      expect(event.operation).toBe("home_latency");
+      expect(event.correlation_id).toBe("hsp4-probe");
+      expect(event.phases_ms).toEqual(expect.objectContaining({
+        company_selection: expect.any(Number), diagnostic: expect.any(Number), pains: expect.any(Number),
+      }));
+      expect(JSON.stringify(event)).not.toContain("Empresa Alfa");
+      expect(JSON.stringify(event)).not.toContain("tenant-a");
+    } finally {
+      output.mockRestore();
+    }
+  });
+
+  it("preserves the Home read when a timing observer throws", async () => {
+    vi.mocked(createSupabaseServerClient).mockResolvedValue(dashboardDb(true) as never);
+    await expect(loadDashboardOverview(context, () => { throw new Error("TELEMETRY_FAILED"); }))
+      .resolves.toMatchObject({ companyName: "Empresa Alfa", growthScore: 68 });
   });
 });

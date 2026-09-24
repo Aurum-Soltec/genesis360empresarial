@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { readJsonBody } from "@/lib/http-security";
 import { getFeatureFlags } from "@/lib/feature-flags";
-import { listTenantMembers } from "@/lib/server/trusted-data-access";
+import { linkCanonicalDemoEvidenceContext, listTenantMembers } from "@/lib/server/trusted-data-access";
 import { trustedTenantRpc } from "@/lib/server/trusted-data-access";
 import { DemoEvidenceTemplates } from "@/lib/demo-scenario";
 import { POST as activateTenant } from "./tenant/active/route";
@@ -34,6 +34,7 @@ vi.mock("@/lib/feature-flags", () => ({
 }));
 vi.mock("@/lib/server/trusted-data-access", () => ({
   trustedTenantRpc: vi.fn(),
+  linkCanonicalDemoEvidenceContext: vi.fn(),
   recordDecisionFromPain: vi.fn(),
   createSolutionContactRequest: vi.fn(),
   listTenantMembers: vi.fn(),
@@ -175,6 +176,43 @@ describe("API read-failure boundary", () => {
     expect(response.status).toBe(409);
     expect(await response.json()).toEqual({ error: "DEMO_SOURCE_CONFLICT" });
     expect(trustedTenantRpc).not.toHaveBeenCalled();
+  });
+
+  it("links an existing canonical fictional package as diagnostic context", async () => {
+    const diagnosticId = "9f0c2ad8-0f57-49a9-a445-a0f12c240212";
+    const evidenceIds = [
+      "29ec951e-4f0e-422b-8d51-e286b6a9b0e1",
+      "a7418869-aad0-4320-853f-86234972a1b2",
+      "d1edbda7-0c5f-4ec9-89bd-1bc8d07a0c9f",
+    ];
+    vi.mocked(readJsonBody).mockResolvedValueOnce({ companyId: item, diagnosticId });
+    const company = { id: item, fictional: true };
+    const existing = DemoEvidenceTemplates.map((template, index) => ({
+      id: evidenceIds[index],
+      source_ref: template.sourceRef,
+      evidence_type: template.evidenceType,
+      summary: template.summary,
+      payload: template.payload,
+      sensitivity: template.sensitivity,
+      purpose_codes: ["DEMO_CONTROLLED"],
+      verification_status: "unverified",
+    }));
+    const companyQuery = { eq: vi.fn(() => companyQuery), maybeSingle: vi.fn(async () => ({ data: company, error: null })) };
+    const diagnosticQuery = { eq: vi.fn(() => diagnosticQuery), maybeSingle: vi.fn(async () => ({ data: { id: diagnosticId }, error: null })) };
+    const evidenceQuery = { eq: vi.fn(() => evidenceQuery), in: vi.fn(async () => ({ data: existing, error: null })) };
+    vi.mocked(createSupabaseServerClient).mockResolvedValue({
+      from: (table: string) => ({ select: () => table === "companies"
+        ? companyQuery : table === "diagnostics" ? diagnosticQuery : evidenceQuery }),
+    } as never);
+
+    const response = await registerDemoEvidence(request);
+    expect(response.status).toBe(201);
+    expect(await response.json()).toEqual({ evidenceIds, created: 0, fictional: true });
+    expect(trustedTenantRpc).not.toHaveBeenCalled();
+    expect(linkCanonicalDemoEvidenceContext).toHaveBeenCalledWith(
+      expect.objectContaining({ tenantId: tenant, role: "owner" }),
+      { companyId: item, diagnosticId, evidenceIds },
+    );
   });
 
   it("reserves the DEMO source namespace from ordinary evidence writes", async () => {

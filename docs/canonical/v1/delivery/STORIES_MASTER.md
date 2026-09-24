@@ -1374,7 +1374,7 @@ Estados `implemented*` indicam implementação existente; não significam prova 
 
 ## EPIC-17 Production Readiness & Repository
 
-**Estado após promoção de 2026-09-24 UTC: NO-GO.** O PR #25 integrou `31df6086cb612886dc5db4a45b946ea80dde2cf1`; CI final e deployments web/worker no mesmo SHA passaram. O smoke hospedado limitou-se a negativas anônimas, Tenant A autenticado, administração/Passport/demo/relatório existentes e quatro destinos de navegação. A demo mostrou 6/7 etapas, com zero fontes vinculadas/verificadas. O login convidado passou. O FULL corrigido, 0024 SQL/HTTP multi-role e 100 empresas/60 min **não foram repetidos nesse SHA**. A carga integral anterior falhou p95 ≤750 ms. Backup de serviço/RPO/RTO/automação e licença seguem BLOCKED. O runner sintético anterior não selecionou tenant, mas a UI posterior mostrou Tenant A para uma das mesmas contas; causa não estabelecida. `V1-ST-110`, `V1-ST-111` e `V1-ST-122` permanecem abertas; `V1-ST-123` não iniciou. Evidência: `docs/audit-2026-09-24/HSP4_CORRECTIVE_GO_NO_GO_2026-09-24.md`.
+**Estado após promoção de 2026-09-24 UTC: NO-GO.** O PR #25 integrou `31df6086cb612886dc5db4a45b946ea80dde2cf1`; CI final e deployments web/worker no mesmo SHA passaram. O smoke hospedado limitou-se a negativas anônimas, Tenant A autenticado, administração/Passport/demo/relatório existentes e quatro destinos de navegação. A demo mostrou 6/7 etapas, com zero fontes vinculadas/verificadas. O login convidado passou. O FULL corrigido, 0024 SQL/HTTP multi-role e 100 empresas/60 min **não foram repetidos nesse SHA**. A carga integral anterior falhou p95 ≤750 ms. Backup de serviço/RPO/RTO/automação e NOTICE/disposição jurídica seguem BLOCKED. A inspeção read-only dos serviços do SHA promovido comparou 30/30 pacotes em revisão com o CI Linux do mesmo SHA, sem divergência de hash agregado; não representa aceite das licenças. Uma correção contextual da demo e instrumentação adicional da Home são **somente locais**. O runner sintético anterior não selecionou tenant, mas a UI posterior mostrou Tenant A para uma das mesmas contas; causa não estabelecida. `V1-ST-110`, `V1-ST-111` e `V1-ST-122` permanecem abertas; `V1-ST-123` não iniciou. Evidência: `docs/audit-2026-09-24/HSP4_CORRECTIVE_GO_NO_GO_2026-09-24.md`.
 
 **Revisão corretiva anterior de 2026-09-24 UTC (histórica):** o novo login convidado passou; backup v2 capturou 129 entradas ACL e restore lógico 102 tenants/16 Auth/24 migrations em 77,450 s. PRs #6/#7 foram integradas como preparação, sem restore de serviço/RPO/RTO/schedule/retenção/chave independente. O run 100×60 anterior falhou p95. O CI Linux do `40b9b82` classificou 9/30 itens de licença na árvore de produção, sem bytes do contêiner ou decisão LGPL/CC-BY.
 
@@ -1449,7 +1449,7 @@ sem parcela de latência isolada. HSP-4 permanece **NO-GO**; PILOT-1 não começ
 
 ### V1-ST-107 — Full lint + TypeScript 6 + Vitest + Next build
 - **Status:** `completed-remote-ci`
-- **Revisão após promoção:** o predecessor público `40b9b82` passou CI e 503 Vitest/34 testes nativos no check local. O último commit com código `6d4d569` no PR #25 incorpora instrumentação/runner, passou `pnpm quality` local com 506 Vitest/34 nativos, lint, tipos, segurança e build; quality/database/CodeQL/Analyze finais passaram nos runs `36009033246` e `36009024373`. O merge `31df6086` está em web e worker do staging. O crédito runtime do novo SHA limita-se ao smoke; testes integrais afetados ainda pendem.
+- **Revisão após promoção:** o predecessor público `40b9b82` passou CI e reportou 503 Vitest/34 testes nativos no check local. O último commit com código `6d4d569` no PR #25 incorpora instrumentação/runner; seu run local histórico relatou 506 Vitest/34 nativos, lint, tipos, segurança e build; quality/database/CodeQL/Analyze finais passaram nos runs `36009033246` e `36009024373`. A configuração Vitest da contagem histórica não excluía `tmp`, portanto a contagem não é comparável à suíte local limpa atual de 49 arquivos/181 testes PASS. O merge `31df6086` está em web e worker do staging. O crédito runtime do novo SHA limita-se ao smoke; testes integrais afetados ainda pendem.
 - **Prioridade:** `P0`
 - **Source:** `docs/canonical/v1/delivery/STORIES_MASTER.md`
 - **Critérios de aceite:**
@@ -1509,6 +1509,7 @@ sem parcela de latência isolada. HSP-4 permanece **NO-GO**; PILOT-1 não começ
 ### V1-ST-110 — Backup/restore/rollback drill
 - **Status:** `partial-private-v2-manual-logical-pass-service-rpo-rto-pending`
 - **Revisão corretiva:** run privado v2 `36002104320` com release cifrada imutável e 129 entradas ACL no TOC; restore lógico isolado 102 tenants, 16 Auth, zero Storage, 24 migrations em 77,450 s após download. PR #7 de cron guardado integrada no SHA privado `051a76d`, mas variáveis de ativação/atestação ausentes mantêm schedule OFF; PR #6 de scaffold de serviço integrada no SHA `10214da`, com 34 testes locais PASS e um symlink SKIP no Windows, sem restore de serviço executado. Aplicação/equivalência de owners/ACL, serviço HTTP/Auth/Storage/worker, backup agendado, 30 dias, RPO/RTO e custódia independente ainda BLOCKED. GitHub Actions US$0/Stop usage foi confirmado, mas a cota compartilhada pode impedir backup futuro.
+- **Boot isolado posterior:** PR privada #11 integrada no SHA `987964fc`; run manual `36020411581` em Ubuntu passou stack vazia, saúde/identidade dos serviços, portas somente no loopback, recursos disponíveis e cleanup. Boot/saúde 120 s **não é RTO**; nenhum backup, plaintext ou credencial do staging foi usado. A viabilidade do bootstrap isolado passou, mas a história segue aberta para restore com dados, ACL/RLS, serviço fim a fim, RPO/RTO, schedule/retenção e chave independente. Evidência: `docs/audit-2026-09-24/HSP4_PRIVATE_SYNTHETIC_STACK_BOOT_2026-09-24.md`.
 - **Rechecagem anterior (histórica):** o restore lógico histórico de dataset pequeno foi superado
   por uma subprova manual real: workflow privado `7e6a54e`, run `35945384891`
   PASS, release cifrada imutável e restore isolado de 102 tenants, 16 Auth,
@@ -1529,13 +1530,13 @@ sem parcela de latência isolada. HSP-4 permanece **NO-GO**; PILOT-1 não começ
 - **Rollback:** obrigatório quando houver migration, configuração, segurança ou mudança de fluxo crítico.
 
 ### V1-ST-111 — SBOM + license + dependency + secret/security scans
-- **Status:** `partial-ci-sbom-pass-lgpl-disposition-blocked`
-- **Revisão corretiva:** commit público `40b9b82` no PR #25 classifica 9/30 declarações fora da preferência ADR-015 na árvore `pnpm --prod` e 21 fora dela. CI Linux `36004585089` passou, arquivou hashes dos 30 pacotes instalados e 28 arquivos LICENSE/NOTICE copiados; CodeQL/Analyze `36004579982` também passaram. Não há comparação com os bytes do contêiner Railway nem decisão LGPL/CC-BY. Gate BLOCKED.
+- **Status:** `partial-deployed-package-bytes-pass-notice-legal-blocked`
+- **Revisão corretiva:** commit público `40b9b82` no PR #25 classifica 9/30 declarações fora da preferência ADR-015 na árvore `pnpm --prod` e 21 fora dela. O CI Linux do SHA promovido `31df6086` (run `36009447882`) e a inspeção read-only dos dois contêineres Railway confirmaram presença e hashes agregados iguais dos 30/30 pacotes em revisão; os 21 fora da árvore `pnpm --prod` também estão fisicamente instalados. `@img/sharp-libvips-linux-x64` LGPL está presente em ambos. Isso não é hash da imagem inteira nem aceite jurídico. Três pacotes não trazem LICENSE/NOTICE local; NOTICE completo, condições/fontes aplicáveis, decisão LGPL/CC-BY/MPL e exceções aprovadas com bloqueio no CI seguem pendentes. Gate BLOCKED. Evidência: `docs/audit-2026-09-24/HSP4_DEPLOYED_LICENSE_BYTES_31df6086.md`.
 - **Rechecagem anterior (histórica):** o SBOM Linux do CI anterior lista 455 entradas, incluindo
   `@img/sharp-libvips-linux-x64` sob `LGPL-3.0-or-later`. O scanner de licenças
   passou no candidato `0c6dc1a`, mas gerou 30 itens para revisão. Inventário
   e scanner não são aceite jurídico, NOTICE completo ou inspeção byte a byte
-  do bundle Railway.
+  do bundle Railway; a inspeção posterior dos 30 pacotes no SHA `31df6086` supera somente essa lacuna técnica.
 - **Prioridade:** `P0`
 - **Source:** `docs/canonical/v1/delivery/STORIES_MASTER.md`
 - **Critérios de aceite:**
@@ -1704,7 +1705,7 @@ sem parcela de latência isolada. HSP-4 permanece **NO-GO**; PILOT-1 não começ
 
 ### V1-ST-122 — Production Readiness Review e release candidate
 - **Status:** `hsp4-prr-closed-no-go-objective-fixes`
-- **Revisão após promoção:** relatório A–T de 24/09 permanece NO-GO. PR #25 integrado em `31df6086` e web/worker SUCCESS no mesmo SHA; smoke autenticado limitado e negativas anônimas passaram. Novo FULL, matriz multi-role e run 100×60 não foram repetidos; p95 do último run segue FAIL, backup/restore de serviço/licença BLOCKED. O runner anterior parou após Auth sem seleção de tenant, enquanto a UI posterior encontrou Tenant A para uma conta; divergência indeterminada. PRs privadas #6/#7 integradas não alteram gates operacionais. Não há GO para piloto ou produção aberta.
+- **Revisão após promoção:** relatório A–T de 24/09 permanece NO-GO. PR #25 integrado em `31df6086` e web/worker SUCCESS no mesmo SHA; smoke autenticado limitado e negativas anônimas passaram. Novo FULL, matriz multi-role e run 100×60 não foram repetidos; p95 do último run segue FAIL, backup/restore de serviço e NOTICE/disposição jurídica BLOCKED. A comparação dos 30 pacotes implantados com CI do mesmo SHA passou tecnicamente. A correção local de vínculo contextual da demo e a instrumentação adicional da Home ainda não receberam crédito runtime. O runner anterior parou após Auth sem seleção de tenant, enquanto a UI posterior encontrou Tenant A para uma conta; divergência indeterminada. PRs privadas #6/#7 prepararam o restore e cron; PR #11/run `36020411581` passou apenas boot isolado da stack vazia, sem restore/RTO. Não há GO para piloto ou produção aberta.
 - **Prioridade:** `P0`
 - **Source:** `docs/canonical/v1/delivery/STORIES_MASTER.md`
 - **Critérios de aceite:**

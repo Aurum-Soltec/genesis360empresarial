@@ -1,13 +1,50 @@
 import Link from "next/link";
+import { headers } from "next/headers";
 import { AppShell } from "@/components/app-shell";
-import { loadDashboardOverview } from "@/lib/dashboard-overview";
+import { loadDashboardOverview, type DashboardTimingPhase } from "@/lib/dashboard-overview";
+import { operationalLog } from "@/lib/observability";
 import { requirePageTenantContext } from "@/lib/page-tenant-context";
+import type { TenantContextTimingPhase } from "@/lib/tenant-context";
+
+type HomeTimingPhase = TenantContextTimingPhase | DashboardTimingPhase;
+
+async function logHomeTiming(started: number, phases: Partial<Record<HomeTimingPhase, number>>) {
+  try {
+    const correlation = (await headers()).get("x-correlation-id");
+    const safeCorrelation = correlation && /^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$/.test(correlation)
+      ? correlation : null;
+    console.log(operationalLog("info", "home_latency", {
+      ...(safeCorrelation ? { correlation_id: safeCorrelation } : {}),
+      duration_ms: Math.round((performance.now() - started) * 100) / 100,
+      phases_ms: phases,
+    }));
+  } catch { /* Telemetry must never change page rendering or authorization. */ }
+}
+
+async function observeHomeReads<T>(
+  trace: boolean,
+  run: (observe: ((phase: HomeTimingPhase, durationMs: number) => void) | undefined) => Promise<T>,
+): Promise<T> {
+  if (!trace) return run(undefined);
+  const started = performance.now();
+  const phases: Partial<Record<HomeTimingPhase, number>> = {};
+  const observe = (phase: HomeTimingPhase, durationMs: number) => {
+    phases[phase] = Math.round(durationMs * 100) / 100;
+  };
+  try {
+    return await run(observe);
+  } finally {
+    await logHomeTiming(started, phases);
+  }
+}
 
 export default async function DashboardPage() {
-  const context = await requirePageTenantContext("/");
-  let data;
+  let data: Awaited<ReturnType<typeof loadDashboardOverview>>;
   try {
-    data = await loadDashboardOverview(context);
+    data = await observeHomeReads(process.env.HSP4_PERF_TRACE === "1", async (observe) => {
+      const context = await requirePageTenantContext("/", "api.default", observe);
+      return loadDashboardOverview(context, observe);
+    });
   } catch (error) {
     if (!(error instanceof Error) || error.message !== "COMPANY_SELECTION_REQUIRED") throw error;
     return (

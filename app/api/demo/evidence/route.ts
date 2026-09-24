@@ -6,7 +6,7 @@ import { DemoEvidenceTemplates, isCanonicalDemoEvidenceRecord } from "@/lib/demo
 import { isDemoTenantAllowed } from "@/lib/feature-flags";
 import { assertSameOrigin, readJsonBody } from "@/lib/http-security";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
-import { trustedTenantRpc } from "@/lib/server/trusted-data-access";
+import { linkCanonicalDemoEvidenceContext, trustedTenantRpc } from "@/lib/server/trusted-data-access";
 import { requireTenantContext } from "@/lib/tenant-context";
 
 const Schema = z.object({
@@ -90,11 +90,19 @@ export async function POST(request: Request) {
         p_purpose_codes: ["DEMO_CONTROLLED"],
         p_subject_type: diagnosticId ? "diagnostic" : null,
         p_subject_id: diagnosticId,
-        p_relation: "supports",
+        p_relation: "context_for",
       });
       if (error || !evidenceId) throw new Error("EVIDENCE_WRITE_FAILED");
       ids.push(evidenceId);
       created += 1;
+    }
+
+    if (diagnosticId) {
+      await linkCanonicalDemoEvidenceContext(ctx, {
+        companyId: company.id,
+        diagnosticId,
+        evidenceIds: ids,
+      });
     }
 
     return NextResponse.json({ evidenceIds: ids, created, fictional: true }, { status: 201 });

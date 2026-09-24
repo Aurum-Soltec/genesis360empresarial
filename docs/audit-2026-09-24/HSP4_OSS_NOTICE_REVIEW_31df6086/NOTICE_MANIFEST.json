@@ -1,0 +1,567 @@
+{
+  "schemaVersion": 1,
+  "status": "REVIEW_BUNDLE_NOT_LEGAL_APPROVAL",
+  "sourceCommit": "31df6086cb612886dc5db4a45b946ea80dde2cf1",
+  "sourceCiRun": 36009447882,
+  "sourceCiSbomSha256": "b70218eb8d8e5b06019353a8e57233f152116fbae0f8cac1d5e768ac3e259e39",
+  "web": {
+    "deploymentId": "09f91585-1ec8-47d9-9b2c-5c40950527f0",
+    "imageDigest": "sha256:aa19846feaebe602107ea22a1598c58f8ada38764bb7ab27bdace53455ba1356"
+  },
+  "worker": {
+    "deploymentId": "86828bcf-dd39-44a7-a94d-ef5819da766f",
+    "imageDigest": "sha256:f7ab720e64711ad7346780f77858bffc1eba2ba6d4340aeee73d9f8796799064"
+  },
+  "packageCount": 30,
+  "copiedLocalTextFiles": 28,
+  "packagesWithoutLocalText": [
+    "@img/sharp-libvips-linux-x64@1.3.3",
+    "language-subtag-registry@0.3.23",
+    "saxes@6.0.0"
+  ],
+  "packages": [
+    {
+      "name": "@csstools/color-helpers",
+      "version": "5.1.0",
+      "declaredLicense": "MIT-0",
+      "reviewStatus": "PENDING_OWNER_LEGAL_DISPOSITION",
+      "deployedPackageContentSha256": [
+        "f7649293eff055614527db2afa3dc0a3e7eb6b41f65f803bfe0dcea0580da9e1"
+      ],
+      "localLicenseOrNoticeFiles": [
+        {
+          "originalPath": "LICENSE.md",
+          "reviewBundlePath": "CI_PACKAGE_LICENSE_TEXTS/d0f3d36ba92c7ed3/0/LICENSE.md",
+          "sha256": "947e32047a166cd05f04e45938d172b412c07cbee0b9735afd14bae30e02c2f6",
+          "bytes": 930
+        }
+      ],
+      "nativeFiles": []
+    },
+    {
+      "name": "@img/sharp-libvips-linux-x64",
+      "version": "1.3.3",
+      "declaredLicense": "LGPL-3.0-or-later",
+      "reviewStatus": "PENDING_OWNER_LEGAL_DISPOSITION",
+      "deployedPackageContentSha256": [
+        "f3d6e79a40846ce8a69071dc968c6a312a30cceed2a9ab5765218d0b16914088"
+      ],
+      "localLicenseOrNoticeFiles": [],
+      "nativeFiles": [
+        {
+          "path": "lib/libvips-cpp.so.8.18.6",
+          "bytes": 18621496,
+          "sha256": "536cee19ab906cb5185ad519bf87647693f5d7b55e608c92eb28607f89ca5125"
+        }
+      ]
+    },
+    {
+      "name": "argparse",
+      "version": "2.0.1",
+      "declaredLicense": "Python-2.0",
+      "reviewStatus": "PENDING_OWNER_LEGAL_DISPOSITION",
+      "deployedPackageContentSha256": [
+        "c495d8cd848f025d8753d1bd16871af889f4a9aa150c61573d094658cbc51104"
+      ],
+      "localLicenseOrNoticeFiles": [
+        {
+          "originalPath": "LICENSE",
+          "reviewBundlePath": "CI_PACKAGE_LICENSE_TEXTS/eb6fb2df860c4a7d/0/LICENSE",
+          "sha256": "de4d1f2d2ad5ad0cfd1657a106476b31cb5db5ef9d1ff842b237c0c81f0c8a23",
+          "bytes": 12775
+        }
+      ],
+      "nativeFiles": []
+    },
+    {
+      "name": "axe-core",
+      "version": "4.13.0",
+      "declaredLicense": "MPL-2.0",
+      "reviewStatus": "PENDING_OWNER_LEGAL_DISPOSITION",
+      "deployedPackageContentSha256": [
+        "5d2d8fd55d0ca26c7d77cc668fc971915c1d4b752d80761ffcc59d46a8398abc"
+      ],
+      "localLicenseOrNoticeFiles": [
+        {
+          "originalPath": "LICENSE",
+          "reviewBundlePath": "CI_PACKAGE_LICENSE_TEXTS/a700db80d2c84f37/0/LICENSE",
+          "sha256": "af175b9d96ee93c21a036152e1b905b0b95304d4ae8c2c921c7609100ba8df7e",
+          "bytes": 15921
+        },
+        {
+          "originalPath": "LICENSE-3RD-PARTY.txt",
+          "reviewBundlePath": "CI_PACKAGE_LICENSE_TEXTS/a700db80d2c84f37/0/LICENSE-3RD-PARTY.txt",
+          "sha256": "4f8563870d0fca38bbc3e00b6f670cb7fa9f380ba9f26a7f7d1184a6b18b1653",
+          "bytes": 3766
+        }
+      ],
+      "nativeFiles": []
+    },
+    {
+      "name": "caniuse-lite",
+      "version": "1.0.30001810",
+      "declaredLicense": "CC-BY-4.0",
+      "reviewStatus": "PENDING_OWNER_LEGAL_DISPOSITION",
+      "deployedPackageContentSha256": [
+        "37cb3e985dca8c21592709937811aea9fc45e551ee2945716daea5118a7f1f92"
+      ],
+      "localLicenseOrNoticeFiles": [
+        {
+          "originalPath": "LICENSE",
+          "reviewBundlePath": "CI_PACKAGE_LICENSE_TEXTS/2279b0f6b9ead609/0/LICENSE",
+          "sha256": "fd3a263fe19ed8faa9068b43abaebafc02c77897b0c6fc09abc04bb592e5f16e",
+          "bytes": 18651
+        }
+      ],
+      "nativeFiles": []
+    },
+    {
+      "name": "electron-to-chromium",
+      "version": "1.5.433",
+      "declaredLicense": "ISC",
+      "reviewStatus": "PENDING_OWNER_LEGAL_DISPOSITION",
+      "deployedPackageContentSha256": [
+        "282cdd91d35372d9f5b75538903815ef49cbeb1851ed8c18319f6c8ac180d046"
+      ],
+      "localLicenseOrNoticeFiles": [
+        {
+          "originalPath": "LICENSE",
+          "reviewBundlePath": "CI_PACKAGE_LICENSE_TEXTS/bd1ceff8bdc16df4/0/LICENSE",
+          "sha256": "25ba5c59dad3e0dd8f9540beaa0f0a86a10e3aec35af5fdc8e88c5f6a5c0d8c6",
+          "bytes": 728
+        }
+      ],
+      "nativeFiles": []
+    },
+    {
+      "name": "eslint-import-resolver-typescript",
+      "version": "3.10.1",
+      "declaredLicense": "ISC",
+      "reviewStatus": "PENDING_OWNER_LEGAL_DISPOSITION",
+      "deployedPackageContentSha256": [
+        "3853143cb6f053427551001d36e5e7d6990f6146e19e3632bf2b5618ce5b49cf"
+      ],
+      "localLicenseOrNoticeFiles": [
+        {
+          "originalPath": "LICENSE",
+          "reviewBundlePath": "CI_PACKAGE_LICENSE_TEXTS/37169469c59c613e/0/LICENSE",
+          "sha256": "cb38960320e8cc7c23e613bacbd5d84c9af46e6366e59f925071bf3787d5bc3d",
+          "bytes": 757
+        }
+      ],
+      "nativeFiles": []
+    },
+    {
+      "name": "fastq",
+      "version": "1.20.3",
+      "declaredLicense": "ISC",
+      "reviewStatus": "PENDING_OWNER_LEGAL_DISPOSITION",
+      "deployedPackageContentSha256": [
+        "a4c43c38b225d4509d42863ed761c5ae5ee3bc3082fe5b3478d5fd5b18896f97"
+      ],
+      "localLicenseOrNoticeFiles": [
+        {
+          "originalPath": "LICENSE",
+          "reviewBundlePath": "CI_PACKAGE_LICENSE_TEXTS/a7ea9f9d907eca5d/0/LICENSE",
+          "sha256": "c3367f6d01a79d368fc4fbb41b3615fcd92f243d6597ab96742f6f976f9325af",
+          "bytes": 765
+        }
+      ],
+      "nativeFiles": []
+    },
+    {
+      "name": "flatted",
+      "version": "3.4.4",
+      "declaredLicense": "ISC",
+      "reviewStatus": "PENDING_OWNER_LEGAL_DISPOSITION",
+      "deployedPackageContentSha256": [
+        "2dbe7ded3201b9b126a475ced7cca825e472f19303072cee77db98bf9d46279f"
+      ],
+      "localLicenseOrNoticeFiles": [
+        {
+          "originalPath": "LICENSE",
+          "reviewBundlePath": "CI_PACKAGE_LICENSE_TEXTS/57b7d7dc886d3409/0/LICENSE",
+          "sha256": "148718606d34f467fd08a2176bb4c1ab275f999576f779368503d8d3e3642861",
+          "bytes": 770
+        }
+      ],
+      "nativeFiles": []
+    },
+    {
+      "name": "glob-parent",
+      "version": "5.1.2",
+      "declaredLicense": "ISC",
+      "reviewStatus": "PENDING_OWNER_LEGAL_DISPOSITION",
+      "deployedPackageContentSha256": [
+        "b5183ae1837d3b3c1dacbb79b6a876063a349462ac4efd67bbe6f4963669b14f"
+      ],
+      "localLicenseOrNoticeFiles": [
+        {
+          "originalPath": "LICENSE",
+          "reviewBundlePath": "CI_PACKAGE_LICENSE_TEXTS/0a11153a0f1311d8/0/LICENSE",
+          "sha256": "2c46f1325bd3822a33c1e2c1e49c18d13127ac00f9c8b3b79196c7a126f73cd9",
+          "bytes": 753
+        }
+      ],
+      "nativeFiles": []
+    },
+    {
+      "name": "glob-parent",
+      "version": "6.0.2",
+      "declaredLicense": "ISC",
+      "reviewStatus": "PENDING_OWNER_LEGAL_DISPOSITION",
+      "deployedPackageContentSha256": [
+        "96ad0247eb7097ef3a290ad99ac005af16f6876c1027514b85c5c635f120aa17"
+      ],
+      "localLicenseOrNoticeFiles": [
+        {
+          "originalPath": "LICENSE",
+          "reviewBundlePath": "CI_PACKAGE_LICENSE_TEXTS/7b90c3653564b1f1/0/LICENSE",
+          "sha256": "fc68eb8f1c8e1d6b8be50f3c177927e24791cae7dc251e6253a012f37926a30c",
+          "bytes": 857
+        }
+      ],
+      "nativeFiles": []
+    },
+    {
+      "name": "graceful-fs",
+      "version": "4.2.11",
+      "declaredLicense": "ISC",
+      "reviewStatus": "PENDING_OWNER_LEGAL_DISPOSITION",
+      "deployedPackageContentSha256": [
+        "38f89cac8854efe2ac02a2ca43898e74a129636674d32488040d375324aee8a1"
+      ],
+      "localLicenseOrNoticeFiles": [
+        {
+          "originalPath": "LICENSE",
+          "reviewBundlePath": "CI_PACKAGE_LICENSE_TEXTS/c0b8c47fbef7d288/0/LICENSE",
+          "sha256": "f65c5d9f22a317b2a10803bd1868461ce6499c2ed7217bc80c0cc772a748789c",
+          "bytes": 791
+        }
+      ],
+      "nativeFiles": []
+    },
+    {
+      "name": "isexe",
+      "version": "2.0.0",
+      "declaredLicense": "ISC",
+      "reviewStatus": "PENDING_OWNER_LEGAL_DISPOSITION",
+      "deployedPackageContentSha256": [
+        "87fe97b6c34d85791fe238777e652b8ce67f427405c473ed32b2ee4a874dc1cf"
+      ],
+      "localLicenseOrNoticeFiles": [
+        {
+          "originalPath": "LICENSE",
+          "reviewBundlePath": "CI_PACKAGE_LICENSE_TEXTS/2f62e711a6921973/0/LICENSE",
+          "sha256": "4ec3d4c66cd87f5c8d8ad911b10f99bf27cb00cdfcff82621956e379186b016b",
+          "bytes": 765
+        }
+      ],
+      "nativeFiles": []
+    },
+    {
+      "name": "language-subtag-registry",
+      "version": "0.3.23",
+      "declaredLicense": "CC0-1.0",
+      "reviewStatus": "PENDING_OWNER_LEGAL_DISPOSITION",
+      "deployedPackageContentSha256": [
+        "8ebe085f6d92c1d5ee6710352bbdb6f97d4c24555c3aae5784f4e8be16c316a3"
+      ],
+      "localLicenseOrNoticeFiles": [],
+      "nativeFiles": []
+    },
+    {
+      "name": "lightningcss-linux-x64-gnu",
+      "version": "1.32.0",
+      "declaredLicense": "MPL-2.0",
+      "reviewStatus": "PENDING_OWNER_LEGAL_DISPOSITION",
+      "deployedPackageContentSha256": [
+        "44d95ef8201aaf54f58bfb2b3cdb88ad070174df086521f082d1009077651264"
+      ],
+      "localLicenseOrNoticeFiles": [
+        {
+          "originalPath": "LICENSE",
+          "reviewBundlePath": "CI_PACKAGE_LICENSE_TEXTS/47091868ef84fe73/0/LICENSE",
+          "sha256": "5eba353fe5076ac3432177f8ab1cf75e3afcd0584251e37c3bfead5f447d040e",
+          "bytes": 15648
+        }
+      ],
+      "nativeFiles": [
+        {
+          "path": "lightningcss.linux-x64-gnu.node",
+          "bytes": 10040456,
+          "sha256": "2024f99789a601c7438b387117032ba07594cbba9b784064b47cdc60a0972326"
+        }
+      ]
+    },
+    {
+      "name": "lightningcss-linux-x64-gnu",
+      "version": "1.33.0",
+      "declaredLicense": "MPL-2.0",
+      "reviewStatus": "PENDING_OWNER_LEGAL_DISPOSITION",
+      "deployedPackageContentSha256": [
+        "08946da5a44ec311e5a862b55086a953f7aa457fb380bfa6a13a9663d22f2217"
+      ],
+      "localLicenseOrNoticeFiles": [
+        {
+          "originalPath": "LICENSE",
+          "reviewBundlePath": "CI_PACKAGE_LICENSE_TEXTS/abda693e40894495/0/LICENSE",
+          "sha256": "5eba353fe5076ac3432177f8ab1cf75e3afcd0584251e37c3bfead5f447d040e",
+          "bytes": 15648
+        }
+      ],
+      "nativeFiles": [
+        {
+          "path": "lightningcss.linux-x64-gnu.node",
+          "bytes": 10032264,
+          "sha256": "84c6f35fb9c78f9920090f4017a9dc6dc50842a56c543f509943a0d434325d93"
+        }
+      ]
+    },
+    {
+      "name": "lightningcss",
+      "version": "1.32.0",
+      "declaredLicense": "MPL-2.0",
+      "reviewStatus": "PENDING_OWNER_LEGAL_DISPOSITION",
+      "deployedPackageContentSha256": [
+        "d753a2f103d26310ca3ca8c1fe4e49f2ce63eaa1e23dfe87914da4eb854d149c"
+      ],
+      "localLicenseOrNoticeFiles": [
+        {
+          "originalPath": "LICENSE",
+          "reviewBundlePath": "CI_PACKAGE_LICENSE_TEXTS/4c9ee74a100a8d29/0/LICENSE",
+          "sha256": "5eba353fe5076ac3432177f8ab1cf75e3afcd0584251e37c3bfead5f447d040e",
+          "bytes": 15648
+        }
+      ],
+      "nativeFiles": []
+    },
+    {
+      "name": "lightningcss",
+      "version": "1.33.0",
+      "declaredLicense": "MPL-2.0",
+      "reviewStatus": "PENDING_OWNER_LEGAL_DISPOSITION",
+      "deployedPackageContentSha256": [
+        "6047161ff320b65121f5ef05348fca10c852b983975df592b930b1ea6c1dae44"
+      ],
+      "localLicenseOrNoticeFiles": [
+        {
+          "originalPath": "LICENSE",
+          "reviewBundlePath": "CI_PACKAGE_LICENSE_TEXTS/7129b0f4411357cf/0/LICENSE",
+          "sha256": "5eba353fe5076ac3432177f8ab1cf75e3afcd0584251e37c3bfead5f447d040e",
+          "bytes": 15648
+        }
+      ],
+      "nativeFiles": []
+    },
+    {
+      "name": "lru-cache",
+      "version": "10.4.3",
+      "declaredLicense": "ISC",
+      "reviewStatus": "PENDING_OWNER_LEGAL_DISPOSITION",
+      "deployedPackageContentSha256": [
+        "4fe67d8a51f57cdde5e3ea8cb7552b000185b1cf2030c12f7686e1d612034054"
+      ],
+      "localLicenseOrNoticeFiles": [
+        {
+          "originalPath": "LICENSE",
+          "reviewBundlePath": "CI_PACKAGE_LICENSE_TEXTS/3a13bfe2b7911bee/0/LICENSE",
+          "sha256": "451ec07eeb9c4e1b86de9abdaa426462a8be48f887ec7421cf0bbb9c769555ab",
+          "bytes": 775
+        }
+      ],
+      "nativeFiles": []
+    },
+    {
+      "name": "lru-cache",
+      "version": "5.1.1",
+      "declaredLicense": "ISC",
+      "reviewStatus": "PENDING_OWNER_LEGAL_DISPOSITION",
+      "deployedPackageContentSha256": [
+        "fe318cf664417ceecb51ae4e798cdf7eaae4d2f8d5a339c37a3309d5081f042d"
+      ],
+      "localLicenseOrNoticeFiles": [
+        {
+          "originalPath": "LICENSE",
+          "reviewBundlePath": "CI_PACKAGE_LICENSE_TEXTS/fe7f0a2f2cf4c92f/0/LICENSE",
+          "sha256": "4ec3d4c66cd87f5c8d8ad911b10f99bf27cb00cdfcff82621956e379186b016b",
+          "bytes": 765
+        }
+      ],
+      "nativeFiles": []
+    },
+    {
+      "name": "minimatch",
+      "version": "10.2.6",
+      "declaredLicense": "BlueOak-1.0.0",
+      "reviewStatus": "PENDING_OWNER_LEGAL_DISPOSITION",
+      "deployedPackageContentSha256": [
+        "2f4f88e3ab2c1666e4ebd6ba194b153be1ccd77090cb690685b043928c674361"
+      ],
+      "localLicenseOrNoticeFiles": [
+        {
+          "originalPath": "LICENSE.md",
+          "reviewBundlePath": "CI_PACKAGE_LICENSE_TEXTS/7dfd90b95b048a79/0/LICENSE.md",
+          "sha256": "2c7c5d22ed5a8ee968c64757710979afcd77438c48b4a265b94e615babd8a901",
+          "bytes": 1550
+        }
+      ],
+      "nativeFiles": []
+    },
+    {
+      "name": "minimatch",
+      "version": "3.1.5",
+      "declaredLicense": "ISC",
+      "reviewStatus": "PENDING_OWNER_LEGAL_DISPOSITION",
+      "deployedPackageContentSha256": [
+        "9df6b40b74997143d85b3c3c1f5c95276501045d3a2a4a40ce7611b487840a7a"
+      ],
+      "localLicenseOrNoticeFiles": [
+        {
+          "originalPath": "LICENSE",
+          "reviewBundlePath": "CI_PACKAGE_LICENSE_TEXTS/d5fc2c7bc58328d6/0/LICENSE",
+          "sha256": "4ec3d4c66cd87f5c8d8ad911b10f99bf27cb00cdfcff82621956e379186b016b",
+          "bytes": 765
+        }
+      ],
+      "nativeFiles": []
+    },
+    {
+      "name": "picocolors",
+      "version": "1.1.1",
+      "declaredLicense": "ISC",
+      "reviewStatus": "PENDING_OWNER_LEGAL_DISPOSITION",
+      "deployedPackageContentSha256": [
+        "0f76e84a561438d57a8d71471e079c19c0ba77580612eebd82488ab6af1c5280"
+      ],
+      "localLicenseOrNoticeFiles": [
+        {
+          "originalPath": "LICENSE",
+          "reviewBundlePath": "CI_PACKAGE_LICENSE_TEXTS/7c5f372425355293/0/LICENSE",
+          "sha256": "6582629e2979466878f6014313dcc2f3756c9616148682227ce3063dde310750",
+          "bytes": 787
+        }
+      ],
+      "nativeFiles": []
+    },
+    {
+      "name": "saxes",
+      "version": "6.0.0",
+      "declaredLicense": "ISC",
+      "reviewStatus": "PENDING_OWNER_LEGAL_DISPOSITION",
+      "deployedPackageContentSha256": [
+        "22a81094cf5a6aec04bd4d6f1f217f2f817025ed7e91458c15b376d658ae899e"
+      ],
+      "localLicenseOrNoticeFiles": [],
+      "nativeFiles": []
+    },
+    {
+      "name": "semver",
+      "version": "6.3.1",
+      "declaredLicense": "ISC",
+      "reviewStatus": "PENDING_OWNER_LEGAL_DISPOSITION",
+      "deployedPackageContentSha256": [
+        "6337d29beebf8288d78bb0b1c2d75da30c122899e7e1913440bb8417cba7b409"
+      ],
+      "localLicenseOrNoticeFiles": [
+        {
+          "originalPath": "LICENSE",
+          "reviewBundlePath": "CI_PACKAGE_LICENSE_TEXTS/8b8f657069cf84b7/0/LICENSE",
+          "sha256": "4ec3d4c66cd87f5c8d8ad911b10f99bf27cb00cdfcff82621956e379186b016b",
+          "bytes": 765
+        }
+      ],
+      "nativeFiles": []
+    },
+    {
+      "name": "semver",
+      "version": "7.8.5",
+      "declaredLicense": "ISC",
+      "reviewStatus": "PENDING_OWNER_LEGAL_DISPOSITION",
+      "deployedPackageContentSha256": [
+        "09df5ea96bb60a808ebf7d24fcbaa29d41722badd1c4c9dc9f238345e199ca2c"
+      ],
+      "localLicenseOrNoticeFiles": [
+        {
+          "originalPath": "LICENSE",
+          "reviewBundlePath": "CI_PACKAGE_LICENSE_TEXTS/82a86616e50ded79/0/LICENSE",
+          "sha256": "4ec3d4c66cd87f5c8d8ad911b10f99bf27cb00cdfcff82621956e379186b016b",
+          "bytes": 765
+        }
+      ],
+      "nativeFiles": []
+    },
+    {
+      "name": "siginfo",
+      "version": "2.0.0",
+      "declaredLicense": "ISC",
+      "reviewStatus": "PENDING_OWNER_LEGAL_DISPOSITION",
+      "deployedPackageContentSha256": [
+        "c3a9a4197556e7bb18425a0aa7988afe082ef3f956d84d5443e1e75207ad3b99"
+      ],
+      "localLicenseOrNoticeFiles": [
+        {
+          "originalPath": "LICENSE",
+          "reviewBundlePath": "CI_PACKAGE_LICENSE_TEXTS/9681d29ff1b83571/0/LICENSE",
+          "sha256": "3bdddf0b9b08aaa2fe4365b803fc958ed32c0597ca0bd727be8d9fcb8b248d18",
+          "bytes": 744
+        }
+      ],
+      "nativeFiles": []
+    },
+    {
+      "name": "tslib",
+      "version": "2.8.1",
+      "declaredLicense": "0BSD",
+      "reviewStatus": "PENDING_OWNER_LEGAL_DISPOSITION",
+      "deployedPackageContentSha256": [
+        "173201160ea588999011172efef4bf88193984864e9cbd18d01f6966f21de873"
+      ],
+      "localLicenseOrNoticeFiles": [
+        {
+          "originalPath": "LICENSE.txt",
+          "reviewBundlePath": "CI_PACKAGE_LICENSE_TEXTS/b15471035cb0e3fd/0/LICENSE.txt",
+          "sha256": "210b19e543130388c68654b7497e967119ce17145f66ab7d85688fbd70f08751",
+          "bytes": 655
+        }
+      ],
+      "nativeFiles": []
+    },
+    {
+      "name": "which",
+      "version": "2.0.2",
+      "declaredLicense": "ISC",
+      "reviewStatus": "PENDING_OWNER_LEGAL_DISPOSITION",
+      "deployedPackageContentSha256": [
+        "f921328e1fe42deec4114e369381c2bc00d59713bac17f78f3f3b5f266985736"
+      ],
+      "localLicenseOrNoticeFiles": [
+        {
+          "originalPath": "LICENSE",
+          "reviewBundlePath": "CI_PACKAGE_LICENSE_TEXTS/5a71f2b741944bf1/0/LICENSE",
+          "sha256": "4ec3d4c66cd87f5c8d8ad911b10f99bf27cb00cdfcff82621956e379186b016b",
+          "bytes": 765
+        }
+      ],
+      "nativeFiles": []
+    },
+    {
+      "name": "yallist",
+      "version": "3.1.1",
+      "declaredLicense": "ISC",
+      "reviewStatus": "PENDING_OWNER_LEGAL_DISPOSITION",
+      "deployedPackageContentSha256": [
+        "99a4f3001fefb984436839729e7ab63c0bd9bebf4bbb2a9a54a3efc4fd5c64b1"
+      ],
+      "localLicenseOrNoticeFiles": [
+        {
+          "originalPath": "LICENSE",
+          "reviewBundlePath": "CI_PACKAGE_LICENSE_TEXTS/63b110ffd1871214/0/LICENSE",
+          "sha256": "4ec3d4c66cd87f5c8d8ad911b10f99bf27cb00cdfcff82621956e379186b016b",
+          "bytes": 765
+        }
+      ],
+      "nativeFiles": []
+    }
+  ]
+}

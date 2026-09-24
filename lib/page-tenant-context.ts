@@ -1,12 +1,13 @@
 import { redirect } from "next/navigation";
-import { requireTenantContext, type TenantContext } from "@/lib/tenant-context";
+import { requireTenantContext, type TenantContext, type TenantContextTimingObserver } from "@/lib/tenant-context";
 
 export async function requirePageTenantContext(
   destination: string,
   operation = "api.default",
+  observeTiming?: TenantContextTimingObserver,
 ): Promise<TenantContext> {
   try {
-    return await requireTenantContext(operation);
+    return await requireTenantContext(operation, observeTiming);
   } catch (error) {
     const code = error instanceof Error ? error.message : "";
     const next = encodeURIComponent(destination);
