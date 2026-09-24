@@ -99,6 +99,50 @@ paths:
         '200': { description: Acesso revogado }
         '403': { description: Acesso negado }
         '409': { description: Último owner protegido }
+  /ops/home-timing:
+    get:
+      tags: [Tenant]
+      operationId: measureHomeReadPhases
+      summary: Mede somente as fases da leitura Home no staging HSP-4
+      description: >-
+        Disponível apenas quando HSP4_PERF_TRACE=1. Exige sessão, tenant ativo,
+        membership e quota; executa a mesma leitura de dados da Home sem
+        retornar dados empresariais. Não mede renderização/streaming SSR e não
+        substitui o gate fim a fim de 100 empresas por 60 minutos.
+      responses:
+        '200':
+          description: Medição numérica autorizada; nenhum dado de empresa no corpo.
+          headers:
+            Server-Timing:
+              description: Durações numéricas em ms das fases Auth, tenant e leitura Home.
+              schema: { type: string }
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [measured, timings_ms]
+                properties:
+                  measured: { type: boolean, const: true }
+                  timings_ms:
+                    type: object
+                    additionalProperties: false
+                    description: Durações finitas e arredondadas em milissegundos; fases ausentes não são inferidas.
+                    properties:
+                      total: { type: number, minimum: 0 }
+                      tenant_context: { type: number, minimum: 0 }
+                      auth_user: { type: number, minimum: 0 }
+                      active_cookie: { type: number, minimum: 0 }
+                      membership: { type: number, minimum: 0 }
+                      quota: { type: number, minimum: 0 }
+                      dashboard: { type: number, minimum: 0 }
+                      company_selection: { type: number, minimum: 0 }
+                      diagnostic: { type: number, minimum: 0 }
+                      pains: { type: number, minimum: 0 }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { description: Tenant ativo ausente ou acesso negado. }
+        '404': { description: Medição operacional desativada. }
+        '429': { description: Quota excedida. }
+        '500': { description: Falha interna sem dados do provedor. }
   /consents:
     post:
       tags:
