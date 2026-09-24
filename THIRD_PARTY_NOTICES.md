@@ -16,10 +16,13 @@ with per-package file digests for declarations outside the ADR-015 preferred
 list, plus copies of the installed LICENSE/NOTICE files in
 `hsp4-license-texts/`. It separates production dependency reachability from
 packages installed for development/build. This makes the review reproducible
-for the CI install;
-it is not a complete distribution notice or proof that the same bytes were
-deployed. CI reports the HSP-4 license gate as **BLOCKED**, even if its
-declaration precheck completes; its remote execution has not yet been credited.
+for the CI install; it is not a complete distribution notice or proof that the
+same bytes were deployed. On public PR #25, commit `40b9b822b2b2481495d47e9e21d833623b94ec74`,
+the [Linux CI run](https://github.com/Aurum-Soltec/genesis360empresarial/actions/runs/36004585089)
+passed and archived inventory for all 30 flagged installed packages, including
+28 copied LICENSE/NOTICE files. Three packages had no local LICENSE/NOTICE
+file to copy and remain explicit review items. CI reports the HSP-4 license
+gate as **BLOCKED** despite the successful technical checks.
 
 The Linux/x64 inventory includes `sharp@0.35.4` and
 `@img/sharp-libvips-linux-x64@1.3.3`. The latter declares
@@ -41,8 +44,8 @@ it does not mark HSP-4's license gate as passed.
 
 The current reviewed baseline has 30 outside-preference declarations, including
 `@img/sharp-libvips-linux-x64@1.3.3` (LGPL-3.0-or-later), five MPL-2.0
-declarations, and 18 ISC declarations. Nine are reachable from the local
-production dependency tree; this is not proof of deployment or legal
+declarations, and 18 ISC declarations. Nine are reachable from the production
+dependency tree in both local and CI Linux classification; this is not proof of deployment or legal
 admissibility. Exact names, versions, file hashes and
 the declarations for the other six appear in the CI artifacts and the
 [HSP-4 engineering candidate record](docs/audit-2026-09-24/HSP4_LICENSE_ENGINEERING_CANDIDATE.md).

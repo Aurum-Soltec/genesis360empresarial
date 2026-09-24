@@ -33,6 +33,38 @@ beforeEach(() => {
 });
 
 describe("tenant context read failures", () => {
+  it("reports numeric subphase durations without changing membership or quota decisions", async () => {
+    const db = client();
+    vi.mocked(createSupabaseServerClient).mockResolvedValue(db as never);
+    const phases: Array<{ phase: string; durationMs: number }> = [];
+    const context = await requireTenantContext("api.default", (phase, durationMs) => {
+      phases.push({ phase, durationMs });
+    });
+
+    expect(context).toEqual({ userId, tenantId, role: "owner" });
+    expect(phases.map(({ phase }) => phase).sort()).toEqual([
+      "active_cookie", "auth_user", "membership", "quota",
+    ]);
+    expect(phases.every(({ durationMs }) => Number.isFinite(durationMs) && durationMs >= 0)).toBe(true);
+    expect(db.rpc).toHaveBeenCalledWith("consume_tenant_quota", expect.objectContaining({
+      p_tenant_id: tenantId, p_operation: "api.default",
+    }));
+  });
+
+  it("keeps authorization independent of a failing telemetry observer", async () => {
+    vi.mocked(createSupabaseServerClient).mockResolvedValue(client() as never);
+    await expect(requireTenantContext("api.default", () => {
+      throw new Error("OBSERVER_FAILED");
+    })).resolves.toEqual({ userId, tenantId, role: "owner" });
+
+    vi.mocked(createSupabaseServerClient).mockResolvedValue(client({
+      membership: { data: null, error: null },
+    }) as never);
+    await expect(requireTenantContext("api.default", () => {
+      throw new Error("OBSERVER_FAILED");
+    })).rejects.toThrow("TENANT_ACCESS_DENIED");
+  });
+
   it("maps a missing Supabase browser session to 401 without hiding provider failures", async () => {
     vi.mocked(createSupabaseServerClient).mockResolvedValue(client({
       auth: { data: { user: null }, error: { status: 400, name: "AuthSessionMissingError" } },

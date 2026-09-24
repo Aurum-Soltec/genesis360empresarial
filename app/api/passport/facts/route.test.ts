@@ -36,6 +36,27 @@ beforeEach(() => {
 });
 
 describe("passport facts timing boundary", () => {
+  it("exposes only numeric authorized subphases and preserves the response contract", async () => {
+    vi.mocked(requireTenantContext).mockImplementationOnce(async (_operation, observeTiming) => {
+      observeTiming?.("auth_user", 123.456);
+      observeTiming?.("active_cookie", 0.25);
+      observeTiming?.("membership", 56.789);
+      observeTiming?.("quota", 34.5);
+      return context;
+    });
+    const { client } = readClient({ data: [], error: null });
+    vi.mocked(createSupabaseServerClient).mockResolvedValue(client as never);
+
+    const response = await GET(new Request(`https://genesis.example/api/passport/facts?companyId=${companyId}`));
+    expect(response.status).toBe(200);
+    expect(await response.json()).toEqual({ facts: [] });
+    const timing = response.headers.get("server-timing") ?? "";
+    expect(timing).toMatch(/^tenant_context;dur=\d+\.\d{2}, auth_user;dur=123\.46, active_cookie;dur=0\.25, membership;dur=56\.79, quota;dur=34\.50, data_access;dur=\d+\.\d{2}$/);
+    expect(timing).not.toContain(tenantId);
+    expect(timing).not.toContain(companyId);
+    expect(timing).not.toContain(factId);
+  });
+
   it("reports only numeric context and read durations while preserving tenant and company filters", async () => {
     const { client, query } = readClient({ data: [{ id: factId }], error: null });
     vi.mocked(createSupabaseServerClient).mockResolvedValue(client as never);
@@ -64,11 +85,15 @@ describe("passport facts timing boundary", () => {
   });
 
   it("retains fail-closed statuses and does not claim data-access timing before authorization", async () => {
-    vi.mocked(requireTenantContext).mockRejectedValueOnce(new Error("AUTH_REQUIRED"));
+    vi.mocked(requireTenantContext).mockImplementationOnce(async (_operation, observeTiming) => {
+      observeTiming?.("auth_user", 42);
+      throw new Error("AUTH_REQUIRED");
+    });
     const denied = await POST(new Request("https://genesis.example/api/passport/facts", { method: "POST" }));
     expect(denied.status).toBe(401);
     expect(await denied.json()).toEqual({ error: "AUTH_REQUIRED" });
     expect(denied.headers.get("server-timing")).toMatch(/^tenant_context;dur=\d+\.\d{2}$/);
+    expect(denied.headers.get("server-timing")).not.toContain("auth_user");
     expect(trustedTenantRpc).not.toHaveBeenCalled();
 
     const { client } = readClient({ data: null, error: { code: "DB_DOWN" } });

@@ -65,6 +65,10 @@ try {
   ]);
 
   const tenantButtons = page.locator("button.tenant-choice");
+  await page.locator('button.tenant-choice, [role="status"]').first().waitFor({
+    state: "visible",
+    timeout: 15000,
+  });
   if (await tenantButtons.count() === 0) {
     throw new Error("No active tenant is available for the demo user");
   }

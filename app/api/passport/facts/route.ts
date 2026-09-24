@@ -3,12 +3,12 @@ import { assertTenantPermission } from "@/lib/authz";
 import { apiErrorDetails } from "@/lib/api-errors";
 import { NextResponse } from "next/server";
 import { BusinessFactInputSchema } from "@/lib/business-passport";
-import { requireTenantContext } from "@/lib/tenant-context";
+import { requireTenantContext, type TenantContextTimingPhase } from "@/lib/tenant-context";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { trustedTenantRpc } from "@/lib/server/trusted-data-access";
 
 type TimingPhase = "tenant_context" | "data_access";
-type RequestTimings = Partial<Record<TimingPhase, number>>;
+type RequestTimings = Partial<Record<TimingPhase | TenantContextTimingPhase, number>>;
 
 async function measure<T>(timings: RequestTimings, phase: TimingPhase, run: () => Promise<T>): Promise<T> {
   const started = performance.now();
@@ -20,7 +20,10 @@ async function measure<T>(timings: RequestTimings, phase: TimingPhase, run: () =
 }
 
 function jsonWithTiming(body: object, status: number, timings: RequestTimings) {
-  const serverTiming = (["tenant_context", "data_access"] as const)
+  const phases: readonly (TimingPhase | TenantContextTimingPhase)[] = status >= 200 && status < 300
+    ? ["tenant_context", "auth_user", "active_cookie", "membership", "quota", "data_access"]
+    : ["tenant_context", "data_access"];
+  const serverTiming = phases
     .filter((phase) => Number.isFinite(timings[phase]))
     .map((phase) => `${phase};dur=${Math.max(0, timings[phase]!).toFixed(2)}`)
     .join(", ");
@@ -33,7 +36,9 @@ function jsonWithTiming(body: object, status: number, timings: RequestTimings) {
 export async function GET(request: Request) {
   const timings: RequestTimings = {};
   try {
-    const context = await measure(timings, "tenant_context", requireTenantContext);
+    const context = await measure(timings, "tenant_context", () =>
+      requireTenantContext("api.default", (phase, durationMs) => { timings[phase] = durationMs; }),
+    );
     const companyId = new URL(request.url).searchParams.get("companyId");
     if (!companyId) {
       return jsonWithTiming({ error: "COMPANY_REQUIRED" }, 400, timings);
@@ -66,7 +71,9 @@ export async function POST(request: Request) {
   const timings: RequestTimings = {};
   try {
     assertSameOrigin(request);
-    const context = await measure(timings, "tenant_context", requireTenantContext);
+    const context = await measure(timings, "tenant_context", () =>
+      requireTenantContext("api.default", (phase, durationMs) => { timings[phase] = durationMs; }),
+    );
     assertTenantPermission(context.role, "passport:write");
     const parsed = BusinessFactInputSchema.safeParse(await readJsonBody(request));
     if (!parsed.success) {

@@ -6,7 +6,8 @@ NOTICE completo ou prova dos bytes implantados no Railway.
 
 ## Baseline e achado
 
-O checkout de origem é `93c633e` e o runtime hospedado continua
+O checkout de origem da análise local foi `93c633e`; o candidato público técnico
+foi incorporado ao commit `40b9b822b2b2481495d47e9e21d833623b94ec74` no PR #25. O runtime hospedado continua
 `bb290bc7bc35f77b4ca01aecdbf19b748c386270`. No [SBOM Linux do CI do
 runtime](https://github.com/Aurum-Soltec/genesis360empresarial/actions/runs/35940477733),
 há 454 dependências e 30 declarações fora da preferência do [ADR-015](../canonical/v1/product/ADR-015_OSS_LICENSE_POLICY.md).
@@ -43,7 +44,7 @@ No lock atual, a árvore `pnpm --prod` local contém **9** das 30 declarações:
 `tslib@2.8.1` (0BSD). As outras **21** estão fora da árvore de dependências de
 produção, mas podem ainda estar fisicamente no contêiner se o deploy copiar o
 `node_modules` de build inteiro. As nove são **candidatas de runtime**, não
-prova de incorporação. O CI Linux precisa repetir a classificação.
+prova de incorporação. O [CI Linux do commit público](https://github.com/Aurum-Soltec/genesis360empresarial/actions/runs/36004585089) repetiu a classificação 9/30, passou quality/database e arquivou inventário/hash dos 30 pacotes instalados e 28 arquivos LICENSE/NOTICE copiados. Três pacotes não possuíam LICENSE/NOTICE local. CodeQL e Analyze também passaram no [run 36004579982](https://github.com/Aurum-Soltec/genesis360empresarial/actions/runs/36004579982). Nenhum desses checks inspecionou os bytes Railway ou aprovou a licença.
 
 Pela redação do ADR-015, as **seis declarações ISC e uma 0BSD** na árvore de
 produção podem ser submetidas à revisão técnica como candidatas permissivas
@@ -67,10 +68,10 @@ checkout candidato.
 
 ## O que ainda falta para PASS
 
-1. Executar o CI Linux do candidato e guardar seu SBOM, classificação de
-   produção, inventário e textos arquivados vinculados ao SHA final. O
-   `--enforce` permanece disponível para o gate final, após delimitar os
-   pacotes reais do artefato.
+1. Preservar os artefatos do CI Linux `36004585089`, vinculados ao commit
+   `40b9b82`, e repetir os checks se o candidato for alterado. O `--enforce`
+   permanece disponível para o gate final, após delimitar os pacotes reais
+   do artefato.
 2. Vincular os hashes de web e worker ao **artefato Railway efetivamente
    implantado**; separar dependências apenas de build/teste das incorporadas
    em cada contêiner. A análise de arquivos instalados no CI não substitui

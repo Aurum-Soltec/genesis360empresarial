@@ -9,9 +9,31 @@ export interface TenantContext {
   role: string;
 }
 
-export async function requireTenantContext(operation = "api.default"): Promise<TenantContext> {
+export type TenantContextTimingPhase = "auth_user" | "active_cookie" | "membership" | "quota";
+export type TenantContextTimingObserver = (phase: TenantContextTimingPhase, durationMs: number) => void;
+
+async function timed<T>(
+  phase: TenantContextTimingPhase,
+  observer: TenantContextTimingObserver,
+  run: () => PromiseLike<T>,
+): Promise<T> {
+  const started = performance.now();
+  try {
+    return await run();
+  } finally {
+    // Telemetry must never change an authorization decision or error mapping.
+    try { observer(phase, Math.max(0, performance.now() - started)); } catch { /* best effort */ }
+  }
+}
+
+export async function requireTenantContext(
+  operation = "api.default",
+  observeTiming?: TenantContextTimingObserver,
+): Promise<TenantContext> {
   const supabase = await createSupabaseServerClient();
-  const { data: authData, error: authError } = await supabase.auth.getUser();
+  const { data: authData, error: authError } = await (observeTiming
+    ? timed("auth_user", observeTiming, () => supabase.auth.getUser())
+    : supabase.auth.getUser());
 
   if (authError) {
     // Supabase reports a missing browser session as status 400, while an
@@ -25,7 +47,9 @@ export async function requireTenantContext(operation = "api.default"): Promise<T
     throw new Error("AUTH_REQUIRED");
   }
 
-  const cookieStore = await cookies();
+  const cookieStore = await (observeTiming
+    ? timed("active_cookie", observeTiming, cookies)
+    : cookies());
   const tenantId = cookieStore.get(ACTIVE_TENANT_COOKIE)?.value;
   if (!tenantId) {
     throw new Error("ACTIVE_TENANT_REQUIRED");
@@ -43,7 +67,10 @@ export async function requireTenantContext(operation = "api.default"): Promise<T
     p_default_max_requests: 600,
     p_default_window_seconds: 60,
   });
-  const [membershipResult, quotaResult] = await Promise.all([membershipQuery, quotaQuery]);
+  const [membershipResult, quotaResult] = await Promise.all([
+    observeTiming ? timed("membership", observeTiming, () => membershipQuery) : membershipQuery,
+    observeTiming ? timed("quota", observeTiming, () => quotaQuery) : quotaQuery,
+  ]);
   const { data: membership, error } = membershipResult;
 
   if (error) throw new Error("MEMBERSHIP_READ_FAILED");

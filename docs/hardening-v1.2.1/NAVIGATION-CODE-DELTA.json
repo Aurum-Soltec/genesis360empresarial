@@ -65,8 +65,8 @@
     {
       "path": "app/api/passport/facts/route.ts",
       "beforeSha256": "d7b3096ea347e1f277455dacad8f30eceef662929901f9c2782ffd9585b005a2",
-      "afterSha256": "7ee6b2e2e77f7b7622fbd9eb8d06935cef8e9f1af669e91709418ecfb6e7e403",
-      "reason": "HSP-4: login prehydration protection and private backup isolation"
+      "afterSha256": "d7c49b28931f92d442bf6ed20aeaa5d07773f4340d5953ad5432f13ad80c0ffe",
+      "reason": "HSP-4: numeric tenant-context subphase timing for evidence-based latency diagnosis"
     },
     {
       "path": "app/api/solutions/contact/route.ts",
@@ -263,14 +263,14 @@
     {
       "path": "docs/canonical/v1/delivery/EPICS_MASTER.md",
       "beforeSha256": "6c8cd57c3ba860428f3d1649f0d4a90f23c6f735faca8b65648b38d62917b3c7",
-      "afterSha256": "b8195467e21aafbad8546c23cdb97d98c7fc2c9f660074f812f6fa0570276a31",
-      "reason": "HSP-4 corrective hosted evidence and NO-GO gate reconciliation"
+      "afterSha256": "0cf0590d597b20f532ea0de1488142eac9912736c8b0a58f144cf99410d67622",
+      "reason": "HSP-4: reconcile CI, private backup preparations, failed runtime gates and final NO-GO evidence"
     },
     {
       "path": "docs/canonical/v1/delivery/PRODUCTION_WAVES_MASTER.md",
       "beforeSha256": "14af8551a84daf473cb9ec2c78818b789d3bc6500fbd92ee1cbfe5718735d62e",
-      "afterSha256": "070f7dad0d39fe898eff50bce663b7bf62741ddd900cace35a3b7a680acc7cf8",
-      "reason": "HSP-4 corrective hosted evidence and NO-GO gate reconciliation"
+      "afterSha256": "7f189f6a14e61edbd26b3843a366e333e769b7aaf0693ebf56cc306625e961e2",
+      "reason": "HSP-4: reconcile CI, private backup preparations, failed runtime gates and final NO-GO evidence"
     },
     {
       "path": "docs/canonical/v1/delivery/PRODUCTION_WAVES.md",
@@ -281,14 +281,14 @@
     {
       "path": "docs/canonical/v1/delivery/STORIES_MASTER.md",
       "beforeSha256": "a3f3ad9426753d3eaabe96609d514f4b17b586e1ff8a280476bfc14b8af87673",
-      "afterSha256": "f0a6938171d33b431ee9b7ac6580107552027f96557539c00dc29f3017bf4674",
-      "reason": "HSP-4 corrective hosted evidence and NO-GO gate reconciliation"
+      "afterSha256": "3c4a2d698073820ad7aaaecacf68cf3126d760713fa1fcb449861c3718c1858a",
+      "reason": "HSP-4: reconcile CI, private backup preparations, failed runtime gates and final NO-GO evidence"
     },
     {
       "path": "docs/canonical/v1/gates/GATES.json",
       "beforeSha256": "cd81e6aefa9228fe362befa930d0407f806a9a691429d5e395db446f8f615ca3",
-      "afterSha256": "f0bbd49167d9a12f6cd90874dcd1a17e7eef2ee11486e5da9b7e4219770085dd",
-      "reason": "HSP-4 corrective hosted evidence and NO-GO gate reconciliation"
+      "afterSha256": "1d583bf8b91ad160e56dba19b79e63e6ffaa85c1f644f229b514b52a95e14c15",
+      "reason": "HSP-4: reconcile CI, private backup preparations, failed runtime gates and final NO-GO evidence"
     },
     {
       "path": "GATES.json",
@@ -365,8 +365,8 @@
     {
       "path": "lib/tenant-context.ts",
       "beforeSha256": "10012a31788390a8d107af5c5dd24dcd583908d75c0a3216479f2c75fd843869",
-      "afterSha256": "0292b3b8f0da4b892a0714b7ee0375e3710f199edebde0206c0785673d79fdfc",
-      "reason": "HSP-4 remediation with executable regression and hosted recheck required"
+      "afterSha256": "934b313a39072281622cb60930f0bdf31403d3ec2e72aaad119ad67386678291",
+      "reason": "HSP-4: numeric tenant-context subphase timing for evidence-based latency diagnosis"
     },
     {
       "path": "package.json",
@@ -377,8 +377,8 @@
     {
       "path": "PROJECT-STATE.md",
       "beforeSha256": "d872785f2e9e30f89ffc11d5a7e13962907c06372e92168c7f2216f9ee92ac3d",
-      "afterSha256": "ac0994d42c90a928e342a87ddeeacd6e53551fb6c197ad50139355c33fe669fa",
-      "reason": "HSP-4 corrective hosted evidence and objective NO-GO gate reconciliation"
+      "afterSha256": "e978d19df3dc98b97d0d0ec47532a7f40b8a0b225504621fe0f7b54509521bac",
+      "reason": "HSP-4: reconcile CI, private backup preparations, failed runtime gates and final NO-GO evidence"
     },
     {
       "path": "proxy.test.ts",
@@ -431,8 +431,8 @@
     {
       "path": "scripts/prepare-demo-scenario.mjs",
       "beforeSha256": "dc5ba6b1e4f7bd304d94bc20382555d7074b86d4f3ef181d9015a228337f73db",
-      "afterSha256": "113c46e0cfe3173456db78e609c8aae0a2007e9064a621d5658dc860b5c25fe5",
-      "reason": "Keep fictional sources at diagnostic level; fail when old answer-level links falsely imply question relevance"
+      "afterSha256": "97933e09eb1a52d31eb143bd318d9dd32fa138f16bf8d9b4bedb00aec7c1ca98",
+      "reason": "HSP-4: wait for hosted tenant selection before synthetic diagnostic rehearsal"
     },
     {
       "path": "scripts/run-backup-restore-drill.ps1",

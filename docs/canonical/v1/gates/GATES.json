@@ -22,7 +22,8 @@
       "PEND-012 confidence calibration",
       "PEND-013 legal attestation copy activation",
       "PEND-014 upload storage/scanning policy",
-      "question-level documentary relevance and verification before claiming a document-grounded conclusion"
+      "question-level documentary relevance and verification before claiming a document-grounded conclusion",
+      "repeat corrected synthetic provenance runner on hosted runtime; two protected synthetic accounts passed Auth but returned zero tenant choices and performed no writes"
     ],
     "implemented": [
       "Passport/Diagnostic/GDS foundation",
@@ -51,7 +52,8 @@
       "bb290bc region evidence: Railway web/worker Virginia us-east4-eqdc16a versus Supabase Sao Paulo sa-east-1; latency contribution not quantified",
       "hosted SHA bb290bc7bc35f77b4ca01aecdbf19b748c386270 web ab3f2a2d-9507-4e24-8749-bc313c7691fa and worker 96c1e771-c895-4f15-a8f5-157b4f97f892 SUCCESS; CI quality/database/CodeQL PASS",
       "versioned sanitized HSP3_100_TENANTS_60M_BB290BC_2026-09-24.json: run 662855c2dbd5 completed 3604 seconds, 100 tenants, 24512 browser requests, 5806 writes, 584 expected denials, 0 unexpected errors; outbox 5806 processed, 0 pending/dead/retries; p95 Home 1055.48ms/write 1024.5ms/read 793.8ms/login 1964.5ms, SLO FAIL",
-      "2026-09-24 short causal probe on same bb290bc: 28 Home/API GETs; Home gzip 5681 bytes, first byte p95 151ms, stream p95 1130ms, API tenant context p95 566ms; Auth token spikes up to 7622ms; no safe latency correction or repeat 60-minute run yet"
+      "2026-09-24 short causal probe on same bb290bc: 28 Home/API GETs; Home gzip 5681 bytes, first byte p95 151ms, stream p95 1130ms, API tenant context p95 566ms; Auth token spikes up to 7622ms; no safe latency correction or repeat 60-minute run yet",
+      "local numerical instrumentation for tenant-context and facts API passed 27 focused tests; no hosted spans, correction or SLO rerun"
     ],
     "pending": [
       "duration, isolation and outbox subgates passed; short probe separated Auth/context and Home gzip/SSR streaming but has not isolated SQL/pool or a safe p95 correction; compare short candidate first, then repeat 100-tenant 60-minute end-to-end soak after correction with p95 <=750ms and pool/slow-query/cost evidence"
@@ -76,8 +78,8 @@
   "GATE-SEC": {
     "state": "blocked-operational-controls",
     "pending": [
-      "exact deployed Linux bundle inspection, NOTICE and technical/legal disposition for LGPL libvips and CC-BY caniuse-lite; local candidate classifies 9 of 30 findings on pnpm production tree but has no remote CI or Railway byte proof",
-      "automatic encrypted backup retention and representative service restore with measured RPO/RTO; private GitHub v2 run 36002104320 made immutable encrypted backup with 129 ACL TOC entries and isolated logical DB restore, but no schedule, 30-day history, independent key or ACL/owner equivalence after restore",
+      "exact deployed Linux bundle inspection, NOTICE and technical/legal disposition for LGPL libvips and CC-BY caniuse-lite; public commit 40b9b82 Linux CI classified 9 of 30 findings on pnpm production tree and archived hashes/license files, but has no Railway byte proof",
+      "automatic encrypted backup retention and representative service restore with measured RPO/RTO; private GitHub v2 run 36002104320 made immutable encrypted backup with 129 ACL TOC entries and isolated logical DB restore; guarded cron PR #7 merged at 051a76d but activation variables absent and schedule OFF; service-restore scaffold PR #6 merged at 10214da with 34 local tests PASS and one Windows symlink SKIP, but no restore executed, 30-day history, independent key or ACL/owner equivalence after restore",
       "legal/privacy review of attestation copy",
       "binary upload malware/content scanning"
     ],
@@ -103,9 +105,9 @@
       "GitHub secret scanning and push protection",
       "Dependabot alerts and security updates with zero open alerts",
       "CodeQL default setup passing with zero open alerts",
-      "historical frozen-lockfile inventory; hosted bb290bc CI Linux SBOM has 455 entries and an unresolved LGPL package; later candidate scanner does not inspect deployed bytes",
+      "historical frozen-lockfile inventory; hosted bb290bc CI Linux SBOM has 455 entries and an unresolved LGPL package; public PR #25 commit 40b9b82 Linux CI quality/database/CodeQL/Analyze PASS and license inventory 9/30 production-reachable, but scanner does not inspect deployed bytes",
       "monitor issue #27: synthetic failure, recovery, email receipt and human ACK; public ACK notification quote sanitized, external cache residual unknown",
-      "private backup v1 run 35945384891 PASS historical; private v2 run 36002104320 on e82a09c PASS with 129 ACL TOC entries, immutable encrypted release and isolated logical restore 102 tenants, 16 Auth users, 0 Storage objects, 24 migrations in 77.450s after download; no service RTO/RPO or ACL/owner equivalence",
+      "private backup v1 run 35945384891 PASS historical; private v2 run 36002104320 on e82a09c PASS with 129 ACL TOC entries, immutable encrypted release and isolated logical restore 102 tenants, 16 Auth users, 0 Storage objects, 24 migrations in 77.450s after download; PR #6 restore scaffold merged at 10214da with 34 local tests PASS and one Windows symlink SKIP but no service restore, RTO/RPO or ACL/owner equivalence",
       "GitHub Actions organization budget USD0 with Stop usage enabled on 2026-09-24, 244 of 2000 included minutes used; shared quota exhaustion may stop backup even without billing"
     ]
   },
@@ -149,8 +151,8 @@
     "state": "blocked-hsp4-no-go",
     "pending": [
       "100-tenant 60-minute duration, isolation and outbox passed on bb290bc run 662855c2dbd5; p95 <=750ms failed on login/Home/write/read and must be remeasured after safe correction",
-      "automatic encrypted backup retention, representative service restore with owner/ACL equivalence and measured RPO/RTO; private v2 manual snapshot/logical restore passed, schedule, 30-day history, independent key custody and equivalent-control decision pending",
-      "final bundle SBOM/NOTICE and legal LGPL/CC-BY license disposition; local classification has no Railway image proof",
+      "automatic encrypted backup retention, representative service restore with owner/ACL equivalence and measured RPO/RTO; private v2 manual snapshot/logical restore passed, guarded cron code merged but inactive (activation variables absent), restore scaffold merged but no drill, 30-day history, independent key custody and equivalent-control decision pending",
+      "final bundle SBOM/NOTICE and legal LGPL/CC-BY license disposition; 40b9b82 CI classification and hash archive have no Railway image proof",
       "legal/privacy and upload activation gates"
     ]
   },
@@ -166,16 +168,16 @@
       "hosted FULL on bb290bc: 55 answers, score 48, coverage 100%, confidence 78%, 12 dimensions and 90-day plan; zero linked/verified sources disclosed; document-grounded conclusion pending",
       "hosted HTTP member/manager/foreign-tenant isolation 12/12 on bb290bc; temporary fixture and users cleaned",
       "historical authenticated browser E2E 10/10",
-      "private v2 immutable encrypted backup and isolated logical DB restore: run 36002104320, 129 ACL TOC entries, 102 tenants, 16 Auth users, 24 migrations, no Storage objects; local helper 77.450s after download is not service RTO or ACL equivalence",
+      "private v2 immutable encrypted backup and isolated logical DB restore: run 36002104320, 129 ACL TOC entries, 102 tenants, 16 Auth users, 24 migrations, no Storage objects; local helper 77.450s after download is not service RTO or ACL equivalence; PRs #6/#7 merged as inert preparation, no restore and schedule OFF",
       "historical 100-tenant end-to-end soak with functional pass and performance fail",
       "controlled hosted invite email/callback/Tenant A-only session, owner-defined password and fresh sign-in on exact invited account with Auth timestamp advanced after retest",
       "issue #27 synthetic failure, recovery, email notification, human ACK and close; ACK quote sanitized",
       "first bb290bc run 998 seconds/10 client errors historical; second run 662855c2dbd5 completed 3604 seconds, 100 tenants, 24512 browser requests, 5806 writes, 584 expected denials, 0 unexpected errors; outbox 5806 processed, 0 pending/dead/retries; p95 FAIL"
     ],
     "pending": [
-      "automatic encrypted backup/recovery with 30-day retention and measured service RPO/RTO; private v2 manual backup/isolated logical restore includes 129 ACL TOC entries, but does not prove applied ACL/owner equivalence; schedule/history/key custody/equivalence pending",
+      "automatic encrypted backup/recovery with 30-day retention and measured service RPO/RTO; private v2 manual backup/isolated logical restore includes 129 ACL TOC entries, but does not prove applied ACL/owner equivalence; guarded cron PR #7 merged but schedule OFF, service restore PR #6 merged without drill, history/key custody/equivalence pending",
       "final artifact license disposition and exact Railway bundle inventory",
-      "actual document-linked/verified diagnostic conclusion remains unproven while real upload flag is off",
+      "actual document-linked/verified diagnostic conclusion remains unproven while real upload flag is off; corrected synthetic provenance runner retest is blocked after two Auth successes with zero tenant choices and no writes",
       "100-tenant 60-minute duration/isolation/outbox passed; p95 <=750ms failed, pool/slow-query and marginal cost telemetry incomplete"
     ]
   },
@@ -201,11 +203,13 @@
       "hosted 0024 SQL RLS 12/12 plus HTTP multi-role 12/12; FULL 55 answers on bb290bc with zero linked documents",
       "first bb290bc run aborted at 998 seconds with 10 client errors; retry 662855c2dbd5 completed 3604 seconds, 100 tenants, 24512 browser requests and 0 unexpected errors; browser p95 FAIL",
       "second bb290bc run hosted outbox probe: 5806 matched events processed, zero pending/dead/retries, worker latency p95 3476.20ms",
-      "first private encrypted backup run 35945384891 passed historically; v2 run 36002104320 preserved 129 ACL TOC entries and isolated local logical restore passed, but automatic retention and service RPO/RTO remain blocked",
+      "first private encrypted backup run 35945384891 passed historically; v2 run 36002104320 preserved 129 ACL TOC entries and isolated local logical restore passed; PRs #6/#7 merged as code preparation, but schedule OFF and no service restore, automatic retention or RPO/RTO",
       "issue #27 email receipt, human ACK, recovery and close; public ACK sanitized",
       "fresh invited-user password login on exact alias passed with owner-observed Tenant A and Auth last_sign_in_at advanced after retest",
-      "2026-09-24 short Home/API/Auth probe confirms p95 performance remains failed; no new 60-minute pass",
-      "local public candidate passes 503 Vitest, 34 native hardening tests, lint, typecheck, security, contracts and Next build; remote CI and staging promotion pending"
+      "2026-09-24 short Home/API/Auth probe confirms p95 performance remains failed; local numerical instrumentation passed 27 focused tests but no hosted measurement or new 60-minute pass",
+      "corrected synthetic provenance runner hosted retest blocked after two protected Auth successes, zero tenant choices and zero writes; no hosted provenance pass",
+      "public PR #25 commit 40b9b82 passes local 503 Vitest, 34 native hardening tests, lint, typecheck, security, contracts and Next build; remote CI quality/database/CodeQL/Analyze PASS on runs 36004585089 and 36004579982; staging promotion and affected runtime retests pending",
+      "unpublished local follow-up for numerical instrumentation and demo runner passes pnpm quality with 506 Vitest, 34 native tests, lint, types, security and build; remote CI and hosted runtime pending"
     ],
     "pending": [
       "close HSP-4 automatic backup/ACL-equivalent service restore/RPO-RTO, LGPL/CC-BY and 100-tenant 60-minute p95 blockers; document-grounded real conclusions remain pending under disabled upload flag",
