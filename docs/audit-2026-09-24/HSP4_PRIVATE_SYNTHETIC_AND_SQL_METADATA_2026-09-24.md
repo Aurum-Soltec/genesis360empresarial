@@ -6,6 +6,14 @@ dados restaurados ou saída SQL. O artefato privado de resultado SQL **não
 foi lido independentemente pelo agente**: a revisão automática rejeitou a
 leitura/download por possível conteúdo sensível. Nenhum atalho foi usado.
 
+**Estado vigente:** o [relatório HSP-4 do `458aac9`](HSP4_CURRENT_REVIEW_458AAC9_2026-09-24.md)
+substitui as pendências históricas desta página. A matriz HTTP hospedada passou
+12 verificações fail-fast nos runs privados `36062309891` e `36062480126`,
+com crédito limitado ao sucesso do workflow e sem inspeção independente do
+artefato privado. A seção de preparação abaixo descreve o estado anterior a
+esses runs; o gate de backup/restore real e a decisão HSP-4 seguem BLOCKED e
+NO-GO, respectivamente.
+
 ## Recuperação sintética sem dados de staging
 
 A [PR privada #15](https://github.com/Aurum-Soltec/genesis360-staging-backups/pull/15)

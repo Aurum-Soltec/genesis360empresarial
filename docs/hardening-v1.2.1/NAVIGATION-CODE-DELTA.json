@@ -317,8 +317,8 @@
     {
       "path": "docs/audit-2026-09-24/HSP4_PRIVATE_SYNTHETIC_AND_SQL_METADATA_2026-09-24.md",
       "beforeSha256": null,
-      "afterSha256": "f43502d55087002c01c2a6a7431dbeb8a66b4e040bac86687a0a8e287d44bbcf",
-      "reason": "HSP-4: public sanitized private-run metadata, SQL-only PASS and synthetic recovery limits"
+      "afterSha256": "aeb778cb00006b0cb4ef8de6a4246fdbe4a9acef1b7e6cff9c3266c006b3ecff",
+      "reason": "HSP-4: sanitized private-run metadata, SQL/HTTP evidence and synthetic recovery limits"
     },
     {
       "path": "docs/audit-2026-09-24/HSP4_CORRECTIVE_GO_NO_GO_2026-09-24.md",
@@ -353,8 +353,8 @@
     {
       "path": "docs/canonical/v1/delivery/PRODUCTION_WAVES.md",
       "beforeSha256": "fe82dd3e99e80142b971f72c867df24ab1d66d1d61390c42802b2a101ccdfdf0",
-      "afterSha256": "36b662acdd3b6d2f817f0921e732c613fd0186fd46c00fceffd7584bf6a1cab6",
-      "reason": "HSP-4 final hosted evidence and NO-GO gate reconciliation"
+      "afterSha256": "24e8bdf0c9d84258c8e7a995e46ccb5c1c37ee1fc1e3536247bfbea4c195413d",
+      "reason": "HSP-4: mark historical Waves and point to the current 458aac9 NO-GO review"
     },
     {
       "path": "docs/canonical/v1/delivery/STORIES_CATALOG.csv",

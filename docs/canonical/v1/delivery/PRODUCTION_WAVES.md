@@ -1,27 +1,17 @@
 # PRODUCTION WAVES
 
-> **Atualização operacional — 2026-09-24 UTC:** este mapa PW permanece histórico.
-> Web e worker do staging receberam por CLI fonte local limpa `6dff3c9` e
-> terminaram SUCCESS com digests; Railway `meta.commitHash=null` limita a
-> atestação nativa do SHA. A demo
-> fictícia 7/7 foi observada no predecessor `5b992d3`. O último soak de
-> 100 tenants por 60 minutos concluiu sem erro funcional, mas falhou no p95.
-> SQL 0024 **PASS limitado ao workflow privado** pinado à fonte atual no run
-> `36035020570`, sem leitura independente do JSON; HTTP multi-role, backup de serviço/RPO-RTO,
-> retenção e licença final continuam pendentes ou bloqueados. A decisão é
-> **HSP-4 NO-GO**. Estado vigente: `PRODUCTION_WAVES_MASTER.md` e
-> `../../../audit-2026-09-24/HSP4_CURRENT_REVIEW_6DFF3C9_2026-09-24.md`.
-> Nenhuma Wave após HSP-4 começou. A cópia privada cifrada e o restore lógico
-> isolado passaram como subprova manual; o gate de recuperação continua BLOCKED
-> por agendamento, retenção, equivalência de permissões e RPO/RTO de serviço.
-> A inspeção read-only foi repetida no SHA `25c022d8` para os 30 pacotes;
-> as imagens novas ainda requerem vínculo de licença ao artefato exato. NOTICE
-> e decisão LGPL/CC-BY/MPL permanecem BLOCKED. O vínculo contextual da demo
-> passou no `5b992d3`; instrumentação da Home enviada como `6dff3c9` ainda
-> não mostrou evento `home_latency` filtrado e não prova SLO.
-> A PR privada #11/run `36020411581` passou somente boot/saúde de stack
-> sintética vazia, isolada em loopback no runner Ubuntu; 120 s não são RTO.
-> Restore real, RPO/RTO, agendamento e retenção seguem BLOCKED.
+> **Atualização operacional — 2026-09-24 UTC:** este mapa `PW-*` permanece
+> histórico. O estado vigente da etapa Hosted Staging & Pilot Readiness é
+> `PRODUCTION_WAVES_MASTER.md` e
+> `../../../audit-2026-09-24/HSP4_CURRENT_REVIEW_458AAC9_2026-09-24.md`.
+> Web e worker do staging receberam a fonte limpa `458aac9` e terminaram
+> SUCCESS com digests; Railway `meta.commitHash=null` não atesta nativamente o
+> SHA. A matriz HTTP membro/gestor/outro tenant passou 12 verificações
+> fail-fast no workflow privado, com crédito limitado porque o artefato não foi
+> inspecionado independentemente. O ensaio de 100 tenants por 60 minutos ainda
+> falhou p95 ≤750 ms. Backup automático, restore real, retenção, RPO/RTO e
+> licenças finais não receberam PASS. **HSP-4 NO-GO.** Nenhuma Wave posterior
+> foi iniciada. Resultados anteriores abaixo conservam caráter histórico.
 
 As Waves 0-4 existentes representam evolução histórica da fundação. A partir deste pacote, usar identificadores `PW-*` para produção.
 
