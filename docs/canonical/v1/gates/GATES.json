@@ -209,7 +209,7 @@
       "2026-09-24 short Home/API/Auth probe confirms p95 performance remains failed; local numerical instrumentation passed 27 focused tests but no hosted measurement or new 60-minute pass",
       "corrected synthetic provenance runner hosted retest blocked after two protected Auth successes, zero tenant choices and zero writes; no hosted provenance pass",
       "public PR #25 predecessor 40b9b82 passed local 503 Vitest, 34 native hardening tests and remote CI; Linux license inventory 9/30 production-reachable from its CI remains unresolved for deployed bytes",
-      "public PR #25 current candidate 6d4d569 passes local pnpm quality with 506 Vitest, 34 native tests, lint, types, security and build; remote CI quality/database/CodeQL/Analyze PASS on runs 36007816845 and 36007811013; interim a903 CRLF/LF integrity mismatch corrected; staging promotion and affected runtime retests pending"
+      "public PR #25 latest code change 6d4d569 passes local pnpm quality with 506 Vitest, 34 native tests, lint, types, security and build; remote CI quality/database/CodeQL/Analyze PASS on runs 36007816845 and 36007811013; interim a903 CRLF/LF integrity mismatch corrected; staging promotion and affected runtime retests pending"
     ],
     "pending": [
       "close HSP-4 automatic backup/ACL-equivalent service restore/RPO-RTO, LGPL/CC-BY and 100-tenant 60-minute p95 blockers; document-grounded real conclusions remain pending under disabled upload flag",

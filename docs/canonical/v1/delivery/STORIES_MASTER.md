@@ -1447,7 +1447,7 @@ sem parcela de latência isolada. HSP-4 permanece **NO-GO**; PILOT-1 não começ
 
 ### V1-ST-107 — Full lint + TypeScript 6 + Vitest + Next build
 - **Status:** `completed-remote-ci`
-- **Revisão corretiva:** o predecessor público `40b9b82` passou CI e 503 Vitest/34 testes nativos no check local. O candidato atual `6d4d569` no PR #25 incorpora instrumentação/runner, passou `pnpm quality` local com 506 Vitest/34 nativos, lint, tipos, segurança e build; quality/database/CodeQL/Analyze remotos passaram nos runs `36007816845` e `36007811013`. Continua sem promoção ao staging ou crédito runtime.
+- **Revisão corretiva:** o predecessor público `40b9b82` passou CI e 503 Vitest/34 testes nativos no check local. O último commit com código `6d4d569` no PR #25 incorpora instrumentação/runner, passou `pnpm quality` local com 506 Vitest/34 nativos, lint, tipos, segurança e build; quality/database/CodeQL/Analyze remotos passaram nos runs `36007816845` e `36007811013`. Continua sem promoção ao staging ou crédito runtime.
 - **Prioridade:** `P0`
 - **Source:** `docs/canonical/v1/delivery/STORIES_MASTER.md`
 - **Critérios de aceite:**
