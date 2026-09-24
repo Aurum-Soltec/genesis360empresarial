@@ -73,6 +73,16 @@ runtime. O agente não inspecionou independentemente o artefato
 privado completo. O cron de backup permanece OFF; restore real, retenção,
 RPO/RTO e HSP-2 continuam BLOCKED.
 
+A [PR privada #25](https://github.com/Aurum-Soltec/genesis360-staging-backups/pull/25)
+foi integrada na main privada em
+`0d94e17fddca631e3bdbd1ef3c4c083cca94e19b`. O [run sintético
+`36067300522`](https://github.com/Aurum-Soltec/genesis360-staging-backups/actions/runs/36067300522)
+terminou SUCCESS: **71 bytes fictícios** foram comparados source→target
+por bytes e SHA; catálogo, owner, ACL, RLS e limpeza final foram
+verificados no cenário. `storage_bytes_restored_from_backup=false`:
+isso não comprova recuperação de bytes de Storage de backup real, nem
+restore do staging, retenção, RPO ou RTO. O cron permanece OFF.
+
 ## Fronteira SQL hospedada da migration 0024
 
 A [PR privada #16](https://github.com/Aurum-Soltec/genesis360-staging-backups/pull/16)
@@ -115,10 +125,30 @@ tenant, o gate HTTP permanece PENDING.
 
 O run privado `36031382116` para ensaio de alerta sem dados abriu a
 [issue privada #17](https://github.com/Aurum-Soltec/genesis360-staging-backups/issues/17).
-O **ACK humano ainda está pendente**; abertura de issue isolada não comprova
-recebimento externo, reconhecimento ou recuperação, portanto não recebe PASS. O drill
+Naquele primeiro ensaio, o **ACK humano estava pendente**; abertura de issue isolada não comprovava
+recebimento externo, reconhecimento ou recuperação, portanto não recebia PASS. O drill
 histórico da issue pública #27 comprova o alerta geral do staging, não o
 controle de atraso do backup privado.
+
+A [PR privada #27](https://github.com/Aurum-Soltec/genesis360-staging-backups/pull/27)
+foi integrada na main privada em
+`381bce1671bb405c2384ef289bed7944b1fb9dc8`. O [drill
+`36067885407`](https://github.com/Aurum-Soltec/genesis360-staging-backups/actions/runs/36067885407)
+induziu **falha intencional do snapshot antes de secrets, banco e Storage**;
+o job de alerta terminou SUCCESS e publicou menção a `@hudsonlcustodio`
+na [issue privada #17, comentário
+`5823303209`](https://github.com/Aurum-Soltec/genesis360-staging-backups/issues/17#issuecomment-5823303209).
+O proprietário confirmou recebimento externo por **e-mail** do novo alerta.
+Metadados da issue mostram comentário humano da conta `hudsonlcustodio`
+às **22:44:52Z** com verificação booleana `startsWith ACK=true`; o corpo
+do comentário não é reproduzido. Entrega e ACK recebem **PASS limitado**.
+O monitor privado [dry-run `36069498641`](https://github.com/Aurum-Soltec/genesis360-staging-backups/actions/runs/36069498641)
+terminou check SUCCESS às **22:49:03Z** na main
+`5ba5bcf13ef8149cdafd6aecb840334a85c33c16`, mas devolveu
+`dry_run_pass` em fixture sintética: não leu release, banco, Storage ou
+secrets e não atualizou a issue #17, que continua **OPEN**. Esse ensaio
+comprova wiring do monitor, não recuperação real do backup nem fechamento
+do subgate completo de alerta.
 
 **HSP-2 permanece BLOCKED e HSP-4 permanece NO-GO.** Nenhum dos três
 resultados comprova restore real, backup automático/retido, RPO/RTO de

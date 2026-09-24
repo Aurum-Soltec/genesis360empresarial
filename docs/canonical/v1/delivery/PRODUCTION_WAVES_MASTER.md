@@ -17,14 +17,20 @@ devolveu 401 anônimo, mas a navegação direta autenticada foi bloqueada
 pelo navegador (`ERR_BLOCKED_BY_CLIENT`). O run privado `36063913391`
 mediu depois 16 amostras numéricas em fixture escassa sem pains: total
 p50/p95 799,01/1.337,44 ms, tenant context 504,71/709,60 ms e dashboard
-284,31/810,15 ms, sem causa definitiva ou crédito de SLO. Último 100×60
+284,31/810,15 ms. A PR privada #26/run `36068483011` acrescentou 200 GETs
+autenticados em um tenant scored com três dores, p50/p95/p99
+728,55/1.229,81/1.758,33 ms e 77/200 acima de 750 ms; região do runner
+e método de score não validados, sem causa definitiva ou crédito de SLO. Último 100×60
 permanece FAIL de p95; HTTP multi-role hospedado no claim `458aac9` passou
 no run privado `36062309891` com guard independente e backstop SUCCESS,
 12/12 inferidos do runner fail-fast, sem inspeção independente do artefato
 sanitizado. As cinco flags foram vistas DESLIGADA após reload autenticado
 da UI no `458aac9`, e `/ecossistema` retornou 404; escopo apenas visual/de
 rota. FULL no candidato atual segue PENDING, backup de serviço/RPO-RTO e
-NOTICE seguem BLOCKED. Nenhum gate
+NOTICE seguem BLOCKED. Inspeção OSS read-only dos deployments atuais
+comparou 30/30 hashes de pacotes com CI em cada serviço, 28 LICENSE/NOTICE,
+3 binários nativos, zero pacote ausente; arquivo detalhado local ainda
+pendente de publicação, sem aceite jurídico. Nenhum gate
 herda PASS runtime do `6dff3c9` automaticamente. [Revisão A–T
 vigente](../../../audit-2026-09-24/HSP4_CURRENT_REVIEW_458AAC9_2026-09-24.md).
 
@@ -32,8 +38,8 @@ vigente](../../../audit-2026-09-24/HSP4_CURRENT_REVIEW_458AAC9_2026-09-24.md).
 | --- | --- | --- |
 | HSP-0 | **PARTIAL** | Preservar CI e vincular fonte/deployments ao artefato sem alegar atestação nativa não observada. |
 | HSP-1 | **PARTIAL; HTTP multi-role PASS limitado** | Run hospedado `36062309891` e backstop `36062480126` SUCCESS no claim `458aac9`; 12/12 inferidos do runner fail-fast, JSON privado não inspecionado. FULL no candidato ainda pende; SQL-only anterior é histórico. Cinco flags OFF foram observadas na UI/rota atual sob sessão sintética, sem env bruto. |
-| HSP-2 | **BLOCKED** | PR privada #22/run `36063130004` passou apenas stack sintética com 3 Auth/2 tenants/24 migrations/4 outbox; bytes Storage não vieram de backup, 188,167 s até worker não é RTO. Faltam restore real, RPO/RTO, backup automático/retido, alerta/ACK, chave independente e NOTICE. |
-| HSP-3 | **FAIL p95 histórico; atual PENDING** | Run `36063913391` mediu 16/16 amostras curtas sem pains; ampliar fixture, isolar causa, corrigir gargalo demonstrado e repetir 100×60 no candidato. |
+| HSP-2 | **BLOCKED** | PR #22/run `36063130004` passou stack sintética com 3 Auth/2 tenants/24 migrations/4 outbox. PR #25/run `36067300522` igualou 71 bytes fictícios source→target por byte/SHA e verificou catálogo/owner/ACL/RLS/cleanup; `storage_bytes_restored_from_backup=false`, 188,167 s até worker não é RTO. PR #27/run `36067885407` alertou falha intencional anterior a secrets/DB/Storage e mencionou o proprietário na issue #17, com e-mail externo e ACK humano confirmados; dry-run `36069498641` comprovou apenas wiring, sem recuperação real, e issue #17 OPEN. OSS atual: 30/30 hashes de pacotes iguais ao CI em cada serviço, evidência local pendente de publicação, sem NOTICE/aceite jurídico. Faltam restore real, RPO/RTO, backup automático/retido, chave independente e NOTICE. |
+| HSP-3 | **FAIL p95 histórico; atual PENDING 100×60** | Runs `36063913391` (16 amostras escassas) e `36068483011` (200 GETs em um tenant scored/três dores, p95 1.229,81 ms) ampliaram a triagem; isolar causa, corrigir gargalo demonstrado e repetir 100×60 no candidato. |
 | HSP-4 | **NO-GO** | Reconciliar gates antes de decisão de piloto. |
 
 ## Registro histórico — fonte `6dff3c9`
