@@ -1,5 +1,13 @@
 # HSP-4 — disposição técnica de licenças do candidato hospedado
 
+## Adendo 2026-09-24 — artefato funcional hospedado bb290bc
+
+O SHA web/worker **`bb290bc7bc35f77b4ca01aecdbf19b748c386270`** passou quality/database/CodeQL, mas seu workflow de CI **ainda não executava** `scripts/audit-sbom-licenses.mjs`; o scanner foi introduzido depois, no candidato `0c6dc1a`, e não recebe crédito de execução no runtime bb290bc. A [run 35940477733](https://github.com/Aurum-Soltec/genesis360empresarial/actions/runs/35940477733) publicou o SBOM Linux artifact `10784681979`, ZIP digest SHA-256 `fd0faf154275c2a42cfce95bc7da511becf4d9085c74bae7e66375d68cc81d84`; o JSON extraído (312.138 bytes) tem SHA-256 `6236a595dde9c7b7cc07e851e0cf23e65f3acc5d70b5e261ac4b13ad90042ea7`.
+
+Esse SBOM lista 455 pacotes, incluindo a raiz privada e 454 dependências instaladas no runner. Há 30 declarações fora da preferência do ADR-015: 18 ISC, 5 MPL-2.0 e uma cada LGPL-3.0-or-later (`@img/sharp-libvips-linux-x64@1.3.3`), 0BSD, BlueOak-1.0.0, CC-BY-4.0, CC0-1.0, MIT-0 e Python-2.0. Todas as dependências têm `licenseConcluded=NOASSERTION`. O SBOM não enumera os bytes efetivamente implantados em web/worker; a tentativa read-only `railway service files list /app` falhou por ausência de chave SSH. No candidato posterior o scanner produz JSON com gate `BLOCKED`, mas sem `--enforce` retorna sucesso quando os 30 itens são `review`; CI verde não equivale a disposição concluída. O NOTICE do SHA hospedado era incompleto.
+
+**Decisão atual: BLOCKED.** Antes de PASS, vincular manifesto/hash dos arquivos finais aos deployment IDs, distinguir build-only de runtime, concluir licenças/avisos/fontes aplicáveis, registrar decisão do proprietário/jurídico sobre o cenário de serviço e eventual distribuição, tornar a verificação de política vinculante e repetir no mesmo SHA promovido. O histórico abaixo documenta a análise anterior `fe0e5b4`; seus hashes não devem ser atribuídos ao bb290bc.
+
 **Estado em 2026-09-23: BLOCKED.** Este registro é uma análise técnica de proveniência e de evidências faltantes. Não aprova licença, não substitui análise jurídica e não declara que o contêiner Railway foi inspecionado.
 
 ## Artefato e resultado reproduzível

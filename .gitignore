@@ -59,4 +59,6 @@ __pycache__/
 *.otf
 tmp/hsp4-private-backup/
 tmp/hsp4-private-backup-repo/
+tmp/hsp4-private-schedule-pr/
+tmp/hsp4-private-service-drill-pr/
 tmp/hsp3-provider-metrics/

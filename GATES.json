@@ -12,15 +12,16 @@
   "HSP-1": {
     "status": "partial_invite_fresh_login_pending_core_pass",
     "evidence": [
-      "isolated hosted staging; current SHA 8df90d955479ffee98a62b7334faf1a172ec78a5 web and worker SUCCESS with quality/database/CodeQL PASS",
-      "24 migrations present after append-only 0024; 12/12 hosted authenticated-role SQL RLS assertions with rollback",
-      "FULL 55 answers and scored result on prior SHA 5e6e836, zero linked/verified documents; affected flow pending retest on current SHA",
+      "isolated hosted staging; functional SHA bb290bc7bc35f77b4ca01aecdbf19b748c386270 web and worker SUCCESS with quality/database/CodeQL PASS",
+      "24 migrations present after append-only 0024; 12/12 hosted authenticated-role SQL RLS assertions with rollback and 12/12 HTTP multi-role assertions with fixture cleanup",
+      "FULL repeated on bb290bc: 55 answers, score 48, coverage 100%, confidence 78%, 12 dimensions and 90-day plan; zero linked/verified documents, so document-grounded conclusion remains unproven",
       "historical 95/95 hosted pgTAP and 10 browser E2E tests",
       "controlled invitation 201, Auth, Tenant A-only member, audit, email, callback, app session, admin denial; owner confirmed password update and access",
-      "current SHA Auth-form pre-hydration guard and 10 synthetic logins in 30-second smoke"
+      "Auth-form pre-hydration guard and 10 synthetic logins in first bb290bc 100-tenant run"
     ],
     "blocked": [
-      "fresh invited-user login by password after logout and affected diagnostic FULL retest on final artifact pending"
+      "fresh invited-user login by password after logout pending; owner confirmed password set and access, not this separate login proof",
+      "question-level linked/verified documentation and a document-grounded conclusion unproven in the FULL retest"
     ]
   },
   "HSP-2": {
@@ -28,51 +29,57 @@
     "passed": [
       "security headers and five sensitive flags off",
       "provider metrics and structured logs",
-      "isolated logical restore only",
+      "private backup workflow SHA 7e6a54e, run 35945384891 PASS: immutable encrypted release 3,613,039 bytes and isolated local logical restore of 102 tenants, 16 Auth users, 0 Storage objects and 24 migrations; DB 32.241s, full local drill 37.476s, not service RTO",
       "Dependabot and secret scanning controls",
-      "issue #27 synthetic monitor failure, email notification received, human ACK, recovery and close; public ACK quote sanitized"
+      "issue #27 synthetic monitor failure, email notification received, human ACK, recovery and close; public ACK quote sanitized",
+      "hosted first-run outbox: 1600 matched facts/events processed, zero pending/dead/retries, worker latency p95 3589.34ms"
     ],
     "blocked": [
-      "private GitHub backup repo has immutability and manual-only blueprint with 15 synthetic tests, but no real backup, schedule, retention, representative restore or measured RPO/RTO",
-      "exact deployed artifact license disposition: CI Linux SBOM has LGPL-3.0-or-later libvips, bundle/NOTICE/legal decision pending"
+      "one private manual backup and isolated DB restore passed, but no safe schedule, 30-day observed retention, service restore/RPO/RTO, independent key custody or formal equivalent-control decision",
+      "exact deployed artifact license disposition: bb290bc CI Linux SBOM has LGPL-3.0-or-later libvips; scanner PASS belongs to later CI candidate 0c6dc1a with 30 review items, not hosted runtime; bundle/NOTICE/legal decision pending"
     ]
   },
   "HSP-3": {
-    "status": "performance_fail_60min_pending",
+    "status": "duration_isolation_worker_pass_performance_fail",
     "evidence": [
       "historical 100-tenant 60-minute hosted end-to-end soak with zero functional failures but latency FAIL",
       "private fixture precheck confirmed 10 users and 100 tenants",
-      "current SHA 8df90d9 smoke af3269d3df91: 30 seconds, 10 logins, 50 tenants, 340 requests, 50 writes, 10 expected denials, zero unexpected errors"
+      "first bb290bc run a3ace1f4d8cc: 998 seconds, 10 logins, 100 tenants visited, 6850 requests, 1600 writes, 160 expected cross-tenant denials, 10 browser/network errors",
+      "hosted outbox in first run: 1600 matched facts/events processed, zero pending/dead/retries, worker latency p95 3589.34ms, attempt p95 164ms",
+      "Railway web/worker ran in Virginia us-east4-eqdc16a while Supabase staging is Sao Paulo sa-east-1; regional contribution to p95 not isolated",
+      "second same-runtime bb290bc run 662855c2dbd5 completed 3604 seconds, 100/100 tenants, 10 Auth users, 24512 requests, 5806 fact writes, 584 expected cross-tenant denials, 0 unexpected errors, 70 recycled pages",
+      "second run hosted outbox: 5806 matched facts/events processed, 0 pending/dead/retries, worker latency p95 3476.20ms and attempt p95 163ms"
     ],
     "failed": [
-      "current smoke p95 login 2164ms, Home 1326ms, write 1513ms, read 1175ms against 750ms gate"
+      "first bb290bc run p95 FAIL with 10 client errors and only 998 seconds; second 3604-second run p95 login 1964.5ms, Home 1055.48ms, write 1024.5ms, read 793.8ms against <=750ms gate despite 0 unexpected errors"
     ],
     "pending": [
-      "measure and correct demonstrated bottleneck, then complete 100-tenant 60-minute end-to-end soak on final exact artifact with p50/p95/p99, errors, pool, worker, saturation and costs"
+      "duration/isolation/outbox subgates passed on same runtime; measure Auth/context subphases, Home bytes/content-encoding/SSR streaming and regional contribution before any correction/ADR; repeat full 100-tenant 60-minute gate after affected change with p95 <=750ms, pool/saturation and cost evidence"
     ]
   },
   "HSP-4": {
-    "status": "recheck_in_progress_no_go",
+    "status": "closed_no_go_objective_fixes",
     "evidence": [
-      "migration 0024 hosted RLS 12/12",
-      "FULL 55-answer diagnostic on prior SHA, affected retest pending",
-      "current SHA 8df90d955479ffee98a62b7334faf1a172ec78a5 quality/database/CodeQL PASS and web/worker Railway SUCCESS",
+      "migration 0024 hosted SQL RLS 12/12 and bb290bc HTTP multi-role isolation 12/12",
+      "FULL 55-answer diagnostic repeated on bb290bc with score 48, zero linked/verified documents",
+      "functional SHA bb290bc7bc35f77b4ca01aecdbf19b748c386270 quality/database/CodeQL PASS and web/worker Railway SUCCESS; later harness SHA dc9c124 CI PASS but is not deployed runtime",
       "controlled invite through callback and Tenant A session; password confirmed by owner, fresh login pending",
       "issue #27 email notification, human ACK, recovery and close; ACK quote sanitized",
-      "private backup repo with immutable releases enabled and merged manual-only blueprint; no backup runtime",
-      "current 30-second smoke 50 tenants and zero errors, p95 FAIL"
+      "private backup run 35945384891 PASS for immutable encrypted release and isolated logical restore; HSP-2 still BLOCKED",
+      "first bb290bc run ended at 998 seconds with 10 client errors; second run 662855c2dbd5 completed 3604 seconds/100 tenants/24512 requests/0 unexpected errors/584 expected denials, outbox 5806 processed without pending/dead/retries; p95 FAIL",
+      "five sensitive flags OFF in hosted web and worker"
     ],
     "pending": [
-      "fresh invited-user login and affected FULL diagnostic retest",
-      "automatic encrypted backup retention and representative restore with measured RPO/RTO",
+      "fresh invited-user login after logout and document-grounded conclusion remain unproven; FULL flow retest itself passed",
+      "automatic encrypted backup retention and representative service restore with measured RPO/RTO, independent key custody and equivalent-control decision",
       "legal and technical LGPL disposition",
-      "100-tenant 60-minute SLO and operational telemetry proof",
-      "final A-T review and canonical reconciliation"
+      "100-tenant 60-minute duration, functional isolation and outbox proof passed; p95 <=750ms and remaining pool/saturation telemetry still pending",
+      "repeat affected HSP-4 gates and issue a new review before any pilot authorization"
     ]
   },
   "production": {
     "status": "blocked",
     "pilot": "no-go",
-    "reason": "HSP-4 recheck open: backup/RPO/RTO, LGPL disposition and 100-tenant 60-minute SLO lack PASS; invited-user fresh login and affected diagnostic retest remain pending; later Waves not started"
+    "reason": "HSP-4 recheck NO-GO: 100-tenant 60-minute duration/isolation/outbox passed but p95 <=750ms failed; automatic retained backup/service RPO-RTO, ACL/owner-equivalent restore and LGPL disposition lack PASS; invited-user fresh login and document-grounded conclusions remain pending; later Waves not started"
   }
 }

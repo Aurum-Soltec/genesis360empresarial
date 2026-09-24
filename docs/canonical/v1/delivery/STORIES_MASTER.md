@@ -1374,22 +1374,29 @@ Estados `implemented*` indicam implementação existente; não significam prova 
 
 ## EPIC-17 Production Readiness & Repository
 
-**Rechecagem HSP-4 em 2026-09-23:** os estados completed abaixo que
-descrevem a revisão de 20/09 são históricos e limitados ao artefato daquele
-ensaio. O candidato atual 8df90d955479ffee98a62b7334faf1a172ec78a5
-passou CI quality/database/CodeQL e web/worker hospedados com deploy SUCCESS.
-O convite administrado em 6737406 passou HTTP 201, criação Auth, e-mail,
-callback, sessão do app, vínculo member somente no Tenant A e negativa da
-administração. O proprietário confirmou definição de senha e acesso; falta
-logout e novo login por senha. O candidato atual protege os formulários Auth
-antes da hidratação e o smoke autenticou dez contas sintéticas. A issue #27
-comprovou notificação por e-mail, ACK humano e recuperação; o ACK público foi
-sanitizado, com risco residual de cache. O repo privado de backup contém
-blueprint manual-only, sem snapshot/restore/RPO/RTO; LGPL ainda aguarda
-disposição. O smoke de 30 s no SHA atual visitou 50 tenants, 340 requests,
-50 escritas e dez negativas esperadas com zero erro, porém p95 login/Home/
-escrita/leitura excedeu 750 ms. A carga de 100 tenants por 60 minutos ainda
-não terminou. A revisão permanece NO-GO; PILOT-1 não começou.
+**Rechecagem HSP-4 em 2026-09-24 UTC:** os estados completed abaixo que
+descrevem a revisão de 20/09 são históricos. O artefato funcional
+bb290bc7bc35f77b4ca01aecdbf19b748c386270 passou CI e web/worker no
+staging. O convite passou e-mail, callback, sessão e vínculo member apenas no
+Tenant A; o proprietário confirmou definição de senha e acesso, mas **não**
+logout seguido de novo login. A migration 0024 passou 12/12 SQL e 12/12 HTTP
+multi-role com limpeza. O FULL de 55 respostas, score 48 e relatório foi
+repetido no mesmo SHA, com zero documentos vinculados/verificados. A issue
+#27 passou falha sintética, aviso por e-mail, ACK e recuperação. Backup privado
+run 35945384891 criou release cifrada imutável e restore lógico isolado de
+102 tenants/16 Auth/24 migrations em 37,476 s de drill local, **não** RTO de
+serviço. O export/restore omite owners/ACLs; faltam equivalência de permissões,
+agendamento, retenção, RPO/RTO de serviço, custódia independente e aceite do
+controle autogerido. Scanner de licença CI no candidato posterior 0c6dc1a,
+não no runtime bb290bc, deixou 30 itens para revisão, incluindo LGPL. O
+primeiro run de carga terminou aos 998 s com dez erros; o retry no mesmo
+runtime, run 662855c2dbd5, **concluiu 3.604 s**, 100/100 tenants, 24.512
+requests, 5.806 escritas, 584 negações esperadas e zero erros inesperados.
+Outbox 5.806/5.806 processados, zero pending/dead/retries, worker p95
+3.476,20 ms. Duração, isolamento sintético e outbox passaram; p95 login
+1.964,5 ms, Home 1.055,48 ms, escrita 1.024,5 ms e leitura 793,8 ms
+**falharam** contra 750 ms. Railway Virgínia/Supabase São Paulo foi provado,
+sem parcela de latência isolada. HSP-4 permanece **NO-GO**; PILOT-1 não começou.
 ### V1-ST-104 — Bootstrap do novo repositório GitHub
 - **Status:** `completed-remote-repository`
 - **Prioridade:** `P0`
@@ -1450,11 +1457,11 @@ não terminou. A revisão permanece NO-GO; PILOT-1 não começou.
 
 ### V1-ST-108 — E2E browser do happy path empresarial
 - **Status:** `completed-hosted-runtime-limited`
-- **Rechecagem:** novo FULL na UI hospedada do SHA anterior `5e6e836`:
+- **Rechecagem:** novo FULL na UI hospedada do SHA `bb290bc`:
   55 respostas, score 48, cobertura 100% e confiança 78%. O relatório novo
   não tem fonte vinculada ou verificada; isso comprova questionário→relatório
-  naquele SHA, não conclusão sustentada por documento. O cockpit alterado no
-  SHA final exige repetição do gate afetado.
+  naquele SHA, não conclusão sustentada por documento. O fluxo afetado foi
+  repetido no artefato hospedado, mas a prova documental real segue pendente.
 - **Prioridade:** `P0`
 - **Source:** `docs/canonical/v1/delivery/STORIES_MASTER.md`
 - **Critérios de aceite:**
@@ -1470,8 +1477,9 @@ não terminou. A revisão permanece NO-GO; PILOT-1 não começou.
 ### V1-ST-109 — E2E adversarial cross-tenant e permissions
 - **Status:** `completed-hosted-runtime-limited`
 - **Rechecagem:** 12/12 assertions de RLS no banco hospedado após `0024`
-  preservaram a separação de membro, gestor e outro tenant; sessões HTTP
-  distintas desses três papéis não foram reexecutadas nesta prova.
+  preservaram a separação de membro, gestor e outro tenant; no SHA `bb290bc`,
+  três sessões Auth HTTP distintas desses papéis passaram 12/12 assertions
+  pelas APIs de fatos, Timeline e tenant ativo, com limpeza do fixture.
 - **Prioridade:** `P0`
 - **Source:** `docs/canonical/v1/delivery/STORIES_MASTER.md`
 - **Critérios de aceite:**
@@ -1488,9 +1496,13 @@ não terminou. A revisão permanece NO-GO; PILOT-1 não começou.
 
 ### V1-ST-110 — Backup/restore/rollback drill
 - **Status:** `partial-hosted-logical-pass-managed-backup-rpo-pending`
-- **Rechecagem:** o restore lógico histórico de dataset pequeno não comprova
-  backup automático/retido, ponto recuperável, RPO real ou RTO operacional em
-  volume representativo. Esses itens continuam BLOCKED.
+- **Rechecagem:** o restore lógico histórico de dataset pequeno foi superado
+  por uma subprova manual real: workflow privado `7e6a54e`, run `35945384891`
+  PASS, release cifrada imutável e restore isolado de 102 tenants, 16 Auth,
+  zero objetos Storage e 24 migrations. Banco e verificações levaram 32,241 s;
+  drill local após download levou 37,476 s, **não** RTO de serviço. Faltam
+  agendamento, 30 dias de retenção, RPO/RTO de serviço, chave fora do mesmo
+  computador e aceite formal do controle equivalente. Gate BLOCKED.
 - **Prioridade:** `P0`
 - **Source:** `docs/canonical/v1/delivery/STORIES_MASTER.md`
 - **Critérios de aceite:**
@@ -1505,9 +1517,11 @@ não terminou. A revisão permanece NO-GO; PILOT-1 não começou.
 
 ### V1-ST-111 — SBOM + license + dependency + secret/security scans
 - **Status:** `partial-ci-sbom-pass-lgpl-disposition-blocked`
-- **Rechecagem:** o SBOM Linux do CI do SHA final lista 455 entradas, incluindo
-  `@img/sharp-libvips-linux-x64` sob `LGPL-3.0-or-later`. O inventário não é
-  aceite jurídico, NOTICE completo ou inspeção byte a byte do bundle Railway.
+- **Rechecagem:** o SBOM Linux do CI anterior lista 455 entradas, incluindo
+  `@img/sharp-libvips-linux-x64` sob `LGPL-3.0-or-later`. O scanner de licenças
+  passou no candidato `0c6dc1a`, mas gerou 30 itens para revisão. Inventário
+  e scanner não são aceite jurídico, NOTICE completo ou inspeção byte a byte
+  do bundle Railway.
 - **Prioridade:** `P0`
 - **Source:** `docs/canonical/v1/delivery/STORIES_MASTER.md`
 - **Critérios de aceite:**
@@ -1526,7 +1540,11 @@ não terminou. A revisão permanece NO-GO; PILOT-1 não começou.
   o operador recebeu e-mail, comentou ACK humano e a issue foi fechada.
   O comentário público foi sanitizado após trazer notificação citada; cache
   externo residual não pode ser descartado. Drill de alerta PASS; observação
-  contínua e recuperação de backup permanecem em gates separados.
+  contínua e recuperação de backup permanecem em gates separados. No segundo
+  run bb290bc de 3.604 s, 5.806 eventos sintéticos do outbox foram
+  processados; zero pending/dead/retries, worker latency p95 3.476,20 ms.
+  O SLO HTTP de 750 ms ainda falhou; pool/slow-query e custo marginal seguem
+  sem série completa.
 - **Prioridade:** `P0`
 - **Source:** `docs/canonical/v1/delivery/STORIES_MASTER.md`
 - **Critérios de aceite:**
@@ -1540,7 +1558,7 @@ não terminou. A revisão permanece NO-GO; PILOT-1 não começou.
 ### V1-ST-113 — Configurar dev/staging/prod e promoção controlada
 - **Status:** `completed-hosted-staging-and-remote-ci`
 - **Rechecagem:** CI quality/database/CodeQL PASS e web/worker Railway
-  `SUCCESS` no mesmo SHA `8df90d955479ffee98a62b7334faf1a172ec78a5`.
+  `SUCCESS` no mesmo SHA `bb290bc7bc35f77b4ca01aecdbf19b748c386270`.
   O ambiente Railway chamado `production` é o projeto dedicado de staging;
   isso não é promoção à produção aberta.
 - **Prioridade:** `P0`
@@ -1668,7 +1686,7 @@ não terminou. A revisão permanece NO-GO; PILOT-1 não começou.
 ## EPIC-17 Production Readiness & Repository
 
 ### V1-ST-122 — Production Readiness Review e release candidate
-- **Status:** `hsp4-recheck-in-progress-no-go`
+- **Status:** `hsp4-prr-closed-no-go-objective-fixes`
 - **Histórico:** a revisão de 20/09 concluiu NO-GO. A revisão nova ainda
   aguarda os gates operacionais e relatório A–T; não há GO para piloto.
 - **Prioridade:** `P0`

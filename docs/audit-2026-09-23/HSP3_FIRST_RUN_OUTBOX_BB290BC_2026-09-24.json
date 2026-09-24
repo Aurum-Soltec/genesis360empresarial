@@ -1,0 +1,16 @@
+{
+  "wave": "HSP-3",
+  "compiledAtUtc": "2026-09-24T02:15:57Z",
+  "artifactSha": "bb290bc7bc35f77b4ca01aecdbf19b748c386270",
+  "runId": "a3ace1f4d8cc",
+  "method": "Read-only scripts/hsp3-soak-ops.sql against staging PostgreSQL 17 using verified TLS, filtered only by synthetic source_ref HSP3:<runId>; no credentials or customer payload retained.",
+  "factRowsMatched": 1600,
+  "matchedFactEvents": 1600,
+  "processedFactEvents": 1600,
+  "pendingFactEvents": 0,
+  "deadFactEvents": 0,
+  "workerRetries": 0,
+  "workerLatencyP95Ms": 3589.34,
+  "attemptP95Ms": 164.0,
+  "limits": "The first client run ended after 998 seconds and exceeded p95 <= 750 ms. These aggregates do not prove 60 minutes of continuous worker operation or the HSP-3 gate."
+}

@@ -39,17 +39,21 @@
     ]
   },
   "GATE-ARCH": {
-    "state": "hsp4-recheck-in-progress-latency-fail",
+    "state": "hsp4-100-tenant-60min-functional-pass-latency-fail",
     "evidence": [
       "24 hosted migrations; 0024 applied append-only",
       "0024 hosted authenticated-role SQL RLS probe 12/12 PASS with rollback",
       "historical 95/95 hosted pgTAP and authenticated browser E2E",
       "historical 100-tenant 60-minute end-to-end soak: zero functional failures but p95 FAIL",
-      "private fixture precheck 10 users and 100 tenants; current SHA 8df90d955479ffee98a62b7334faf1a172ec78a5 smoke 30 seconds, 50 tenants, 340 requests, 50 writes, 10 expected denials, zero errors",
-      "current SHA web 45c64cf2-bd03-468c-80e4-8086c6489b15 and worker 2d8d5fe3 SUCCESS; CI quality/database/CodeQL PASS"
+      "hosted SHA bb290bc7bc35f77b4ca01aecdbf19b748c386270 HTTP member/manager/foreign-tenant RLS 12/12 PASS with fixture cleanup",
+      "first 100-tenant hosted run a3ace1f4d8cc ended after 998 seconds with 10 client errors and p95 FAIL; superseded by completed 3604-second run 662855c2dbd5 on same runtime",
+      "first bb290bc run hosted outbox probe over TLS verify-full: 1600 matched facts/events, all processed, zero pending/dead/retries, worker latency p95 3589.34ms and attempt p95 164ms",
+      "bb290bc region evidence: Railway web/worker Virginia us-east4-eqdc16a versus Supabase Sao Paulo sa-east-1; latency contribution not quantified",
+      "hosted SHA bb290bc7bc35f77b4ca01aecdbf19b748c386270 web ab3f2a2d-9507-4e24-8749-bc313c7691fa and worker 96c1e771-c895-4f15-a8f5-157b4f97f892 SUCCESS; CI quality/database/CodeQL PASS",
+      "versioned sanitized HSP3_100_TENANTS_60M_BB290BC_2026-09-24.json: run 662855c2dbd5 completed 3604 seconds, 100 tenants, 24512 browser requests, 5806 writes, 584 expected denials, 0 unexpected errors; outbox 5806 processed, 0 pending/dead/retries; p95 Home 1055.48ms/write 1024.5ms/read 793.8ms/login 1964.5ms, SLO FAIL"
     ],
     "pending": [
-      "measure and remediate demonstrated latency; repeat 100-tenant 60-minute end-to-end soak on final artifact with p50/p95/p99, error rate, isolation, worker, pool and cost evidence; p95 <=750ms"
+      "duration, isolation and outbox subgates passed; separate Auth/context subphases, Home bytes/content-encoding/SSR streaming and regional contribution before changing architecture; repeat 100-tenant 60-minute end-to-end soak after correction with p95 <=750ms and remaining pool/slow-query/cost evidence"
     ]
   },
   "GATE-CONTRACT": {
@@ -73,8 +77,8 @@
   "GATE-SEC": {
     "state": "blocked-operational-controls",
     "pending": [
-      "exact deployed Linux bundle inspection, NOTICE and technical/legal disposition for LGPL libvips in CI SBOM",
-      "automatic encrypted backup retention and representative restore with measured RPO/RTO; private GitHub blueprint has no snapshot or schedule",
+      "exact deployed Linux bundle inspection, NOTICE and technical/legal disposition for LGPL libvips and 30 review items; scanner PASS belongs to later CI candidate 0c6dc1a, not hosted bb290bc",
+      "automatic encrypted backup retention and representative service restore with measured RPO/RTO; private GitHub run 35945384891 made one immutable encrypted backup and isolated logical DB restore, but no schedule or 30-day history; --no-owner/--no-privileges omitted source ownership/ACLs so permission fidelity is unproven",
       "legal/privacy review of attestation copy",
       "binary upload malware/content scanning"
     ],
@@ -90,7 +94,7 @@
       "upload-session fail-closed attestation gate",
       "explicit user/tenant/company/purpose binding",
       "historical 95/95 pgTAP on isolated PostgreSQL/Supabase runtime",
-      "0024 hosted SQL RLS 12/12 for member, manager, owner and other tenant with rollback",
+      "0024 hosted SQL RLS 12/12 for member, manager, owner and other tenant with rollback; hosted HTTP multi-role RLS 12/12 on bb290bc with cleanup",
       "31/31 process-level adversarial tests",
       "dependency audit with zero known advisories",
       "authenticated Chrome cross-tenant denial",
@@ -100,8 +104,9 @@
       "GitHub secret scanning and push protection",
       "Dependabot alerts and security updates with zero open alerts",
       "CodeQL default setup passing with zero open alerts",
-      "historical frozen-lockfile inventory; final CI Linux SBOM has 455 entries and an unresolved LGPL package",
-      "monitor issue #27: synthetic failure, recovery, email receipt and human ACK; public ACK notification quote sanitized, external cache residual unknown"
+      "historical frozen-lockfile inventory; hosted bb290bc CI Linux SBOM has 455 entries and an unresolved LGPL package; later candidate scanner does not inspect deployed bytes",
+      "monitor issue #27: synthetic failure, recovery, email receipt and human ACK; public ACK notification quote sanitized, external cache residual unknown",
+      "private backup run 35945384891 PASS: immutable encrypted release, 3,613,039 bytes; isolated local logical restore 102 tenants, 16 Auth users, 0 Storage objects, 24 migrations; DB 32.241s, local drill 37.476s; no service RTO/RPO"
     ]
   },
   "GATE-UX": {
@@ -143,8 +148,8 @@
   "GATE-PROD": {
     "state": "blocked-hsp4-no-go",
     "pending": [
-      "new 100-tenant 60-minute hosted p95 <=750ms proof on final artifact; 30-second current smoke failed p95",
-      "automatic encrypted backup retention, representative restore and measured RPO/RTO; equivalent-control ADR decision pending",
+      "100-tenant 60-minute duration, isolation and outbox passed on bb290bc run 662855c2dbd5; p95 <=750ms failed on login/Home/write/read and must be remeasured after safe correction",
+      "automatic encrypted backup retention, representative service restore with owner/ACL equivalence and measured RPO/RTO; first private manual snapshot/logical restore passed, schedule, 30-day history, independent key custody and equivalent-control decision pending",
       "invited human fresh login after logout on corrected Auth flow; other invitation substeps passed",
       "final bundle SBOM/NOTICE and legal LGPL license disposition",
       "legal/privacy and upload activation gates"
@@ -158,20 +163,21 @@
       "0024 hosted SQL RLS probe 12/12 with synthetic authenticated roles and rollback",
       "historical 95/95 hosted pgTAP",
       "remote protected CI",
-      "current SHA 8df90d955479ffee98a62b7334faf1a172ec78a5 web and worker Railway SUCCESS; CI quality/database/CodeQL PASS",
-      "hosted FULL on prior SHA 5e6e836: 55 answers, score 48, confidence 78%; zero linked sources disclosed; affected demo gate pending retest",
+      "hosted SHA bb290bc7bc35f77b4ca01aecdbf19b748c386270 web and worker Railway SUCCESS; CI quality/database/CodeQL PASS",
+      "hosted FULL on bb290bc: 55 answers, score 48, coverage 100%, confidence 78%, 12 dimensions and 90-day plan; zero linked/verified sources disclosed; document-grounded conclusion pending",
+      "hosted HTTP member/manager/foreign-tenant isolation 12/12 on bb290bc; temporary fixture and users cleaned",
       "historical authenticated browser E2E 10/10",
-      "isolated logical restore only",
+      "private immutable encrypted backup and isolated logical DB restore: run 35945384891, 102 tenants, 16 Auth users, 24 migrations, no Storage objects; local drill 37.476s is not service RTO",
       "historical 100-tenant end-to-end soak with functional pass and performance fail",
       "controlled hosted invite email/callback/Tenant A-only session and owner-confirmed password definition; fresh login pending",
       "issue #27 synthetic failure, recovery, email notification, human ACK and close; ACK quote sanitized",
-      "current SHA smoke 30 seconds, 50 tenants, 340 requests, 50 writes, 10 expected cross-tenant denials, zero errors, p95 FAIL"
+      "first bb290bc run 998 seconds/10 client errors historical; second run 662855c2dbd5 completed 3604 seconds, 100 tenants, 24512 browser requests, 5806 writes, 584 expected denials, 0 unexpected errors; outbox 5806 processed, 0 pending/dead/retries; p95 FAIL"
     ],
     "pending": [
-      "automatic encrypted backup/recovery with 30-day retention and measured RPO/RTO; private repo/blueprint only",
+      "automatic encrypted backup/recovery with 30-day retention and measured service RPO/RTO; manual private backup/isolated logical restore passed, but --no-owner/--no-privileges omitted ownership/ACL fidelity; schedule/history/key custody/equivalence pending",
       "final artifact license disposition and exact bundle inventory",
-      "fresh invited-user login and affected diagnostic retest on current SHA",
-      "new 100-tenant 60-minute latency SLO and operational telemetry"
+      "fresh invited-user login after logout; actual document-linked/verified diagnostic conclusion remains unproven",
+      "100-tenant 60-minute duration/isolation/outbox passed; p95 <=750ms failed, pool/slow-query and marginal cost telemetry incomplete"
     ]
   },
   "GATE-REPO": {
@@ -189,16 +195,19 @@
     ]
   },
   "GATE-RELEASE-CANDIDATE": {
-    "state": "hsp4-recheck-in-progress-no-go",
+    "state": "hsp4-closed-no-go-objective-fixes",
     "implemented": [
       "historical HSP-0 through HSP-4 review completed with objective NO-GO on 2026-09-20",
-      "current SHA 8df90d955479ffee98a62b7334faf1a172ec78a5 CI and staging deployments verified",
-      "hosted 0024 RLS 12/12; FULL on prior SHA; current smoke 30 seconds with zero functional errors and p95 FAIL",
+      "hosted SHA bb290bc7bc35f77b4ca01aecdbf19b748c386270 CI and staging deployments verified",
+      "hosted 0024 SQL RLS 12/12 plus HTTP multi-role 12/12; FULL 55 answers on bb290bc with zero linked documents",
+      "first bb290bc run aborted at 998 seconds with 10 client errors; retry 662855c2dbd5 completed 3604 seconds, 100 tenants, 24512 browser requests and 0 unexpected errors; browser p95 FAIL",
+      "second bb290bc run hosted outbox probe: 5806 matched events processed, zero pending/dead/retries, worker latency p95 3476.20ms",
+      "first private encrypted backup run 35945384891 and isolated local logical restore passed; automatic retention and service RPO/RTO remain blocked",
       "issue #27 email receipt, human ACK, recovery and close; public ACK sanitized"
     ],
     "pending": [
-      "close HSP-4 backup/RPO/RTO, LGPL and 100-tenant 60-minute SLO blockers; repeat affected Auth and diagnostic gates",
-      "final A-T recheck decision after runtime evidence; current decision NO-GO",
+      "close HSP-4 automatic backup/ACL-equivalent service restore/RPO-RTO, LGPL and 100-tenant 60-minute p95 blockers; prove fresh invited-user login and document-grounded conclusions separately",
+      "repeat failed HSP-4 gates after correction and issue a new review; current decision NO-GO",
       "new owner authorization before PILOT-1"
     ]
   }
