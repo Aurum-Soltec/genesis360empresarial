@@ -44,7 +44,7 @@ async function observeHomeReads<T>(
 export default async function DashboardPage() {
   let data: Awaited<ReturnType<typeof loadDashboardOverview>>;
   try {
-    data = await observeHomeReads(process.env.HSP4_PERF_TRACE === "1", async (observe) => {
+    data = await observeHomeReads(true, async (observe) => {
       const context = await requirePageTenantContext("/", "api.default", observe);
       return loadDashboardOverview(context, observe);
     });

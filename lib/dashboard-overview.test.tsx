@@ -130,7 +130,6 @@ describe("executive Home reads", () => {
     expect(phases.map(([phase]) => phase)).toEqual(["company_selection", "diagnostic", "pains"]);
     expect(phases.every(([, duration]) => Number.isFinite(duration) && duration >= 0)).toBe(true);
 
-    vi.stubEnv("HSP4_PERF_TRACE", "1");
     const output = vi.spyOn(console, "log").mockImplementation(() => {});
     try {
       await DashboardPage();
@@ -157,7 +156,6 @@ describe("executive Home reads", () => {
   it("keeps numeric Home telemetry when the optional correlation header fails", async () => {
     vi.mocked(createSupabaseServerClient).mockResolvedValue(dashboardDb(true) as never);
     vi.mocked(headers).mockRejectedValueOnce(new Error("HEADER_UNAVAILABLE"));
-    vi.stubEnv("HSP4_PERF_TRACE", "1");
     const output = vi.spyOn(console, "log").mockImplementation(() => {});
     try {
       const html = renderToStaticMarkup(await DashboardPage());
