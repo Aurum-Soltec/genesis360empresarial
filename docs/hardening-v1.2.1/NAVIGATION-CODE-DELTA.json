@@ -317,7 +317,7 @@
     {
       "path": "docs/audit-2026-09-24/HSP4_PRIVATE_SYNTHETIC_AND_SQL_METADATA_2026-09-24.md",
       "beforeSha256": null,
-      "afterSha256": "aeb778cb00006b0cb4ef8de6a4246fdbe4a9acef1b7e6cff9c3266c006b3ecff",
+      "afterSha256": "37bff2af3270759a035162690429e4ce30dc2deeeace8437b362b5d0f993d760",
       "reason": "HSP-4: sanitized private-run metadata, SQL/HTTP evidence and synthetic recovery limits"
     },
     {
@@ -347,13 +347,13 @@
     {
       "path": "docs/canonical/v1/delivery/PRODUCTION_WAVES_MASTER.md",
       "beforeSha256": "14af8551a84daf473cb9ec2c78818b789d3bc6500fbd92ee1cbfe5718735d62e",
-      "afterSha256": "7a1a853671463a3f2f658e5da3675a7e54924cfd4e319baa0eb790dafa037d89",
+      "afterSha256": "4080d8e62ebde1b52de7db5859239a4065303773ec4ea776c39093159d75e979",
       "reason": "HSP-4: reconcile CI, current evidence, historical Waves and final NO-GO"
     },
     {
       "path": "docs/canonical/v1/delivery/PRODUCTION_WAVES.md",
       "beforeSha256": "fe82dd3e99e80142b971f72c867df24ab1d66d1d61390c42802b2a101ccdfdf0",
-      "afterSha256": "24e8bdf0c9d84258c8e7a995e46ccb5c1c37ee1fc1e3536247bfbea4c195413d",
+      "afterSha256": "1782970c9fa023fab92396c03cf75cb7316ebd415ee4f7fb6207a5cba8b69048",
       "reason": "HSP-4: mark historical Waves and point to the current 458aac9 NO-GO review"
     },
     {
