@@ -22,9 +22,13 @@ limpo e da mensagem de deploy, sem atestação nativa do commit pelo provedor.
 
 A nova rota opt-in `/api/ops/home-timing` respondeu **401** sem sessão.
 A tentativa de navegação direta autenticada no Chrome/IAB terminou
-`ERR_BLOCKED_BY_CLIENT` no navegador, sem resposta HTTP autenticada da
-rota. Portanto, nenhuma medição hospedada de fases foi obtida e não há
-diagnóstico causal ou correção comprovada do p95. A última carga completa
+`ERR_BLOCKED_BY_CLIENT` no navegador, sem resposta HTTP autenticada dessa
+tentativa. O workflow privado da PR #23 obteve depois **16/16 amostras
+numéricas** no claim `458aac9`: total p50 **799,01 ms**, p95 **1.337,44
+ms**; tenant context p50/p95 **504,71/709,60 ms** e dashboard
+**284,31/810,15 ms**. A fixture era escassa, sem diagnóstico/pains; isso
+indica custo em fases remotas e picos, mas não isola causa definitiva nem
+comprova correção. A última carga completa
 100 empresas × 60 minutos, no `bb290bc`, falhou p95 ≤750 ms. O run privado
 HTTP multi-role `36062309891` e seu guard independente passaram no claim
 `458aac9`: o runner fail-fast permite inferir 12/12, com artefato
@@ -38,8 +42,8 @@ fundamentada em documentos reais seguem abertos.
 | --- | --- | --- |
 | HSP-0 | **PARTIAL** | PR #33/CI PASS; web e worker SUCCESS de fonte local limpa `458aac9`, com digests; `meta.commitHash=null` impede atestação nativa do SHA. |
 | HSP-1 | **PARTIAL; HTTP multi-role PASS limitado** | FULL fictício 7/7 no `5b992d3`; SQL-only 0024 no `6dff3c9`; run hospedado `36062309891` e guard `36062480126` SUCCESS no claim `458aac9`, 12/12 inferidos do runner fail-fast, artefato não inspecionado. |
-| HSP-2 | **BLOCKED** | Backup/restore real, retenção, RPO/RTO, alerta específico e licença final pendentes. |
-| HSP-3 | **FAIL** | Último 100×60 excedeu p95; rota de medição nova ainda sem resultado autenticado. |
+| HSP-2 | **BLOCKED** | PR privada #22/run `36063130004` passou apenas restore sintético com Auth/tenants/outbox; bytes de Storage não vieram de backup. Backup/restore real, retenção, RPO/RTO, alerta específico e licença final pendentes. |
+| HSP-3 | **FAIL** | Último 100×60 excedeu p95; run privado `36063913391` gerou 16 amostras válidas da Home, insuficientes para SLO ou causa definitiva. |
 | HSP-4 | **NO-GO** | Gates operacionais de segurança, recuperação e desempenho sem PASS no candidato. |
 
 ## C. PASS / FAIL / BLOCKED por Gate
@@ -51,9 +55,9 @@ fundamentada em documentos reais seguem abertos.
 | Demo FULL fictícia | **PASS histórico no `5b992d3`** | 52 respostas/cockpit 7/7; sem análise de documentação real e sem repetição no `458aac9`. |
 | SQL 0024 / HTTP multi-role | **SQL histórico PASS limitado; HTTP atual PASS limitado** | SQL run `36035020570` no `6dff3c9`; HTTP run `36062309891` e guard `36062480126` SUCCESS no claim `458aac9`, 12/12 inferidos pelo runner fail-fast. Artefatos privados não inspecionados independentemente; Railway `meta.commitHash=null`. |
 | Cinco flags sensíveis OFF | **PASS visual/de rota limitado no web atual `458aac9`** | Após reload real da IAB em `/demonstracao/administracao`, owner sintético do Tenant A viu resumo “Cinco funções sensíveis desligadas” e Agentic, Data Upload real, Qualification Network, Real Contact e Ecosystem como DESLIGADA; `/ecossistema` retornou 404. Escopo da UI/rota nessa sessão; sem leitura bruta de env ou prova em outros serviços. |
-| Rota de medição da Home | **PARTIAL** | 401 anônimo; navegação autenticada bloqueada no cliente antes de obter resposta. Nenhum tempo de fase. |
+| Rota de medição da Home | **PASS limitado de telemetria; SLO FAIL histórico** | 401 anônimo; navegação direta autenticada bloqueada no cliente. Run privado `36063913391`/backstop `36064075371` SUCCESS, schema numérico 16/16, total p50/p95 799,01/1.337,44 ms em fixture escassa sem pains. Sem inferência de 100×60 ou causa fechada. |
 | Alerta geral | **PASS histórico** | Issue pública #27 com e-mail, ACK e recuperação. Alerta de backup #17 ainda sem ACK. |
-| Backup, restore, RPO/RTO | **BLOCKED** | Ensaios lógicos/sintéticos e preparação de monitor sem restore real de serviço ou agendamento observado. |
+| Backup, restore, RPO/RTO | **BLOCKED** | PR privada #22/run `36063130004` SUCCESS em stack sintética: 3 Auth, 2 tenants, 24 migrations, 4 outbox processados e paridade de catálogo; `storage_bytes_restored_from_backup=false`. Até worker 188,167 s não é RTO. Sem restore real de staging ou agendamento observado. |
 | OSS/NOTICE | **BLOCKED** | Inspeção de pacotes em imagem anterior; decisão jurídica e NOTICE final pendentes. |
 | 100 tenants/60 min, p95 ≤750 ms | **FAIL histórico; candidato PENDING** | Último run `bb290bc` excedeu p95; nenhuma repetição no `458aac9`. |
 
@@ -62,15 +66,18 @@ fundamentada em documentos reais seguem abertos.
 - [PR #33](https://github.com/Aurum-Soltec/genesis360empresarial/pull/33): CI PASS e merge `458aac9`; deployments web `65ede85d-f918-4ccf-b161-a9396d6c702a` SUCCESS às 20:49:32Z e worker `8e460f0f-4c6b-4506-b490-90682b5b1b4d` SUCCESS às 20:50:27Z de worktree limpa detached no mesmo SHA, com digests indicados acima; ambos `meta.commitHash=null`.
 - [HTTP multi-role hospedado no claim `458aac9`](HSP4_HOSTED_HTTP_MULTIROLE_458AAC9_2026-09-24.md): run `36062309891`, jobs exercise/independent-residue-guard e backstop `36062480126` SUCCESS; 12/12 inferidos por runner fail-fast, artefato sanitizado id `10834806637` (511 bytes, SHA-256 registrado) não inspecionado independentemente.
 - Rota `/api/ops/home-timing`: 401 anônimo; tentativa autenticada por navegação direta no Chrome/IAB `ERR_BLOCKED_BY_CLIENT`, sem resposta HTTP e sem tempos.
+- [Medição privada limitada da Home](HSP4_HOSTED_HOME_TIMING_458AAC9_2026-09-24.md): PR #23/CI unit PASS, run `36063913391` e backstop `36064075371` SUCCESS, schema numérico 16/16, artefato sanitizado id `10834954067`; fixture escassa, sem SLO 100×60.
 - Administração da demo no web atual `458aac9`: reload autenticado de proprietário sintético do Tenant A exibiu as cinco flags DESLIGADA; navegação direta `/ecossistema` deu 404. Evidência apenas da UI/rota nessa sessão.
+- [PR privada #22 e run sintético `36063130004`](HSP4_PRIVATE_SYNTHETIC_AND_SQL_METADATA_2026-09-24.md): CI unitário e workflow SUCCESS; resumo sanitizado de Auth/tenants/migrations/outbox, sem bytes Storage restaurados de backup e sem RTO real.
 - [Revisão anterior A–T](HSP4_CURRENT_REVIEW_6DFF3C9_2026-09-24.md), [FULL fictício](HSP4_HOSTED_FULL_DEMO_5B992D3_2026-09-24.md), [SQL e recuperação sintética](HSP4_PRIVATE_SYNTHETIC_AND_SQL_METADATA_2026-09-24.md) e [carga histórica 100×60](../audit-2026-09-23/HSP3_100_TENANTS_60M_BB290BC_2026-09-24.json).
 
 ## E. Mudanças realizadas e F. Problemas/correções
 
 O PR #33 adicionou uma rota opt-in autenticada para medir fases do backend
 da Home. A verificação anônima confirmou negação 401. O navegador bloqueou
-a navegação autenticada com `ERR_BLOCKED_BY_CLIENT`; isso é limite da
-tentativa de coleta, não prova de erro de servidor nem de tempos. Não houve
+a navegação autenticada com `ERR_BLOCKED_BY_CLIENT`; isso é limite daquela
+tentativa de coleta, não prova de erro de servidor. O workflow privado da
+PR #23 obteve depois 16 medidas numéricas válidas por via protegida. Não houve
 mudança de arquitetura, PostgreSQL, Supabase, tenancy, RLS ou fronteira de
 acesso confiável para contornar o bloqueio.
 
@@ -112,13 +119,24 @@ backup automático continua OFF; os nomes de variáveis de habilitação,
 restore de serviço, custódia, equivalência e trava de gasto não estavam
 configurados. O monitor privado #21 passou dry-run
 sem release real nem nova issue, com cron OFF e domínio de falha compartilhado
-com GitHub Actions. A rota de fases ainda não gerou telemetria autenticada.
+com GitHub Actions. A rota de fases gerou 16 amostras protegidas pelo run
+`36063913391`, com fixture escassa; não são série representativa 100×60.
 
 ## K. Backup, restore, RPO e RTO
 
 Release cifrada e restore lógico isolado, boot vazio e source→target
 sintético são provas limitadas. PRs privadas #18/#20/#21 preparam preflight,
-retenção fail-closed e monitor, mas cron e monitor permanecem OFF. Faltam
+retenção fail-closed e monitor. A PR privada #22 integrada no SHA
+`7759ac15e15220f56b6a5ed3888738f9c3d27238` passou CI unitário;
+run sintético `36063130004` SUCCESS com resumo sanitizado de 3 Auth,
+2 tenants, 24 migrations, 4 eventos outbox processados, matriz de papéis
+do mesmo tenant testada e paridade de catálogo. O campo
+`storage_bytes_restored_from_backup=false` impede crédito de restore dos
+bytes de Storage. O tempo até worker de **188,167 s** é sintético e **não
+é RTO**. O resumo informou `public_sha=458aac9` e cleanup final PASS;
+PR privada #24 foi apenas documentação (main `735026d598c1cdd2fd16941513905ac76d001a29`).
+O agente não inspecionou independentemente o artefato privado.
+Cron e monitor permanecem OFF. Faltam
 backup automático com retenção observada, restore isolado do serviço e
 equivalência owner/ACL/RLS, RPO real ≤24 h, RTO de serviço ≤30 min e
 custódia independente da chave. **HSP-2 continua BLOCKED.**
@@ -129,8 +147,20 @@ Run histórico `662855c2dbd5` no `bb290bc`: 3.604 s, 100/100 tenants,
 24.512 requests, 5.806 escritas, 584 negativas esperadas, zero erro
 inesperado. P95 login 1.964,5 ms, Home 1.055,48 ms, escrita 1.024,5 ms e
 leitura 793,8 ms excederam ≤750 ms. P50/p99, pool, conexões, slow queries,
-quotas, CPU/memória e custo dessa série constam na evidência histórica;
-nenhuma série 100×60 ou tempo de fase autenticado foi obtido no `458aac9`.
+quotas, CPU/memória e custo dessa série constam na evidência histórica.
+No `458aac9`, o run limitado `36063913391` validou 16/16 amostras
+numéricas: total p50/p95 **799,01/1.337,44 ms**, tenant context
+**504,71/709,60 ms**, dashboard **284,31/810,15 ms**; auth user p50
+**138,91 ms**, membership **147,18/526,88 ms**, quota
+**149,82/456,06 ms**, seleção de empresa **139,31/407,04 ms** e
+diagnóstico **141,29/432,50 ms**. A fixture não tinha pains. Percentis de
+fases não são aditivos. O residual calculado **por amostra**
+`tenant_context − auth_user − active_cookie − max(membership, quota)`
+teve p50/p95/máximo **0,40/0,49/0,49 ms** em 16 amostras completas;
+Auth user p95/máximo **182,30 ms**. Isso indica overhead local pequeno
+e predominância de chamadas remotas nessa fixture, mas
+não isola causa definitiva, não representa Home com dados reais e não
+substitui uma nova série 100×60. **SLO segue FAIL histórico.**
 
 ## N. FinOps inicial
 
@@ -139,9 +169,9 @@ fornecem custo marginal por tenant do novo artefato. Não houve nova medição.
 
 ## O. Débitos técnicos e P. Riscos para piloto
 
-P95 reprovado, falta de telemetria causal, proveniência nativa do SHA,
-backup de
-serviço, NOTICE/licença e fundamento documental real são riscos de piloto.
+P95 reprovado, medição ainda não representativa/causa não isolada,
+proveniência nativa do SHA, backup de serviço, NOTICE/licença e fundamento
+documental real são riscos de piloto.
 O bloqueio de navegador na rota de medição não autoriza relaxar Auth, RLS
 ou controles de segurança. Cross-tenant, perda/corrupção de dados ou
 vazamento de segredo causariam FAIL imediato.
@@ -154,9 +184,9 @@ valor. O run HTTP hospedado ocorreu; eventual repetição afetada por correção
 de código deve preservar essa custódia. Backup exige
 chave sob custódia independente e decisão formal sobre controle autogerido;
 responsável jurídico deve fechar NOTICE e obrigações LGPL/CC-BY/MPL. A
-equipe precisa obter medição autenticada por meio que preserve Auth e não
-exponha credenciais, sem interpretar o bloqueio local do navegador como
-resultado do servidor.
+equipe deve ampliar a medição autenticada com fixture representativa,
+preservando Auth e sem expor credenciais. O bloqueio local do navegador
+não representa o resultado do servidor.
 
 ## R. Percentuais Foundation, MVP e V1
 
@@ -171,9 +201,15 @@ escopo, sem novo crédito de prontidão operacional pelo deploy da rota.
 
 ## T. Próxima ação recomendada
 
-1. Medir fases autenticadas da Home no `458aac9` preservando Auth; distinguir
-   bloqueio de cliente de resposta do servidor. Isolar gargalo antes de
-   corrigir e repetir 100 empresas por 60 minutos com p95 ≤750 ms.
+1. Usar as 16 amostras autenticadas como triagem, medir fixture representativa
+   com Auth/contexto/dashboard e diagnosticar causa específica antes de
+   corrigir. Repetir 100 empresas por 60 minutos com p95 ≤750 ms no
+   candidato corrigido; a amostra curta não satisfaz o SLO. `getClaims`
+   no core e mudança regional são hipóteses, sem implementação ou ADR;
+   qualquer canário regional deve medir também login navegador brasileiro →
+   Auth e Home com diagnóstico/três dores, condicionado a slot e orçamento
+   Free. Migração real exigiria ADR/residência, Auth/Storage/ACL/RLS/backup
+   e novo 100×60; nenhuma promoção regional foi autorizada ou executada.
 2. Preservar a prova HTTP Auth multi-role limitada do run `36062309891` e
    repetir apenas se uma correção a afetar; preservar as cinco flags OFF
    observadas na UI/rota e testar worker/outbox no candidato. Registrar

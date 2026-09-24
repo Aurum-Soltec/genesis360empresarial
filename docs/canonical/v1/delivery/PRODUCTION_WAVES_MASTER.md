@@ -13,8 +13,11 @@ worktree limpa detached nesse SHA. Os deployments têm digests web
 e worker `sha256:8318678e1197f06d97390dbf43629bfb88bea97963eda892ffd7ee9b234e2163`;
 Railway `meta.commitHash=null` em ambos. A rota opt-in
 `/api/ops/home-timing`
-devolveu 401 anônimo, mas a navegação autenticada foi bloqueada pelo
-navegador (`ERR_BLOCKED_BY_CLIENT`), sem tempos hospedados. Último 100×60
+devolveu 401 anônimo, mas a navegação direta autenticada foi bloqueada
+pelo navegador (`ERR_BLOCKED_BY_CLIENT`). O run privado `36063913391`
+mediu depois 16 amostras numéricas em fixture escassa sem pains: total
+p50/p95 799,01/1.337,44 ms, tenant context 504,71/709,60 ms e dashboard
+284,31/810,15 ms, sem causa definitiva ou crédito de SLO. Último 100×60
 permanece FAIL de p95; HTTP multi-role hospedado no claim `458aac9` passou
 no run privado `36062309891` com guard independente e backstop SUCCESS,
 12/12 inferidos do runner fail-fast, sem inspeção independente do artefato
@@ -29,8 +32,8 @@ vigente](../../../audit-2026-09-24/HSP4_CURRENT_REVIEW_458AAC9_2026-09-24.md).
 | --- | --- | --- |
 | HSP-0 | **PARTIAL** | Preservar CI e vincular fonte/deployments ao artefato sem alegar atestação nativa não observada. |
 | HSP-1 | **PARTIAL; HTTP multi-role PASS limitado** | Run hospedado `36062309891` e backstop `36062480126` SUCCESS no claim `458aac9`; 12/12 inferidos do runner fail-fast, JSON privado não inspecionado. FULL no candidato ainda pende; SQL-only anterior é histórico. Cinco flags OFF foram observadas na UI/rota atual sob sessão sintética, sem env bruto. |
-| HSP-2 | **BLOCKED** | Restore funcional com ACL/RLS e RPO/RTO, backup automático/retido, alerta/ACK, chave independente e NOTICE. |
-| HSP-3 | **FAIL p95 histórico; atual PENDING** | Medir fases autenticadas, corrigir gargalo demonstrado e repetir 100×60 no candidato. |
+| HSP-2 | **BLOCKED** | PR privada #22/run `36063130004` passou apenas stack sintética com 3 Auth/2 tenants/24 migrations/4 outbox; bytes Storage não vieram de backup, 188,167 s até worker não é RTO. Faltam restore real, RPO/RTO, backup automático/retido, alerta/ACK, chave independente e NOTICE. |
+| HSP-3 | **FAIL p95 histórico; atual PENDING** | Run `36063913391` mediu 16/16 amostras curtas sem pains; ampliar fixture, isolar causa, corrigir gargalo demonstrado e repetir 100×60 no candidato. |
 | HSP-4 | **NO-GO** | Reconciliar gates antes de decisão de piloto. |
 
 ## Registro histórico — fonte `6dff3c9`

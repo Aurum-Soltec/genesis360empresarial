@@ -45,6 +45,26 @@ não há alerta independente, backup automático comprovado, restore ou RPO/RTO.
 Uma consulta limitada aos metadados de issues abertas após o dry-run mostrou
 somente a issue privada #17 existente, ainda sem ACK humano.
 
+A [PR privada #22](https://github.com/Aurum-Soltec/genesis360-staging-backups/pull/22)
+foi integrada na main privada em
+`7759ac15e15220f56b6a5ed3888738f9c3d27238` (head de PR
+`44953e`). O CI unitário terminou PASS. O [run sintético
+`36063130004`](https://github.com/Aurum-Soltec/genesis360-staging-backups/actions/runs/36063130004)
+terminou SUCCESS. O resumo sanitizado informado registra **3 usuários
+Auth, 2 tenants, 24 migrations, 4 eventos outbox processados**, paridade
+de catálogo e `same_tenant_role_matrix_tested=true`. Também registra
+`storage_bytes_restored_from_backup=false`: não houve prova de restauração
+dos bytes de Storage a partir de backup. O tempo até o worker, **188,167
+s**, pertence à stack **sintética**, sem backup real do staging, e **não
+é RTO de serviço**. O resumo informou `public_sha` igual a
+`458aac964d1f9a7016ac1804fe99d68637a3c0b8`,
+`migrated_catalog_parity=true` e cleanup final PASS. A PR privada #24
+de documentação foi integrada na main privada
+`735026d598c1cdd2fd16941513905ac76d001a29`, sem novo crédito de
+runtime. O agente não inspecionou independentemente o artefato
+privado completo. O cron de backup permanece OFF; restore real, retenção,
+RPO/RTO e HSP-2 continuam BLOCKED.
+
 ## Fronteira SQL hospedada da migration 0024
 
 A [PR privada #16](https://github.com/Aurum-Soltec/genesis360-staging-backups/pull/16)
