@@ -3,6 +3,12 @@
   "baselineCommit": "3c76926df3b8ca705f0f54f52146373164bd7037",
   "files": [
     {
+      "path": ".github/workflows/ci.yml",
+      "beforeSha256": "cd9b2de408d0feb75cf092d02dd1a1d61a520cceec8d23999020da99faa945f2",
+      "afterSha256": "8eefda8a7cf0432b8912338f696de76eb44b57a8efb4e72e081de191cf0036fa",
+      "reason": "HSP-4: declared-license scan and CI evidence for the Linux dependency inventory"
+    },
+    {
       "path": ".github/workflows/staging-monitor.yml",
       "beforeSha256": "fa7910313c385dd24bf4575e972737d46980ebcdcfc5ee67a363c747e076451d",
       "afterSha256": "bc3a47f0ed7fc171ba1d4049af476ba2ac0a3450b16d30748c2022030bede8f0",

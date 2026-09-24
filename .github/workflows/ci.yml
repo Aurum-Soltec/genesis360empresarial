@@ -28,10 +28,14 @@ jobs:
       - run: pnpm audit --audit-level=high
       - name: Generate Linux deployment SBOM
         run: pnpm sbom:generate:runtime
+      - name: Audit declared licenses (ADR-015 precheck)
+        run: node scripts/audit-sbom-licenses.mjs test-results/hsp4-runtime-linux-x64.sbom.spdx.json test-results/hsp4-license-declarations.json
       - uses: actions/upload-artifact@v4
         with:
           name: hsp4-runtime-linux-x64-sbom
-          path: test-results/hsp4-runtime-linux-x64.sbom.spdx.json
+          path: |
+            test-results/hsp4-runtime-linux-x64.sbom.spdx.json
+            test-results/hsp4-license-declarations.json
           if-no-files-found: error
           retention-days: 30
   database:
