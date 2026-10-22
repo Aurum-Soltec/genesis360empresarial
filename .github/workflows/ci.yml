@@ -40,7 +40,7 @@ jobs:
           pnpm list --prod --depth Infinity --json > test-results/hsp4-production-dependency-tree.json
           node scripts/classify-license-dependencies.mjs test-results/hsp4-license-declarations.json test-results/hsp4-production-dependency-tree.json test-results/hsp4-license-production-classification.json
           echo 'HSP-4 license gate: **BLOCKED** pending deployed-artifact inventory and owner/legal disposition. A green CI check is only a declaration precheck.' >> "$GITHUB_STEP_SUMMARY"
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: hsp4-runtime-linux-x64-sbom
@@ -71,7 +71,7 @@ jobs:
           set -o pipefail
           mkdir -p test-results
           supabase test db 2>&1 | tee test-results/database.log
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: database-evidence
