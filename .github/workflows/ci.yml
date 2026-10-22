@@ -19,7 +19,7 @@ jobs:
           node-version-file: .nvmrc
       - name: Lockfile gate (intentional block until resolution is committed)
         run: node scripts/check-lockfile.mjs
-      - uses: pnpm/action-setup@v4
+      - uses: pnpm/action-setup@v6
         with:
           version: 10.32.1
           run_install: false
